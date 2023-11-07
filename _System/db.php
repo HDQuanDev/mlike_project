@@ -1,0 +1,942 @@
+<?php
+//error_reporting(0);
+ob_start();
+session_start();
+date_default_timezone_set('Asia/Ho_Chi_Minh');
+define('_PHPVERSION_', '7.4');
+define('_PHPRUN_', phpversion());
+define('_SITE_', 'https://mlike.vn');
+// initializing variables
+$login = $_SESSION['u'];
+require_once('config.php');
+require_once('function.php');
+//config tiktok
+$stttiktok = 'off';
+// connect to the database
+$db = mysqli_connect('localhost', 'mlike', 'WEJajXeMBHPeeWbt', 'mlike');
+if (!$db) {
+    echo '{"status":"error","message":"Không thể kết nối đến CSDL/không tìm thấy CSDL","error_code": "' . mysqli_connect_errno() . '"}';
+    exit;
+}
+mysqli_set_charset($db, "utf8");
+$urll = $_SERVER['SCRIPT_NAME'];
+$site = $_SERVER['HTTP_HOST'];
+$domain = 'https://' . $site . '';
+if ($site == 'like1s.vn') {
+    $site = 'mlike.vn';
+    $domain = 'https://like1s.vn';
+}
+if ($site == 'api.like1s.vn') {
+    $site = 'mlike.vn';
+    $domain = 'https://api.like1s.vn';
+}
+$url = 'https://' . $site . '' . $urll . '';
+
+$cdn = 'https://mlike.vn/assets';
+
+$s = mysqli_query($db, "SELECT * FROM `system`");
+$s = mysqli_fetch_assoc($s);
+if (isset($_COOKIE["user"]) && isset($_COOKIE["pass"])) {
+    session_destroy();
+    setcookie("user", "", time() - 31556926, "/");
+    setcookie("pass", "", time() - 31556926, "/");
+    header('location:/');
+}
+if ($login) {
+    $tko = mysqli_query($db, "SELECT * FROM `member` WHERE `username` = '$login' AND `site` = '$site'");
+    $tko = mysqli_num_rows($tko);
+    if ($tko == 0) {
+        session_destroy();
+        setcookie("username", "", time() - 31556926, "/");
+        setcookie("password", "", time() - 31556926, "/");
+        header('location:/');
+    }
+
+
+    $result1 = mysqli_query($db, "SELECT * FROM `member` WHERE `username` = '$login' ORDER BY id DESC");
+    while ($ro = mysqli_fetch_assoc($result1)) {
+        if ($ro['token'] == 'quan') {
+            $id = $ro['id'];
+            $mgt = $ro['mgt'];
+            $token = base64_encode(serialize(md5($id . $mgt)));
+            mysqli_query($db, "UPDATE `member` SET `token` = '$token'
+    WHERE `username` = '$login' AND `site` = '$site'");
+        }
+    }
+    $result = mysqli_query($db, "SELECT * FROM `member` WHERE `username` = '$login' AND `site` = '$site'");
+    $row = mysqli_fetch_assoc($result);
+
+
+    if ($row['rule'] == 99) {
+        $cv = "Admin!";
+    } elseif ($row['rule'] == 33) {
+        $cv = "Cộng Tác Viên";
+    } elseif ($row['rule'] == 66) {
+        $cv = "Đại Lý";
+    } else {
+        $cv = "Thành Viên";
+    }
+    if ($row['rule'] == 10) {
+        header('location:/500');
+    }
+}
+if (isset($login) || isset($_POST['token'])) {
+    if (isset($login)) {
+        $sg = mysqli_query($db, "SELECT * FROM `setgia` WHERE `user` = '" . $_SESSION['u'] . "' AND `site` = '$site'");
+        $sg = mysqli_num_rows($sg);
+        $logi = $login;
+        if (!isset($_COOKIE["token"])) {
+            setcookie("token", $row["token"], time() + 31556926, "/");
+        }
+        if (!isset($_COOKIE["cv"])) {
+            setcookie("cv", $row["rule"], time() + 31556926, "/");
+        }
+    } elseif (isset($_POST['token'])) {
+        $token = mysqli_real_escape_string($db, $_POST['token']);
+        $uu = mysqli_query($db, "SELECT * FROM `member` WHERE `token`='$token' AND `site` = '$site'");
+        $tko = mysqli_num_rows($uu);
+        if ($tko == '1') {
+            $row = mysqli_fetch_assoc($uu);
+            $logi = $row['username'];
+            $sg = mysqli_query($db, "SELECT * FROM `setgia` WHERE `user` = '" . $logi . "' AND `site` = '$site'");
+            $sg = mysqli_num_rows($sg);
+        } else {
+            echo '{"status":"error","msg":"Lỗi hệ thống api!"}';
+            exit();
+        }
+    }
+    if (isset($page)) {
+        if ($sg == 1) {
+            $get = mysqli_query($db, "SELECT * FROM `setgia` WHERE `user` = '" . $logi . "' AND `site` = '$site'");
+            $q = mysqli_fetch_assoc($get);
+            if ($page == 'like_fb') { //Like Facebook
+                $gia1 = $q['fbl_1'];
+                $gia2 = $q['fbl_2'];
+                $gia3 = $q['fbl_3'];
+                $gia4 = $q['fbl_4'];
+                $gia5 = $q['fbl_5'];
+                $gia6 = $q['fbl_6'];
+                $gia7 = $q['fbl_7'];
+                $gia8 = $q['fbl_8'];
+                $gia9 = $q['fbl_9'];
+                $gia10 = $q['fbl_10'];
+                $gia11 = $q['fbl_11'];
+                $gia12 = $q['fbl_12'];
+                $info = $if->data->facebook->like_1;
+            }
+            if ($page == 'like_fb_v2') { //Like Facebook V2
+                $gia1 = $q['fblv2_1'];
+                $gia2 = $q['fblv2_2'];
+                $gia3 = $q['fblv2_3'];
+                $gia4 = $q['fblv2_4'];
+                $info = $if->data->facebook->like_1;
+            } elseif ($page == 'fb_feeling') {
+                $gia1 = $q['fbcx_1'];
+                $gia2 = $q['fbcx_2'];
+            } elseif ($page == 'fb_likecmt') {
+                $gia1 = $q['fblikecmt_1'];
+                $gia2 = $q['fblikecmt_2'];
+                $gia3 = $q['fblikecmt_3'];
+            } elseif ($page == 'cmt_fb') {
+                $gia1 = $q['fbcmt_1'];
+                $gia2 = $q['fbcmt_2'];
+            } elseif ($page == 'share_fb') {
+                $gia1 = $q['fbshare_1'];
+                $gia2 = $q['fbshare_2'];
+                $gia3 = $q['fbshare_3'];
+                $gia4 = $q['fbshare_4'];
+                $gia5 = $q['fbshare_5'];
+            } elseif ($page == 'follow_fb') {
+                $gia1 = $q['fbfollow_1'];
+                $gia2 = $q['fbfollow_2'];
+                $gia3 = $q['fbfollow_3'];
+                $gia4 = $q['fbfollow_4'];
+                $gia5 = $q['fbfollow_5'];
+                $gia6 = $q['fbfollow_6'];
+                $gia7 = $q['fbfollow_7'];
+                $gia8 = $q['fbfollow_8'];
+                $gia9 = $q['fbfollow_9'];
+                $gia10 = $q['fbfollow_10'];
+            } elseif ($page == 'live_fb') {
+                $gia1 = $q['fblive_1'];
+                $gia2 = $q['fblive_2'];
+                $gia3 = $q['fblive_3'];
+                $gia4 = $q['fblive_4'];
+                $gia5 = $q['fblive_5'];
+                $gia6 = $q['fblive_6'];
+                $gia7 = $q['fblive_7'];
+                $gia8 = $q['fblive_8'];
+                $gia9 = $q['fblive_9'];
+                $gia10 = $q['fblive_10'];
+                $gia11 = $q['fblive_11'];
+            } elseif ($page == 'live_fb_v2') {
+                $gia1 = $q['fblivev2_1'];
+                $gia2 = $q['fblivev2_2'];
+                $gia3 = $q['fblivev2_3'];
+            } elseif ($page == 'page_fb') {
+                $gia1 = $q['fbpage_1'];
+                $gia2 = $q['fbpage_2'];
+            } elseif ($page == 'group_fb') {
+                $gia1 = $q['fbgroup_1'];
+                $gia2 = $q['fbgroup_2'];
+                $gia3 = $q['fbgroup_3'];
+            } elseif ($page == 'view_fb') {
+                $gia1 = $q['fbview_1'];
+                $gia2 = $q['fbview_2'];
+                $gia3 = $q['fbview_3'];
+                $gia4 = $q['fbview_4'];
+                $gia5 = $q['fbview_5'];
+                $gia6 = $q['fbview_6'];
+                $gia7 = $q['fbview_7'];
+            } elseif ($page == 'viplike_fb') {
+                $gia1 = $q['fbviplike_1'];
+            } elseif ($page == 'view_story') {
+                $gia1 = $q['fbstory_1'];
+            } elseif ($page == 'like_ig') {
+                $gia1 = $q['iglike_1'];
+                $gia2 = $q['iglike_2'];
+                $gia3 = $q['iglike_3'];
+            } elseif ($page == 'follow_ig') {
+                $gia1 = $q['igfollow_1'];
+                $gia2 = $q['igfollow_2'];
+                $gia3 = $q['igfollow_3'];
+            } elseif ($page == 'view_ig') {
+                $gia1 = $q['igview_1'];
+                $gia2 = $q['igview_2'];
+            } elseif ($page == 'cmt_ig') {
+                $gia1 = $q['igcmt_1'];
+            } elseif ($page == 'view_tt') {
+                $gia1 = $q['ttview_1'];
+                $gia2 = $q['ttview_2'];
+                $gia3 = $q['ttview_3'];
+                $gia4 = $q['ttview_4'];
+                $gia5 = $q['ttview_5'];
+                $gia6 = $q['ttview_6'];
+                $gia7 = $q['ttview_7'];
+            } elseif ($page == 'tim_tt') {
+                $gia1 = $q['ttlike_1'];
+                $gia2 = $q['ttlike_2'];
+                $gia3 = $q['ttlike_3'];
+                $gia4 = $q['ttlike_4'];
+                $gia5 = $q['ttlike_5'];
+                $gia6 = $q['ttlike_6'];
+                $gia7 = $q['ttlike_7'];
+                $gia8 = $q['ttlike_8'];
+            } elseif ($page == 'tim_tt_tay') {
+                $gia1 = $q['ttliketay_1'];
+            } elseif ($page == 'follow_tt') {
+                $gia1 = $q['ttfollow_1'];
+                $gia2 = $q['ttfollow_2'];
+                $gia3 = $q['ttfollow_3'];
+                $gia4 = $q['ttfollow_4'];
+                $gia5 = $q['ttfollow_5'];
+            } elseif ($page == 'live_tt') {
+                $gia1 = $q['ttlive_1'];
+            } elseif ($page == 'cmt_tt') {
+                $gia1 = $q['ttcmt_1'];
+            } elseif ($page == 'save_tt') {
+                $gia1 = $q['ttsave_1'];
+            } elseif ($page == 'share_tt') {
+                $gia1 = $q['ttshare_1'];
+            } elseif ($page == 'view_web') {
+                $gia1 = $q['otweb_1'];
+            } elseif ($page == 'sub_ytb') {
+                $gia1 = $q['ytbsub_1'];
+                $gia2 = $q['ytbsub_2'];
+            } elseif ($page == 'view_ytb') {
+                $gia1 = $q['ytbview_1'];
+                $gia2 = $q['ytbview_2'];
+                $gia3 = $q['ytbview_3'];
+            } elseif ($page == 'like_ytb') {
+                $gia1 = $q['ytblike_1'];
+            }
+        } else {
+            if ($row['rule'] == 66) { // bắt đầu set giá đại lý
+                if ($page == 'like_fb') { //Like Facebook
+                    // Giá Đại Lý
+                    $gia1 = 6.5; //Server 1
+                    $gia2 = 10.5; // 2
+                    $gia3 = 18; // 3
+                    $gia4 = 4.5; // 4
+                    $gia5 = 20; // 5
+                    $gia6 = 5; // 5
+                    $gia7 = 5.3;
+                    $gia8 = 6.3;
+                    $gia9 = 4.9;
+                    $gia10 = 6;
+                    $gia11 = 5.1;
+                    $gia12 = 7;
+                } elseif ($page == 'like_fb_v2') { //Like Facebook V2
+                    $gia1 = 4;
+                    $gia2 = 6;
+                    $gia3 = 8;
+                    $gia4 = 10;
+                } elseif ($page == 'fb_feeling') {
+                    $gia1 = 9.9;
+                    $gia2 = 8;
+                } elseif ($page == 'fb_likecmt') {
+                    $gia1 = 20;
+                    $gia2 = 31;
+                    $gia3 = 17;
+                } elseif ($page == 'cmt_fb') {
+                    $gia1 = 100;
+                    $gia2 = 200;
+                } elseif ($page == 'share_fb') {
+                    $gia1 = 40;
+                    $gia2 = 6.5;
+                    $gia3 = 300;
+                    $gia4 = 0.2;
+                    $gia5 = 1;
+                } elseif ($page == 'follow_fb') {
+                    $gia1 = 19;
+                    $gia2 = 22;
+                    $gia3 = 23;
+                    $gia4 = 17;
+                    $gia5 = 7;
+                    $gia6 = 20;
+                    $gia7 = 99;
+                    $gia8 = 23;
+                    $gia9 = 17;
+                    $gia10 = 15;
+                } elseif ($page == 'live_fb') {
+                    $gia1 = 1.5;
+                    $gia2 = 0.7;
+                    $gia3 = 1.2;
+                    $gia4 = 0.8;
+                    $gia5 = 1.9;
+                    $gia6 = 1.9;
+                    $gia7 = 3;
+                    $gia8 = 3.5;
+                    $gia9 = 4;
+                    $gia10 = 4;
+                    $gia11 = 4;
+                } elseif ($page == 'live_fb_v2') {
+                    $gia1 = 2;
+                    $gia2 = 5;
+                    $gia3 = 4;
+                } elseif ($page == 'page_fb') {
+                    $gia1 = 45;
+                    $gia2 = 45;
+                } elseif ($page == 'group_fb') {
+                    $gia1 = 50;
+                    $gia2 = 40;
+                    $gia3 = 30;
+                } elseif ($page == 'view_fb') {
+                    $gia1 = 20;
+                    $gia2 = 7;
+                    $gia3 = 13;
+                    $gia4 = 19;
+                    $gia5 = 2;
+                    $gia6 = 0.27;
+                    $gia7 = 1.2;
+                } elseif ($page == 'viplike_fb') {
+                    $gia1 = 35;
+                } elseif ($page == 'view_story') {
+                    $gia1 = 8;
+                } elseif ($page == 'like_ig') {
+                    $gia1 = 47;
+                    $gia2 = 15;
+                    $gia3 = 13;
+                } elseif ($page == 'follow_ig') {
+                    $gia1 = 92;
+                    $gia2 = 25;
+                    $gia3 = 20;
+                } elseif ($page == 'view_ig') {
+                    $gia1 = 10;
+                    $gia2 = 2;
+                } elseif ($page == 'cmt_ig') {
+                    $gia1 = 99;
+                } elseif ($page == 'view_tt') {
+                    $gia1 = 0.045;
+                    $gia2 = 0.035;
+                    $gia3 = 0.025;
+                    $gia4 = 0.49;
+                    $gia5 = 0.13;
+                    $gia6 = 0.079;
+                    $gia7 = 0.345;
+                } elseif ($page == 'tim_tt') {
+                    $gia1 = 15;
+                    $gia2 = 17;
+                    $gia3 = 20;
+                    $gia4 = 12;
+                    $gia5 = 13;
+                    $gia6 = 11;
+                    $gia7 = 15;
+                    $gia8 = 11;
+                } elseif ($page == 'tim_tt_tay') {
+                    $gia1 = 1.8;
+                } elseif ($page == 'follow_tt') {
+                    $gia1 = 47;
+                    $gia2 = 60;
+                    $gia3 = 25;
+                    $gia4 = 40;
+                    $gia5 = 20;
+                } elseif ($page == 'live_tt') {
+                    $gia1 = 15;
+                } elseif ($page == 'cmt_tt') {
+                    $gia1 = 50;
+                } elseif ($page == 'save_tt') {
+                    $gia1 = 10;
+                } elseif ($page == 'share_tt') {
+                    $gia1 = 8;
+                } elseif ($page == 'view_web') {
+                    $gia1 = 20;
+                } elseif ($page == 'sub_ytb') {
+                    $gia1 = 350;
+                    $gia2 = 720;
+                } elseif ($page == 'view_ytb') {
+                    $gia1 = 42;
+                    $gia2 = 45;
+                    $gia3 = 65;
+                } elseif ($page == 'like_ytb') {
+                    $gia1 = 70;
+                }
+                // kết khúc set giá dại lý
+            } else if ($row['rule'] == 33) { // bắt đầu sét giá cộng tác viên
+                if ($page == 'like_fb') { //Like Facebook
+                    $gia1 = 6.5; //Server 1
+                    $gia2 = 11; // 2
+                    $gia3 = 18; // 3
+                    $gia4 = 5; // 4
+                    $gia5 = 21; // 5
+                    $gia6 = 4.5; // 5
+                    $gia7 = 5.8;
+                    $gia8 = 6.4;
+                    $gia9 = 4.9;
+                    $gia10 = 6;
+                    $gia11 = 5.1;
+                    $gia12 = 7;
+                } elseif ($page == 'like_fb_v2') { //Like Facebook V2
+                    $gia1 = 4.5;
+                    $gia2 = 6.5;
+                    $gia3 = 8.5;
+                    $gia4 = 10.5;
+                } elseif ($page == 'fb_feeling') {
+                    $gia1 = 11;
+                    $gia2 = 9;
+                } elseif ($page == 'fb_likecmt') {
+                    $gia1 = 25;
+                    $gia2 = 32;
+                    $gia3 = 19;
+                } elseif ($page == 'cmt_fb') {
+                    $gia1 = 110;
+                    $gia2 = 250;
+                } elseif ($page == 'share_fb') {
+                    $gia1 = 60;
+                    $gia2 = 7;
+                    $gia3 = 400;
+                    $gia4 = 0.2;
+                    $gia5 = 1;
+                } elseif ($page == 'follow_fb') {
+                    $gia1 = 19;
+                    $gia2 = 22;
+                    $gia3 = 23;
+                    $gia4 = 17;
+                    $gia5 = 7;
+                    $gia6 = 20;
+                    $gia7 = 99;
+                    $gia8 = 23;
+                    $gia9 = 17;
+                    $gia10 = 15;
+                } elseif ($page == 'live_fb') {
+                    $gia1 = 1.6;
+                    $gia2 = 0.8;
+                    $gia3 = 1.3;
+                    $gia4 = 0.9;
+                    $gia5 = 2;
+                    $gia6 = 2;
+                    $gia7 = 3;
+                    $gia8 = 3.5;
+                    $gia9 = 4;
+                    $gia10 = 4;
+                    $gia11 = 4;
+                } elseif ($page == 'live_fb_v2') {
+                    $gia1 = 3;
+                    $gia2 = 5;
+                    $gia3 = 4;
+                } elseif ($page == 'page_fb') {
+                    $gia1 = 45;
+                    $gia2 = 45;
+                } elseif ($page == 'group_fb') {
+                    $gia1 = 50;
+                    $gia2 = 40;
+                    $gia3 = 30;
+                } elseif ($page == 'view_fb') {
+                    $gia1 = 20;
+                    $gia2 = 8;
+                    $gia3 = 13.5;
+                    $gia4 = 19;
+                    $gia5 = 2;
+                    $gia6 = 0.27;
+                    $gia7 = 1.2;
+                } elseif ($page == 'viplike_fb') {
+                    $gia1 = 35;
+                } elseif ($page == 'view_story') {
+                    $gia1 = 10;
+                } elseif ($page == 'like_ig') {
+                    $gia1 = 47;
+                    $gia2 = 15;
+                    $gia3 = 13;
+                } elseif ($page == 'follow_ig') {
+                    $gia1 = 92;
+                    $gia2 = 25;
+                    $gia3 = 20;
+                } elseif ($page == 'view_ig') {
+                    $gia1 = 10;
+                    $gia2 = 2;
+                } elseif ($page == 'cmt_ig') {
+                    $gia1 = 330;
+                } elseif ($page == 'view_tt') {
+                    $gia1 = 0.045;
+                    $gia2 = 0.035;
+                    $gia3 = 0.025;
+                    $gia4 = 0.49;
+                    $gia5 = 0.13;
+                    $gia6 = 0.79;
+                    $gia7 = 0.345;
+                } elseif ($page == 'tim_tt') {
+                    $gia1 = 16;
+                    $gia2 = 19;
+                    $gia3 = 21;
+                    $gia4 = 12;
+                    $gia5 = 14;
+                    $gia6 = 15;
+                    $gia7 = 11;
+                    $gia8 = 8;
+                } elseif ($page == 'tim_tt_tay') {
+                    $gia1 = 1.8;
+                } elseif ($page == 'follow_tt') {
+                    $gia1 = 47;
+                    $gia2 = 60;
+                    $gia3 = 28;
+                    $gia4 = 40;
+                    $gia5 = 20;
+                } elseif ($page == 'live_tt') {
+                    $gia1 = 15;
+                } elseif ($page == 'cmt_tt') {
+                    $gia1 = 80;
+                } elseif ($page == 'save_tt') {
+                    $gia1 = 10;
+                } elseif ($page == 'share_tt') {
+                    $gia1 = 10;
+                } elseif ($page == 'view_web') {
+                    $gia1 = 20;
+                } elseif ($page == 'sub_ytb') {
+                    $gia1 = 600;
+                    $gia2 = 750;
+                } elseif ($page == 'view_ytb') {
+                    $gia1 = 42;
+                    $gia2 = 45;
+                    $gia3 = 65;
+                } elseif ($page == 'like_ytb') {
+                    $gia1 = 70;
+                }
+                //kết thúc set giá ctv    
+            } else { // bắt đầu set giá thành viên
+                if ($page == 'like_fb') { //Like Facebook
+                    $gia1 = 6.5; //Server 1
+                    $gia2 = 11; // 2
+                    $gia3 = 18; // 3
+                    $gia4 = 4.5; // 4
+                    $gia5 = 22; // 5
+                    $gia6 = 5; // 5
+                    $gia7 = 5.4;
+                    $gia8 = 6.4;
+                    $gia9 = 4.9;
+                    $gia10 = 6;
+                    $gia11 = 5.1;
+                    $gia12 = 7;
+                } elseif ($page == 'like_fb_v2') { //Like Facebook V2
+                    $gia1 = 5;
+                    $gia2 = 7;
+                    $gia3 = 9;
+                    $gia4 = 12;
+                } elseif ($page == 'fb_feeling') {
+                    $gia1 = 10;
+                    $gia2 = 8;
+                } elseif ($page == 'fb_likecmt') {
+                    $gia1 = 20;
+                    $gia2 = 32;
+                    $gia3 = 19;
+                } elseif ($page == 'cmt_fb') {
+                    $gia1 = 115;
+                    $gia2 = 300;
+                } elseif ($page == 'share_fb') {
+                    $gia1 = 40;
+                    $gia2 = 7;
+                    $gia3 = 400;
+                    $gia4 = 0.2;
+                    $gia5 = 1;
+                } elseif ($page == 'follow_fb') {
+                    $gia1 = 19;
+                    $gia2 = 22;
+                    $gia3 = 23;
+                    $gia4 = 7;
+                    $gia5 = 7;
+                    $gia6 = 20;
+                    $gia7 = 99;
+                    $gia8 = 23;
+                    $gia9 = 17;
+                    $gia10 = 15;
+                } elseif ($page == 'live_fb') {
+                    $gia1 = 1.5;
+                    $gia2 = 0.7;
+                    $gia3 = 1.2;
+                    $gia4 = 0.8;
+                    $gia5 = 2;
+                    $gia6 = 2;
+                    $gia7 = 3;
+                    $gia8 = 3.5;
+                    $gia9 = 4;
+                    $gia10 = 4;
+                    $gia11 = 4;
+                } elseif ($page == 'live_fb_v2') {
+                    $gia1 = 2;
+                    $gia2 = 5;
+                    $gia3 = 4;
+                } elseif ($page == 'page_fb') {
+                    $gia1 = 45;
+                    $gia2 = 45;
+                } elseif ($page == 'group_fb') {
+                    $gia1 = 50;
+                    $gia2 = 40;
+                    $gia3 = 30;
+                } elseif ($page == 'view_fb') {
+                    $gia1 = 20;
+                    $gia2 = 8;
+                    $gia3 = 14;
+                    $gia4 = 19;
+                    $gia5 = 2;
+                    $gia6 = 0.27;
+                    $gia7 = 1.2;
+                } elseif ($page == 'viplike_fb') {
+                    $gia1 = 35;
+                } elseif ($page == 'view_story') {
+                    $gia1 = 9;
+                } elseif ($page == 'like_ig') {
+                    $gia1 = 47;
+                    $gia2 = 15;
+                    $gia3 = 13;
+                } elseif ($page == 'follow_ig') {
+                    $gia1 = 92;
+                    $gia2 = 25;
+                    $gia3 = 20;
+                } elseif ($page == 'view_ig') {
+                    $gia1 = 10;
+                    $gia2 = 2;
+                } elseif ($page == 'cmt_ig') {
+                    $gia1 = 100;
+                } elseif ($page == 'view_tt') {
+                    $gia1 = 0.045;
+                    $gia2 = 0.035;
+                    $gia3 = 0.025;
+                    $gia4 = 0.49;
+                    $gia5 = 0.13;
+                    $gia6 = 0.079;
+                    $gia7 = 0.345;
+                } elseif ($page == 'tim_tt') {
+                    $gia1 = 16;
+                    $gia2 = 19;
+                    $gia3 = 22;
+                    $gia4 = 13;
+                    $gia5 = 14;
+                    $gia6 = 15;
+                    $gia7 = 11;
+                    $gia8 = 8;
+                } elseif ($page == 'tim_tt_tay') {
+                    $gia1 = 1.8;
+                } elseif ($page == 'follow_tt') {
+                    $gia1 = 47;
+                    $gia2 = 60;
+                    $gia3 = 30;
+                    $gia4 = 40;
+                    $gia5 = 20;
+                } elseif ($page == 'live_tt') {
+                    $gia1 = 15;
+                } elseif ($page == 'cmt_tt') {
+                    $gia1 = 100;
+                } elseif ($page == 'save_tt') {
+                    $gia1 = 10;
+                } elseif ($page == 'share_tt') {
+                    $gia1 = 10;
+                } elseif ($page == 'view_web') {
+                    $gia1 = 20;
+                } elseif ($page == 'sub_ytb') {
+                    $gia1 = 700;
+                    $gia2 = 800;
+                } elseif ($page == 'view_ytb') {
+                    $gia1 = 42;
+                    $gia2 = 45;
+                    $gia3 = 65;
+                } elseif ($page == 'like_ytb') {
+                    $gia1 = 70;
+                }
+                // kết thúc set giá thành viên    
+            }
+        }
+    } else {
+        $gia1 = '1000';
+        $gia2 = '1000';
+        $gia3 = '1000';
+        $gia4 = '1000';
+        $gia5 = '1000';
+        $gia6 = '1000';
+        $gia7 = '1000';
+        $gia8 = '1000';
+        $gia9 = '1000';
+        $gia10 = '1000';
+        $gia11 = '1000';
+        $gia12 = '1000';
+    }
+}
+if (isset($admin)) {
+    if ($admin == 1) {
+        if ($row['rule'] !== '99') {
+            header('location: /index.php');
+        }
+    }
+}
+
+
+// function
+function trangthai($tt)
+{
+    if ($tt == 1) {
+        echo '<span class="badge bg-primary">Đang Xử Lý</span>';
+    } elseif ($tt == 2) {
+        echo '<span class="badge bg-success">Hoàn Thành</span>';
+    } elseif ($tt == 3) {
+        echo '<span class="badge bg-warning">Đang Chạy</span>';
+    } elseif ($tt == 4) {
+        echo '<span class="badge bg-danger">Bị Hủy</span>';
+    } elseif ($tt == 5) {
+        echo '<span class="badge bg-danger">Hết Hạn</span>';
+    } elseif ($tt == 6) {
+        echo '<span class="badge bg-danger">Link Die</span>';
+    } elseif ($tt == 7) {
+        echo '<span class="badge bg-warning">Lỗi</span>';
+    } elseif ($tt == 8) {
+        echo '<span class="badge bg-danger">Đã Hủy & Hoàn Tiền</span>';
+    }
+}
+
+function dichvut($dv)
+{
+    if ($dv == 'Like') {
+        echo '<span class="badge bg-success">Mua Like</span>';
+    } elseif ($dv == 'Cmt') {
+        echo '<span class="badge bg-danger">Tăng Comment</span>';
+    } elseif ($dv == 'Share') {
+        echo '<span class="badge bg-warning">Mua Share</span>';
+    } elseif ($dv == 'Sub') {
+        echo '<span class="badge bg-primary">Mua Follow</span>';
+    } elseif ($dv == 'view') {
+        echo '<span class="badge bg-primary">Mua View</span>';
+    } elseif ($dv == 'mat') {
+        echo '<span class="badge bg-primary">Mua Mắt</span>';
+    } elseif ($dv == 'fb_likecmt') {
+        echo '<span class="badge bg-info">Like Cmt</span>';
+    }
+}
+
+function limit_text($text, $limit)
+{
+    if (str_Word_count($text, 0) > $limit) {
+        $words = str_Word_count($text, 2);
+        $pos = array_keys($words);
+        $text = substr($text, 0, $pos[$limit]) . '...';
+    }
+    return $text;
+}
+
+function time_func($time_ago)
+{
+    $cur_time = time();
+    $time_elapsed = $cur_time - $time_ago;
+    $seconds = $time_elapsed;
+    $minutes = round($time_elapsed / 60);
+    $hours = round($time_elapsed / 3600);
+    $days = round($time_elapsed / 86400);
+    $weeks = round($time_elapsed / 604800);
+    $months = round($time_elapsed / 2600640);
+    $years = round($time_elapsed / 31207680);
+    // Seconds
+    if ($seconds <= 60) {
+        echo "Cách đây $seconds giây";
+    }
+    //Minutes
+    else if ($minutes <= 60) {
+        if ($minutes == 1) {
+            echo "Cách đây 1 phút";
+        } else {
+            echo "Cách đây $minutes phút";
+        }
+    }
+    //Hours
+    else if ($hours <= 24) {
+        if ($hours == 1) {
+            echo "Cách đây 1 tiếng";
+        } else {
+            echo "Cách đây $hours tiếng";
+        }
+    }
+    //Days
+    else if ($days <= 7) {
+        if ($days == 1) {
+            echo "Ngày hôm qua";
+        } else {
+            echo "Cách đây $days ngày";
+        }
+    }
+    //Weeks
+    else if ($weeks <= 4.3) {
+        if ($weeks == 1) {
+            echo "Cách đây 1 tuần";
+        } else {
+            echo "Cách đây $weeks tuần";
+        }
+    }
+    //Months
+    else if ($months <= 12) {
+        if ($months == 1) {
+            echo "Cách đây 1 tháng";
+        } else {
+            echo "Cách đây $months tháng";
+        }
+    } else {
+        if ($years == 1) {
+            echo "Cách đây 1 năm";
+        } else {
+            echo "Cách đây $years năm";
+        }
+    }
+}
+
+
+if (empty($hdq)) {
+    if (!isset($_SESSION['u'])) {
+        if (empty($u)) {
+            header('location: /landing.php?redirect=' . $urll . '');
+        }
+    } elseif (isset($_SESSION['u'])) {
+        if (isset($u)) {
+            if ($u == 'login' || $u == 'reg') {
+                header('location: /index.php');
+            }
+        }
+    }
+}
+
+
+
+function getUserAgent()
+{
+    $userAgentArray[] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36";
+    $userAgentArray[] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36";
+    $userAgentArray[] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:57.0) Gecko/20100101 Firefox/57.0";
+    $userAgentArray[] = "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36";
+    $userAgentArray[] = "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36";
+    $userAgentArray[] = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36";
+    $userAgentArray[] = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36";
+    $userAgentArray[] = "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:57.0) Gecko/20100101 Firefox/57.0";
+    $userAgentArray[] = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/604.3.5 (KHTML, like Gecko) Version/11.0.1 Safari/604.3.5";
+    $userAgentArray[] = "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:57.0) Gecko/20100101 Firefox/57.0";
+    $userAgentArray[] = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36";
+    $userAgentArray[] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.89 Safari/537.36 OPR/49.0.2725.47";
+    $userAgentArray[] = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/604.4.7 (KHTML, like Gecko) Version/11.0.2 Safari/604.4.7";
+    $userAgentArray[] = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36";
+    $userAgentArray[] = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36";
+    $userAgentArray[] = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0";
+    $userAgentArray[] = "Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko";
+    $userAgentArray[] = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36";
+    $userAgentArray[] = "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36";
+    $userAgentArray[] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.108 Safari/537.36";
+    $userAgentArray[] = "Mozilla/5.0 (X11; Linux x86_64; rv:57.0) Gecko/20100101 Firefox/57.0";
+    $userAgentArray[] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36 Edge/15.15063";
+    $userAgentArray[] = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36";
+    $userAgentArray[] = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:57.0) Gecko/20100101 Firefox/57.0";
+    $userAgentArray[] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36 Edge/16.16299";
+    $userAgentArray[] = "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36";
+    $userAgentArray[] = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36";
+    $userAgentArray[] = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36";
+    $userAgentArray[] = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/604.4.7 (KHTML, like Gecko) Version/11.0.2 Safari/604.4.7";
+    $userAgentArray[] = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/604.3.5 (KHTML, like Gecko) Version/11.0.1 Safari/604.3.5";
+    $userAgentArray[] = "Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101 Firefox/52.0";
+    $userAgentArray[] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36";
+    $userAgentArray[] = "Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:57.0) Gecko/20100101 Firefox/57.0";
+    $userAgentArray[] = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36";
+    $userAgentArray[] = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36";
+    $userAgentArray[] = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.108 Safari/537.36";
+    $userAgentArray[] = "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko";
+    $userAgentArray[] = "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:52.0) Gecko/20100101 Firefox/52.0";
+    $userAgentArray[] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36 OPR/49.0.2725.64";
+    $userAgentArray[] = "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.108 Safari/537.36";
+    $userAgentArray[] = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36";
+    $userAgentArray[] = "Mozilla/5.0 (Windows NT 6.1; rv:57.0) Gecko/20100101 Firefox/57.0";
+    $userAgentArray[] = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.106 Safari/537.36";
+    $userAgentArray[] = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36";
+    $userAgentArray[] = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/604.4.7 (KHTML, like Gecko) Version/11.0.2 Safari/604.4.7";
+    $userAgentArray[] = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:57.0) Gecko/20100101 Firefox/57.0";
+    $userAgentArray[] = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/62.0.3202.94 Chrome/62.0.3202.94 Safari/537.36";
+    $userAgentArray[] = "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:56.0) Gecko/20100101 Firefox/56.0";
+    $userAgentArray[] = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36";
+    $userAgentArray[] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:58.0) Gecko/20100101 Firefox/58.0";
+    $userAgentArray[] = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36";
+    $userAgentArray[] = "Mozilla/5.0 (Windows NT 6.1; Trident/7.0; rv:11.0) like Gecko";
+    $userAgentArray[] = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101 Firefox/52.0";
+    $userAgentArray[] = "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0;  Trident/5.0)";
+    $userAgentArray[] = "Mozilla/5.0 (Windows NT 6.1; rv:52.0) Gecko/20100101 Firefox/52.0";
+    $userAgentArray[] = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/63.0.3239.84 Chrome/63.0.3239.84 Safari/537.36";
+    $userAgentArray[] = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36";
+    $userAgentArray[] = "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36";
+    $userAgentArray[] = "Mozilla/5.0 (X11; Fedora; Linux x86_64; rv:57.0) Gecko/20100101 Firefox/57.0";
+    $userAgentArray[] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:56.0) Gecko/20100101 Firefox/56.0";
+    $userAgentArray[] = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36";
+    $userAgentArray[] = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.108 Safari/537.36";
+    $userAgentArray[] = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.89 Safari/537.36";
+    $userAgentArray[] = "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.0; Trident/5.0;  Trident/5.0)";
+    $userAgentArray[] = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/603.3.8 (KHTML, like Gecko) Version/10.1.2 Safari/603.3.8";
+    $userAgentArray[] = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:57.0) Gecko/20100101 Firefox/57.0";
+    $userAgentArray[] = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36";
+    $userAgentArray[] = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/604.3.5 (KHTML, like Gecko) Version/11.0.1 Safari/604.3.5";
+    $userAgentArray[] = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/603.3.8 (KHTML, like Gecko) Version/10.1.2 Safari/603.3.8";
+    $userAgentArray[] = "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:57.0) Gecko/20100101 Firefox/57.0";
+    $userAgentArray[] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.79 Safari/537.36 Edge/14.14393";
+    $userAgentArray[] = "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:56.0) Gecko/20100101 Firefox/56.0";
+    $userAgentArray[] = "Mozilla/5.0 (iPad; CPU OS 11_1_2 like Mac OS X) AppleWebKit/604.3.5 (KHTML, like Gecko) Version/11.0 Mobile/15B202 Safari/604.1";
+    $userAgentArray[] = "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko";
+    $userAgentArray[] = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:58.0) Gecko/20100101 Firefox/58.0";
+    $userAgentArray[] = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Safari/604.1.38";
+    $userAgentArray[] = "Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36";
+    $userAgentArray[] = "Mozilla/5.0 (X11; CrOS x86_64 9901.77.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.97 Safari/537.36";
+
+    $getArrayKey = array_rand($userAgentArray);
+    return $userAgentArray[$getArrayKey];
+}
+
+if (_PHPVERSION_ > _PHPRUN_ && $domain == _SITE_) {
+    echo '{"status":"error","message":"Phiên bản PHP hiện tại không còn được hỗ trợ, vui lòng liên hệ Quản trị viên để nâng cấp lên phiên bản mới nhất, xin cảm ơn!","current_PHP_version":"' . _PHPRUN_ . '","latest_PHP_version":"' . _PHPVERSION_ . '"}';
+    die();
+}
+
+function check_isMobile()
+{
+    $is_mobile = '0';
+    if (preg_match('/(android|iphone|ipad|up.browser|up.link|mmp|symbian|smartphone|midp|wap|phone)/i', strtolower($_SERVER['HTTP_USER_AGENT'])))
+        $is_mobile = 1;
+    if ((strpos(strtolower($_SERVER['HTTP_ACCEPT']), 'application/vnd.wap.xhtml+xml') > 0) or ((isset($_SERVER['HTTP_X_WAP_PROFILE']) or isset($_SERVER['HTTP_PROFILE']))))
+        $is_mobile = 1;
+    $mobile_ua = strtolower(substr($_SERVER['HTTP_USER_AGENT'], 0, 4));
+    $mobile_agents = array('w3c ', 'acs-', 'alav', 'alca', 'amoi', 'andr', 'audi', 'avan', 'benq', 'bird', 'blac', 'blaz', 'brew', 'cell', 'cldc', 'cmd-', 'dang', 'doco', 'eric', 'hipt', 'inno', 'ipaq', 'java', 'jigs', 'kddi', 'keji', 'leno', 'lg-c', 'lg-d', 'lg-g', 'lge-', 'maui', 'maxo', 'midp', 'mits', 'mmef', 'mobi', 'mot-', 'moto', 'mwbp', 'nec-', 'newt', 'noki', 'oper', 'palm', 'pana', 'pant', 'phil', 'play', 'port', 'prox', 'qwap', 'sage', 'sams', 'sany', 'sch-', 'sec-', 'send', 'seri', 'sgh-', 'shar', 'sie-', 'siem', 'smal', 'smar', 'sony', 'sph-', 'symb', 't-mo', 'teli', 'tim-', 'tosh', 'tsm-', 'upg1', 'upsi', 'vk-v', 'voda', 'wap-', 'wapa', 'wapi', 'wapp', 'wapr', 'webc', 'winw', 'winw', 'xda', 'xda-');
+
+    if (in_array($mobile_ua, $mobile_agents))
+        $is_mobile = 1;
+
+    if (isset($_SERVER['ALL_HTTP'])) {
+        if (strpos(strtolower($_SERVER['ALL_HTTP']), 'OperaMini') > 0)
+            $is_mobile = 1;
+    }
+    if (strpos(strtolower($_SERVER['HTTP_USER_AGENT']), 'windows') > 0)
+        $is_mobile = 0;
+    return $is_mobile;
+}
