@@ -78,7 +78,7 @@ require_once('_System/head.php');
                                 </div>
                                 <p class="card-text">
                                     <font>Ngân Hàng: <b class="bold"><?= $r['nganhang']; ?></b><br>
-                                        STK: <b><?= $r['stk']; ?></b> <button onclick="stk('<?= $ro['stk']; ?>')" class="btn btn-warning me-1 mb-1"><i class="fa fa-copy"></i></button><br>
+                                        STK: <b><?= $r['stk']; ?></b> <button onclick="stk('<?= $r['stk']; ?>')" class="btn btn-warning me-1 mb-1"><i class="fa fa-copy"></i></button><br>
                                         Chủ TK: <b><?= $r['name']; ?> </b>
                                         <hr>
                                         <b style="color:red;">(Duyệt tiền tự động 1p - 5p <br> Vui Lòng Kéo xuống dưới copy nội dung chuyển)</b>
