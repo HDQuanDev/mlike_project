@@ -515,7 +515,7 @@ switch ($_GET["act"]) {
                         $array["msg"] = 'Bạn không đủ tiền!';
                     } elseif ($sv4 == 'off') {
                         $array["status"] = 'error';
-                        $array["msg"] = 'Hệ thống đang quá tải vùi lòng thử lại sau 12h trưa hoặc dùng server khác!!';
+                        $array["msg"] = 'Server quá tải vùi lòng thử lại sau 12h trưa hoặc dùng server khác ';
                     } else {
                         $nd1 = 'Mua Like Bài Viết ID:';
                         $bd = $tongtien;
