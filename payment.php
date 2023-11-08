@@ -12,9 +12,9 @@ require_once('_System/head.php');
         var result = document.execCommand('copy');
         document.body.removeChild(input);
         if (result) {
-            alert('Đã copy nội dung vào Clipboard!');
+            swal("Thành công!", "Đã copy nội dung vào Clipboard!", "success");
         } else {
-            alert('Không thể copy nội dung!');
+            swal("Lỗi!", "Không thể copy nội dung!", "error");
         }
     }
 
