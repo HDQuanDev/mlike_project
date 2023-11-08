@@ -11,12 +11,16 @@ require_once('_System/head.php');
         input.select();
         var result = document.execCommand('copy');
         document.body.removeChild(input);
+        if (result) {
+            alert('Đã copy nội dung vào Clipboard!');
+        } else {
+            alert('Không thể copy nội dung!');
+        }
     }
 
     function ndct() {
         var text = "mlike <?= $login; ?>";
         copy(text);
-        swal('Thành Công!', 'Đã copy nội dung nạp tiền vào Clipboard!', 'success');
     }
 </script>
 <div class="row g-0">
