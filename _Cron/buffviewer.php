@@ -42,5 +42,6 @@ if ($response['status'] == true) {
             $time_refill = strtotime('+31 hour', $time_now);
         }
         mysqli_query($db, "UPDATE `dv_other` SET `time_refill`='$time_refill' WHERE `idgd`='$id'");
+        echo $id . " - " . $status . " - " . $message . "<br>";
     }
 }
