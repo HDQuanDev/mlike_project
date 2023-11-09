@@ -48,7 +48,7 @@ if (isset($_POST['token']) && isset($_POST['id']) && isset($_POST['sl']) && isse
             $array["msg"] = 'Bạn không đủ tiền!';
         } else {
             if ($sv == 1) {
-                $order = $api->order(array('service' => 733, 'link' => '' . $id . '', 'quantity' => $sl));
+                $order = $api->order(array('service' => 1720, 'link' => '' . $id . '', 'quantity' => $sl));
             } elseif ($sv == 2) {
                 $order = $api->order(array('service' => 1720, 'link' => '' . $id . '', 'quantity' => $sl));
             }
