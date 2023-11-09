@@ -39,7 +39,7 @@ switch ($_GET['act']) {
                     <input type="hidden" id="token" value="<?= $row['token']; ?>">
                     <label>Chọn Server Share:</label>
                     <div class="form-check">
-                        <input class="form-check-input"  disabled ="checked" id="flexRadioDefault1" type="radio" name="sv" value="1" data-bs-toggle="collapse" data-bs-target="#sv1" aria-expanded="false" aria-controls="sv1" /><label class="form-check-label" for="flexRadioDefault1">Server Share 1 (<b><?= $gia; ?>₫</b>) ( Tốc độ không ổn định có thể delay 1-2 ngày hoặc lên thiếu 50% thì tự buff bù thêm nhé )</label>
+                        <input class="form-check-input"  checked ="checked" id="flexRadioDefault1" type="radio" name="sv" value="1" data-bs-toggle="collapse" data-bs-target="#sv1" aria-expanded="false" aria-controls="sv1" /><label class="form-check-label" for="flexRadioDefault1">Server Share 1 (<b><?= $gia; ?>₫</b>) ( Tốc độ không ổn định có thể delay 1-2 ngày hoặc lên thiếu 50% thì tự buff bù thêm nhé )</label>
                         <div id="sv1" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#sv1">
                             <div class="accordion-body alert alert-danger">- Bắt đầu chạy từ 0-6h từ lúc mua. <br>
                                 - Tốc độ lúc nhanh lúc chậm test thử số lượng nhỏ trước khi cài<br>
