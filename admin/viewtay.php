@@ -75,9 +75,9 @@ require_once('../_System/head.php');
                     <?php
                     if ($_GET['status']) {
                         $dv = $_GET['status'];
-                        $result1 = mysqli_query($db, "SELECT * FROM `video` WHERE `trangthai` = '$dv' AND (`code` = '14' OR `code` = '200') ORDER BY id DESC LIMIT 2000");
+                        $result1 = mysqli_query($db, "SELECT * FROM `video` WHERE `trangthai` = '$dv' AND (`code` = '14' OR `code` = '200') ORDER BY id DESC LIMIT 300");
                     } else {
-                        $result1 = mysqli_query($db, "SELECT * FROM `video` WHERE (`code` = '14' OR `code` = '1410') ORDER BY id DESC LIMIT 2000");
+                        $result1 = mysqli_query($db, "SELECT * FROM `video` WHERE (`code` = '14' OR `code` = '1410') ORDER BY id DESC LIMIT 300");
                     }
                     if ($result1) {
 
