@@ -140,9 +140,9 @@ swal({
                     <!-- <div class="form-check">
                         <input class="form-check-input" id="flexRadioDefault1" type="radio" name="sv" value="11" data-bs-toggle="collapse" data-bs-target="#sv9" aria-expanded="false" aria-controls="sv11" /><label class="form-check-label" for="flexRadioDefault1">Server Like 11 ( Tốc độ chậm Sale thường quá tải có thể chậm bất chợt. Chạy được album <span style="color: red;">Max 10k</span>) <span style="color:Blue;"><?= $gia11; ?>₫</span> <span class="badge bg-danger">Rất Chậm</span></label>
                     </div>  -->
-                    <div class="form-check">
+                   <!-- <div class="form-check">
                         <input class="form-check-input"  id="flexRadioDefault1" type="radio" name="sv" value="12" data-bs-toggle="collapse" data-bs-target="#sv12" aria-expanded="false" aria-controls="sv11" /><label class="form-check-label" for="flexRadioDefault1">Server Like 12 ( Tốc độ cực nhanh tuy nhiên hay chậm bất chợt, test ít thấy lên nhanh thì dùng <span style="color: red;">max 100k</span>) <span style="color:Blue;"><?= $gia12; ?>₫</span> <span class="badge bg-success">Siêu Nhanh</span></label>
-                    </div>
+                    </div>-->
                     <div class="form-group">
                         <label>Nhập ID Hoặc Link Bài Viết:</label>
                         <div class="input-group mb-3">
