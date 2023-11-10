@@ -10,7 +10,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     $time = $row['time'];
     $time_refill_old = $row['time_refill'];
     $next2month = strtotime('+2 month', $time);
-    if ($time < $next2month && $time_refill_old > $time_now) {
+    if ($time < $next2month && $time_refill_old < $time_now) {
         $i++;
         $idgd_array[] = $row['idgd'];
     }
@@ -43,6 +43,6 @@ if ($response['status'] == true) {
             $time_refill = strtotime('+31 hour', $time_now);
         }
         mysqli_query($db, "UPDATE `dv_other` SET `time_refill`='$time_refill' WHERE `idgd`='$id'");
-        echo $id . " - " . var_dump($status) . " - " . $message . "<br>";
+        echo $id . " " . var_dump($status) . " - " . $message . "<br>";
     }
 }
