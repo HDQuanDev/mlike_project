@@ -8,8 +8,9 @@ $idgd_array = array();
 $i = 0;
 while ($row = mysqli_fetch_assoc($result)) {
     $time = $row['time'];
+    $time_refill_old = $row['time_refill'];
     $next2month = strtotime('+2 month', $time);
-    if ($time < $next2month) {
+    if ($time < $next2month && $time_refill_old > $time_now) {
         $i++;
         $idgd_array[] = $row['idgd'];
     }
