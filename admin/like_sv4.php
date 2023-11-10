@@ -15,9 +15,11 @@ require_once('../_System/head.php');
                     <p class="list-group-item-text text-center">
                         <span class="w3-opacity text-center"><a href="?status=1"><span class="btn btn-primary btn-rounded btn-sm">Đang Xử Lý</span></a> <a href="?status=2"><span class="btn btn-success btn-rounded btn-sm">Hoàn Thành</span></a> <a href="?status=3"><span class="btn btn-warning btn-rounded btn-sm">Đang Chạy</span></a> <a href="?status=4"><span class="btn btn-danger btn-rounded btn-sm">Bị Hủy</span></a></span>
                     <form method="get" action="">
-                        <label for="limit">Nhập Số Lượng Muốn Hiển Thị:</label>
-                        <input type="number" class="form-control" name="limit" required>
-                        <button type="submit" class="btn btn-primary">Xác nhận</button>
+                        <div class="form-group">
+                            <label>Nhập Số Lượng Muốn Hiển Thị:</label>
+                            <input type="number" class="form-control" name="limit" required>
+                        </div>
+                        <center><button type="submit" class="btn btn-primary">Xác nhận</button></center>
                     </form>
                     </p>
 
