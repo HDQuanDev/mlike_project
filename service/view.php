@@ -67,11 +67,11 @@ switch ($_GET['act']) {
             }
         </script>
         <!-- thong bao-->
-        <!-- <? if (!isset($_POST['add'])) { ?>
+         <? if (!isset($_POST['add'])) { ?>
                         <script>
                             function sayHello() {
                                 var sangml = document.createElement("sangml")
-                                sangml.innerHTML = "<img class='card-img-top' src='https://daotao.ulis.vnu.edu.vn/files/uploads/2018/04/thong-bao660x350-600x350.png'><hr><big><center style='color:#3794ff;'> Facebook đang quét tốc độ view có thể chậm hơn dự kiến</big></b>";
+                                sangml.innerHTML = "<img class='card-img-top' src='https://daotao.ulis.vnu.edu.vn/files/uploads/2018/04/thong-bao660x350-600x350.png'><hr><big><center style='color:#3794ff;'> Vui lòng đọc kĩ mô tả và lưu ý trước khi dùng</big></b>";
                                 swal({
                                     content: sangml,
                                     buttons: false
@@ -79,7 +79,7 @@ switch ($_GET['act']) {
                             }
                             setTimeout(sayHello, 1500);
                         </script>
-                    <? } ?>-->
+                    <? } ?>
         <!--end-->
         <div class="card border-danger border-bottom border-3 border-0">
             <div class="card-header">
