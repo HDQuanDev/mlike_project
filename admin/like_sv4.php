@@ -97,9 +97,9 @@ require_once('../_System/head.php');
                     <?php
                     if ($_GET['status']) {
                         $dv = $_GET['status'];
-                        $result1 = mysqli_query($db, "SELECT * FROM `dichvu` WHERE `trangthai` = '$dv' AND `nse` = '444' ORDER BY id DESC LIMIT 500");
+                        $result1 = mysqli_query($db, "SELECT * FROM `dichvu` WHERE `trangthai` = '$dv' AND `nse` = '444' ORDER BY id DESC LIMIT 20");
                     } else {
-                        $result1 = mysqli_query($db, "SELECT * FROM `dichvu` WHERE `nse` = '444' ORDER BY id DESC LIMIT 500");
+                        $result1 = mysqli_query($db, "SELECT * FROM `dichvu` WHERE `nse` = '444' ORDER BY id DESC LIMIT 20");
                     }
                     if ($result1) {
 
