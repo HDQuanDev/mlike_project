@@ -3,7 +3,7 @@ $hdq = 'ok';
 require_once('../_System/db.php');
 require_once('../module/buffviewer.php');
 $time_now = time();
-$result = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `dv`='tiktok_view' AND `idgd` IS NOT NULL AND `time_refill` > $time_now");
+$result = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `dv`='tiktok_view' AND `idgd` IS NOT NULL AND `time_refill` < $time_now");
 $idgd_array = array();
 $i = 0;
 while ($row = mysqli_fetch_assoc($result)) {
