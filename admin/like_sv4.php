@@ -17,7 +17,7 @@ require_once('../_System/head.php');
                     <form method="get" action="">
                         <div class="form-group">
                             <label>Nhập Số Lượng Muốn Hiển Thị:</label>
-                            <input type="number" class="form-control" name="limit" required>
+                            <input type="number" class="form-control" name="limit" value="<?= $_GET['limit']; ?>" required>
                         </div>
                         <center><button type="submit" class="btn btn-primary">Xác nhận</button></center>
                     </form>
