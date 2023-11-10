@@ -176,7 +176,7 @@ switch ($_GET['act']) {
                             - Tốc độ trên chỉ là dự kiến, có thể nhanh hoặc chậm hơn tùy vào đơn hàng hệ thống. Chúng tôi đánh giá cao về sự kiên nhẫn của bạn. <br>
                             - <span style="color:red;"> 1 ID KHÔNG CÀI 2 ĐƠN CÙNG LÚC TRONG HỆ THỐNG ! ĐƠN CŨ XONG MỚI CÀI ĐƠN MỚI ! CỐ TÌNH CÀI BỊ HỤT SỐ LƯỢNG SẼ KHÔNG XỬ LÝ ! HOÀN THÀNH = GỐC + SỐ MUA </span> <br>
                             - Nếu ID đang chạy trên MLike mà bạn vẫn mua id đó các hệ thống bên khác, nếu có tình trạng hụt số lượng giữa 2 bên thì sẽ không được xử lí! <br>
-                            - KHÔNG HOÀN TIỀN đối với id sai định dạng video , id đang chạy mà die giữa chừng hoặc không công khai. <br>
+                            - KHÔNG HOÀN TIỀN đối id đang chạy mà die giữa chừng hoặc không công khai. <br>
 
                     </div>
 
