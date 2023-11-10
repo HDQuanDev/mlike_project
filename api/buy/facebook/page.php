@@ -185,7 +185,7 @@ switch ($_GET['act']) {
                         $mcheck = 10000 - $lcheckl;
                         if ($lcheck > '10000') {
                             $array["status"] = 'error';
-                            $array["msg"] = 'Số lượng tối đa của 1 ID có thể mua là 10000 Follow (Bạn có thể mua thêm ' . $mcheck . ' Follow cho ID nay)!';
+                            $array["msg"] = 'Số lượng tối đa của 1 ID có thể mua là 10000 Follow (Bạn có thể mua thêm ' . $mcheck . ' Follow cho ID nay) hoặc bạn đã mua quá 3 lần không được mua thêm!';
                         } else {
                             $nd1 = 'Tăng Like Fanpage ID:';
                             $bd = $tongtien;
