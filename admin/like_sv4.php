@@ -16,8 +16,8 @@ require_once('../_System/head.php');
                         <span class="w3-opacity text-center"><a href="?status=1"><span class="btn btn-primary btn-rounded btn-sm">Đang Xử Lý</span></a> <a href="?status=2"><span class="btn btn-success btn-rounded btn-sm">Hoàn Thành</span></a> <a href="?status=3"><span class="btn btn-warning btn-rounded btn-sm">Đang Chạy</span></a> <a href="?status=4"><span class="btn btn-danger btn-rounded btn-sm">Bị Hủy</span></a></span>
                     <form method="get" action="">
                         <label for="limit">Nhập Số Lượng Muốn Hiển Thị:</label>
-                        <input type="number" name="limit" required>
-                        <button type="submit">Xác nhận</button>
+                        <input type="number" class="form-control" name="limit" required>
+                        <button type="submit" class="btn btn-primary">Xác nhận</button>
                     </form>
                     </p>
 
@@ -112,7 +112,7 @@ require_once('../_System/head.php');
                         $dv = $_GET['status'];
                         $result1 = mysqli_query($db, "SELECT * FROM `dichvu` WHERE `trangthai` = '$dv' AND `nse` = '444' ORDER BY id DESC LIMIT $limit");
                     } else {
-                        $result1 = mysqli_query($db, "SELECT * FROM `dichvu` WHERE `nse` = '444' ORDER BY id DESC LIMIT 20");
+                        $result1 = mysqli_query($db, "SELECT * FROM `dichvu` WHERE `nse` = '444' ORDER BY id DESC LIMIT $limit");
                     }
                     if ($result1) {
 
