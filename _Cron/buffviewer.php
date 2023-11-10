@@ -30,13 +30,13 @@ if ($response['status'] == true) {
         $status = $response['data'][$i]['status'];
         $message = $response['data'][$i]['message'];
         if ($status == false) {
-            if ($message == "Đơn hàng không phải trạng thái hoàn thành") {
-                $time_refill = strtotime('+35 hour', $time_now);
-            } else {
-                $tach = explode("|", $message);
-                $time_tach = $tach[1];
+            $tach = explode("|", $message);
+            $time_tach = $tach[1];
+            if (!empty($time_tach)) {
                 $time_tach = trim($tach[1]);
                 $time_refill = strtotime($time_tach);
+            } else {
+                $time_refill = strtotime('+35 hour', $time_now);
             }
         } else {
             $time_refill = strtotime('+31 hour', $time_now);
