@@ -24,6 +24,8 @@ switch ($_GET['act']) {
                     var gia = '<?= $gia2; ?>';
                 } else if (sv == '3') {
                     var gia = '<?= $gia3; ?>';
+                } else if (sv == '4') {
+                    var gia = '<?= $gia4; ?>';
                 }
                 var tien = sl * gia;
                 var quan = tien.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
@@ -54,13 +56,16 @@ switch ($_GET['act']) {
                     <input type="hidden" id="token" value="<?= $row['token']; ?>">
                     <label>Chọn Server Member:</label>
                     <div class="form-check">
-                        <input class="form-check-input" checked="checked" id="flexRadioDefault1" type="radio" name="sv" value="1" data-bs-toggle="collapse" data-bs-target="#sv1" aria-expanded="false" aria-controls="sv1" /><label class="form-check-label" for="flexRadioDefault1">Server Member 1 (<b><?= $gia1; ?>₫</b>) ( Mem thật max 100k lên nhanh, xịn nhất, có thể có tương tác )</label>
+                        <input class="form-check-input" checked="checked" id="flexRadioDefault1" type="radio" name="sv" value="1" data-bs-toggle="collapse" data-bs-target="#sv1" aria-expanded="false" aria-controls="sv1" /><label class="form-check-label" for="flexRadioDefault1">Server Group 1 (<b><?= $gia1; ?>₫</b>) ( Mem thật max 100k lên nhanh, xịn nhất, có thể có tương tác )</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" id="flexRadioDefault1" type="radio" name="sv" value="2" data-bs-toggle="collapse" data-bs-target="#sv2" aria-expanded="false" aria-controls="sv2" /><label class="form-check-label" for="flexRadioDefault1">Server Member 2 (<b><?= $gia2; ?>₫</b>)( Người dùng thật gr ko tắt duyệt vẫn chạy ok, Max 40k) </label>
+                        <input class="form-check-input" id="flexRadioDefault1" type="radio" name="sv" value="2" data-bs-toggle="collapse" data-bs-target="#sv2" aria-expanded="false" aria-controls="sv2" /><label class="form-check-label" for="flexRadioDefault1">Server Group 2 (<b><?= $gia2; ?>₫</b>)( Người dùng thật gr ko tắt duyệt vẫn chạy ok, Max 40k) </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" id="flexRadioDefault1" type="radio" name="sv" value="3" data-bs-toggle="collapse" data-bs-target="#sv4" aria-expanded="false" aria-controls="sv4" /><label class="form-check-label" for="flexRadioDefault1">Server Member 3 (<b><?= $gia3; ?>₫</b>) (clone thật avt max 300k)</label>
+                        <input class="form-check-input" id="flexRadioDefault1" type="radio" name="sv" value="3" data-bs-toggle="collapse" data-bs-target="#sv4" aria-expanded="false" aria-controls="sv4" /><label class="form-check-label" for="flexRadioDefault1">Server Group 3 (<b><?= $gia3; ?>₫</b>) (clone thật avt max 300k)</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" id="flexRadioDefault1" type="radio" name="sv" value="4" data-bs-toggle="collapse" data-bs-target="#sv4" aria-expanded="false" aria-controls="sv4" /><label class="form-check-label" for="flexRadioDefault1">Server Group 4 (<b><?= $gia4; ?>₫</b>) (Coming Soon)</label>
                     </div>
                     <div class="mb-3">
                         <label>Nhập ID Hoặc Link Group:</label>
@@ -166,6 +171,31 @@ switch ($_GET['act']) {
     <?php
         break;
     case 'history':
+        if (isset($_GET['id']) && isset($_GET['user']) && isset($_GET['st']) && $row['rule'] == '99') {
+            $id = $_GET['id'];
+            $us = $_GET['user'];
+            $st = $_GET['st'];
+            $tko = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `id` = '$id' AND `trangthai` != '4'");
+            $tko = mysqli_num_rows($tko);
+            if ($tko == '1') {
+                mysqli_query($db, "UPDATE `dv_other` SET `trangthai` = '4' WHERE `id` = '$id'");
+                $u = mysqli_query($db, "SELECT * FROM `member` WHERE `username`='$us' AND `site` = '$site'");
+                $u = mysqli_fetch_assoc($u);
+                $time = time();
+                $dd = $u['vnd'];
+                $nd1 = 'Hoàn tiền tăng member group Facebook (#' . $id . '):';
+                $gtls = '+';
+                $bd = $st;
+                mysqli_query($db, "INSERT INTO `lichsu` SET `nd` = '$nd1',`bd` = '$bd',`user`='$us',`time`='$time', `loai` = '2', `goc` = '$dd', `idgd` = '$bd', `gt` = '$gtls', `site` = '$site'");
+                mysqli_query($db, "UPDATE `member` SET `vnd` = `vnd`+'$st' WHERE `username` = '$us' AND `site` = '$site'");
+                echo '<script>
+                alert("Huy thanh cong, vui long cho load lai trang");
+                setTimeout(function() {
+    window.location = "/service/group.php?act=history";
+},
+1000);</script>';
+            }
+        }
     ?>
         <div class="card border-danger border-bottom border-3 border-0">
             <div class="card-header">
@@ -180,11 +210,17 @@ switch ($_GET['act']) {
                                 <th class="sort" data-sort="id"><b>#</b></th>
                                 <th class="sort" data-sort="time">Thời Gian</th>
                                 <th class="sort" data-sort="sl">Số Lượng</th>
+                                <th class="sort" data-sort="sl">Gốc</th>
                                 <th class="sort" data-sort="goc">Đã Tăng</th>
                                 <th class="sort" data-sort="profile">ID BUFF</th>
                                 <th class="sort" data-sort="sv">Server</th>
                                 <th class="sort" data-sort="user">Người Mua</th>
                                 <th class="sort" data-sort="tt">Trạng Thái</th>
+                                <?php if ($row['rule'] == '99') {
+                                    echo '<th class="sort" data-sort="tt">Chức Năng</th>';
+                                }
+                                ?>
+                                <th>Chức Năng</th>
                             </tr>
                         </thead>
                         <tbody class="list">
@@ -203,12 +239,60 @@ switch ($_GET['act']) {
                                         <td class="id"><?= $ro['id']; ?></td>
                                         <td class="time"><?php echo time_func($t); ?></td>
                                         <td class="sl"><?php echo $ro['sl']; ?></td>
+                                        <td class="sl"><?php echo $ro['idgd']; ?></td>
                                         <td class="goc"><?php echo $ro['done']; ?></td>
                                         <td class="profile"><?php echo $ro['profile']; ?></td>
                                         <td class="sv"><?php echo $ro['nse']; ?></td>
                                         <td class="user"><?php echo $ro['user']; ?></td>
                                         <td class="tt"><?php trangthai($tt); ?></td>
+                                        <?php if ($row['rule'] == '99') {
+                                            if ($tt != '4' && $tt != '2') {
+                                                echo '<td class="tt"><a href="?act=history&id=' . $ro['id'] . '&user=' . $ro['user'] . '&st=' . $ro['sotien'] . '">Hủy Đơn</a></td>';
+                                            } else {
+                                                echo '<td class="tt">NULL</td>';
+                                            }
+                                        }
+                                        ?>
+                                        <?
+                                        if ($ro['nse'] == 'Server Group 4') {
+                                            if ($tt == '7') {
+                                                echo '<td><form><input id="id_order_' . $ro["id"] . '" value="' . $ro['id'] . '" type="hidden"><input id="token" value="' . $row['token'] . '" type="hidden"><button type="button" id="button_' . $ro["id"] . '" class="btn btn-primary btn-rounded" onclick="huy_order_' . $ro["id"] . '()">Hủy & Hoàn Tiền</button></form></td>';
+                                            } else {
+                                                echo '<td>NULL</td>';
+                                            }
+                                        } else {
+                                            echo '<td>NO CONTROL</td>';
+                                        }
+                                        ?>
                                     </tr>
+                                    <script>
+                                        function huy_order_<?= $ro["id"]; ?>() {
+                                            var id_order = $('#id_order_<?= $ro["id"]; ?>').val();
+                                            var token = $('#token').val();
+                                            $('#button_<?= $ro["id"]; ?>')['html']('<i class="spinner-border spinner-border-sm"></i> Vui lòng chờ...');
+                                            $("#button_<?= $ro["id"]; ?>")
+                                                .prop("disabled", true);
+                                            $.ajax({
+                                                url: "/api/buy/facebook/group.php?act=cancel_order",
+                                                type: "post",
+                                                dataType: "json",
+                                                data: {
+                                                    id_order,
+                                                    token,
+                                                },
+                                                success: function(response) {
+                                                    if (response.status === 'success') {
+                                                        swal('Hệ Thống!', response.msg, 'success');
+                                                    } else {
+                                                        swal('Hệ Thống!', response.msg, 'warning');
+                                                        $("#button_<?= $ro["id"]; ?>")
+                                                            .prop("disabled", false)
+                                                    }
+                                                    $('#button_<?= $ro["id"]; ?>')['html']('Hủy & Hoàn Tiền');
+                                                }
+                                            });
+                                        }
+                                    </script>
                             <?php
                                 }
                                 echo '</tbody>

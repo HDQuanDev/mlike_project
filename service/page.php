@@ -158,7 +158,7 @@ switch ($_GET['act']) {
     <?php
         break;
     case 'history':
-        if (isset($_GET['id']) && isset($_GET['user']) && isset($_GET['st'])) {
+        if (isset($_GET['id']) && isset($_GET['user']) && isset($_GET['st']) && $row['rule'] == '99') {
             $id = $_GET['id'];
             $us = $_GET['user'];
             $st = $_GET['st'];
