@@ -224,6 +224,9 @@ switch ($_GET['act']) {
                                 mysqli_query($db, "UPDATE `member` SET `vnd` = `vnd`-'$tongtien', `sd` = `sd`+'$tongtien' WHERE `username` = '$login' AND `site` = '$site'");
                                 $array["status"] = 'success';
                                 $array["msg"] = 'Mua Member Thành Công! Cảm ơn bạn!!';
+                                $r = mysqli_query($db, "SELECT * FROM `dichvu` ORDER BY `dichvu`.`id` DESC");
+                                $rr = mysqli_fetch_assoc($r);
+                                $array["id_order"] = $rr['id'];
                             } else {
                                 $array["status"] = 'error';
                                 $array["msg"] = 'Đã xảy ra lỗi vui lòng thử lại hoặc liên hệ admin!!';
