@@ -178,7 +178,7 @@ switch ($_GET['act']) {
             $tko = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `id` = '$id' AND `trangthai` != '4'");
             $tko = mysqli_num_rows($tko);
             if ($tko == '1') {
-                mysqli_query($db, "UPDATE `dv_other` SET `trangthai` = '4' WHERE `id` = '$id'");
+                mysqli_query($db, "UPDATE `dv_other` SET `trangthai` = '8' WHERE `id` = '$id'");
                 $u = mysqli_query($db, "SELECT * FROM `member` WHERE `username`='$us' AND `site` = '$site'");
                 $u = mysqli_fetch_assoc($u);
                 $time = time();
