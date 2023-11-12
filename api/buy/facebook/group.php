@@ -210,7 +210,7 @@ switch ($_GET['act']) {
                             $array["status"] = 'error';
                             $array["msg"] = 'Số lượng tối đa của 1 ID có thể mua là 20000 Member (Bạn có thể mua thêm ' . $mcheck . ' Member cho ID này!)';
                         } else {
-                            $send_tlc = json_decode(telegram_send('32075', '<b>***Bạn vừa có một đơn hàng Member Group Facebook Mới***</b>%0A- ID: <a href="https://facebook.com/' . $id . '">' . $id . '</a>%0A- Số lượng: ' . $sl . ' Like%0A- Người mua: <a href="https://mlike.vn/admin/user.php?edit=' . $login . '">' . $login . '</a>%0A- Thời Gian: ' . $tg . '%0A- Để kiểm tra vui lòng: <a href="https://mlike.vn/service/group.php">ấn vào đây</a>%0A(<b>QBOT Notification</b>)'));
+                            $send_tlc = json_decode(telegram_send('32075', '<b>***Bạn vừa có một đơn hàng Member Group Facebook Mới***</b>%0A- ID: <a href="https://facebook.com/' . $id . '">' . $id . '</a>%0A- Số lượng: ' . $sl . ' Member%0A- Người mua: <a href="https://mlike.vn/admin/user.php?edit=' . $login . '">' . $login . '</a>%0A- Thời Gian: ' . $tg . '%0A- Để kiểm tra vui lòng: <a href="https://mlike.vn/service/group.php">ấn vào đây</a>%0A(<b>QBOT Notification</b>)'));
                             if ($send_tlc->ok == 'true') {
                                 $nd1 = 'Tăng Member Group Facebook ID:';
                                 $bd = $tongtien;
