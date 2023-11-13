@@ -30,6 +30,17 @@ const isValidUrl = urlString => {
     return !!urlPattern.test(urlString);
 }
 
+function getDateTimeFromTimestamp(timestamp) {
+    const date = new Date(timestamp * 1000);
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const seconds = date.getSeconds();
+    return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+}
+
 function getIDP(elm) {
     setTimeout(() => {
         let link = $("[name=" + elm + "]").val();
@@ -245,8 +256,13 @@ function getView(elm) {
                         .val(response.link);
                     var view = response.view;
                     var viewne = view.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
+                    if (response.user_verified == true) {
+                        var veryfied = "Đã Xác Minh";
+                    } else {
+                        var veryfied = "Chưa Xác Minh";
+                    }
                     $('#detailServer').show().html(`<div class="alert bg-success text-white" role="alert">
-            <h4>Thông Tin Video</h4><ul><b><li> ID: ${response.id}</li><li> View: ${viewne}</li><li> Người Đăng: ${response.name}</li></b></ul></div><br>`);
+            <h4>Thông Tin Video</h4><ul><b><li> ID: ${response.id}</li><li> View: ${viewne}</li><li>Ngày Đăng: ${getDateTimeFromTimestamp(response.video_createTime)}<li>Người Đăng: ${response.name} - ${veryfied}</li><li>API By HDQuanDev</li></b></ul></div><br>`);
                     $("#button")
                         .prop("disabled", false);
                     $("#view")
@@ -291,9 +307,15 @@ function getTym(elm) {
                     $("[name=" + elm + "]")
                         .prop("disabled", false)
                         .val(link);
+                    var tim = response.tim;
+                    var tim = tim.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
+                    if (response.user_verified == true) {
+                        var veryfied = "Đã Xác Minh";
+                    } else {
+                        var veryfied = "Chưa Xác Minh";
+                    }
                     $('#detailServer').show().html(`<div class="alert bg-success text-white" role="alert">
-            <h4>Thông Tin Video</h4>
-            - <b>${response.id} - ${response.tim} Like<br>- Người Đăng: ${response.name}</b></div><br>`);
+                    <h4>Thông Tin Video</h4><ul><b><li> ID: ${response.id}</li><li> Tim: ${tim}</li><li>Ngày Đăng: ${getDateTimeFromTimestamp(response.video_createTime)}<li>Người Đăng: ${response.name} - ${veryfied}</li><li>API By HDQuanDev</li></b></ul></div><br>`);
                     $("#button")
                         .prop("disabled", false);
                 } else {
@@ -474,18 +496,6 @@ function getCookieValue(name) {
         return match[2]
     }
 }
-
-function getDateTimeFromTimestamp(timestamp) {
-    const date = new Date(timestamp * 1000);
-    const day = date.getDate();
-    const month = date.getMonth() + 1;
-    const year = date.getFullYear();
-    const hours = date.getHours();
-    const minutes = date.getMinutes();
-    const seconds = date.getSeconds();
-    return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
-}
-
 
 $(function () {
     $('#data-source').DataTable({
