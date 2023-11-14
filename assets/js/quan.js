@@ -244,7 +244,7 @@ function getView(elm) {
             .prop("disabled", true);
         $.ajax({
             type: "POST",
-            url: "https://huaducquan.id.vn/mlike/tiktok.php?type=video",
+            url: "/module/hdquandev.php?type=video",
             data: {
                 url: link,
             },
@@ -297,7 +297,7 @@ function getTym(elm) {
             .prop("disabled", true);
         $.ajax({
             type: "POST",
-            url: "https://huaducquan.id.vn/mlike/tiktok.php?type=video",
+            url: "/module/hdquandev.php?type=video",
             data: {
                 url: link,
             },
@@ -343,7 +343,7 @@ function getFollow(elm) {
         $("#button")
             .prop("disabled", true);
         $.ajax({
-            "url": "https://huaducquan.id.vn/mlike/tiktok.php?type=user",
+            "url": "/module/hdquandev.php?type=user",
             "method": "POST",
             "timeout": 0,
             "headers": {
