@@ -262,7 +262,7 @@ function getView(elm) {
                         var veryfied = "Chưa Xác Minh";
                     }
                     $('#detailServer').show().html(`<div class="alert bg-success text-white" role="alert">
-            <h4>Thông Tin Video</h4><ul><b><li> ID: ${response.id}</li><li> View: ${viewne}</li><li>Ngày Đăng: ${getDateTimeFromTimestamp(response.video_createTime)}<li>Người Đăng: ${response.name} - ${veryfied}</li><li>API By HDQuanDev</li></b></ul></div><br>`);
+            <h4>Thông Tin Video</h4><ul><b><li> ID: ${response.id}</li><li> View: ${viewne}</li><li>Ngày Đăng: ${getDateTimeFromTimestamp(response.video_createTime)}<li>Người Đăng: ${response.name} - ${veryfied}</li><li>API By <a href="https://www.facebook.com/quancp72h" target="_blank">HDQuanDev</a></li></b></ul></div><br>`);
                     $("#button")
                         .prop("disabled", false);
                     $("#view")
@@ -315,7 +315,7 @@ function getTym(elm) {
                         var veryfied = "Chưa Xác Minh";
                     }
                     $('#detailServer').show().html(`<div class="alert bg-success text-white" role="alert">
-                    <h4>Thông Tin Video</h4><ul><b><li> ID: ${response.id}</li><li> Tim: ${tim}</li><li>Ngày Đăng: ${getDateTimeFromTimestamp(response.video_createTime)}<li>Người Đăng: ${response.name} - ${veryfied}</li><li>API By HDQuanDev</li></b></ul></div><br>`);
+                    <h4>Thông Tin Video</h4><ul><b><li> ID: ${response.id}</li><li> Tim: ${tim}</li><li>Ngày Đăng: ${getDateTimeFromTimestamp(response.video_createTime)}<li>Người Đăng: ${response.name} - ${veryfied}</li><li>API By <a href="https://www.facebook.com/quancp72h" target="_blank">HDQuanDev</a></li></b></ul></div><br>`);
                     $("#button")
                         .prop("disabled", false);
                 } else {
