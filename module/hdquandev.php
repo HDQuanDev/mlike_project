@@ -26,7 +26,8 @@ function check_tt($url, $act)
         CURLOPT_CUSTOMREQUEST => 'POST',
         CURLOPT_POSTFIELDS => 'url=' . $url,
         CURLOPT_HTTPHEADER => array(
-            'Content-Type: application/x-www-form-urlencoded'
+            'Content-Type: application/x-www-form-urlencoded',
+            'TOKEN_AU: huaducquanapi'
         ),
     ));
 
