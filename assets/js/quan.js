@@ -253,7 +253,7 @@ function getView(elm) {
                 if (response.success == 200) {
                     $("[name=" + elm + "]")
                         .prop("disabled", false)
-                        .val(response.link);
+                        .val(response.data.link);
                     var view = response.data.playCount;
                     var viewne = view.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
                     if (response.data.user_verified == true) {
@@ -306,7 +306,7 @@ function getTym(elm) {
                 if (response.success == 200) {
                     $("[name=" + elm + "]")
                         .prop("disabled", false)
-                        .val(link);
+                        .val(response.data.link);
                     var tim = response.data.diggCount;
                     var tim = tim.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
                     if (response.data.user_verified == true) {
