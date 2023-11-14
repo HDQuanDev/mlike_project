@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 if (isset($_POST['token']) && isset($_POST['id']) && isset($_POST['sl']) && isset($_POST['sv'])) {
-    $id = mysqli_real_escape_string($db, $_POST['id']); 
+    $id = mysqli_real_escape_string($db, $_POST['id']);
     $sl = mysqli_real_escape_string($db, $_POST['sl']);
     $sv = mysqli_real_escape_string($db, $_POST['sv']);
     $cd = mysqli_real_escape_string($db, $_POST['gift']);
@@ -31,7 +31,6 @@ if (isset($_POST['token']) && isset($_POST['id']) && isset($_POST['sl']) && isse
         $ttid = $tt->id;
         $ttview = $tt->follow;
         //$id = $tt->nickname;
-        $uname = $tt->username;
         if ($sv == 1) {
             $tongtien = $sl * $gia;
             $nse = 'Server Follow 1';
@@ -64,12 +63,20 @@ if (isset($_POST['token']) && isset($_POST['id']) && isset($_POST['sl']) && isse
             $array["status"] = 'error';
             $array["msg"] = 'Bạn không đủ tiền!';
         } else {
+            if (filter_var($id, FILTER_VALIDATE_URL) !== false) {
+                $tt = json_decode(check_tt($link, "user"));
+                $ttid = $tt->data->id;
+                $ttfollow = $tt->data->user_follower;
+                $uname = '@' . $tt->data->user;
+            } else {
+                $ttid = $id;
+                $ttview = '0';
+            }
             if ($sv == 1) {
                 require_once('../../../module/autofbpro.php');
                 $buff = tiktok("$id", "$sl", "follow");
                 $buff = json_decode($buff);
                 if ($buff->status == 200) {
-
                     $nd1 = 'Tăng Follow TikTok ID:';
                     $bd = $tongtien;
                     $gt = '-';
@@ -77,7 +84,7 @@ if (isset($_POST['token']) && isset($_POST['id']) && isset($_POST['sl']) && isse
                     $goc = $row['vnd'];
                     $time = time();
                     mysqli_query($db, "INSERT INTO `lichsu` SET `nd` = '$nd1',`bd` = '$bd',`user`='$login',`time`='$time', `goc` = '$goc', `loai` = '1', `idgd` = '$idgd', `gt` = '$gt'");
-                    mysqli_query($db, "INSERT INTO `dv_other` SET `dv` = 'tiktok_follow',`sl` = '$sl', `trangthai` = '1', `user`='$login',`profile`='$id',`time` = '$time', `sttdone` = '10', `sotien` = '$tongtien', `done` = '0', `nse` = '$nse', `cmt` = '$ttid', `iddon` = '$ttview'");
+                    mysqli_query($db, "INSERT INTO `dv_other` SET `dv` = 'tiktok_follow',`sl` = '$sl', `trangthai` = '1', `user`='$login',`profile`='$id',`time` = '$time', `sttdone` = '10', `sotien` = '$tongtien', `done` = '0', `nse` = '$nse', `cmt` = '$ttid', `iddon` = '$ttfollow'");
                     mysqli_query($db, "UPDATE `member` SET `vnd` = `vnd`-'$tongtien', `sd` = `sd`+'$tongtien' WHERE `username` = '$login' AND `site` = '$site'");
                     $array["status"] = 'success';
                     $array["msg"] = 'Mua Follow Thành Công! Cảm ơn bạn!!';
@@ -88,7 +95,6 @@ if (isset($_POST['token']) && isset($_POST['id']) && isset($_POST['sl']) && isse
             } elseif ($sv == 2) {
                 $order = $api->order(array('service' => 1465, 'link' => '' . $id . '', 'quantity' => $sl));
                 if (isset($order)) {
-
                     $nd1 = 'Tăng Follow TikTok ID:';
                     $bd = $tongtien;
                     $gt = '-';
@@ -96,7 +102,7 @@ if (isset($_POST['token']) && isset($_POST['id']) && isset($_POST['sl']) && isse
                     $goc = $row['vnd'];
                     $time = time();
                     mysqli_query($db, "INSERT INTO `lichsu` SET `nd` = '$nd1',`bd` = '$bd',`user`='$login',`time`='$time', `goc` = '$goc', `loai` = '1', `idgd` = '$idgd', `gt` = '$gt'");
-                    mysqli_query($db, "INSERT INTO `dv_other` SET `dv` = 'tiktok_follow',`sl` = '$sl', `trangthai` = '1', `user`='$login',`profile`='$id',`time` = '$time', `sttdone` = '10', `sotien` = '$tongtien', `done` = '$sl', `nse` = '$nse', `cmt` = '$ttid', `iddon` = '$ttview', `idgd` = '$idd'");
+                    mysqli_query($db, "INSERT INTO `dv_other` SET `dv` = 'tiktok_follow',`sl` = '$sl', `trangthai` = '1', `user`='$login',`profile`='$id',`time` = '$time', `sttdone` = '10', `sotien` = '$tongtien', `done` = '$sl', `nse` = '$nse', `cmt` = '$ttid', `iddon` = '$ttfollow', `idgd` = '$idd'");
                     mysqli_query($db, "UPDATE `member` SET `vnd` = `vnd`-'$tongtien', `sd` = `sd`+'$tongtien' WHERE `username` = '$login' AND `site` = '$site'");
                     $array["status"] = 'success';
                     $array["msg"] = 'Mua Follow Thành Công! Cảm ơn bạn!!';
@@ -144,7 +150,7 @@ if (isset($_POST['token']) && isset($_POST['id']) && isset($_POST['sl']) && isse
                     $goc = $row['vnd'];
                     $time = time();
                     mysqli_query($db, "INSERT INTO `lichsu` SET `nd` = '$nd1',`bd` = '$bd',`user`='$login',`time`='$time', `goc` = '$goc', `loai` = '1', `idgd` = '$idgd', `gt` = '$gt'");
-                    mysqli_query($db, "INSERT INTO `dv_other` SET `dv` = 'tiktok_follow',`sl` = '$sl', `trangthai` = '1', `user`='$login',`profile`='$id',`time` = '$time', `sttdone` = '10', `sotien` = '$tongtien', `done` = '0', `nse` = '$nse', `cmt` = '$ttid', `iddon` = '$ttview'");
+                    mysqli_query($db, "INSERT INTO `dv_other` SET `dv` = 'tiktok_follow',`sl` = '$sl', `trangthai` = '1', `user`='$login',`profile`='$id',`time` = '$time', `sttdone` = '10', `sotien` = '$tongtien', `done` = '0', `nse` = '$nse', `cmt` = '$ttid', `iddon` = '$ttfollow'");
                     mysqli_query($db, "UPDATE `member` SET `vnd` = `vnd`-'$tongtien', `sd` = `sd`+'$tongtien' WHERE `username` = '$login' AND `site` = '$site'");
                     $array["status"] = 'success';
                     $array["msg"] = 'Mua Follow Thành Công! Cảm ơn bạn!!';
@@ -163,7 +169,7 @@ if (isset($_POST['token']) && isset($_POST['id']) && isset($_POST['sl']) && isse
                     $goc = $row['vnd'];
                     $time = time();
                     mysqli_query($db, "INSERT INTO `lichsu` SET `nd` = '$nd1',`bd` = '$bd',`user`='$login',`time`='$time', `goc` = '$goc', `loai` = '1', `idgd` = '$idgd', `gt` = '$gt'");
-                    mysqli_query($db, "INSERT INTO `dv_other` SET `dv` = 'tiktok_follow',`sl` = '$sl', `trangthai` = '1', `user`='$login',`profile`='$id',`time` = '$time', `sttdone` = '10', `sotien` = '$tongtien', `done` = '0', `nse` = '$nse', `cmt` = '$ttid', `iddon` = '$ttview'");
+                    mysqli_query($db, "INSERT INTO `dv_other` SET `dv` = 'tiktok_follow',`sl` = '$sl', `trangthai` = '1', `user`='$login',`profile`='$id',`time` = '$time', `sttdone` = '10', `sotien` = '$tongtien', `done` = '0', `nse` = '$nse', `cmt` = '$ttid', `iddon` = '$ttfollow'");
                     mysqli_query($db, "UPDATE `member` SET `vnd` = `vnd`-'$tongtien', `sd` = `sd`+'$tongtien' WHERE `username` = '$login' AND `site` = '$site'");
                     $array["status"] = 'success';
                     $array["msg"] = 'Mua Follow Thành Công! Cảm ơn bạn!!';

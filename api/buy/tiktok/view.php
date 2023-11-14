@@ -239,11 +239,11 @@ switch ($_GET['act']) {
                             $ttview = $_POST['view'];
                             $checkne = '200';
                         } else {
-                            $tt = json_decode(check_tt($link, "view"));
+                            $tt = json_decode(check_tt($link, "video"));
                             if ($stttiktok == 'on') {
                                 $checkne = $tt->success;
-                                $ttid = $tt->id;
-                                $ttview = $tt->view;
+                                $ttid = $tt->data->id;
+                                $ttview = $tt->data->playCount;
                             } else {
                                 $checkne = '200';
                                 $ttid = $id;
@@ -280,11 +280,11 @@ switch ($_GET['act']) {
                             $ttview = $_POST['view'];
                             $checkne = '200';
                         } else {
-                            $tt = json_decode(check_tt($link, "view"));
+                            $tt = json_decode(check_tt($link, "video"));
                             if ($stttiktok == 'on') {
                                 $checkne = $tt->success;
-                                $ttid = $tt->id;
-                                $ttview = $tt->view;
+                                $ttid = $tt->data->id;
+                                $ttview = $tt->data->playCount;
                             } else {
                                 $checkne = '200';
                                 $ttid = $id;
@@ -323,11 +323,11 @@ switch ($_GET['act']) {
                             $ttlink = $_POST['link'];
                             $checkne = '200';
                         } else {
-                            $tt = json_decode(check_tt($link, "view"));
+                            $tt = json_decode(check_tt($link, "video"));
                             if ($stttiktok == 'on') {
                                 $checkne = $tt->success;
-                                $ttid = $tt->id;
-                                $ttview = $tt->view;
+                                $ttid = $tt->data->id;
+                                $ttview = $tt->data->playCount;
                                 $ttlink = $tt->link;
                             } else {
                                 $checkne = '200';
@@ -372,11 +372,11 @@ switch ($_GET['act']) {
                             $ttview = $_POST['view'];
                             $checkne = '200';
                         } else {
-                            $tt = json_decode(check_tt($link, "view"));
+                            $tt = json_decode(check_tt($link, "video"));
                             if ($stttiktok == 'on') {
                                 $checkne = $tt->success;
-                                $ttid = $tt->id;
-                                $ttview = $tt->view;
+                                $ttid = $tt->data->id;
+                                $ttview = $tt->data->playCount;
                             } else {
                                 $checkne = '200';
                                 $ttid = $id;
@@ -414,11 +414,11 @@ switch ($_GET['act']) {
                             $ttview = $_POST['view'];
                             $checkne = '200';
                         } else {
-                            $tt = json_decode(check_tt($link, "view"));
+                            $tt = json_decode(check_tt($link, "video"));
                             if ($stttiktok == 'on') {
                                 $checkne = $tt->success;
-                                $ttid = $tt->id;
-                                $ttview = $tt->view;
+                                $ttid = $tt->data->id;
+                                $ttview = $tt->data->playCount;
                             } else {
                                 $checkne = '200';
                                 $ttid = $id;

@@ -117,10 +117,10 @@ switch ($_GET['act']) {
                     $array["msg"] = 'Bạn không đủ tiền!';
                 } else {
                     if (filter_var($id, FILTER_VALIDATE_URL) !== false) {
-                        $tt = json_decode(check_tt($id, "view"));
-                        $ttid = $tt->id;
-                        $ttview = $tt->tim;
-                        $ttlink = $tt->link;
+                        $tt = json_decode(check_tt($link, "video"));
+                        $ttid = $tt->data->id;
+                        $ttview = $tt->data->diggCount;
+                        $ttlink = $tt->data->link;
                     } else {
                         $ttid = $id;
                         $ttview = '0';

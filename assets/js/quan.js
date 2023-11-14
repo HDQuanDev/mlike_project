@@ -243,10 +243,10 @@ function getView(elm) {
         $("#button")
             .prop("disabled", true);
         $.ajax({
-            type: "GET",
-            url: "/module/getid.php?tiktok=view",
+            type: "POST",
+            url: "https://huaducquan.id.vn/mlike/tiktok.php?type=video",
             data: {
-                link,
+                url: link,
             },
             dataType: "json",
             success: function (response) {
@@ -254,23 +254,23 @@ function getView(elm) {
                     $("[name=" + elm + "]")
                         .prop("disabled", false)
                         .val(response.link);
-                    var view = response.view;
+                    var view = response.data.playCount;
                     var viewne = view.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
-                    if (response.user_verified == true) {
+                    if (response.data.user_verified == true) {
                         var veryfied = "Đã Xác Minh";
                     } else {
                         var veryfied = "Chưa Xác Minh";
                     }
                     $('#detailServer').show().html(`<div class="alert bg-success text-white" role="alert">
-            <h4>Thông Tin Video</h4><ul><b><li> ID: ${response.id}</li><li> View: ${viewne}</li><li>Ngày Đăng: ${getDateTimeFromTimestamp(response.video_createTime)}<li>Người Đăng: ${response.name} - ${veryfied}</li><li>API By <a href="https://www.facebook.com/quancp72h" target="_blank">HDQuanDev</a></li></b></ul></div><br>`);
+            <h4>Thông Tin Video</h4><ul><b><li> ID: ${response.data.id}</li><li> View: ${viewne}</li><li>Ngày Đăng: ${getDateTimeFromTimestamp(response.data.video_createTime)}<li>Người Đăng: ${response.data.name} - ${veryfied}</li><li>API By <a href="https://www.facebook.com/quancp72h" target="_blank">HDQuanDev</a></li></b></ul></div><br>`);
                     $("#button")
                         .prop("disabled", false);
                     $("#view")
-                        .val(response.view);
+                        .val(response.data.playCount);
                     $("#uid")
-                        .val(response.id);
+                        .val(response.data.id);
                     $("#link")
-                        .val(response.link);
+                        .val(response.data.link);
                 } else {
                     $("[name=" + elm + "]")
                         .prop("disabled", false)
@@ -296,10 +296,10 @@ function getTym(elm) {
         $("#button")
             .prop("disabled", true);
         $.ajax({
-            type: "GET",
-            url: "/module/getid.php?tiktok=view",
+            type: "POST",
+            url: "https://huaducquan.id.vn/mlike/tiktok.php?type=video",
             data: {
-                link,
+                url: link,
             },
             dataType: "json",
             success: function (response) {
@@ -307,15 +307,62 @@ function getTym(elm) {
                     $("[name=" + elm + "]")
                         .prop("disabled", false)
                         .val(link);
-                    var tim = response.tim;
+                    var tim = response.data.diggCount;
                     var tim = tim.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
-                    if (response.user_verified == true) {
+                    if (response.data.user_verified == true) {
                         var veryfied = "Đã Xác Minh";
                     } else {
                         var veryfied = "Chưa Xác Minh";
                     }
                     $('#detailServer').show().html(`<div class="alert bg-success text-white" role="alert">
-                    <h4>Thông Tin Video</h4><ul><b><li> ID: ${response.id}</li><li> Tim: ${tim}</li><li>Ngày Đăng: ${getDateTimeFromTimestamp(response.video_createTime)}<li>Người Đăng: ${response.name} - ${veryfied}</li><li>API By <a href="https://www.facebook.com/quancp72h" target="_blank">HDQuanDev</a></li></b></ul></div><br>`);
+                    <h4>Thông Tin Video</h4><ul><b><li> ID: ${response.data.id}</li><li> Tim: ${tim}</li><li>Ngày Đăng: ${getDateTimeFromTimestamp(response.data.video_createTime)}<li>Người Đăng: ${response.data.name} - ${veryfied}</li><li>API By <a href="https://www.facebook.com/quancp72h" target="_blank">HDQuanDev</a></li></b></ul></div><br>`);
+                    $("#button")
+                        .prop("disabled", false);
+                } else {
+                    $("[name=" + elm + "]")
+                        .prop("disabled", false)
+                        .val("Lỗi vui lòng nhập lại link!");
+                    $('#detailServer').show().html(`<div class="alert bg-danger text-white" role="alert">
+            (*) Warning: Lỗi, vui lòng thử nhập lại link</div><br>`);
+                }
+            },
+        });
+    }, 100);
+}
+
+function getFollow(elm) {
+    setTimeout(() => {
+        let link = $("[name=" + elm + "]").val();
+
+        if (!isUR(link)) {
+            return;
+        }
+        $("[name=" + elm + "]")
+            .prop("disabled", true)
+            .val("Đang xử lý...");
+        $("#button")
+            .prop("disabled", true);
+        $.ajax({
+            type: "POST",
+            url: "https://huaducquan.id.vn/mlike/tiktok.php?type=user",
+            data: {
+                url: link,
+            },
+            dataType: "json",
+            success: function (response) {
+                if (response.success == 200) {
+                    $("[name=" + elm + "]")
+                        .prop("disabled", false)
+                        .val(link);
+                    var follow = response.data.user_follower;
+                    var follow = follow.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
+                    if (response.data.user_verified == true) {
+                        var veryfied = "Đã Xác Minh";
+                    } else {
+                        var veryfied = "Chưa Xác Minh";
+                    }
+                    $('#detailServer').show().html(`<div class="alert bg-success text-white" role="alert">
+                    <h4>Thông Tin User</h4><ul><b><li> ID: ${response.data.id}</li><li> Follow: ${follow}</li><li>Tài Khoản Riêng Tư: ${response.data.privateAccount}<li>Tên: ${response.data.name} - ${veryfied}</li><li>API By <a href="https://www.facebook.com/quancp72h" target="_blank">HDQuanDev</a></li></b></ul></div><br>`);
                     $("#button")
                         .prop("disabled", false);
                 } else {
