@@ -1,5 +1,5 @@
 <?php
-if ($_SERVER['REMOTE_ADDR'] !== '216.9.227.213') {
+if ($_SERVER['REMOTE_ADDR'] !== '66.248.202.40') {
     $array = [];
     $array["success"] = '400';
     $array["message"] = 'Access denied';
