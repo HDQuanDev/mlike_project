@@ -1,6 +1,8 @@
 <?php
-$allowed_referer = 'https://mlike.vn'; // Thay đổi địa chỉ trang web của bạn ở đây
-if ($_SERVER['HTTP_REFERER'] !== $allowed_referer) {
+$allowed_referer = 'mlike.vn'; // Thay đổi địa chỉ trang web của bạn ở đây
+$url = $_SERVER['HTTP_REFERER'];
+$tach = explode("/", $url);
+if ($tach[2] !== $allowed_referer) {
     $array = [];
     $array["success"] = '400';
     $array["message"] = 'Access denied';
