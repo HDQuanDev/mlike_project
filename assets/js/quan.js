@@ -343,10 +343,14 @@ function getFollow(elm) {
         $("#button")
             .prop("disabled", true);
         $.ajax({
-            type: "POST",
-            url: "https://huaducquan.id.vn/mlike/tiktok.php?type=user",
-            data: {
-                url: link,
+            "url": "https://huaducquan.id.vn/mlike/tiktok.php?type=user",
+            "method": "POST",
+            "timeout": 0,
+            "headers": {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            "data": {
+                "url": link
             },
             dataType: "json",
             success: function (response) {
