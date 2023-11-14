@@ -1,12 +1,15 @@
 <?php
-if ($_SERVER['REMOTE_ADDR'] !== '66.248.202.40') {
+$allowed_referer = 'https://mlike.vn'; // Thay đổi địa chỉ trang web của bạn ở đây
+if ($_SERVER['HTTP_REFERER'] !== $allowed_referer) {
     $array = [];
     $array["success"] = '400';
     $array["message"] = 'Access denied';
     $array["ip"] = $_SERVER['REMOTE_ADDR'];
+    $array["url"] = $_SERVER['HTTP_REFERER'];
     $array["code_by"] = "Hứa Đức Quân - Liên hệ mua api https://www.facebook.com/quancp72h";
     die(json_encode($array));
 }
+
 function check_tt($url, $act)
 {
     $curl = curl_init();
