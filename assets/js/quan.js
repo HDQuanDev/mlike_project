@@ -244,7 +244,7 @@ function getView(elm) {
             .prop("disabled", true);
         $.ajax({
             type: "POST",
-            url: "http://118.69.146.21/tiktok.php?type=video",
+            url: "https://huaducquan.id.vn/mlike/tiktok.php?type=video",
             data: {
                 url: link,
             },
@@ -297,7 +297,7 @@ function getTym(elm) {
             .prop("disabled", true);
         $.ajax({
             type: "POST",
-            url: "http://118.69.146.21/tiktok.php?type=video",
+            url: "https://huaducquan.id.vn/mlike/tiktok.php?type=video",
             data: {
                 url: link,
             },
@@ -332,7 +332,7 @@ function getTym(elm) {
 
 function getFollow(elm) {
     setTimeout(() => {
-        let link = $("[name=" + elm + "]").val();
+        var link = $("[name=" + elm + "]").val();
 
         if (!isUR(link)) {
             return;
@@ -344,7 +344,7 @@ function getFollow(elm) {
             .prop("disabled", true);
         $.ajax({
             type: "POST",
-            url: "http://118.69.146.21/tiktok.php?type=user",
+            url: "https://huaducquan.id.vn/mlike/tiktok.php?type=user",
             data: {
                 url: link,
             },
