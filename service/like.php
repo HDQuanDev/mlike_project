@@ -115,7 +115,7 @@ swal({
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         echo '<span class="badge bg-primary">Đang mở</span>';
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     } ?></label>
                         <div id="sv4" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#sv4">
-                            <div class="accordion-body alert alert-success"> Hạn chế chia nhỏ nhiều lần tránh lỗi, lên thiếu </div>
+                            <div class="accordion-body alert alert-success"> Mỗi ID chỉ được mua 1 lần </div>
                         </div>
                     </div>
                     <div class="form-check">
