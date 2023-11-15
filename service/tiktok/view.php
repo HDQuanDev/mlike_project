@@ -135,7 +135,7 @@ switch ($_GET['act']) {
                         - VIDU : VIEW GỐC LOẠI RẺ 100K (LOẠI TỤT) MUA THÊM 50K ( LOẠI BH ), KHI TỤT CÒN 10K THÌ HỆ THỐNG SẼ TÍNH VIEW GỐC LẠI 10K VÀ BẢO HÀNH THÊM 50K. TRƯỜNG HỢP NÀY NẾU HỆ THỐNG GHI NHẬN QUÁ NHIỀU CHÍNH SÁCH CÓ THỂ THAY ĐỔI <BR>
                         - KHI BỊ TỤT VIEW MỌI NGƯỜI VÀO LỊCH SỬ MUA ĐƠN BẤM NÚT BẢO HÀNH ( MỖI ĐƠN HÀNG CHỈ ĐƯỢC BẤM NÚT BẢO HÀNH SAU 30H KỂ TỪ LẦN BẢO HÀNH CUỐI) <br>
                     </div>
-                    <!-- thong bao -->
+                    <!-- thong bao 
                     <? if (!isset($_POST['add'])) { ?>
                         <script>
                             function sayHello() {
@@ -148,7 +148,7 @@ switch ($_GET['act']) {
                             }
                             setTimeout(sayHello, 1500);
                         </script>
-                    <? } ?>
+                    <? } ?> -->
                     <!-- <label style="font-size:18px;">Hướng dẫn Lấy id  <a href="https://findids.net/username-to-id-tiktok" target="_blank">Tại đây</a></label> 
  </div>-->
 
