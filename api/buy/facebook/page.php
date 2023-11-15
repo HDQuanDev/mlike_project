@@ -138,7 +138,7 @@ switch ($_GET['act']) {
                             $tongtien = $sl * $gia2;
                             $nse = 'Server Fanpage 2';
                             $min = '1000';
-                            $max = '10000';
+                            $max = '20000';
                         }
                     }
                 }
@@ -182,10 +182,10 @@ switch ($_GET['act']) {
                         $crow = mysqli_fetch_row($cres);
                         $lcheckl = $crow[0];
                         $lcheck = $lcheckl + $sl;
-                        $mcheck = 10000 - $lcheckl;
+                        $mcheck = 20000 - $lcheckl;
                         if ($lcheck > '10000') {
                             $array["status"] = 'error';
-                            $array["msg"] = 'Số lượng tối đa của 1 ID có thể mua là 10000 Follow (Bạn có thể mua thêm ' . $mcheck . ' Follow cho ID nay) hoặc bạn đã mua quá 3 lần vui lòng dùng server khác!';
+                            $array["msg"] = 'Số lượng tối đa của 1 ID có thể mua là 20000 Follow (Bạn có thể mua thêm ' . $mcheck . ' Follow cho ID nay) hoặc bạn đã mua quá 3 lần vui lòng dùng server khác!';
                         } else {
                             $nd1 = 'Tăng Like Fanpage ID:';
                             $bd = $tongtien;
