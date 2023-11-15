@@ -487,7 +487,7 @@ switch ($_GET["act"]) {
                     $crow = mysqli_fetch_row($cres);
                     $lcheckl = $crow[0];
                     $lcheck = $lcheckl + $sl;
-                    $mcheck = 3000 - $lcheckl;
+                    $mcheck = 10000 - $lcheckl;
                     $fbapi = json_decode(file_get_contents("https://graph.facebook.com/$id?fields=likes.summary(true)&access_token=" . $tokenfb));
                     $fbapi = $fbapi->likes->summary->total_count;
                     $check_order_count = mysqli_query($db, "SELECT * FROM `dichvu` WHERE `dv` = 'Like' AND `nse` = '444' AND `profile` = '$id'");
@@ -504,9 +504,9 @@ switch ($_GET["act"]) {
                     } elseif ($sl > $s['max4']) {
                         $array["status"] = 'error';
                         $array["msg"] = 'Số lượng tối đa ' . $s['max4'] . ' Like 1 lần ( Đợi lên xong hãy cài tiếp ( xem thực tế ở ngoài ) )!';
-                    } elseif ($lcheck > '3000') {
+                    } elseif ($lcheck > '10000') {
                         $array["status"] = 'error';
-                        $array["msg"] = 'Số lượng tối đa của 1 ID có thể mua là 3000 Like (Bạn có thể mua thêm ' . $mcheck . ' Like cho ID nay)!';
+                        $array["msg"] = 'Số lượng tối đa của 1 ID có thể mua là 10000 Like (Bạn có thể mua thêm ' . $mcheck . ' Like cho ID nay)!';
                     } elseif ($check_order_count >= 1) {
                         $array["status"] = 'error';
                         $array["msg"] = 'Bạn chỉ được phép mua tối đa mỗi ID 1 đơn, vui lòng mua cho ID khác!';
