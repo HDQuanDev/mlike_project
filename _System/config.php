@@ -2,9 +2,9 @@
 if (isset($page)) {
     if ($page == 'view_tt') {
         ## on: bật, off: tắt
-        $sv1 = 'on'; //bật tắt sv1
-        $sv2 = 'on';
-        $sv3 = 'on';
+        $sv1 = 'off'; //bật tắt sv1
+        $sv2 = 'off';
+        $sv3 = 'off';
     } elseif ($page == 'view_fb') {
         $sv1 = 'off'; //bật tắt sv1
         $sv2 = 'off';
