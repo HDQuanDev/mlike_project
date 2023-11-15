@@ -1,5 +1,5 @@
 <?php
-function bv_viewtt($id, $sl)
+function bv_viewtt($id, $sl, $sv)
 {
     $curl = curl_init();
 
@@ -12,7 +12,7 @@ function bv_viewtt($id, $sl)
         CURLOPT_FOLLOWLOCATION => true,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => 'POST',
-        CURLOPT_POSTFIELDS => '{"url":"' . $id . '","amount":"' . $sl . '","server_id":"0","discount_code":""}',
+        CURLOPT_POSTFIELDS => '{"url":"' . $id . '","amount":"' . $sl . '","server_id":"' . $sv . '","discount_code":""}',
         CURLOPT_HTTPHEADER => array(
             'authorization: HqYmel9sv2XkdhtOLg3nINb5uUzQoAR6PiyMjpGT471BfaKcxw',
             'Content-Type: application/json'

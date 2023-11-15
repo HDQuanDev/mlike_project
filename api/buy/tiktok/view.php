@@ -195,6 +195,11 @@ switch ($_GET['act']) {
                     $nse = 'Server View 7';
                     $min = 1000;
                     $max = 2000000000;
+                } elseif ($sv == 8) {
+                    $tongtien = $sl * $gia8;
+                    $nse = 'Server View 8';
+                    $min = 1000;
+                    $max = 2000000000;
                 }
                 if (empty($id)) {
                     $array["status"] = 'error';
@@ -426,7 +431,50 @@ switch ($_GET['act']) {
                             }
                         }
                         if ($checkne == '200') {
-                            $buff = json_decode(bv_viewtt($link, $sl), true);
+                            $buff = json_decode(bv_viewtt($link, $sl, "0"), true);
+                            if ($buff["data"][0]["status"] == true) {
+                                $nd1 = 'Tăng View TikTok ID:';
+                                $bd = $tongtien;
+                                $gt = '-';
+                                $idgd = '' . $id . ' (' . $sl . ')';
+                                $goc = $row['vnd'];
+                                $time = time();
+                                $iddon = $buff["data"][0]["id"];
+                                mysqli_query($db, "INSERT INTO `lichsu` SET `nd` = '$nd1',`bd` = '$bd',`user`='$login',`time`='$time', `goc` = '$goc', `loai` = '1', `idgd` = '$idgd', `gt` = '$gt'");
+                                mysqli_query($db, "INSERT INTO `dv_other` SET `dv` = 'tiktok_view',`sl` = '$sl', `trangthai` = '1', `user`='$login',`profile`='$ttid',`time` = '$time', `sttdone` = '10', `sotien` = '$tongtien', `done` = '0', `nse` = '$nse', `cmt` = '$ttid', `iddon` = '$ttview', `idgd` = '$iddon'");
+                                mysqli_query($db, "UPDATE `member` SET `vnd` = `vnd`-'$tongtien', `sd` = `sd`+'$tongtien' WHERE `username` = '$login' AND `site` = '$site'");
+                                $array["status"] = 'success';
+                                $array["msg"] = 'Mua View Thành Công! Cảm ơn bạn!!';
+                                $r = mysqli_query($db, "SELECT * FROM `dv_other` ORDER BY `dv_other`.`id` DESC");
+                                $rr = mysqli_fetch_assoc($r);
+                                $array["id_order"] = $rr['id'];
+                            } else {
+                                $array["status"] = 'error';
+                                $array["msg"] = $buff["data"][0]["status"]["message"];
+                            }
+                        } else {
+                            $array["status"] = 'error';
+                            $array["msg"] = 'Không thể lấy thông tin từ UID/Link này, vui lòng thử lại!!!';
+                        }
+                    } elseif ($sv == 8) {
+                        if (isset($_POST['view']) && isset($_POST['uid'])) {
+                            $ttid = $_POST['uid'];
+                            $ttview = $_POST['view'];
+                            $checkne = '200';
+                        } else {
+                            $tt = json_decode(check_tt($link, "video"));
+                            if ($stttiktok == 'on') {
+                                $checkne = $tt->success;
+                                $ttid = $tt->data->id;
+                                $ttview = $tt->data->playCount;
+                            } else {
+                                $checkne = '200';
+                                $ttid = $id;
+                                $ttview = 'null';
+                            }
+                        }
+                        if ($checkne == '200') {
+                            $buff = json_decode(bv_viewtt($link, $sl, "1"), true);
                             if ($buff["data"][0]["status"] == true) {
                                 $nd1 = 'Tăng View TikTok ID:';
                                 $bd = $tongtien;

@@ -33,6 +33,8 @@ switch ($_GET['act']) {
                     var gia = '<?= $gia6; ?>';
                 } else if (sv == '7') {
                     var gia = '<?= $gia7; ?>';
+                } else if (sv == '8') {
+                    var gia = '<?= $gia8; ?>';
                 }
                 var tien = sl * gia;
                 var quan = tien.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
@@ -103,12 +105,18 @@ switch ($_GET['act']) {
                             <div class="accordion-body alert alert-danger">Nếu delay lâu sẽ hủy hoàn sau 7 ngày </div>
                         </div>
                     </div> -->
-                  <!--  <div class="form-check">
+                    <!--  <div class="form-check">
                         <input class="form-check-input" id="flexRadioDefault1"  type="radio" name="sv" value="7" data-bs-toggle="collapse" data-bs-target="#sv7" aria-expanded="false" aria-controls="sv7" /><label class="form-check-label" for="flexRadioDefault1">Server View 7 (<b><?= $gia7; ?>₫</b>) ( <span style="color: red;">Min 1k </span> Tốc độ nhanh, view dạng mới ít tụt hoặc không tụt. Bảo hành 30 ngày ) <span class="badge bg-success">Thử nghiệm</span></label>
                         <div id="sv7" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#sv7">
                             <div class="accordion-body alert alert-danger">Bảo hành 30 ngày </div>
                         </div>
                     </div> -->
+                    <div class="form-check">
+                        <input class="form-check-input" id="flexRadioDefault1" type="radio" name="sv" value="8" data-bs-toggle="collapse" data-bs-target="#sv8" aria-expanded="false" aria-controls="sv8" /><label class="form-check-label" for="flexRadioDefault1">Server View 8 (<b><?= $gia8; ?>₫</b>) ( <span style="color: red;">Min 1k </span> Tốc độ nhanh, view dạng mới ít tụt hoặc không tụt. Không bảo hành ) <span class="badge bg-success">Thử nghiệm</span></label>
+                        <div id="sv8" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#sv8">
+                            <div class="accordion-body alert alert-danger">Không bảo hành</div>
+                        </div>
+                    </div>
                     <div class="mb-3">
                         <h4> <span style="color: red;">(*) Hãy đọc lưu ý trước khi dùng tránh mất tiền</span></h4>
                         <label>Nhập Link Video TikTok:</label>
@@ -123,7 +131,7 @@ switch ($_GET['act']) {
                         - DÙNG LINK RÚT GỌN Ở ĐIỆN THOẠI HOẶC MÁY TÍNH ĐỀU ĐƯỢC <BR>
                         - ĐƠN CŨ HOÀN THÀNH MỚI ĐƯỢC CÀI ĐƠN MỚI. NẾU CÀI ĐÈ ĐƠN CÓ BỊ THIẾU BÊN MÌNH KHÔNG HỖ TRỢ. HOÀN THÀNH = GỐC + SỐ MUA <BR>
                         - ĐƠN ĐANG CHẠY TRÊN MLIKE MÀ BẠN VẪN CHẠY Ở CHỖ KHÁC NẾU CÓ TÌNH TRẠNG HỤT SỐ LƯỢNG BÊN MÌNH SẼ KHÔNG XỬ LÝ.<BR>
-                        - <mark style="color:red;"><strong> CHÍNH SÁCH BẢO HÀNH :</strong></mark>  CHỈ BẢO HÀNH THEO TỪNG ĐƠN HÀNG KHÔNG TÍNH SỐ LƯỢNG TỔNG NÊN HẠN CHẾ CHIA NHỎ. TRƯỜNG HỢP MUA VIEW RẺ RỒI QUA MUA BẢO HÀNH SẼ K TÍNH VIEW GỐC <br>
+                        - <mark style="color:red;"><strong> CHÍNH SÁCH BẢO HÀNH :</strong></mark> CHỈ BẢO HÀNH THEO TỪNG ĐƠN HÀNG KHÔNG TÍNH SỐ LƯỢNG TỔNG NÊN HẠN CHẾ CHIA NHỎ. TRƯỜNG HỢP MUA VIEW RẺ RỒI QUA MUA BẢO HÀNH SẼ K TÍNH VIEW GỐC <br>
                         - VIDU : VIEW GỐC LOẠI RẺ 100K (LOẠI TỤT) MUA THÊM 50K ( LOẠI BH ), KHI TỤT CÒN 10K THÌ HỆ THỐNG SẼ TÍNH VIEW GỐC LẠI 10K VÀ BẢO HÀNH THÊM 50K. TRƯỜNG HỢP NÀY NẾU HỆ THỐNG GHI NHẬN QUÁ NHIỀU CHÍNH SÁCH CÓ THỂ THAY ĐỔI <BR>
                         - KHI BỊ TỤT VIEW MỌI NGƯỜI VÀO LỊCH SỬ MUA ĐƠN BẤM NÚT BẢO HÀNH ( MỖI ĐƠN HÀNG CHỈ ĐƯỢC BẤM NÚT BẢO HÀNH SAU 30H KỂ TỪ LẦN BẢO HÀNH CUỐI) <br>
                     </div>
@@ -140,7 +148,7 @@ switch ($_GET['act']) {
                             }
                             setTimeout(sayHello, 1500);
                         </script>
-                    <? } ?> 
+                    <? } ?>
                     <!-- <label style="font-size:18px;">Hướng dẫn Lấy id  <a href="https://findids.net/username-to-id-tiktok" target="_blank">Tại đây</a></label> 
  </div>-->
 
