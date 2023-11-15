@@ -77,7 +77,7 @@ switch ($_GET['act']) {
                     </div>
 
                     <div class="form-check">
-                        <input class="form-check-input" checked id="flexRadioDefault1" type="radio" name="sv" value="3" data-bs-toggle="collapse" data-bs-target="#sv3" aria-expanded="false" aria-controls="sv3" /><label class="form-check-label" for="flexRadioDefault1">Server View 3 (<b><?= $gia3; ?>₫</b>) ( <span style="color: red;">Min 1k </span> Tốc độ lúc nhanh lúc chậm, test ít thấy nhanh thì dùng, <span style="color: red;"> đôi khi delay 6h-24h </span>, rẻ có thể bị tụt tùy video. Không bảo hành tụt tự mua lại nhé ) <?php if ($sv3 == 'on') {
+                        <input class="form-check-input"  id="flexRadioDefault1" type="radio" name="sv" value="3" data-bs-toggle="collapse" data-bs-target="#sv3" aria-expanded="false" aria-controls="sv3" /><label class="form-check-label" for="flexRadioDefault1">Server View 3 (<b><?= $gia3; ?>₫</b>) ( <span style="color: red;">Min 1k </span> Tốc độ lúc nhanh lúc chậm, test ít thấy nhanh thì dùng, <span style="color: red;"> đôi khi delay 6h-24h </span>, rẻ có thể bị tụt tùy video. Không bảo hành tụt tự mua lại nhé ) <?php if ($sv3 == 'on') {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     echo '<span class="badge bg-success">Thử nghiệmn</span>';
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 } else {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     echo '<span class="badge bg-danger">Bảo trì</span>';
@@ -112,7 +112,7 @@ switch ($_GET['act']) {
                         </div>
                     </div> -->
                     <div class="form-check">
-                        <input class="form-check-input" id="flexRadioDefault1" type="radio" name="sv" value="8" data-bs-toggle="collapse" data-bs-target="#sv8" aria-expanded="false" aria-controls="sv8" /><label class="form-check-label" for="flexRadioDefault1">Server View 8 (<b><?= $gia8; ?>₫</b>) ( <span style="color: red;">Min 1k </span> Tốc độ nhanh dự dòng, có thể tụt nhiều, test ít lên ổn thì dùng nhé. KBH  ) <span class="badge bg-success">Thử nghiệm</span></label>
+                        <input class="form-check-input" checked id="flexRadioDefault1" type="radio" name="sv" value="8" data-bs-toggle="collapse" data-bs-target="#sv8" aria-expanded="false" aria-controls="sv8" /><label class="form-check-label" for="flexRadioDefault1">Server View 8 (<b><?= $gia8; ?>₫</b>) ( <span style="color: red;">Min 1k </span> Tốc độ nhanh dự dòng, có thể tụt nhiều, test ít lên ổn thì dùng nhé. KBH  ) <span class="badge bg-success">Thử nghiệm</span></label>
                         <div id="sv8" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#sv8">
                             <div class="accordion-body alert alert-danger">Không bảo hành</div>
                         </div>
@@ -140,7 +140,7 @@ switch ($_GET['act']) {
                         <script>
                             function sayHello() {
                                 var sangml = document.createElement("sangml")
-                                sangml.innerHTML = "<img class='card-img-top' src='https://daotao.ulis.vnu.edu.vn/files/uploads/2018/04/thong-bao660x350-600x350.png'><hr><big><center style='color:#3794ff;'> View đang quá tải delay 12-24h ( tạm đóng ) đợi mở server dự phòng vào lúc 13h hôm nay</big></b>";
+                                sangml.innerHTML = "<img class='card-img-top' src='https://daotao.ulis.vnu.edu.vn/files/uploads/2018/04/thong-bao660x350-600x350.png'><hr><big><center style='color:#3794ff;'> View đang quá tải delay 12-24h ( tạm đóng ) Đã mở server view 8 dự phòng tạm ổn</big></b>";
                                 swal({
                                     content: sangml,
                                     buttons: false
