@@ -259,7 +259,7 @@ if (isset($login) || isset($_POST['token'])) {
                     $gia1 = 6.5; //Server 1
                     $gia2 = 10.5; // 2
                     $gia3 = 18; // 3
-                    $gia4 = 4.5; // 4
+                    $gia4 = 3.2; // 4
                     $gia5 = 20; // 5
                     $gia6 = 5; // 5
                     $gia7 = 5.3;
@@ -357,7 +357,7 @@ if (isset($login) || isset($_POST['token'])) {
                     $gia5 = 0.13;
                     $gia6 = 0.079;
                     $gia7 = 0.345;
-                    $gia8 = 100;
+                    $gia8 = 0.0456;
                 } elseif ($page == 'tim_tt') {
                     $gia1 = 15;
                     $gia2 = 17;
@@ -401,7 +401,7 @@ if (isset($login) || isset($_POST['token'])) {
                     $gia1 = 6.5; //Server 1
                     $gia2 = 11; // 2
                     $gia3 = 18; // 3
-                    $gia4 = 5; // 4
+                    $gia4 = 3.2; // 4
                     $gia5 = 21; // 5
                     $gia6 = 4.5; // 5
                     $gia7 = 5.8;
@@ -499,7 +499,7 @@ if (isset($login) || isset($_POST['token'])) {
                     $gia5 = 0.13;
                     $gia6 = 0.79;
                     $gia7 = 0.345;
-                    $gia8 = 100;
+                    $gia8 = 0.0456;
                 } elseif ($page == 'tim_tt') {
                     $gia1 = 16;
                     $gia2 = 19;
@@ -543,7 +543,7 @@ if (isset($login) || isset($_POST['token'])) {
                     $gia1 = 6.5; //Server 1
                     $gia2 = 11; // 2
                     $gia3 = 18; // 3
-                    $gia4 = 4.5; // 4
+                    $gia4 = 3.2; // 4
                     $gia5 = 22; // 5
                     $gia6 = 5; // 5
                     $gia7 = 5.4;
@@ -641,7 +641,7 @@ if (isset($login) || isset($_POST['token'])) {
                     $gia5 = 0.13;
                     $gia6 = 0.079;
                     $gia7 = 0.345;
-                    $gia8 = 100;
+                    $gia8 = 0.0456;
                 } elseif ($page == 'tim_tt') {
                     $gia1 = 16;
                     $gia2 = 19;
