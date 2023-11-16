@@ -21,11 +21,16 @@ while ($ro = mysqli_fetch_assoc($result1)) {
     } else {
         $url = $ur;
     }
-
+    $get_url = rand(1, 2);
+    if ($get_url == 1) {
+        $url = 'https://shopmmo.co/assets/api/tiktok.php?type=video';
+    } else {
+        $url = 'https://shopviaads247.com/api/tiktok.php?type=video';
+    }
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://shopviaads247.com/api/tiktok.php?type=video',
+        CURLOPT_URL => $url,
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,
@@ -60,7 +65,7 @@ while ($ro = mysqli_fetch_assoc($result1)) {
         mysqli_query($db, "UPDATE `ttstat` SET `success`=`success`+'1' WHERE `id` = '1'");
         echo ' ' . $id . ' -> success<br>';
         $fp = @fopen('logview.txt', "a+");
-        $data = '[' . date('H:i:s - d/m', $time) . '] ' . $id . ' -> success
+        $data = '[' . date('H:i:s - d/m', $time) . '] ' . $id . ' -> success [run on server ' . $get_url . ']
             ';
         fwrite($fp, $data);
     } elseif ($check->success == '400') {
@@ -68,7 +73,7 @@ while ($ro = mysqli_fetch_assoc($result1)) {
             mysqli_query($db, "UPDATE `dv_other` SET `steps`=`steps`+'1', `timedown`='$mtime' WHERE `id` = '$id'");
             echo '' . $id . ' -> step<br>';
             $fp = @fopen('logview.txt', "a+");
-            $data = '[' . date('H:i:s - d/m', $time) . '] ' . $id . ' -> loi link cho thu lai sau ' . $count_step . ' lan
+            $data = '[' . date('H:i:s - d/m', $time) . '] ' . $id . ' -> loi link cho thu lai sau ' . $count_step . ' lan [run on server ' . $get_url . ']
             ';
             fwrite($fp, $data);
         } else {
@@ -76,7 +81,7 @@ while ($ro = mysqli_fetch_assoc($result1)) {
             mysqli_query($db, "UPDATE `ttstat` SET `error`=`error`+'1' WHERE `id` = '1'");
             echo '' . $id . ' -> link die<br>';
             $fp = @fopen('logview.txt', "a+");
-            $data = '[' . date('H:i:s - d/m', $time) . '] ' . $id . ' -> error
+            $data = '[' . date('H:i:s - d/m', $time) . '] ' . $id . ' -> error [run on server ' . $get_url . ']
             ';
             fwrite($fp, $data);
         }
@@ -85,7 +90,7 @@ while ($ro = mysqli_fetch_assoc($result1)) {
         mysqli_query($db, "UPDATE `dv_other` SET `timedown`='$mtime' WHERE `id` = '$id'");
         echo '' . $id . ' -> error<br>';
         $fp = @fopen('logview.txt', "a+");
-        $data = '[' . date('H:i:s - d/m', $time) . '] ' . $id . ' -> error
+        $data = '[' . date('H:i:s - d/m', $time) . '] ' . $id . ' -> error [run on server ' . $get_url . ']
             ';
         fwrite($fp, $data);
     }
