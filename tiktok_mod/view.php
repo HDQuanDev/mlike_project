@@ -7,9 +7,9 @@ $stat = mysqli_fetch_assoc($stat);
 $luong = $stat['luong'];
 $ltime = $stat['time'];
 $sleep = $stat['sleep'];
-$result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `dv` = 'tiktok_view' AND `time` > '1676680016' AND (`trangthai` = '1' OR `trangthai` = '3') AND `timedown` < '$t' ORDER BY id ASC LIMIT $luong");
+$result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `dv` = 'tiktok_view' AND `time` > '1699909582' AND (`trangthai` = '1' OR `trangthai` = '3') AND `timedown` < '$t' ORDER BY id ASC LIMIT $luong");
 while ($ro = mysqli_fetch_assoc($result1)) {
-    $ctime = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `dv` = 'tiktok_view' AND `time` > '1676680016' AND (`trangthai` = '1' OR `trangthai` = '3')");
+    $ctime = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `dv` = 'tiktok_view' AND `time` > '1699909582' AND (`trangthai` = '1' OR `trangthai` = '3')");
     $ctime = mysqli_num_rows($ctime);
     $gtime = $ctime / $luong * $ltime * 60;
     $id = $ro['id'];
@@ -21,40 +21,36 @@ while ($ro = mysqli_fetch_assoc($result1)) {
     } else {
         $url = $ur;
     }
-        $curl = curl_init();
-        curl_setopt_array($curl, array(
-          CURLOPT_URL => 'https://ongtrum.pro/api/getuid',
-          CURLOPT_RETURNTRANSFER => true,
-          CURLOPT_ENCODING => '',
-          CURLOPT_MAXREDIRS => 10,
-          CURLOPT_TIMEOUT => 0,
-          CURLOPT_FOLLOWLOCATION => true,
-          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-          CURLOPT_CUSTOMREQUEST => 'POST',
-          CURLOPT_POSTFIELDS => array('uid' => ''.$url.'','type' => 'tiktok_link'),
-          CURLOPT_HTTPHEADER => array(
-            'Cookie: root_session=yTOQONC2XPMCmp7vtvlavnU6LFmPYw2kDdU5nVLm'
-          ),
-        ));
-        $response = curl_exec($curl);
-        curl_close($curl);
-        $get = json_decode($response);
-        $array = [];
-        $array["success"] = 200;
-        $array["id"] = $get->data->uid;
-        $array["name"] = $get->data->name;
-        $array["link"] = $get->data->url;
-        $array["tim"] = $get->data->like;
-        $array["view"] = $get->data->view;
-        $array["user"] = $get->data->name;
-        $encode = json_encode($array);
-        $check = json_decode($encode);
+
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://shopviaads247.com/api/tiktok.php?type=video',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'POST',
+        CURLOPT_POSTFIELDS => 'url=' . $url,
+        CURLOPT_HTTPHEADER => array(
+            'TOKEN_AU: huaducquanapi',
+            'Content-Type: application/x-www-form-urlencoded'
+        ),
+    ));
+
+    $response = curl_exec($curl);
+    curl_close($curl);
+    $check = json_decode($response);
     if ($check->success == '200') {
-        $ddview = $check->view;
+        $ddview = $check->data->playCount;
         $gview = $ro['iddon'];
         $sl = $ro['sl'];
         $view = (int)$gview + (int)$sl;
         $dview = (int)$ddview + (int)$gview;
+        $steps = $ro['steps'];
+        $count_step = 3 - $steps;
         if ($ddview >= $view) {
             $trangthai = '2';
         } else {
@@ -68,13 +64,22 @@ while ($ro = mysqli_fetch_assoc($result1)) {
             ';
         fwrite($fp, $data);
     } elseif ($check->success == '400') {
-        mysqli_query($db, "UPDATE `dv_other` SET `trangthai`='6', `timeup`='$time' WHERE `id` = '$id'");
-        mysqli_query($db, "UPDATE `ttstat` SET `error`=`error`+'1' WHERE `id` = '1'");
-        echo '' . $id . ' -> link die<br>';
-        $fp = @fopen('logview.txt', "a+");
-        $data = '[' . date('H:i:s - d/m', $time) . '] ' . $id . ' -> error
+        if ($steps <= 3) {
+            mysqli_query($db, "UPDATE `dv_other` SET `steps`=`steps`+'1', `timedown`='$mtime' WHERE `id` = '$id'");
+            echo '' . $id . ' -> step<br>';
+            $fp = @fopen('logview.txt', "a+");
+            $data = '[' . date('H:i:s - d/m', $time) . '] ' . $id . ' -> loi link cho thu lai sau ' . $count_step . ' lan
             ';
-        fwrite($fp, $data);
+            fwrite($fp, $data);
+        } else {
+            mysqli_query($db, "UPDATE `dv_other` SET `trangthai`='6', `timeup`='$time' WHERE `id` = '$id'");
+            mysqli_query($db, "UPDATE `ttstat` SET `error`=`error`+'1' WHERE `id` = '1'");
+            echo '' . $id . ' -> link die<br>';
+            $fp = @fopen('logview.txt', "a+");
+            $data = '[' . date('H:i:s - d/m', $time) . '] ' . $id . ' -> error
+            ';
+            fwrite($fp, $data);
+        }
     } else {
         mysqli_query($db, "UPDATE `ttstat` SET `error`=`error`+'1' WHERE `id` = '1'");
         mysqli_query($db, "UPDATE `dv_other` SET `timedown`='$mtime' WHERE `id` = '$id'");
