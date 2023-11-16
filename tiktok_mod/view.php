@@ -23,14 +23,14 @@ while ($ro = mysqli_fetch_assoc($result1)) {
     }
     $get_url = rand(1, 2);
     if ($get_url == 1) {
-        $url = 'https://shopmmo.co/assets/api/tiktok.php?type=video';
+        $url_run = 'https://shopmmo.co/assets/api/tiktok.php?type=video';
     } else {
-        $url = 'https://shopviaads247.com/api/tiktok.php?type=video';
+        $url_run = 'https://shopviaads247.com/api/tiktok.php?type=video';
     }
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
-        CURLOPT_URL => $url,
+        CURLOPT_URL => $url_run,
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,
