@@ -6,7 +6,7 @@ require_once('../../../module/autofbpro.php');
 require_once('../../../module/telegram.php');
 require_once('../../../module/tlc.php');
 $min = '1000';
-$max = '50000';
+$max = '20000';
 $array = [];
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Method Not Allowed', true, 405);
