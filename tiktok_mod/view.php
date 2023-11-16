@@ -7,7 +7,7 @@ $stat = mysqli_fetch_assoc($stat);
 $luong = $stat['luong'];
 $ltime = $stat['time'];
 $sleep = $stat['sleep'];
-$result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `dv` = 'tiktok_view' AND `time` > '1699909582' AND (`trangthai` = '1' OR `trangthai` = '3') AND `timedown` < '$t' ORDER BY id ASC LIMIT $luong");
+$result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `dv` = 'tiktok_view' AND `id` > '0' AND `time` > '1699909582' AND (`trangthai` = '1' OR `trangthai` = '3') AND `timedown` < '$t' ORDER BY id ASC LIMIT $luong");
 while ($ro = mysqli_fetch_assoc($result1)) {
     $ctime = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `dv` = 'tiktok_view' AND `time` > '1699909582' AND (`trangthai` = '1' OR `trangthai` = '3')");
     $ctime = mysqli_num_rows($ctime);
