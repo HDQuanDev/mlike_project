@@ -21,7 +21,7 @@
                         <h5 class="card-title">TIKTOK VIEW</h5>
                         <p class="card-text">
                             <?
-                            $ctime = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `dv` = 'tiktok_view' AND `time` > '1676680016' AND (`trangthai` = '1' OR `trangthai` = '3')");
+                            $ctime = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `dv` = 'tiktok_view' AND `time` > '1699909582' AND (`trangthai` = '1' OR `trangthai` = '3')");
                             $ctime = mysqli_num_rows($ctime);
                             $stat = mysqli_query($db, "SELECT * FROM `ttstat` WHERE `id` = '1'");
                             $stat = mysqli_fetch_assoc($stat);
@@ -58,7 +58,7 @@
                         <h5 class="card-title">TIKTOK LIKE</h5>
                         <p class="card-text">
                             <?
-                            $ctime = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `dv` = 'tiktok_like' AND `time` > '1679499222' AND (`trangthai` = '1' OR `trangthai` = '3')");
+                            $ctime = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `dv` = 'tiktok_like' AND `time` > '1699909582' AND (`trangthai` = '1' OR `trangthai` = '3')");
                             $ctime = mysqli_num_rows($ctime);
                             $stat = mysqli_query($db, "SELECT * FROM `ttstat` WHERE `id` = '2'");
                             $stat = mysqli_fetch_assoc($stat);
