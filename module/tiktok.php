@@ -2,9 +2,8 @@
 function check_tt($url, $act)
 {
     $curl = curl_init();
-
     curl_setopt_array($curl, array(
-        CURLOPT_URL => 'http://118.69.146.21/tiktok.php?type=' . $act,
+        CURLOPT_URL => 'https://huaducquan.id.vn/mlike/tiktok.php?type=' . $act,
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,
@@ -14,7 +13,8 @@ function check_tt($url, $act)
         CURLOPT_CUSTOMREQUEST => 'POST',
         CURLOPT_POSTFIELDS => 'url=' . $url,
         CURLOPT_HTTPHEADER => array(
-            'Content-Type: application/x-www-form-urlencoded'
+            'Content-Type: application/x-www-form-urlencoded',
+            'TOKEN_AU: huaducquanapi'
         ),
     ));
 

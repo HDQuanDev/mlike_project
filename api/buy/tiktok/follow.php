@@ -27,10 +27,6 @@ if (isset($_POST['token']) && isset($_POST['id']) && isset($_POST['sl']) && isse
     if ($tko == '1') {
         $row = mysqli_fetch_assoc($uu);
         $login = $row['username'];
-        $tt = json_decode(check_tt($id, "follow"));
-        $ttid = $tt->id;
-        $ttview = $tt->follow;
-        //$id = $tt->nickname;
         if ($sv == 1) {
             $tongtien = $sl * $gia;
             $nse = 'Server Follow 1';
