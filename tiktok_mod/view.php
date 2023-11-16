@@ -48,14 +48,14 @@ while ($ro = mysqli_fetch_assoc($result1)) {
     $response = curl_exec($curl);
     curl_close($curl);
     $check = json_decode($response);
+    $steps = $ro['steps'];
+    $count_step = 3 - $steps;
     if ($check->success == '200') {
         $ddview = $check->data->playCount;
         $gview = $ro['iddon'];
         $sl = $ro['sl'];
         $view = (int)$gview + (int)$sl;
         $dview = (int)$ddview + (int)$gview;
-        $steps = $ro['steps'];
-        $count_step = 3 - $steps;
         if ($ddview >= $view) {
             $trangthai = '2';
         } else {
