@@ -195,7 +195,12 @@ switch ($_GET['act']) {
                                         <td class="sl"><?php echo $ro['sl']; ?></td>
                                         <td class="sl"><?php echo $ro['iddon']; ?></td>
                                         <td class="goc"><?php echo $ro['done'] - $ro['iddon']; ?></td>
-                                        <td class="profile"><?php echo $ro['profile']; ?></td>
+                                        <td class="profile"><?php if (filter_var($ro['profile'], FILTER_VALIDATE_URL) !== false) {
+                                                                echo '<a href="' . $ro['profile'] . '" target="_blank">' . $ro['profile'] . '</a>';
+                                                            } else {
+                                                                echo '<a href="https://www.tiktok.com/' . $ro['profile'] . '" target="_blank">' . $ro['profile'] . '</a>';
+                                                            }
+                                                            ?></td>
                                         <td class="profile"><?php echo $ro['nse']; ?></td>
                                         <td class="user"><?php echo $ro['user']; ?></td>
                                         <td class="tt"><?php trangthai($tt); ?></td>

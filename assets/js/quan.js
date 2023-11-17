@@ -365,8 +365,13 @@ function getFollow(elm) {
                     } else {
                         var veryfied = "Chưa Xác Minh";
                     }
+                    if (response.data.privateAccount == true) {
+                        var privateAccount = "Có";
+                    } else {
+                        var privateAccount = "Không";
+                    }
                     $('#detailServer').show().html(`<div class="alert bg-success text-white" role="alert">
-                    <h4>Thông Tin User</h4><ul><b><li> ID: ${response.data.id}</li><li> Follow: ${follow}</li><li>Tài Khoản Riêng Tư: ${response.data.privateAccount}<li>Tên: ${response.data.name} - ${veryfied}</li><li>API By <a href="https://www.facebook.com/quancp72h" target="_blank">HDQuanDev</a></li></b></ul></div><br>`);
+                    <h4>Thông Tin User</h4><ul><b><li> ID: ${response.data.id}</li><li> Follow: ${follow}</li><li>Tài Khoản Riêng Tư?: ${privateAccount}<li>Tên: ${response.data.name} - ${veryfied}</li><li>API By <a href="https://www.facebook.com/quancp72h" target="_blank">HDQuanDev</a></li></b></ul></div><br>`);
                     $("#button")
                         .prop("disabled", false);
                 } else {
