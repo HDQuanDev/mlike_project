@@ -100,7 +100,7 @@ switch ($_GET['act']) {
                     </div> 
                   
                     <div class="form-check">
-                        <input class="form-check-input"  disabled id="flexRadioDefault1" type="radio" name="sv" value="6" data-bs-toggle="collapse" data-bs-target="#sv6" aria-expanded="false" aria-controls="sv6" /><label class="form-check-label" for="flexRadioDefault1">Server View 6 (<b><?= $gia6; ?>₫</b>) ( <span style="color: red;">Min 20k </span> Tốc độ dự kiến bắt đầu từ vài giờ - 24h . Thường delay 24h ) <span class="badge bg-danger">Trung Bình</span></label>
+                        <input class="form-check-input"  disabled id="flexRadioDefault1" type="radio" name="sv" value="6" data-bs-toggle="collapse" data-bs-target="#sv6" aria-expanded="false" aria-controls="sv6" /><label class="form-check-label" for="flexRadioDefault1">Server View 6 (<b><?= $gia6; ?>₫</b>) ( <span style="color: red;">Min 20k </span> Tốc độ dự kiến bắt đầu từ vài giờ - 24h . Thường delay 24h ) <span class="badge bg-danger">Delay 12h-24h</span></label>
                         <div id="sv6" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#sv6">
                             <div class="accordion-body alert alert-danger">Nếu delay lâu sẽ hủy hoàn sau 7 ngày </div>
                         </div>
@@ -140,7 +140,7 @@ switch ($_GET['act']) {
                         <script>
                             function sayHello() {
                                 var sangml = document.createElement("sangml")
-                                sangml.innerHTML = "<img class='card-img-top' src='https://daotao.ulis.vnu.edu.vn/files/uploads/2018/04/thong-bao660x350-600x350.png'><hr><big><center style='color:#3794ff;'> View đang quá tải delay 12-24h ( tạm đóng ) Đã mở server view 8 dự phòng tạm ổn</big></b>";
+                                sangml.innerHTML = "<img class='card-img-top' src='https://daotao.ulis.vnu.edu.vn/files/uploads/2018/04/thong-bao660x350-600x350.png'><hr><big><center style='color:#3794ff;'> Tốc độ các sv có thể thay đổi liên tục, test ít cảm nhận thấy nhanh thì dùng nhé. Quá 24h mới hỗ trợ</big></b>";
                                 swal({
                                     content: sangml,
                                     buttons: false
@@ -148,7 +148,7 @@ switch ($_GET['act']) {
                             }
                             setTimeout(sayHello, 1500);
                         </script>
-                    <? } ?> -->
+                    <? } ?> 
                     <!-- <label style="font-size:18px;">Hướng dẫn Lấy id  <a href="https://findids.net/username-to-id-tiktok" target="_blank">Tại đây</a></label> 
  </div>-->
 
