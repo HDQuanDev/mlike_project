@@ -350,7 +350,7 @@ if (isset($login) || isset($_POST['token'])) {
                 } elseif ($page == 'cmt_ig') {
                     $gia1 = 99;
                 } elseif ($page == 'view_tt') {
-                    $gia1 = 0.088;
+                    $gia1 = 0.085;
                     $gia2 = 0.035;
                     $gia3 = 0.025;
                     $gia4 = 0.49;
@@ -492,7 +492,7 @@ if (isset($login) || isset($_POST['token'])) {
                 } elseif ($page == 'cmt_ig') {
                     $gia1 = 330;
                 } elseif ($page == 'view_tt') {
-                    $gia1 = 0.088;
+                    $gia1 = 0.085;
                     $gia2 = 0.035;
                     $gia3 = 0.025;
                     $gia4 = 0.49;
@@ -634,7 +634,7 @@ if (isset($login) || isset($_POST['token'])) {
                 } elseif ($page == 'cmt_ig') {
                     $gia1 = 100;
                 } elseif ($page == 'view_tt') {
-                    $gia1 = 0.088;
+                    $gia1 = 0.085;
                     $gia2 = 0.035;
                     $gia3 = 0.025;
                     $gia4 = 0.49;
