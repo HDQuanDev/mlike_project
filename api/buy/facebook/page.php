@@ -120,7 +120,7 @@ switch ($_GET['act']) {
                         if ($sv == 1) {
                             $tongtien = ($sl * $gia1) - (($sl * $gia1) / 100 * $dis);
                             $nse = 'Server Fanpage 1';
-                            $min = '100';
+                            $min = '1000';
                             $max = '100000';
                         } elseif ($sv == 2) {
                             $tongtien = ($sl * $gia2) - (($sl * $gia2) / 100 * $dis);
