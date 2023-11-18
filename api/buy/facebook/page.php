@@ -183,7 +183,7 @@ switch ($_GET['act']) {
                         $lcheckl = $crow[0];
                         $lcheck = $lcheckl + $sl;
                         $mcheck = 20000 - $lcheckl;
-                        if ($lcheck > '10000') {
+                        if ($lcheck > '20000') {
                             $array["status"] = 'error';
                             $array["msg"] = 'Số lượng tối đa của 1 ID có thể mua là 20000 Follow (Bạn có thể mua thêm ' . $mcheck . ' Follow cho ID nay) hoặc bạn đã mua quá 3 lần vui lòng dùng server khác!';
                         } else {
