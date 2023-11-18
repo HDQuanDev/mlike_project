@@ -126,7 +126,7 @@ switch ($_GET['act']) {
                             $tongtien = ($sl * $gia2) - (($sl * $gia2) / 100 * $dis);
                             $nse = 'Server Fanpage 2';
                             $min = '1000';
-                            $max = '10000';
+                            $max = '20000';
                         }
                     } else {
                         if ($sv == 1) {
