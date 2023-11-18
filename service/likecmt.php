@@ -65,7 +65,7 @@ switch ($_GET['act']) {
                         <input class="form-check-input"  disabled id="flexRadioDefault1" type="radio" name="sv" value="2" data-bs-toggle="collapse" data-bs-target="#sv2" aria-expanded="false" aria-controls="sv2" /><label class="form-check-label" for="flexRadioDefault1">Server Like 2 (<b><?= $gia2; ?>₫</b>) (Tốc độ nhanh. Có thể lên hụt 1-10%) <span class="badge danger">Bảo trì</span> </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input"   disabled id="flexRadioDefault1" type="radio" name="sv" value="3" data-bs-toggle="collapse" data-bs-target="#sv3" aria-expanded="false" aria-controls="sv3" /><label class="form-check-label" for="flexRadioDefault1">Server Like 3 (<b><?= $gia3; ?>₫</b>) (Bắt đầu lên từ 3h-6h, inbox hỗ trợ chạy sớm nhất có thể, min 2k - max 10k. Chỉ hỗ trợ cảm xúc like ) <span class="badge bg-danger">Bảo trì</span> </label>
+                        <input class="form-check-input"    id="flexRadioDefault1" type="radio" name="sv" value="3" data-bs-toggle="collapse" data-bs-target="#sv3" aria-expanded="false" aria-controls="sv3" /><label class="form-check-label" for="flexRadioDefault1">Server Like 3 (<b><?= $gia3; ?>₫</b>) (Gửi riêng admin siêu tốc độ . Chỉ hỗ trợ cảm xúc like ) <span class="badge bg-danger">Bảo trì</span> </label>
                     </div>
                     <div class="form-group">
                         <label>Nhập ID Bài Viết:</label>
