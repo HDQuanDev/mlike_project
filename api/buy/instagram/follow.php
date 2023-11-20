@@ -70,7 +70,7 @@ if (isset($_POST['token']) && isset($_POST['id']) && isset($_POST['sl']) && isse
                     $array["msg"] = '' . $buff->message . '';
                 }
             } elseif ($sv == 2) {
-                $order = $api->order(array('service' => 1516, 'link' => '' . $id . '', 'quantity' => $sl));
+                $order = $api->order(array('service' => 1515, 'link' => '' . $id . '', 'quantity' => $sl));
                 //$buff = json_decode($order);
                 if (isset($order)) {
                     $nd1 = 'Tăng Follow Instagram ID:';
