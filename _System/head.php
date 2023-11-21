@@ -486,7 +486,7 @@ $viewtt = mysqli_num_rows($viewtt);
                     <?php
                     if ($row['is_email_disposable'] == 'false') {
                         $email = $row['email'];
-                        $validmail = json_decode(file_get_contents('https://www.disify.com/api/email/' . $email));
+                        $validmail = json_decode(file_get_contents('https://mlike.vn/module/checkmail.php?mail=' . $email));
                         $checkmail = mysqli_query($db, "SELECT * FROM `member` WHERE `email` = '$email' AND `is_verify_mail` = 'true'");
                         $checkmail = mysqli_num_rows($checkmail);
                         if ($checkmail > 1) {
