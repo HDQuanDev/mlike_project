@@ -88,8 +88,10 @@ if (isset($login)) {
           $validmail = json_decode(file_get_contents('https://www.disify.com/api/email/' . $email));
           if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             echo json_encode(array('status' => '400', 'message' => 'Địa chỉ email không hợp lệ!'));
-          } elseif ($validmail->disposable == false) {
-            echo json_encode(array('status' => '400', 'message' => 'Vui lòng không sửa dụng email tạm thời hoặc email không tồn tại để cập nhật!'));
+          } elseif ($validmail->disposable == true) {
+            echo json_encode(array('status' => '400', 'message' => 'Vui lòng không sửa dụng email tạm thời cho tài khoản!'));
+          } elseif ($validmail->dns == false) {
+            echo json_encode(array('status' => '400', 'message' => 'Địa chỉ email không tồn tại hoặc không thể sử dụng để gửi thư, vui lòng sử dụng địa chỉ khác!'));
           } elseif ($checkmail1 > 0) {
             echo json_encode(array('status' => '400', 'message' => 'Địa chỉ email đã được sử dụng!'));
           } else {
