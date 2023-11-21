@@ -1,4 +1,4 @@
 <?php
-$str = 'https://vt.tiktok.com/ZSN17DsCq/';
-$pos = strpos($str, '@');
-echo $pos;
+$mail = $_GET["mail"];
+$str = json_decode(file_get_contents("https://disify.com/api/email/".$mail);
+var_dump($str);
