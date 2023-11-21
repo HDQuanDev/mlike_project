@@ -484,6 +484,7 @@ $viewtt = mysqli_num_rows($viewtt);
                         <p><b> Thông Báo! </b>Vui lòng đọc lưu ý trước khi dùng tránh mất tiền oan</p>
                     </div>
                     <?php
+if($row['is_email_verify'] == 'false'){
                     if ($row['is_email_disposable'] == 'false') {
                         $email = $row['email'];
                         $validmail = json_decode(file_get_contents('https://mlike.vn/module/checkmail.php?mail=' . $email));
@@ -518,6 +519,7 @@ $viewtt = mysqli_num_rows($viewtt);
                             $show_modal = false;
                         }
                     }
+}
                     if ($show == true) {
                     ?>
                         <div class="alert alert-<?= $color; ?> outline fade show" role="alert">
