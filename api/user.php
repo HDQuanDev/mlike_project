@@ -88,13 +88,20 @@ if (isset($login)) {
           $validmail = json_decode(file_get_contents('https://www.disify.com/api/email/' . $email));
           if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             echo json_encode(array('status' => '400', 'message' => 'Địa chỉ email không hợp lệ!'));
-          } elseif ($validmail->disposable == true) {
+            exit();
+          }
+          if ($validmail->disposable == true) {
             echo json_encode(array('status' => '400', 'message' => 'Vui lòng không sửa dụng email tạm thời cho tài khoản!'));
-          } elseif ($validmail->dns == false) {
+            exit();
+          }
+          if ($validmail->dns == false) {
             echo json_encode(array('status' => '400', 'message' => 'Địa chỉ email không tồn tại hoặc không thể sử dụng để gửi thư, vui lòng sử dụng địa chỉ khác!'));
-          } elseif ($checkmail1 > 0) {
+            exit();
+          }
+          if ($checkmail1 > 0) {
             echo json_encode(array('status' => '400', 'message' => 'Địa chỉ email đã được sử dụng!'));
-          } else {
+            exit();
+          }
             mysqli_query($db, "UPDATE `member` SET `email` = '$email', `is_email_disposable` = 'false' WHERE `username` = '$login'");
             echo json_encode(array('status' => '200', 'message' => 'Đã cập nhật email thành công, vui lòng chờ tải lại trang và xác minh email này!'));
           }
