@@ -85,7 +85,7 @@ if (isset($login)) {
         } else {
           $checkmail = mysqli_query($db, "SELECT * FROM `member` WHERE `email` = '$email' AND `is_email_verify` = 'true'");
           $checkmail1 = mysqli_num_rows($checkmail);
-          $validmail = json_decode(file_get_contents('https://www.disify.com/api/email/' . $email));
+          $validmail = json_decode(file_get_contents('https://mlike.vn/module/checkmail.php?mail=' . $email));
           if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             echo json_encode(array('status' => '400', 'message' => 'Địa chỉ email không hợp lệ!'));
           } elseif ($validmail->disposable == true) {
