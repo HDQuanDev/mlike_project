@@ -483,6 +483,37 @@ $viewtt = mysqli_num_rows($viewtt);
                     <div class="alert alert-success outline fade show" role="alert">
                         <p><b> Thông Báo! </b>Vui lòng đọc lưu ý trước khi dùng tránh mất tiền oan</p>
                     </div>
+                    <?php
+                    if ($row['is_email_disposable'] == 'false') {
+                        $email = $row['email'];
+                        $validmail = json_decode(checkMail($email));
+                        $checkmail = mysqli_query($db, "SELECT * FROM `member` WHERE `email` = '$email'");
+                        $checkmail = mysqli_num_rows($checkmail);
+                        if ($checkmail > 1) {
+                            $show = true;
+                            $color = 'danger';
+                            $msg = 'Email của bạn đã được sử dụng bởi người khác, vui lòng đổi email khác để bảo mật tài khoản và sửa dụng được các chức năng quên mật khẩu,...';
+                        } elseif ($validmail->disposable == 'false') {
+                            $show = true;
+                            $color = 'danger';
+                            $msg = 'Email của bạn đang là email ảo, vui lòng đổi email khác để bảo mật tài khoản và sửa dụng được các chức năng quên mật khẩu,...';
+                        } elseif ($row['is_verify_mail'] == 'false') {
+                            $show = true;
+                            $color = 'warning';
+                            $msg = 'Email của bạn chưa được xác minh, vui lòng xác minh email để bảo mật tài khoản và sửa dụng được các chức năng quên mật khẩu,...';
+                            $show_modal = true;
+                        } else {
+                            $show = false;
+                        }
+                    }
+                    if ($show == true) {
+                    ?>
+                        <div class="alert alert-<?= $color; ?> outline fade show" role="alert">
+                            <p><b> Thông Báo! </b><?= $msg; ?></p>
+                        </div>
+                    <?php
+                    }
+                    ?>
 
                     <?php
                     #Phần kết nối đến server thông báo, vui lòng không chỉnh sửa nếu bạn không muốn bỏ lỡ thông báo từ hệ thống

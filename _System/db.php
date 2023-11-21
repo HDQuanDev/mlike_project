@@ -10,6 +10,7 @@ define('_SITE_', 'https://mlike.vn');
 $login = $_SESSION['u'];
 require_once('config.php');
 require_once('function.php');
+require_once('../module/email.php');
 //config tiktok
 $stttiktok = 'off';
 // connect to the database
@@ -30,8 +31,14 @@ if ($site == 'api.like1s.vn') {
     $site = 'mlike.vn';
     $domain = 'https://api.like1s.vn';
 }
+if ($site == 'localhost') {
+    $site = 'mlike.vn';
+    $domain = 'http://localhost';
+}
 $url = 'https://' . $site . '' . $urll . '';
-
+if ($_SERVER['HTTP_HOST'] == 'localhost') {
+    $cdn = 'http://localhost/assets';
+}
 $cdn = 'https://mlike.vn/assets';
 
 $s = mysqli_query($db, "SELECT * FROM `system`");

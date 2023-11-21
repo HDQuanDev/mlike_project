@@ -1,5 +1,5 @@
 <?php
-require_once '../vendor/autoload.php';
+require_once('../vendor/autoload.php');
 function sendMail($to, $name, $subject, $content)
 {
 
@@ -32,4 +32,22 @@ function sendMail($to, $name, $subject, $content)
     } else {
         return json_encode(array('status' => 'failed', 'message' => 'Something went wrong: ' . $mail->ErrorInfo));
     }
+}
+
+function checkMail($email)
+{
+    $curl = curl_init();
+    $data = [
+        'email' => $email,
+    ];
+    $post_data = http_build_query($data);
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => "https://www.disify.com/api/email",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_CUSTOMREQUEST => "POST",
+        CURLOPT_POSTFIELDS => $post_data,
+    ));
+    $response = curl_exec($curl);
+    curl_close($curl);
+    return $response;
 }
