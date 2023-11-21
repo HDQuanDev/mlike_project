@@ -1,57 +1,50 @@
 <?php
+require_once('../_System/db.php');
+require '../vendor/autoload.php';
+if (isset($login)) {
+    function sendMail($to, $name, $subject, $content)
+    {
+        $mail = new PHPMailer\PHPMailer\PHPMailer();
 
-// Import PHPMailer classes into the global namespace
-// These must be at the top of your script, not inside a function
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
+        $mail->isSMTP();
+        $mail->Host = 'smtp.mailgun.org';  // Thay thế bằng địa chỉ SMTP của bạn
+        $mail->SMTPAuth = true;
+        $mail->Username = 'no-reply@mlike.vn';  // Thay thế bằng tên đăng nhập của bạn
+        $mail->Password = '60ae4a09e49884453be9d590457a8b79-5d2b1caa-3afd7f39';  // Thay thế bằng mật khẩu của bạn
+        $mail->SMTPSecure = 'tls';  // Có thể sử dụng 'ssl' hoặc 'tls'
+        $mail->Port = 587;  // Thay thế bằng cổng SMTP của bạn
+        $mail->CharSet = 'UTF-8';
+        // Địa chỉ email của người gửi
+        $mail->setFrom('no-reply@mlike.vn', 'MLIKE Support');
 
-require '../Mail/src/Exception.php';
-require '../Mail/src/PHPMailer.php';
-require '../Mail/src/SMTP.php';
+        // Địa chỉ email của người nhận
+        $mail->addAddress($to, $name);
+        $mail->addReplyTo('hdquandev@qdevs.tech', 'HDQuanDev');
+        // Tiêu đề email
+        $mail->Subject = $subject;
 
-function send_mail($mail){
-    //global use;
+        // Nội dung email
+        $mail->Body = $content;
 
-
-
-// Instantiation and passing `true` enables exceptions
-$mail = new PHPMailer(true);
-
-try {
-    //Server settings
-   // $mail->SMTPDebug = SMTP::DEBUG_SERVER;// Enable verbose debug output
-    $mail->isSMTP();// gửi mail SMTP
-    $mail->Host = 'ssl://svmlike.fun';// Set the SMTP server to send through
-    $mail->SMTPAuth = true;// Enable SMTP authentication
-    $mail->Username = 'mlike@svmlike.fun';// SMTP username
-    $mail->Password = 'sbLv&eEDX8Ht'; // SMTP password
-  //$mail->SMTPSecure = 'ssl';
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;// Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` also accepted
-    $mail->Port = 465; // TCP port to connect to
-
-    //Recipients
-    $mail->setFrom('mlke@svmlike.fun', 'Support MLIKE');
-    $mail->addAddress('maiyeuem608@gmail.com', 'Lươn Thanh Sang'); // Add a recipient
-    $mail->addReplyTo('quancp72h@gmail.com', 'Hứa Đức Quân');
-
-    // Attachments
-    //$mail->addAttachment('/var/tmp/file.tar.gz'); // Add attachments
-    //$mail->addAttachment('/tmp/image.jpg', 'new.jpg'); // Optional name
-
-    // Content
-    $mail->CharSet = 'UTF-8';
-    $mail->isHTML(true);   // Set email format to HTML
-    $mail->Subject = 'Có đơn hàng like tay mới';
-    $mail->Body = 'Vào check nào abc mail nef';
-    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-
-    $mail->send();
-    $quan = 'done';
-} catch (Exception $e) {
-    $quan = "error";
+        // Kiểm tra xem email có được gửi thành công hay không
+        if ($mail->send()) {
+            return json_encode(array('status' => '200', 'message' => 'Đã gửi email, vui lòng kiểm tra hộp thư đến/spam để lấy code xác nhận!'));
+        } else {
+            return json_encode(array('status' => '400', 'message' => 'Đã có lỗi xảy ra, vui lòng thử lại sau!'));
+        }
+    }
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $email = $_POST['email'];
+        $name = $_POST['name'];
+        $code = rand(100000, 999999);
+        if (empty($email) || empty($name)) {
+            echo json_encode(array('status' => '400', 'message' => 'Vui lòng nhập đầy đủ thông tin!'));
+        } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            echo json_encode(array('status' => '400', 'message' => 'Địa chỉ email không hợp lệ!'));
+        } else {
+            $content = 'Bạn đang thực hiện xác minh địa chỉ email trên hệ thống MLIKE, để xác minh email này hãy nhập mã xác nhận của bạn là: ' . $code;
+            mysqli_query($db, "UPDATE `member` SET `is_code_verify_code` = '$code' WHERE `username` = '$login'");
+            echo sendMail($email, $name, 'Xác minh địa chỉ email của bạn', $content);
+        }
+    }
 }
-return $quan;
-}
-
-echo send_mail('maiyeuem608@gmail.com');

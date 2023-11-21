@@ -1,6 +1,5 @@
 <?php
 require_once('../_System/db.php');
-require_once('../module/mail.php');
 if (isset($login)) {
   switch ($_GET['act']) {
     case 'update':
@@ -11,7 +10,7 @@ if (isset($login)) {
           $sdt = mysqli_real_escape_string($db, $_POST['sdt']);
           $checkmail = mysqli_query($db, "SELECT * FROM `member` WHERE `email` = '$email'");
           $checkmail1 = mysqli_num_rows($checkmail);
-          $validmail = json_decode(checkMail($email));
+          $validmail = json_decode(file_get_contents('https://www.disify.com/api/email/' . $email));
           if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             echo "<script>swal('Hệ Thống!','Địa chỉ email không hợp lệ!','warning');</script>";
           } elseif (!preg_match("/^[0-9]{10}$/", $sdt)) {
@@ -60,6 +59,43 @@ if (isset($login)) {
     window.location="/logout.php";
 }, 3000);</script>';
           die();
+        }
+      }
+      break;
+    case 'verify_mail':
+      if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $code = mysqli_real_escape_string($db, $_POST['code']);
+        if ($row['is_verify_mail'] == 'true') {
+          echo json_encode(array('status' => '400', 'message' => 'Địa chỉ email của bạn đã được xác minh trước đó!'));
+        } elseif (empty($code)) {
+          echo json_encode(array('status' => '400', 'message' => 'Vui lòng nhập mã xác nhận!'));
+        } elseif ($code != $row['is_code_verify_mail']) {
+          echo json_encode(array('status' => '400', 'message' => 'Mã xác nhận không chính xác!'));
+        } else {
+          mysqli_query($db, "UPDATE `member` SET `is_verify_mail` = 'true' WHERE `username` = '$login'");
+          echo json_encode(array('status' => '200', 'message' => 'Xác minh địa chỉ email thành công!'));
+        }
+      }
+      break;
+    case 'change_mail':
+      if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $email = mysqli_real_escape_string($db, $_POST['email']);
+        if (empty($email)) {
+          echo json_encode(array('status' => '400', 'message' => 'Vui lòng nhập địa chỉ email!'));
+        } else {
+          $checkmail = mysqli_query($db, "SELECT * FROM `member` WHERE `email` = '$email' AND `is_email_verify` = 'true'");
+          $checkmail1 = mysqli_num_rows($checkmail);
+          $validmail = json_decode(file_get_contents('https://www.disify.com/api/email/' . $email));
+          if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            echo json_encode(array('status' => '400', 'message' => 'Địa chỉ email không hợp lệ!'));
+          } elseif ($validmail->disposable == false) {
+            echo json_encode(array('status' => '400', 'message' => 'Vui lòng không sửa dụng email tạm thời hoặc email không tồn tại để cập nhật!'));
+          } elseif ($checkmail1 > 0) {
+            echo json_encode(array('status' => '400', 'message' => 'Địa chỉ email đã được sử dụng!'));
+          } else {
+            mysqli_query($db, "UPDATE `member` SET `email` = '$email', `is_email_disposable` = 'false' WHERE `username` = '$login'");
+            echo json_encode(array('status' => '200', 'message' => 'Đã cập nhật email thành công, vui lòng chờ tải lại trang và xác minh email này!'));
+          }
         }
       }
       break;

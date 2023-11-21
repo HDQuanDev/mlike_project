@@ -484,26 +484,32 @@ $viewtt = mysqli_num_rows($viewtt);
                         <p><b> Thông Báo! </b>Vui lòng đọc lưu ý trước khi dùng tránh mất tiền oan</p>
                     </div>
                     <?php
-                    /*if ($row['is_email_disposable'] == 'false') {
+                    if ($row['is_email_disposable'] == 'false') {
                         $email = $row['email'];
-                        $validmail = json_decode(checkMail($email));
-                        $checkmail = mysqli_query($db, "SELECT * FROM `member` WHERE `email` = '$email'");
+                        $validmail = json_decode(file_get_contents('https://www.disify.com/api/email/' . $email));
+                        $checkmail = mysqli_query($db, "SELECT * FROM `member` WHERE `email` = '$email' AND `is_verify_mail` = 'true'");
                         $checkmail = mysqli_num_rows($checkmail);
                         if ($checkmail > 1) {
                             $show = true;
                             $color = 'danger';
-                            $msg = 'Email của bạn đã được sử dụng bởi người khác, vui lòng đổi email khác để bảo mật tài khoản và sửa dụng được các chức năng quên mật khẩu,...';
-                        } elseif ($validmail->disposable == 'false') {
+                            $msg = 'Email của bạn đã được sử dụng bởi người khác, vui lòng <a style="color:green;" data-bs-toggle="modal" data-original-title="test" data-bs-target="#change_email" data-bs-original-title="" title="">Click tại đây</a> để đổi email khác để bảo mật tài khoản và sửa dụng được các chức năng quên mật khẩu,...';
+                            $show_modal = true;
+                            $modal_id = 'change_email';
+                        } elseif ($validmail->disposable == false) {
                             $show = true;
                             $color = 'danger';
-                            $msg = 'Email của bạn đang là email ảo, vui lòng đổi email khác để bảo mật tài khoản và sửa dụng được các chức năng quên mật khẩu,...';
+                            $msg = 'Email của bạn đang là email ảo, vui lòng <a style="color:green;" data-bs-toggle="modal" data-original-title="test" data-bs-target="#change_email" data-bs-original-title="" title="">Click tại đây</a> để đổi email khác để bảo mật tài khoản và sửa dụng được các chức năng quên mật khẩu,...';
+                            $show_modal = true;
+                            $modal_id = 'change_email';
                         } elseif ($row['is_verify_mail'] == 'false') {
                             $show = true;
                             $color = 'warning';
-                            $msg = 'Email của bạn chưa được xác minh, vui lòng xác minh email để bảo mật tài khoản và sửa dụng được các chức năng quên mật khẩu,...';
+                            $msg = 'Email của bạn chưa được xác minh, vui lòng <a style="color:green;" data-bs-toggle="modal" data-original-title="test" data-bs-target="#verify_email" data-bs-original-title="" title="">Click tại đây</a> để xác minh email để bảo mật tài khoản và sửa dụng được các chức năng quên mật khẩu,...';
                             $show_modal = true;
+                            $modal_id = 'verify_email';
                         } else {
                             $show = false;
+                            $show_modal = false;
                         }
                     }
                     if ($show == true) {
@@ -511,9 +517,145 @@ $viewtt = mysqli_num_rows($viewtt);
                         <div class="alert alert-<?= $color; ?> outline fade show" role="alert">
                             <p><b> Thông Báo! </b><?= $msg; ?></p>
                         </div>
-                    <?php
+                        <?php
                     }
-                    */
+                    if ($show_modal == true) {
+                        if ($modal_id == 'verify_email') {
+                        ?>
+                            <div class="modal fade" id="verify_email" tabindex="-1" role="dialog" aria-labelledby="verify_emailLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Xác Minh Email Của Bạn</h5>
+                                            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close" data-bs-original-title="" title=""></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form class="theme-form">
+                                                <div class="col-12">
+                                                    <div class="form-group">
+                                                        <label for="inputEmailAddress" class="form-label">Địa chỉ email của bạn</label>
+                                                        <input type="email" class="form-control" id="email" value="<?= $row['email']; ?>" readonly>
+                                                    </div>
+                                                    <button class="btn btn-secondary" type="button" onClick="send_mail()" id="button_send_mail">Gửi Code</button>
+                                                </div>
+                                                <div class="col-12">
+                                                    <span id="mail_code"></span>
+                                                </div>
+                                                <div class="col-12">
+                                                    <span id="result_send_mail"></span>
+                                                </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-primary" type="button" data-bs-dismiss="modal" data-bs-original-title="" title="">Đóng</button>
+                                            <button class="btn btn-secondary" type="button" onclick="verify()" id="button_send_hi">Xác Nhận</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <script>
+                                function send_mail() {
+                                    $('#button_send_mail')['html']('<i class="spinner-border spinner-border-sm"></i> Vui lòng chờ...');
+                                    $("#button_send_mail").prop("disabled", true);
+                                    $.ajax({
+                                        url: "/module/sendmail.php",
+                                        type: "post",
+                                        dataType: "json",
+                                        data: {
+                                            email: "<?= $row["email"]; ?>",
+                                            name: "<?= $row["hoten"]; ?>",
+                                        },
+                                        success: function(response) {
+                                            if (response.status == 200) {
+                                                $("#button_send_mail").prop("disabled", true);
+                                                swal("Thông Báo", response.message, "success");
+                                                $('#mail_code').show().html(`<hr><div class="form-group"><label for="inputEmailAddress" class="form-label">Mã xác minh</label><input type="number" class="form-control" id="code_verify" placeholder="Nhập mã xác minh"></div>`);
+                                            } else {
+                                                swal("Thông Báo", response.message, "warning");
+                                            }
+                                            $('#button_send_mail')['html']('Gửi Code');
+                                        }
+                                    });
+                                }
+
+                                function verify() {
+                                    $('#button_send_hi')['html']('<i class="spinner-border spinner-border-sm"></i> Vui lòng chờ...');
+                                    $.ajax({
+                                        url: "/api/user.php?act=verify_mail",
+                                        type: "post",
+                                        dataType: "json",
+                                        data: {
+                                            code: $('#code_verify').val(),
+                                        },
+                                        success: function(response) {
+                                            if (response.status == 200) {
+                                                swal("Thông Báo", response.message, "success");
+                                                $('#verify_email').modal('hide');
+                                                location.reload();
+                                            } else {
+                                                swal("Thông Báo", response.message, "warning");
+                                                $('button_send_hi').prop("disabled", false);
+                                            }
+                                            $('button_send_hi').prop("disabled", false);
+                                            $('#button_send_hi')['html']('Xác Nhận');
+                                        }
+                                    });
+                                }
+                            </script>
+                        <?php
+                        } elseif ($modal_id == 'change_email') {
+                        ?>
+                            <div class="modal fade" id="change_email" tabindex="-1" role="dialog" aria-labelledby="change_emailLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Thay Đổi Địa Chỉ Email Của Bạn</h5>
+                                            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close" data-bs-original-title="" title=""></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form class="theme-form">
+                                                <div class="col-12">
+                                                    <div class="form-group">
+                                                        <label for="inputEmailAddress" class="form-label">Địa chỉ email của bạn</label>
+                                                        <input type="email" class="form-control" id="email" value="<?= $row['email']; ?>">
+                                                    </div>
+                                                </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-primary" type="button" data-bs-dismiss="modal" data-bs-original-title="" title="">Đóng</button>
+                                            <button class="btn btn-secondary" type="button" onclick="change_mail()" id="button_send_cm">Thay Đổi</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <script>
+                                function change_mail() {
+                                    $('#button_send_cm')['html']('<i class="spinner-border spinner-border-sm"></i> Vui lòng chờ...');
+                                    $.ajax({
+                                        url: "/api/user.php?act=change_mail",
+                                        type: "post",
+                                        dataType: "json",
+                                        data: {
+                                            email: $('#email').val(),
+                                        },
+                                        success: function(response) {
+                                            if (response.status == 200) {
+                                                $("#button_send_mail").prop("disabled", true);
+                                                swal("Thông Báo", response.message, "success");
+                                                $('#change_mail').modal('hide');
+                                                location.reload();
+                                            } else {
+                                                swal("Thông Báo", response.message, "warning");
+                                            }
+                                            $('#button_send_cm')['html']('Thay Đổi');
+                                        }
+                                    });
+                                }
+                            </script>
+                    <?php
+                        }
+                    }
                     ?>
 
                     <?php
