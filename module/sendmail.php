@@ -43,7 +43,7 @@ if (isset($login)) {
             echo json_encode(array('status' => '400', 'message' => 'Địa chỉ email không hợp lệ!'));
         } else {
             $content = 'Bạn đang thực hiện xác minh địa chỉ email trên hệ thống MLIKE, để xác minh email này hãy nhập mã xác nhận của bạn là: ' . $code;
-            mysqli_query($db, "UPDATE `member` SET `is_code_verify_code` = '$code' WHERE `username` = '$login'");
+            mysqli_query($db, "UPDATE `member` SET `is_code_verify_mail` = '$code' WHERE `username` = '$login'");
             echo sendMail($email, $name, 'Xác minh địa chỉ email của bạn', $content);
         }
     }
