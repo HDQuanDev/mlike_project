@@ -1,8 +1,7 @@
 <?php
-require_once('../vendor/autoload.php');
 function sendMail($to, $name, $subject, $content)
 {
-
+    require_once('../vendor/autoload.php');
     $mail = new PHPMailer\PHPMailer\PHPMailer();
 
     // Cấu hình để sử dụng SMTP
