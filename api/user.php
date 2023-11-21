@@ -10,7 +10,7 @@ if (isset($login)) {
           $sdt = mysqli_real_escape_string($db, $_POST['sdt']);
           $checkmail = mysqli_query($db, "SELECT * FROM `member` WHERE `email` = '$email'");
           $checkmail1 = mysqli_num_rows($checkmail);
-          $validmail = json_decode(file_get_contents('https://www.disify.com/api/email/' . $email));
+          $validmail = json_decode(file_get_contents('https://mlike.vn/module/checkmail.php?mail=' . $email));
           if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             echo "<script>swal('Hệ Thống!','Địa chỉ email không hợp lệ!','warning');</script>";
           } elseif (!preg_match("/^[0-9]{10}$/", $sdt)) {
