@@ -8,7 +8,7 @@ require_once('../../../module/viewyt.php');
 $gia = $gia1; //Sv1 Autofb
 $api = new Api();
 $min = '50';
-$max = '2000';
+$max = '100000';
 $array = [];
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Method Not Allowed', true, 405);
