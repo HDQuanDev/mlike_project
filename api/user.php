@@ -17,9 +17,9 @@ if (isset($login)) {
             echo "<script>swal('Hệ Thống!','Số điện thoại không hợp lệ!','warning');</script>";
           } elseif ($validmail->disposable == true) {
             echo "<script>swal('Hệ Thống!','Vui lòng không sửa dụng email tạm thời hoặc email không tồn tại để cập nhật!','warning');</script>";
-          } elseif($validmail->dns == false){
-echo "<script>swal('Hệ Thống!','Địa chỉ email này không thể nhận được thư, vui lòng sử dụng địa chỉ email khác!','warning');</script>";
-} elseif ($checkmail1 > 0) {
+          } elseif ($validmail->dns == false) {
+            echo "<script>swal('Hệ Thống!','Địa chỉ email này không thể nhận được thư, vui lòng sử dụng địa chỉ email khác!','warning');</script>";
+          } elseif ($checkmail1 > 0) {
             echo "<script>swal('Hệ Thống!','Địa chỉ email đã được sử dụng!','warning');</script>";
           } else {
             mysqli_query($db, "UPDATE `member` SET `sdt`= '$sdt', `hoten`='$hoten', `email`='$email', `active` = '2', `is_email_disposable` = 'true' WHERE `username` = '$login'");
@@ -74,7 +74,7 @@ echo "<script>swal('Hệ Thống!','Địa chỉ email này không thể nhận 
         } elseif ($code != $row['is_code_verify_mail']) {
           echo json_encode(array('status' => '400', 'message' => 'Mã xác nhận không chính xác!'));
         } else {
-          mysqli_query($db, "UPDATE `member` SET `is_verify_mail` = 'true' WHERE `username` = '$login'");
+          mysqli_query($db, "UPDATE `member` SET `is_verify_mail` = 'true', `is_code_verify_mail` = '0' WHERE `username` = '$login'");
           echo json_encode(array('status' => '200', 'message' => 'Xác minh địa chỉ email thành công!'));
         }
       }

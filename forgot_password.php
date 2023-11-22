@@ -76,8 +76,11 @@ if (isset($_COOKIE["username"]) && isset($_COOKIE["password"])) {
                                 <label for="inputEmailAddress" class="form-label">Email tài khoản</label>
                                 <input type="email" class="form-control" id="email" placeholder="Email tài khoản...">
                             </div>
+                            <br>
                             <button class="btn btn-primary btn-block w-100" type="button" onclick="send_code()" id="button_code">Gửi Code</button>
-
+                            <div class="col-12">
+                                <span id="mail_code"></span>
+                            </div>
                             <p class="mt-4 mb-0 text-center">Bạn đã có tài khoản?<a class="ms-2" href="login.php">Đăng nhập ngay</a></p>
                         </form>
                     </div>
@@ -100,23 +103,55 @@ if (isset($_COOKIE["username"]) && isset($_COOKIE["password"])) {
     <!-- login js-->
     </div>
     <script>
-        function load_ajax() {
-            var id = $('#idbuff_like').val();
-            $('#button')['html']('<i class="spinner-border spinner-border-sm"></i> Vui lòng chờ...');
+        function send_code() {
+            $('#button_code')['html']('<i class="spinner-border spinner-border-sm"></i> Vui lòng chờ...');
+            $("#button_code").prop("disabled", true);
             $.ajax({
-                url: "/api/login.php",
+                url: "/api/forgot_password.php?act=send_code",
                 type: "post",
-                dataType: "text",
+                dataType: "json",
                 data: {
-                    username: $('#user').val(),
-                    password: $('#pass').val(),
-                    login: 'ok',
-                    redirect: '<?= $_GET['redirect']; ?>',
+                    email: $('#email').val(),
                 },
-                success: function(result) {
-                    $('#button')['html']('<i class="bx bxs-lock-open"></i>Đăng Nhập');
-                    $("#result").html(result);
+                success: function(response) {
+                    if (response.status == 200) {
+                        $("#button_code").prop("disabled", true);
+                        swal("Thông Báo", response.message, "success");
+                        $('#button_code').remove();
+                        $('#mail_code').show().html(`<hr><div class="form-group"><label for="inputEmailAddress" class="form-label">Mã xác minh</label><input type="number" class="form-control" id="code_verify" placeholder="Nhập mã xác minh"></div><br><button class="btn btn-secondary btn-block w-100" type="button" onclick="verify()" id="button_verify">Xác Nhận</button>`);
+                    } else {
+                        swal("Thông Báo", response.message, "warning");
+                    }
+                    $('#button_code')['html']('Gửi Code');
+                    $("#button_code").prop("disabled", false);
+                }
+            });
+        }
 
+        function verify() {
+            $('#button_verify')['html']('<i class="spinner-border spinner-border-sm"></i> Vui lòng chờ...');
+            $("#button_verify").prop("disabled", true);
+            $.ajax({
+                url: "/api/forgot_password.php?act=verify_code",
+                type: "post",
+                dataType: "json",
+                data: {
+                    email: $('#email').val(),
+                    code: $('#code_verify').val(),
+                },
+                success: function(response) {
+                    if (response.status == 200) {
+                        swal("Thông Báo", response.message, "success");
+                        $('#button_verify')['html']('Xác Nhận');
+                        $("#button_verify").prop("disabled", false);
+                        setTimeout(function() {
+                            window.location.href = '/login.php';
+                        }, 3000);
+                    } else {
+                        swal("Thông Báo", response.message, "warning");
+                        $('#button_verify')['html']('Xác Nhận');
+                        $("#button_verify").prop("disabled", false);
+                    }
                 }
             });
         }
