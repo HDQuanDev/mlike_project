@@ -31,14 +31,7 @@ if ($site == 'api.like1s.vn') {
     $site = 'mlike.vn';
     $domain = 'https://api.like1s.vn';
 }
-if ($site == 'localhost') {
-    $site = 'mlike.vn';
-    $domain = 'http://localhost';
-}
-$url = 'https://' . $site . '' . $urll . '';
-if ($_SERVER['HTTP_HOST'] == 'localhost') {
-    $cdn = 'http://localhost/assets';
-}
+
 $cdn = 'https://mlike.vn/assets';
 
 $s = mysqli_query($db, "SELECT * FROM `system`");
