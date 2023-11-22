@@ -15,9 +15,11 @@ if (isset($login)) {
             echo "<script>swal('Hệ Thống!','Địa chỉ email không hợp lệ!','warning');</script>";
           } elseif (!preg_match("/^[0-9]{10}$/", $sdt)) {
             echo "<script>swal('Hệ Thống!','Số điện thoại không hợp lệ!','warning');</script>";
-          } elseif ($validmail->disposable == false) {
+          } elseif ($validmail->disposable == true) {
             echo "<script>swal('Hệ Thống!','Vui lòng không sửa dụng email tạm thời hoặc email không tồn tại để cập nhật!','warning');</script>";
-          } elseif ($checkmail1 > 0) {
+          } elseif($validmail->dns == false){
+echo "<script>swal('Hệ Thống!','Địa chỉ email này không thể nhận được thư, vui lòng sử dụng địa chỉ email khác!','warning');</script>";
+} elseif ($checkmail1 > 0) {
             echo "<script>swal('Hệ Thống!','Địa chỉ email đã được sử dụng!','warning');</script>";
           } else {
             mysqli_query($db, "UPDATE `member` SET `sdt`= '$sdt', `hoten`='$hoten', `email`='$email', `active` = '2', `is_email_disposable` = 'true' WHERE `username` = '$login'");
@@ -89,7 +91,7 @@ if (isset($login)) {
           if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             echo json_encode(array('status' => '400', 'message' => 'Địa chỉ email không hợp lệ!'));
           } elseif ($validmail->disposable == true) {
-            echo json_encode(array('status' => '400', 'message' => 'Vui lòng không sửa dụng email tạm thời cho tài khoản!'));
+            echo json_encode(array('status' => '400', 'message' => 'Vui lòng không sử dụng email tạm thời cho tài khoản!'));
           } elseif ($validmail->dns == false) {
             echo json_encode(array('status' => '400', 'message' => 'Địa chỉ email không tồn tại hoặc không thể sử dụng để gửi thư, vui lòng sử dụng địa chỉ khác!'));
           } elseif ($checkmail1 > 0) {
