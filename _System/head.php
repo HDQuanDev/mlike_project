@@ -544,7 +544,7 @@ if($row['is_verify_mail'] == 'false'){
                                                         <label for="inputEmailAddress" class="form-label">Địa chỉ email của bạn</label>
                                                         <input type="email" class="form-control" id="email" value="<?= $row['email']; ?>" readonly>
                                                     </div>
-                                                    <button class="btn btn-secondary" type="button" onClick="send_mail()" id="button_send_mail">Gửi Code</button>
+                                                    <button class="btn btn-secondary btn-block w-100" type="button" onClick="send_mail()" id="button_send_mail">Gửi Code</button>
                                                 </div>
                                                 <div class="col-12">
                                                     <span id="mail_code"></span>

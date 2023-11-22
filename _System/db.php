@@ -72,7 +72,12 @@ if ($login) {
     }
     $result = mysqli_query($db, "SELECT * FROM `member` WHERE `username` = '$login' AND `site` = '$site'");
     $row = mysqli_fetch_assoc($result);
-
+    if ($_COOKIE['password'] != $row['password']) {
+        session_destroy();
+        setcookie("username", "", time() - 31556926, "/");
+        setcookie("password", "", time() - 31556926, "/");
+        header('location:/');
+    }
 
     if ($row['rule'] == 99) {
         $cv = "Admin!";

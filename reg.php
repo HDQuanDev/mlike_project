@@ -8,7 +8,7 @@ $two = $_SESSION['so2'];
 if (!isset($_SESSION['so1']) && !isset($_SESSION['so2'])) {
     $_SESSION['so1'] = $so1;
     $_SESSION['so2'] = $so2;
-    header('location: /');
+    header('location: /reg.php');
 }
 ?>
 <!doctype html>
