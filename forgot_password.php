@@ -116,6 +116,7 @@ if (isset($_COOKIE["username"]) && isset($_COOKIE["password"])) {
                 success: function(response) {
                     if (response.status == 200) {
                         $("#button_code").prop("disabled", true);
+                        $('#email').prop("disabled", true);
                         swal("Thông Báo", response.message, "success");
                         $('#button_code').remove();
                         $('#mail_code').show().html(`<hr><div class="form-group"><label for="inputEmailAddress" class="form-label">Mã xác minh</label><input type="number" class="form-control" id="code_verify" placeholder="Nhập mã xác minh"></div><br><button class="btn btn-secondary btn-block w-100" type="button" onclick="verify()" id="button_verify">Xác Nhận</button>`);
