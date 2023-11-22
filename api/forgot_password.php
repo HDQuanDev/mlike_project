@@ -22,7 +22,7 @@ switch ($_GET['act']) {
                         if ($results) {
                             $to = $email;
                             $title = "Yêu cầu lấy lại mật khẩu";
-                            $content = "Mã xác nhận của bạn là: " . $code;
+                            $content = "Bạn đang yêu cầu lấy lại mật khẩu từ MLIKE.VN, nếu không phải bạn vui lòng bỏ qua tin nhắn này và truy cập tài khoản của bạn để đổi mật khẩu ngay!\nMã xác nhận của bạn là: " . $code;
                             $name = $row['hoten'];
 
                             $curl = curl_init();
