@@ -72,7 +72,7 @@ if (isset($_COOKIE["username"]) && isset($_COOKIE["password"])) {
                         <form class="theme-form">
                             <h4 class="text-center">Đăng Nhập Tài Khoản</h4>
                             <p class="text-center">Vui lòng nhập tên tài khoản và mật khẩu</p>
-                            <p class="mt-4 mb-0 text-center">Bạn quên mật khẩu?<a class="ms-2" href="forgot_password.php">Lấy lại ngay</a></p>
+                            <p class="mt-4 mb-0 text-center">Bạn quên mật khẩu?<a class="ms-2" href="forgot_password.php">Lấy lại ngay</a></p><br>
                             <div class="col-12">
                                 <label for="inputEmailAddress" class="form-label">Tên Tài Khoản</label>
                                 <input type="text" class="form-control" id="user" placeholder="Tên tài khoản...">
