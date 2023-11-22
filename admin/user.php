@@ -206,6 +206,7 @@ WHERE `username` = '$id' AND `site` = '$site'");
                         <th class="sort" data-sort="name">Họ Và Tên</th>
                         <th class="sort" data-sort="sdt">SĐT</th>
                         <th class="sort" data-sort="email">Email</th>
+                        <th class="sort" data-sort="email">Trạng Thái</th>
                         <th class="sort" data-sort="cv">Chức Vụ</th>
                         <th class="sort" data-sort="vnd">Số Tiền</th>
                         <th class="sort" data-sort="sd">Số Tiền Đã Dùng</th>
@@ -241,6 +242,11 @@ WHERE `username` = '$id' AND `site` = '$site'");
                                 <td class="name"><?php echo $ro['hoten']; ?></td>
                                 <td class="sdt"><?php echo $ro['sdt']; ?></td>
                                 <td class="email"><?php echo $ro['email']; ?></td>
+                                <td class="email"><?php if ($ro['is_verify_mail'] == true) {
+                                                        echo 'Đã Xác Minh';
+                                                    } else {
+                                                        echo 'Chưa Xác Minh';
+                                                    } ?></td>
                                 <td class="cv"><?php echo $cv; ?></td>
                                 <td class="vnd"><?php echo $vnd; ?> ₫</td>
                                 <td class="sd"><?php $vnd = $ro['sd'];
