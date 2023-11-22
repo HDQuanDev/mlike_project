@@ -74,6 +74,11 @@ if (isset($login)) {
         } elseif ($code != $row['is_code_verify_mail']) {
           echo json_encode(array('status' => '400', 'message' => 'Mã xác nhận không chính xác!'));
         } else {
+          $nd1 = 'Xác minh địa chỉ email!';
+          $bd = '0';
+          $time = time();
+          $goc = $row['vnd'];
+          mysqli_query($db, "INSERT INTO `lichsu` SET `nd` = '$nd1',`bd` = '$bd',`user`='$login',`time`='$time', `loai` = '3', `goc` = '$goc'");
           mysqli_query($db, "UPDATE `member` SET `is_verify_mail` = 'true', `is_code_verify_mail` = '0' WHERE `username` = '$login'");
           echo json_encode(array('status' => '200', 'message' => 'Xác minh địa chỉ email thành công!'));
         }
@@ -97,6 +102,11 @@ if (isset($login)) {
           } elseif ($checkmail1 > 0) {
             echo json_encode(array('status' => '400', 'message' => 'Địa chỉ email đã được sử dụng!'));
           } else {
+            $nd1 = 'Thay Đổi Email Tài Khoản!';
+            $bd = '0';
+            $time = time();
+            $goc = $row['vnd'];
+            mysqli_query($db, "INSERT INTO `lichsu` SET `nd` = '$nd1',`bd` = '$bd',`user`='$login',`time`='$time', `loai` = '3', `goc` = '$goc'");
             mysqli_query($db, "UPDATE `member` SET `email` = '$email', `is_email_disposable` = 'false' WHERE `username` = '$login'");
             echo json_encode(array('status' => '200', 'message' => 'Đã cập nhật email thành công, vui lòng chờ tải lại trang và xác minh email này!'));
           }

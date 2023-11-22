@@ -109,6 +109,12 @@ switch ($_GET['act']) {
                             curl_close($curl);
                             $result = json_decode($response);
                             if ($result->status == '200') {
+                                $nd1 = 'Lấy Lại Mật Khẩu Tài Khoản!';
+                                $bd = '0';
+                                $time = time();
+                                $goc = $row['vnd'];
+                                $login = $row['username'];
+                                mysqli_query($db, "INSERT INTO `lichsu` SET `nd` = '$nd1',`bd` = '$bd',`user`='$login',`time`='$time', `loai` = '3', `goc` = '$goc'");
                                 mysqli_query($db, "UPDATE `member` SET `password` = '" . md5($pass) . "', `is_code_verify_mail` = '0' WHERE `email` = '$email' AND `site`='$site'");
                                 echo json_encode(array('status' => '200', 'message' => 'Lấy lại mật khẩu thành công, vui lòng kiểm tra email để lấy mật khẩu mới!'));
                             } else {
