@@ -13,7 +13,7 @@ switch ($_GET['act']) {
                 $query = "SELECT * FROM member WHERE email='$email' AND `site`='$site'";
                 $results = mysqli_query($db, $query);
                 if (mysqli_num_rows($results) == 1) {
-                    $check = mysqli_query($db, "SELECT * FROM `member` WHERE `email` = '$email' AND `is_verify_mail` = 'true'");
+                    $check = mysqli_query($db, "SELECT * FROM `member` WHERE `email` = '$email' AND `is_verify_mail` = 'true' AND `site`='$site'");
                     if (mysqli_num_rows($check) == 1) {
                         $row = mysqli_fetch_assoc($check);
                         $code = rand(100000, 999999);
@@ -76,7 +76,7 @@ switch ($_GET['act']) {
                 $query = "SELECT * FROM member WHERE email='$email' AND `site`='$site'";
                 $results = mysqli_query($db, $query);
                 if (mysqli_num_rows($results) == 1) {
-                    $check = mysqli_query($db, "SELECT * FROM `member` WHERE `email` = '$email' AND `is_verify_mail` = 'true'");
+                    $check = mysqli_query($db, "SELECT * FROM `member` WHERE `email` = '$email' AND `is_verify_mail` = 'true' AND `site`='$site'");
                     if (mysqli_num_rows($check) == 1) {
                         $row = mysqli_fetch_assoc($check);
                         if ($code != $row['is_code_verify_mail']) {
@@ -109,7 +109,7 @@ switch ($_GET['act']) {
                             curl_close($curl);
                             $result = json_decode($response);
                             if ($result->status == '200') {
-                                mysqli_query($db, "UPDATE `member` SET `password` = '" . md5($pass) . "' WHERE `email` = '$email' AND `site`='$site' AND `is_verify_mail` = 'true' AND `is_code_verify_mail` = '0'");
+                                mysqli_query($db, "UPDATE `member` SET `password` = '" . md5($pass) . "' WHERE `email` = '$email' AND `site`='$site' AND `is_code_verify_mail` = '0'");
                                 echo json_encode(array('status' => '200', 'message' => 'Lấy lại mật khẩu thành công, vui lòng kiểm tra email để lấy mật khẩu mới!'));
                             } else {
                                 echo json_encode(array('status' => '400', 'message' => 'Đã có lỗi xảy ra, vui lòng thử lại sau!'));
