@@ -485,17 +485,13 @@ function time_func($time_ago)
         }
     }
 }
-function incrementalHash($len = 5)
+function generateRandomString($length = 10)
 {
-    $charset = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-    $base = strlen($charset);
-    $result = '';
-
-    $now = explode(' ', microtime())[1];
-    while ($now >= $base) {
-        $i = $now % $base;
-        $result = $charset[$i] . $result;
-        $now /= $base;
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[random_int(0, $charactersLength - 1)];
     }
-    return substr($result, -5);
+    return $randomString;
 }

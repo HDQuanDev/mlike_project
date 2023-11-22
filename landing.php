@@ -111,6 +111,7 @@ if (isset($_COOKIE["username"]) && isset($_COOKIE["password"])) {
                                     <li><a class="btn btn-success" href="/login.php">Đăng Nhập</a></li>
                                     <li><a class="btn btn-danger" href="/reg.php">Đăng Ký</a></li>
                                 </ul>
+                                <p class="mt-4 mb-0 text-center">Bạn quên mật khẩu?<a class="ms-2" href="forgot_password.php">Lấy lại ngay</a></p>
                             </div>
                         </div>
                     </div>

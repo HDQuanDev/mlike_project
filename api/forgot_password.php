@@ -82,7 +82,7 @@ switch ($_GET['act']) {
                         if ($code != $row['is_code_verify_mail']) {
                             echo json_encode(array('status' => '400', 'message' => 'Mã xác nhận không chính xác!'));
                         } else {
-                            $pass = incrementalHash(12);
+                            $pass = generateRandomString("12");
                             $to = $email;
                             $title = "Xác nhận lấy lại mật khẩu";
                             $content = "Mật khẩu mới của tài khoản bạn là: " . $pass . "\nVui lòng đăng nhập và thay đổi mật khẩu ngay lập tức!";
@@ -109,7 +109,7 @@ switch ($_GET['act']) {
                             curl_close($curl);
                             $result = json_decode($response);
                             if ($result->status == '200') {
-                                mysqli_query($db, "UPDATE `member` SET `password` = '" . md5($pass) . "' WHERE `email` = '$email' AND `site`='$site' AND `is_code_verify_mail` = '0'");
+                                mysqli_query($db, "UPDATE `member` SET `password` = '" . md5($pass) . "', `is_code_verify_mail` = '0' WHERE `email` = '$email' AND `site`='$site'");
                                 echo json_encode(array('status' => '200', 'message' => 'Lấy lại mật khẩu thành công, vui lòng kiểm tra email để lấy mật khẩu mới!'));
                             } else {
                                 echo json_encode(array('status' => '400', 'message' => 'Đã có lỗi xảy ra, vui lòng thử lại sau!'));
