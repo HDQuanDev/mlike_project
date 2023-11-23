@@ -162,7 +162,7 @@ switch ($_GET["act"]) {
                 if (isset($cd)) {
                     if (!is_numeric($id)) {
                         if (filter_var($id, FILTER_VALIDATE_URL) == false) {
-                            preg_match('/https:\/\/www\.facebook\.com\/share\/[^ ]+/', $id, $matches);
+                            preg_match_all('/https:\/\/www\.facebook\.com\/[a-zA-Z\.]+[\/\?]+[^ ]*/', $text, $matches);
                             $result_url = $matches[0];
                             if (isset($result_url)) {
                                 $get_id = json_decode(getid($result_url));

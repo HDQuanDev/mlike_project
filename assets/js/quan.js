@@ -60,7 +60,7 @@ function getIDP(elm) {
             return;
         }
         if (isValidUrl_Q(linkk) == false) {
-            let matches = linkk.match(/https:\/\/www\.facebook\.com\/share\/[^ ]+/);
+            let matches = linkk.match(/https:\/\/www\.facebook\.com\/[a-zA-Z\.]+[\/\?]+[^ ]*/g);
             if (matches !== null) {
                 var link = matches[0];
                 $('#notine').show().html(`<div class="alert bg-primary text-white" role="alert"><b>Nè bạn ưi, bạn vừa nhập sai link rồi đóa, nếu bạn copy link trên điện thoại thì chú ý nhenn!<br>- Link bạn nhập vào ô: ${linkk}<br>- Link mình sửa cho bạn nè: ${link}<br>Mình đã sửa và get id cho bạn rồi nhen, lần sau chú ý hơn nhaaa!</b></div><br>`);
