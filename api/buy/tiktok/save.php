@@ -4,6 +4,7 @@ $page = 'save_tt';
 require_once('../../../_System/db.php');
 require_once('../../../module/tiktok.php');
 require_once('../../../module/ongtrum.php');
+require_once('../../../module/autofb88.php');
 $gia = $gia1;
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -27,10 +28,15 @@ if (isset($_POST['token']) && isset($_POST['id']) && isset($_POST['sl']) && isse
             $nse = 'Server Save 1';
             $min = 50;
             $max = 1000000;
+        } elseif ($sv == 2) {
+            $tongtien = $sl * $gia2;
+            $nse = 'Server Save 2';
+            $min = 100;
+            $max = 1000000;
         }
         if (empty($id)) {
             $array["status"] = 'error';
-            $array["msg"] = 'Vui lòng nhập số ID!';
+            $array["msg"] = 'Vui lòng nhập Link video!';
         } elseif (empty($sl)) {
             $array["status"] = 'error';
             $array["msg"] = 'Vui lòng nhập số lượng!';
@@ -64,6 +70,25 @@ if (isset($_POST['token']) && isset($_POST['id']) && isset($_POST['sl']) && isse
                     $time = time();
                     mysqli_query($db, "INSERT INTO `lichsu` SET `nd` = '$nd1',`bd` = '$bd',`user`='$login',`time`='$time', `goc` = '$goc', `loai` = '1', `idgd` = '$idgd', `gt` = '$gt'");
                     mysqli_query($db, "INSERT INTO `dv_other` SET `dv` = 'save_tt',`sl` = '$sl', `trangthai` = '1', `user`='$login',`profile`='$ttid',`time` = '$time', `sttdone` = '0', `sotien` = '$tongtien', `done` = '0', `nse` = '$nse', `cmt` = '$ttlink', `iddon` = '$ttview'");
+                    mysqli_query($db, "UPDATE `member` SET `vnd` = `vnd`-'$tongtien', `sd` = `sd`+'$tongtien' WHERE `username` = '$login' AND `site` = '$site'");
+                    $array["status"] = 'success';
+                    $array["msg"] = 'Mua Save Tiktok Thành Công! Cảm ơn bạn!!';
+                } else {
+                    $array["status"] = 'error';
+                    $array["msg"] = '' . $buff->message . '';
+                    $array["link"] = '' . $ttlink . '';
+                }
+            } elseif ($sv == 2) {
+                $buff = json_decode(savett88("$id", "$sl"));
+                if ($buff->status == '200') {
+                    $nd1 = '(2) Tăng Save TikTok ID:';
+                    $bd = $tongtien;
+                    $gt = '-';
+                    $idgd = '' . $id . ' (' . $sl . ')';
+                    $goc = $row['vnd'];
+                    $time = time();
+                    mysqli_query($db, "INSERT INTO `lichsu` SET `nd` = '$nd1',`bd` = '$bd',`user`='$login',`time`='$time', `goc` = '$goc', `loai` = '1', `idgd` = '$idgd', `gt` = '$gt'");
+                    mysqli_query($db, "INSERT INTO `dv_other` SET `dv` = 'save_tt',`sl` = '$sl', `trangthai` = '1', `user`='$login',`profile`='$id',`time` = '$time', `sttdone` = '0', `sotien` = '$tongtien', `done` = '0', `nse` = '$nse', `cmt` = '0', `iddon` = '0'");
                     mysqli_query($db, "UPDATE `member` SET `vnd` = `vnd`-'$tongtien', `sd` = `sd`+'$tongtien' WHERE `username` = '$login' AND `site` = '$site'");
                     $array["status"] = 'success';
                     $array["msg"] = 'Mua Save Tiktok Thành Công! Cảm ơn bạn!!';

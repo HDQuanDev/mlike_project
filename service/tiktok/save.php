@@ -20,6 +20,8 @@ switch ($_GET['act']) {
                 var sv = document.querySelector('input[name="sv"]:checked').value;
                 if (sv == '1') {
                     var gia = '<?= $gia; ?>';
+                } else if (sv == '2') {
+                    var gia = '<?= $gia2; ?>';
                 }
                 var tien = sl * gia;
                 var quan = tien.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
@@ -44,7 +46,13 @@ switch ($_GET['act']) {
                             <div class="accordion-body alert alert-danger"> - Bắt đầu 0-1 giờ. Tốc độ 5k/ngày.<br>
                                 - Giá rẻ ko ổn định về tốc độ. </div>
                         </div>
-                    </div> 
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" checked id="flexRadioDefault1" type="radio" name="sv" value="2" data-bs-toggle="collapse" data-bs-target="#sv2" aria-expanded="false" aria-controls="sv2" /><label class="form-check-label" for="flexRadioDefault1">Server Save 2<i class="wi wi-time-1"></i><i class="wi wi-moon-1"></i> (<b><?= $gia2; ?>₫</b>) ( Lưu mục yêu thích ) ( Tây ) ( Min 100 ) ( Nhanh ) ( BH 30 ngày ) <span class="badge bg-success">Hoạt động</span></label>
+                        <div id="sv2" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#sv2">
+                            <div class="accordion-body alert alert-danger">Bảo hành 30 ngày</div>
+                        </div>
+                    </div>
 
                     <div class="mb-3">
                         <h4> <span style="color: red;">(*) Hãy đọc lưu ý trước khi dùng tránh mất tiền</span></h4>
@@ -53,7 +61,7 @@ switch ($_GET['act']) {
                             <input type="text" oninput="getTym('id');" name="id" class="form-control mb-3" aria-label="Recipient's username" aria-describedby="basic-addon2" placeholder="Nhập Link hoặc nhập ID!" required="" id="idbuff_like">
 
                         </div>
-                        
+
                     </div>
 
                     <!-- <div class="alert alert-warning alert-dismissible fade show" role="alert">
