@@ -110,10 +110,10 @@ swal({
                                                         } elseif ($sv4 == 'off') {
                                                             echo 'disabled';
                                                         } ?> id="flexRadioDefault1" type="radio" name="sv" value="4" data-bs-toggle="collapse" data-bs-target="#sv4" aria-expanded="false" aria-controls="sv4" /><label class="form-check-label" for="flexRadioDefault1">Server Like 4 (<span style="color: Darkorange;"> Tốc độ nhanh, like BETA gần như k tụt,mỗi ID chỉ được mua 1 lần , chạy được album, Max 5k) <span style="color:red;"><?= $gia4; ?>₫</span> <? if ($sv4 == 'off') {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        echo '<span class="badge bg-danger">Quá tải</span>';
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    } else {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        echo '<span class="badge bg-primary">Đang mở</span>';
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    } ?></label>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                        echo '<span class="badge bg-danger">Quá tải</span>';
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                    } else {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                        echo '<span class="badge bg-primary">Đang mở</span>';
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                    } ?></label>
                         <div id="sv4" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#sv4">
                             <div class="accordion-body alert alert-success"> Mỗi ID chỉ được mua 1 lần </div>
                         </div>
@@ -149,6 +149,8 @@ swal({
                     <!-- <div class="form-check">
                         <input class="form-check-input"  id="flexRadioDefault1" type="radio" name="sv" value="12" data-bs-toggle="collapse" data-bs-target="#sv12" aria-expanded="false" aria-controls="sv11" /><label class="form-check-label" for="flexRadioDefault1">Server Like 12 ( Tốc độ cực nhanh tuy nhiên hay chậm bất chợt, test ít thấy lên nhanh thì dùng <span style="color: red;">max 100k</span>) <span style="color:Blue;"><?= $gia12; ?>₫</span> <span class="badge bg-success">Siêu Nhanh</span></label>
                     </div>-->
+
+
                     <div class="form-group">
                         <label>Nhập ID Hoặc Link Bài Viết:</label>
                         <div class="input-group mb-3">
@@ -171,6 +173,8 @@ swal({
                             <? } ?> -->
                             <h4> <span style="color: red;">(*) Hãy đọc lưu ý trước khi dùng tránh mất tiền</span></h4>
                         </label>
+                    </div>
+                    <div id="notine">
                     </div>
                     <div class="mb-3">
                         <div class="alert alert-warning" role="alert">
