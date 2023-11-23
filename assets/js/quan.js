@@ -57,6 +57,7 @@ function getIDP(elm) {
         var format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
 
         if (!format.test(linkk)) {
+            $('#notine').show().html(``);
             return;
         }
         if (isValidUrl_Q(linkk) == false) {
