@@ -41,6 +41,16 @@ function getDateTimeFromTimestamp(timestamp) {
     return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
 }
 
+function isValidUrl_Q(string) {
+    try {
+        new URL(string);
+    } catch (_) {
+        return false;
+    }
+
+    return true;
+}
+
 function getIDP(elm) {
     setTimeout(() => {
         let linkk = $("[name=" + elm + "]").val();
@@ -49,10 +59,14 @@ function getIDP(elm) {
         if (!format.test(linkk)) {
             return;
         }
-        let matches = linkk.match(/https:\/\/www\.facebook\.com\/share\/[^ ]+/);
-        if (matches !== null) {
-            var link = matches[0];
-            $('#notine').show().html(`<div class="alert bg-warning text-white" role="alert">Nè bạn ưi, bạn vừa nhập sai link rồi đóa, nếu bạn copy link trên điện thoại thì chú ý nhenn!<br>- Link bạn nhập vào ô: ${linkk}<br>- Link mình sửa cho bạn nè: ${link}<br>Mình đã sửa và get id cho bạn rồi nhen, lần sau chú ý hơn nhaaa!</div><br>`);
+        if (isValidUrl_Q(linkk) == false) {
+            let matches = linkk.match(/https:\/\/www\.facebook\.com\/share\/[^ ]+/);
+            if (matches !== null) {
+                var link = matches[0];
+                $('#notine').show().html(`<div class="alert bg-warning text-white" role="alert"><b>Nè bạn ưi, bạn vừa nhập sai link rồi đóa, nếu bạn copy link trên điện thoại thì chú ý nhenn!<br>- Link bạn nhập vào ô: ${linkk}<br>- Link mình sửa cho bạn nè: ${link}<br>Mình đã sửa và get id cho bạn rồi nhen, lần sau chú ý hơn nhaaa!</b></div><br>`);
+            } else {
+                var link = linkk;
+            }
         } else {
             var link = linkk;
         }
