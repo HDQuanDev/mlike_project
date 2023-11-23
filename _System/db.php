@@ -387,7 +387,7 @@ if (isset($login) || isset($_POST['token'])) {
                     $gia1 = 50;
                 } elseif ($page == 'save_tt') {
                     $gia1 = 10;
-                    $gia2 = 100;
+                    $gia2 = 10;
                 } elseif ($page == 'share_tt') {
                     $gia1 = 8;
                 } elseif ($page == 'view_web') {
@@ -530,7 +530,7 @@ if (isset($login) || isset($_POST['token'])) {
                     $gia1 = 80;
                 } elseif ($page == 'save_tt') {
                     $gia1 = 10;
-                    $gia2 = 100;
+                    $gia2 = 10;
                 } elseif ($page == 'share_tt') {
                     $gia1 = 10;
                 } elseif ($page == 'view_web') {
@@ -673,7 +673,7 @@ if (isset($login) || isset($_POST['token'])) {
                     $gia1 = 100;
                 } elseif ($page == 'save_tt') {
                     $gia1 = 10;
-                    $gia2 = 100;
+                    $gia2 = 10;
                 } elseif ($page == 'share_tt') {
                     $gia1 = 10;
                 } elseif ($page == 'view_web') {
