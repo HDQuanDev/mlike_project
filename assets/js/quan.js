@@ -66,9 +66,11 @@ function getIDP(elm) {
                 $('#notine').show().html(`<div class="alert bg-warning text-white" role="alert"><b>Nè bạn ưi, bạn vừa nhập sai link rồi đóa, nếu bạn copy link trên điện thoại thì chú ý nhenn!<br>- Link bạn nhập vào ô: ${linkk}<br>- Link mình sửa cho bạn nè: ${link}<br>Mình đã sửa và get id cho bạn rồi nhen, lần sau chú ý hơn nhaaa!</b></div><br>`);
             } else {
                 var link = linkk;
+                $('#notine').show().html(``);
             }
         } else {
             var link = linkk;
+            $('#notine').show().html(``);
         }
         $("[name=" + elm + "]")
             .prop("disabled", true)
