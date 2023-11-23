@@ -160,15 +160,46 @@ switch ($_GET["act"]) {
                 $row = mysqli_fetch_assoc($uu);
                 $login = $row['username'];
                 if (isset($cd)) {
+                    if (!is_numeric($id)) {
+                        if (filter_var($id, FILTER_VALIDATE_URL) == false) {
+                            preg_match('/https:\/\/www\.facebook\.com\/share\/[^ ]+/', $id, $matches);
+                            $result_url = $matches[0];
+                            if (isset($result_url)) {
+                                $get_id = json_decode(getid($result_url));
+                                if ($get_id->success == 200) {
+                                    $result_id = $get_id->id;
+                                } else {
+                                    echo '{"status":"error","msg":"Đã xảy ra lỗi khi phân tích ID Post, vui lòng thử lại"}';
+                                    exit();
+                                }
+                            } else {
+                                $result_id = $id;
+                            }
+                        } else {
+                            $get_id = json_decode(getid($id));
+                            if ($get_id->success == 200) {
+                                $result_id = $get_id->id;
+                            } else {
+                                echo '{"status":"error","msg":"Đã xảy ra lỗi khi phân tích ID Post, vui lòng thử lại"}';
+                                exit();
+                            }
+                        }
+                    } else {
+                        $result_id = $id;
+                    }
+                    $id = $result_id;
                     if (filter_var($id, FILTER_VALIDATE_URL) !== false) {
                         $get_id = json_decode(getid($id));
                         if ($get_id->success == 200) {
-                            $id = $get_id->id;
+                            $result_id = $get_id->id;
                         } else {
                             echo '{"status":"error","msg":"Đã xảy ra lỗi khi phân tích ID Post, vui lòng thử lại"}';
                             exit();
                         }
+                    } else {
+                        $result_id = $id;
                     }
+                    $id = $result_id;
                     $gt = time();
                     $tko = mysqli_query($db, "SELECT * FROM `giftcode` WHERE `code` = '$cd' AND `ex` > '$gt' AND `site` = '$site'");
                     $tko = mysqli_num_rows($tko);
@@ -488,10 +519,10 @@ switch ($_GET["act"]) {
                     $lcheckl = $crow[0];
                     $lcheck = $lcheckl + $sl;
                     $mcheck = 5000 - $lcheckl;
-                    $fbapi = json_decode(file_get_contents("https://graph.facebook.com/$id?fields=likes.summary(true)&access_token=" . $tokenfb));
-                    $fbapi = $fbapi->likes->summary->total_count;
                     $check_order_count = mysqli_query($db, "SELECT * FROM `dichvu` WHERE `dv` = 'Like' AND `nse` = '444' AND `profile` = '$id'");
                     $check_order_count = mysqli_num_rows($check_order_count);
+                    $fbapi = json_decode(file_get_contents("https://graph.facebook.com/$id?fields=likes.summary(true)&access_token=" . $tokenfb));
+                    $fbapi = $fbapi->likes->summary->total_count;
                     if (empty($id)) {
                         $array["status"] = 'error';
                         $array["msg"] = 'Vui lòng nhập số ID Bài Viết Facebook!';
@@ -517,6 +548,10 @@ switch ($_GET["act"]) {
                         $array["status"] = 'error';
                         $array["msg"] = 'Server quá tải vùi lòng thử lại sau 12h trưa hoặc dùng server khác ';
                     } else {
+
+                        $fbapi = json_decode(file_get_contents("https://graph.facebook.com/$id?fields=likes.summary(true)&access_token=" . $tokenfb));
+                        $fbapi = $fbapi->likes->summary->total_count;
+
                         $nd1 = 'Mua Like Bài Viết ID:';
                         $bd = $tongtien;
                         $gt = '-';

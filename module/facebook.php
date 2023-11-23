@@ -4,7 +4,7 @@ function getid_2($link)
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://id.traodoisub.com/api2.php',
+        CURLOPT_URL => 'https://id.traodoisub.com/api.php',
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,
@@ -56,14 +56,15 @@ function getid_1($link)
 
     curl_close($curl);
     $data = [];
+    $data["success"] = '200';
     $data["code"] = '200';
     if ($response == 0) {
-        $data["success"] = '400';
+        $data["id"] = "Link không hợp lệ hoặc không thể Get ID vui lòng thử lại!!";
     } else {
-        $data["success"] = '200';
+        $data["id"] = $response;
     }
-    $data["id"] = $response;
     $data["type"] = "2";
+    $data["count"] = "4";
     $result = json_encode($data);
     return $result;
 }
@@ -77,24 +78,29 @@ function getid($link)
         $data["code"] = '200';
         $data["id"] = $send->id;
         $data["type"] = "1";
+        $data["count"] = "1";
         $result = json_encode($data);
     } else {
+        sleep(5);
         $send_2 = json_decode(getid_2($link));
         if ($send_2->code == '200') {
             $data = [];
             $data["success"] = '200';
             $data["code"] = '200';
-            $data["id"] = $send->id;
+            $data["id"] = $send_2->id;
             $data["type"] = "1";
+            $data["count"] = "2";
             $result = json_encode($data);
         } else {
+            sleep(5);
             $send_3 = json_decode(getid_2($link));
             if ($send_3->code == '200') {
                 $data = [];
                 $data["success"] = '200';
                 $data["code"] = '200';
-                $data["id"] = $send->id;
+                $data["id"] = $send_3->id;
                 $data["type"] = "1";
+                $data["count"] = "3";
                 $result = json_encode($data);
             } else {
                 $result = getid_1($link);
