@@ -131,7 +131,7 @@ function savett88($id, $sl)
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://api.at88.vn/api/v2/facebook-sale-like/order',
+        CURLOPT_URL => 'https://api.at88.vn/api/v2/tiktok-save/order',
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,
