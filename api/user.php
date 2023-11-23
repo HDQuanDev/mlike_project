@@ -22,7 +22,7 @@ if (isset($login)) {
           } elseif ($checkmail1 > 0) {
             echo "<script>swal('Hệ Thống!','Địa chỉ email đã được sử dụng!','warning');</script>";
           } else {
-            mysqli_query($db, "UPDATE `member` SET `sdt`= '$sdt', `hoten`='$hoten', `email`='$email', `active` = '2', `is_email_disposable` = 'true' WHERE `username` = '$login'");
+            mysqli_query($db, "UPDATE `member` SET `sdt`= '$sdt', `hoten`='$hoten', `email`='$email', `active` = '2', `is_email_disposable` = 'false' WHERE `username` = '$login'");
             echo "<script>swal('Hệ Thống!','Cập nhật Thông Tin Thành Công!','success');</script>";
             echo '<script>setTimeout(function(){
     window.location="/index.php";
