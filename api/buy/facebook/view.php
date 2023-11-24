@@ -220,6 +220,12 @@ switch ($_GET['act']) {
                     $min = '60000';
                     $max = '60000';
                 }
+                if (filter_var($id, FILTER_VALIDATE_URL) == false) {
+                    if (!is_numeric($id)) {
+                        echo '{"status":"error","msg":"Link/ID Video Facebook không hợp lệ, vui lòng nhập lại!","link":"' . $id . '"}';
+                        exit;
+                    }
+                }
                 if (empty($id)) {
                     $array["status"] = 'error';
                     $array["msg"] = 'Vui lòng nhập số ID Video Facebook!';
