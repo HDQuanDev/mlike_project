@@ -235,7 +235,7 @@ swal({
                 $('#button')['html']('<i class="spinner-border spinner-border-sm"></i> Vui lòng chờ...');
                 $("#button")
                     .prop("disabled", true);
-                document.getElementById('rotateButton').classList.add('spinning');
+                $('#button').addClass('spinning');
                 $.ajax({
                     url: "/api/buy/facebook/like.php",
                     type: "post",
@@ -260,8 +260,7 @@ swal({
                         $('#button')['html']('<i class="fa fa-dollar-sign"></i> Thanh Toán');
                         $("#button")
                             .prop("disabled", false);
-
-                        document.getElementById('rotateButton').classList.remove('spinning');
+                        $('#button').removeClass('spinning');
 
                     }
                 });
