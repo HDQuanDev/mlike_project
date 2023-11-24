@@ -1,0 +1,8 @@
+@keyframes spin_test {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#button.spinning {
+    animation: spin 1.5s linear infinite;
+}
