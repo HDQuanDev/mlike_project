@@ -71,7 +71,7 @@ switch ($_GET['act']) {
                         <script>
                             function sayHello() {
                                 var sangml = document.createElement("sangml")
-                                sangml.innerHTML = "<img class='card-img-top' src='https://daotao.ulis.vnu.edu.vn/files/uploads/2018/04/thong-bao660x350-600x350.png'><hr><big><center style='color:#3794ff;'> Cài xong nếu báo hoàn thành thì vào lịch sử mua đơn bên dưới chữ thanh toán kiểm tra xem hệ thống đã nhận đơn chưa , nếu chưa thì inbox admin ktra</big></b>";
+                                sangml.innerHTML = "<img class='card-img-top' src='https://daotao.ulis.vnu.edu.vn/files/uploads/2018/04/thong-bao660x350-600x350.png'><hr><big><center style='color:#3794ff;'> Đọc kĩ mô tả và lưu ý trước khi dùng</big></b>";
                                 swal({
                                     content: sangml,
                                     buttons: false
