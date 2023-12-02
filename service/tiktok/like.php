@@ -66,12 +66,12 @@ switch ($_GET['act']) {
                         </div>
                     </div>
 -->
-                    <div class="form-check">
+               <!--     <div class="form-check">
                         <input class="form-check-input" disabled id="flexRadioDefault1" type="radio" name="sv" value="2" data-bs-toggle="collapse" data-bs-target="#sv2" aria-expanded="false" aria-controls="sv2" /><label class="form-check-label" for="flexRadioDefault1">Server Like 2 (<b><?= $gia2; ?>₫</b>) ( <span style="color: red;">Tim tây tốc độ nhanh, đôi khi delay 3h-12h không quá lâu, test ít cảm nhận </span>.Tốc độ tạm ổn 5k-10k+ / ngày <span style="color: red;">Max 50k</span> ) <span class="badge bg-success ">Lúc nhanh lúc chậm</span> </label>
                         <div id="sv2" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#sv2">
                             <div class="accordion-body alert alert-danger"> Không được đè đơn </div>
                         </div>
-                    </div>
+                    </div>  -->
                     <!--
                     <div class="form-check">
                         <input class="form-check-input"  id="flexRadioDefault1" type="radio" name="sv" value="3" data-bs-toggle="collapse" data-bs-target="#sv3" aria-expanded="false" aria-controls="sv2" /><label class="form-check-label" for="flexRadioDefault1">Server Like 3 (<b><?= $gia3; ?>₫</b>) (Tim việt , lên thiếu 20-40% , tốc độ ổn đinh nhất nên đùng, tài nguyên max 5k. Nên cài sl nhỏ lên được hãy cài tiếp )
