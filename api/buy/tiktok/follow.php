@@ -8,7 +8,7 @@ require_once('../../../module/tiktok.php');
 require_once('../../../module/autofb88.php');
 $gia = $gia1;
 $min = '100';
-$max = 3000;
+$max = 10000;
 $api = new Api();
 $array = [];
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
