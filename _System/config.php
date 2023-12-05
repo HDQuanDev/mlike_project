@@ -19,7 +19,7 @@ if (isset($page)) {
     } elseif ($page == 'like_fb') {
         $sv4 = 'on';
     } elseif ($page == 'page_fb') {
-        $sv2 = 'off';
+        $sv2 = 'on';
     } elseif ($page == 'share_fb') {
         $sv4 = 'off';
         $sv5 = 'off';
