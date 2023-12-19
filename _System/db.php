@@ -363,7 +363,7 @@ if (isset($login) || isset($_POST['token'])) {
                     $gia5 = 0.13;
                     $gia6 = 0.079;
                     $gia7 = 0.345;
-                    $gia8 = 0.0456;
+                    $gia8 = 0.045;
                 } elseif ($page == 'tim_tt') {
                     $gia1 = 15;
                     $gia2 = 17;
@@ -506,7 +506,7 @@ if (isset($login) || isset($_POST['token'])) {
                     $gia5 = 0.13;
                     $gia6 = 0.79;
                     $gia7 = 0.345;
-                    $gia8 = 0.0456;
+                    $gia8 = 0.045;
                 } elseif ($page == 'tim_tt') {
                     $gia1 = 16;
                     $gia2 = 19;
@@ -649,7 +649,7 @@ if (isset($login) || isset($_POST['token'])) {
                     $gia5 = 0.13;
                     $gia6 = 0.079;
                     $gia7 = 0.345;
-                    $gia8 = 0.0456;
+                    $gia8 = 0.045;
                 } elseif ($page == 'tim_tt') {
                     $gia1 = 16;
                     $gia2 = 19;

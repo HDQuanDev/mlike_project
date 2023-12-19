@@ -57,7 +57,7 @@ switch ($_GET['act']) {
                         </div>
                     </div> -->
                     <div class="form-check">
-                        <input class="form-check-input" checked id="flexRadioDefault1" type="radio" name="sv" value="3" data-bs-toggle="collapse" data-bs-target="#sv3" aria-expanded="false" aria-controls="sv3" /><label class="form-check-label" for="flexRadioDefault1">Server Follow 3 (<b><?= $gia3; ?>₫</b>) ( Follow việt, tốc độ chậm 200-300 follow / ngày, tài nguyên ít cài ít lên được hãy cài tiếp ,Max 5k follow )<span class="badge bg-danger">Cực chậm</span> </label></label>
+                        <input class="form-check-input" checked id="flexRadioDefault1" type="radio" name="sv" value="3" data-bs-toggle="collapse" data-bs-target="#sv3" aria-expanded="false" aria-controls="sv3" /><label class="form-check-label" for="flexRadioDefault1">Server Follow 3 (<b><?= $gia3; ?>₫</b>) ( Follow việt, tốc độ chậm 3000-5000 follow / ngày, tài nguyên ít cài ít lên được hãy cài tiếp ,Max 30k+ follow )<span class="badge bg-success">Trung bình</span> </label></label>
                         <div class="collapse" id="sv3">
                         </div>
                     </div>

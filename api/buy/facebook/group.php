@@ -205,10 +205,10 @@ switch ($_GET['act']) {
                         $crow = mysqli_fetch_row($cres);
                         $lcheckl = $crow[0];
                         $lcheck = $lcheckl + $sl;
-                        $mcheck = 10000 - $lcheckl;
-                        if ($lcheck > '10000') {
+                        $mcheck = 20000 - $lcheckl;
+                        if ($lcheck > '20000') {
                             $array["status"] = 'error';
-                            $array["msg"] = 'Số lượng tối đa của 1 ID có thể mua là 10000 Member (Bạn có thể mua thêm ' . $mcheck . ' Member cho ID này!) hoặc bạn đã spam nhiều lần vui lòng dùng server khác';
+                            $array["msg"] = 'Số lượng tối đa của 1 ID có thể mua là 20000 Member (Bạn có thể mua thêm ' . $mcheck . ' Member cho ID này!) hoặc bạn đã spam nhiều lần vui lòng dùng server khác';
                         } else {
                             $tg = date("G:i:s d/m/Y", time());
                             $send_tlc = json_decode(telegram_send('32075', '<b>***Bạn vừa có một đơn hàng Member Group Facebook Mới***</b>%0A- ID: <a href="https://facebook.com/' . $id . '">' . $id . '</a>%0A- Số lượng: ' . $sl . ' Member%0A- Người mua: <a href="https://mlike.vn/admin/user.php?edit=' . $login . '">' . $login . '</a>%0A- Thời Gian: ' . $tg . '%0A- Để kiểm tra vui lòng: <a href="https://mlike.vn/service/group.php">ấn vào đây</a>%0A(<b>QBOT Notification</b>)'));
