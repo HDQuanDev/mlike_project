@@ -3,7 +3,7 @@
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://www.disify.com/api/email/' . $_GET['mail'],
+    CURLOPT_URL => 'http://api.eva.pingutil.com/email?email=' . $_GET['mail'],
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => '',
     CURLOPT_MAXREDIRS => 10,

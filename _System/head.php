@@ -498,13 +498,13 @@ $viewtt = mysqli_num_rows($viewtt);
                                     $msg = 'Email của bạn đã được sử dụng bởi người khác, vui lòng <a style="color:green;" data-bs-toggle="modal" data-original-title="test" data-bs-target="#change_email" data-bs-original-title="" title="">Click tại đây</a> để đổi email khác để bảo mật tài khoản và sửa dụng được các chức năng quên mật khẩu,...';
                                     $show_modal = true;
                                     $modal_id = 'change_email';
-                                } elseif ($validmail->disposable == true) {
+                                } elseif ($validmail->data->disposable == true) {
                                     $show = true;
                                     $color = 'danger';
                                     $msg = 'Email của bạn đang là email ảo, vui lòng <a style="color:green;" data-bs-toggle="modal" data-original-title="test" data-bs-target="#change_email" data-bs-original-title="" title="">Click tại đây</a> để đổi email khác để bảo mật tài khoản và sửa dụng được các chức năng quên mật khẩu,...';
                                     $show_modal = true;
                                     $modal_id = 'change_email';
-                                } elseif ($validmail->dns == false) {
+                                } elseif ($validmail->data->deliverable == false) {
                                     $show = true;
                                     $color = 'danger';
                                     $msg = 'Địa chỉ email của bạn hiện đang không thể nhận được thư, vui lòng <a style="color:green;" data-bs-toggle="modal" data-original-title="test" data-bs-target="#change_email" data-bs-original-title="" title="">Click tại đây</a> để đổi email khác để bảo mật tài khoản và sửa dụng được các chức năng quên mật khẩu,...';
