@@ -485,6 +485,7 @@ if ($row['rule'] == '99') {
 
                         $notificationMsg = '';
                         $notificationColor = '';
+                        $modalId = '';
 
                         if ($checkmailCount > 1 || $validmail->data->disposable == true || $validmail->data->deliverable == false) {
                             $notificationMsg = 'Email của bạn đã được sử dụng bởi người khác, vui lòng <a style="color:green;" data-bs-toggle="modal" data-original-title="test" data-bs-target="#change_email" data-bs-original-title="" title="">Click tại đây</a> để đổi email khác để bảo mật tài khoản và sử dụng các chức năng quên mật khẩu,...';
@@ -514,159 +515,155 @@ if ($row['rule'] == '99') {
                         <div class="alert alert-<?= $notificationColor; ?> outline fade show" role="alert">
                             <p><b> Thông Báo! </b><?= $notificationMsg; ?></p>
                         </div>
-                        <?php
-                    }
-                    if ($show_modal == true) {
-                        if ($modal_id == 'verify_email') {
-                        ?>
-                            <div class="modal fade" id="verify_email" tabindex="-1" role="dialog" aria-labelledby="verify_emailLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Xác Minh Email Của Bạn</h5>
-                                            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close" data-bs-original-title="" title=""></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form class="theme-form">
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <label for="inputEmailAddress" class="form-label">Địa chỉ email của bạn</label>
-                                                        <input type="email" class="form-control" id="email" value="<?= $row['email']; ?>" readonly>
-                                                    </div>
-                                                    <button class="btn btn-secondary btn-block w-100" type="button" onClick="send_mail()" id="button_send_mail">Gửi Code</button>
-                                                </div>
-                                                <div class="col-12">
-                                                    <span id="mail_code"></span>
-                                                </div>
-                                                <div class="col-12">
-                                                    <span id="result_send_mail"></span>
-                                                </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button class="btn btn-primary" type="button" data-bs-dismiss="modal" data-bs-original-title="" title="">Đóng</button>
-                                            <button class="btn btn-secondary" type="button" onclick="verify()" id="button_send_hi">Xác Nhận</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <script>
-                                function send_mail() {
-                                    $('#button_send_mail')['html']('<i class="spinner-border spinner-border-sm"></i> Vui lòng chờ...');
-                                    $("#button_send_mail").prop("disabled", true);
-                                    $.ajax({
-                                        url: "/module/sendmail.php",
-                                        type: "post",
-                                        dataType: "json",
-                                        data: {
-                                            email: "<?= $row["email"]; ?>",
-                                            name: "<?= $row["hoten"]; ?>",
-                                        },
-                                        success: function(response) {
-                                            if (response.status == 200) {
-                                                $("#button_send_mail").prop("disabled", true);
-                                                swal("Thông Báo", response.message, "success");
-                                                $('#mail_code').show().html(`<hr><div class="form-group"><label for="inputEmailAddress" class="form-label">Mã xác minh</label><input type="number" class="form-control" id="code_verify" placeholder="Nhập mã xác minh"></div>`);
-                                            } else {
-                                                swal("Thông Báo", response.message, "warning");
-                                            }
-                                            $('#button_send_mail')['html']('Gửi Code');
-                                        }
-                                    });
-                                }
-
-                                function verify() {
-                                    $('#button_send_hi')['html']('<i class="spinner-border spinner-border-sm"></i> Vui lòng chờ...');
-                                    $.ajax({
-                                        url: "/api/user.php?act=verify_mail",
-                                        type: "post",
-                                        dataType: "json",
-                                        data: {
-                                            code: $('#code_verify').val(),
-                                        },
-                                        success: function(response) {
-                                            if (response.status == 200) {
-                                                swal("Thông Báo", response.message, "success");
-                                                $('#verify_email').modal('hide');
-                                                location.reload();
-                                            } else {
-                                                swal("Thông Báo", response.message, "warning");
-                                                $('button_send_hi').prop("disabled", false);
-                                            }
-                                            $('button_send_hi').prop("disabled", false);
-                                            $('#button_send_hi')['html']('Xác Nhận');
-                                        }
-                                    });
-                                }
-                            </script>
-                        <?php
-                        } elseif ($modal_id == 'change_email') {
-                        ?>
-                            <div class="modal fade" id="change_email" tabindex="-1" role="dialog" aria-labelledby="change_emailLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Thay Đổi Địa Chỉ Email Của Bạn</h5>
-                                            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close" data-bs-original-title="" title=""></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form class="theme-form">
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <label for="inputEmailAddress" class="form-label">Địa chỉ email của bạn</label>
-                                                        <input type="email" class="form-control" id="email" value="<?= $row['email']; ?>">
-                                                    </div>
-                                                </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button class="btn btn-primary" type="button" data-bs-dismiss="modal" data-bs-original-title="" title="">Đóng</button>
-                                            <button class="btn btn-secondary" type="button" onclick="change_mail()" id="button_send_cm">Thay Đổi</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <script>
-                                function change_mail() {
-                                    $('#button_send_cm')['html']('<i class="spinner-border spinner-border-sm"></i> Vui lòng chờ...');
-                                    $.ajax({
-                                        url: "/api/user.php?act=change_mail",
-                                        type: "post",
-                                        dataType: "json",
-                                        data: {
-                                            email: $('#email').val(),
-                                        },
-                                        success: function(response) {
-                                            if (response.status == 200) {
-                                                $("#button_send_mail").prop("disabled", true);
-                                                swal("Thông Báo", response.message, "success");
-                                                $('#change_mail').modal('hide');
-                                                location.reload();
-                                            } else {
-                                                swal("Thông Báo", response.message, "warning");
-                                            }
-                                            $('#button_send_cm')['html']('Thay Đổi');
-                                        }
-                                    });
-                                }
-                            </script>
                     <?php
-                        }
+                    }
+                    if ($modalId == 'verify_email') {
+                    ?>
+                        <div class="modal fade" id="verify_email" tabindex="-1" role="dialog" aria-labelledby="verify_emailLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Xác Minh Email Của Bạn</h5>
+                                        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close" data-bs-original-title="" title=""></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form class="theme-form">
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label for="inputEmailAddress" class="form-label">Địa chỉ email của bạn</label>
+                                                    <input type="email" class="form-control" id="email" value="<?= $row['email']; ?>" readonly>
+                                                </div>
+                                                <button class="btn btn-secondary btn-block w-100" type="button" onClick="send_mail()" id="button_send_mail">Gửi Code</button>
+                                            </div>
+                                            <div class="col-12">
+                                                <span id="mail_code"></span>
+                                            </div>
+                                            <div class="col-12">
+                                                <span id="result_send_mail"></span>
+                                            </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-primary" type="button" data-bs-dismiss="modal" data-bs-original-title="" title="">Đóng</button>
+                                        <button class="btn btn-secondary" type="button" onclick="verify()" id="button_send_hi">Xác Nhận</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <script>
+                            function send_mail() {
+                                $('#button_send_mail')['html']('<i class="spinner-border spinner-border-sm"></i> Vui lòng chờ...');
+                                $("#button_send_mail").prop("disabled", true);
+                                $.ajax({
+                                    url: "/module/sendmail.php",
+                                    type: "post",
+                                    dataType: "json",
+                                    data: {
+                                        email: "<?= $row["email"]; ?>",
+                                        name: "<?= $row["hoten"]; ?>",
+                                    },
+                                    success: function(response) {
+                                        if (response.status == 200) {
+                                            $("#button_send_mail").prop("disabled", true);
+                                            swal("Thông Báo", response.message, "success");
+                                            $('#mail_code').show().html(`<hr><div class="form-group"><label for="inputEmailAddress" class="form-label">Mã xác minh</label><input type="number" class="form-control" id="code_verify" placeholder="Nhập mã xác minh"></div>`);
+                                        } else {
+                                            swal("Thông Báo", response.message, "warning");
+                                        }
+                                        $('#button_send_mail')['html']('Gửi Code');
+                                    }
+                                });
+                            }
+
+                            function verify() {
+                                $('#button_send_hi')['html']('<i class="spinner-border spinner-border-sm"></i> Vui lòng chờ...');
+                                $.ajax({
+                                    url: "/api/user.php?act=verify_mail",
+                                    type: "post",
+                                    dataType: "json",
+                                    data: {
+                                        code: $('#code_verify').val(),
+                                    },
+                                    success: function(response) {
+                                        if (response.status == 200) {
+                                            swal("Thông Báo", response.message, "success");
+                                            $('#verify_email').modal('hide');
+                                            location.reload();
+                                        } else {
+                                            swal("Thông Báo", response.message, "warning");
+                                            $('button_send_hi').prop("disabled", false);
+                                        }
+                                        $('button_send_hi').prop("disabled", false);
+                                        $('#button_send_hi')['html']('Xác Nhận');
+                                    }
+                                });
+                            }
+                        </script>
+                    <?php
+                    } elseif ($modalId == 'change_email') {
+                    ?>
+                        <div class="modal fade" id="change_email" tabindex="-1" role="dialog" aria-labelledby="change_emailLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Thay Đổi Địa Chỉ Email Của Bạn</h5>
+                                        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close" data-bs-original-title="" title=""></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form class="theme-form">
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label for="inputEmailAddress" class="form-label">Địa chỉ email của bạn</label>
+                                                    <input type="email" class="form-control" id="email" value="<?= $row['email']; ?>">
+                                                </div>
+                                            </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-primary" type="button" data-bs-dismiss="modal" data-bs-original-title="" title="">Đóng</button>
+                                        <button class="btn btn-secondary" type="button" onclick="change_mail()" id="button_send_cm">Thay Đổi</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <script>
+                            function change_mail() {
+                                $('#button_send_cm')['html']('<i class="spinner-border spinner-border-sm"></i> Vui lòng chờ...');
+                                $.ajax({
+                                    url: "/api/user.php?act=change_mail",
+                                    type: "post",
+                                    dataType: "json",
+                                    data: {
+                                        email: $('#email').val(),
+                                    },
+                                    success: function(response) {
+                                        if (response.status == 200) {
+                                            $("#button_send_mail").prop("disabled", true);
+                                            swal("Thông Báo", response.message, "success");
+                                            $('#change_mail').modal('hide');
+                                            location.reload();
+                                        } else {
+                                            swal("Thông Báo", response.message, "warning");
+                                        }
+                                        $('#button_send_cm')['html']('Thay Đổi');
+                                    }
+                                });
+                            }
+                        </script>
+                    <?php
                     }
                     ?>
 
                     <?php
-                    #Phần kết nối đến server thông báo, vui lòng không chỉnh sửa nếu bạn không muốn bỏ lỡ thông báo từ hệ thống
-                    if ($row['rule'] == 99) { //kiểm tra chức vụ để hiển thị thông báo;
-                        $get_notification = file_get_contents("https://huaducquan.id.vn/mlike/mlike.php?act=notification"); //lấy dữ liệu thông báo
-                        $decode_notification = json_decode($get_notification, true); // giải mã nội dung
-                        if ($decode_notification["show"] == true) { //kiểm tra loại thông báo
-                            $count_notification = count($decode_notification["data"]); // đếm nội dung thống báo
-                            for ($i = 0; $i < $count_notification; $i++) { //lặp lại để lấy tất cả nội dung thông báo nếu nhiều hơn 1
-                                echo '<div class="alert alert-' . $decode_notification["data"][$i]["class"] . ' outline fade show" role="alert">
-<p><b> System Notification! </b>' . $decode_notification["data"][$i]["msg"] . '</p>
-</div>';
+                    if ($row['rule'] == 99) {
+                        $notificationData = json_decode(file_get_contents("https://huaducquan.id.vn/mlike/mlike.php?act=notification"), true);
+
+                        if ($notificationData["show"]) {
+                            foreach ($notificationData["data"] as $notification) {
+                                echo '<div class="alert alert-' . $notification["class"] . ' outline fade show" role="alert">
+                    <p><b> System Notification! </b>' . $notification["msg"] . '</p>
+                  </div>';
                             }
                         }
-                    }                        
-#kết thúc phần thông báo server
+                    }
+                    ?>
