@@ -28,35 +28,49 @@ if (isset($_COOKIE["username"]) && isset($_COOKIE["password"])) {
 <html lang="vi-VN">
 
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--favicon-->
+
+    <!-- Favicon -->
     <link rel="icon" href="<?= $cdn; ?>/images/icon.png" type="image/png" />
+
+    <!-- Ảnh đại diện -->
     <meta itemprop="image" content="<?= $cdn; ?>/images/top.png">
+
+    <!-- Tác giả -->
     <meta name="author" content="Nguyễn Ngọc Thanh Sang">
+
+    <!-- Mô tả -->
     <meta name="description" content="Nền Tảng Tăng Tương Tác Cho Các Dịch Vụ Truyền Thông Mạng Xã Hội. Uy Tín, Nhanh Chóng, Chất Lượng, Giá Rẻ. Những Gì Bạn Cần Tăng - Chúng Tôi Có Cung Cấp. Phát triển ngay mọi nền tảng mạng xã hội của bạn với dịch vụ của chúng tôi. Trở Thành Idol Mạng Xã Hội Không Khó">
-    <!-- seo facebook -->
+
+    <!-- SEO Facebook -->
     <meta property="og:url" content="<?= $url; ?>" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="MLIKE.VN - Nhà cung cấp dịch vụ mạng xã hội hàng đầu Việt Nam" />
-    <meta property="og:description" content="Cung cấp Dịch vụ fb, instagram , tiktok, youtube siêu rẻ, ở đâu rẻ hơn Mlike rẻ hơn nữa" />
+    <meta property="og:description" content="Cung cấp Dịch vụ fb, instagram, tiktok, youtube siêu rẻ, ở đâu rẻ hơn Mlike rẻ hơn nữa" />
     <meta name="revisit-after" content="1 days" />
     <meta property="og:image" content="<?= $cdn; ?>/images/top.png" />
-    <!--plugins-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css?t=<?= time(); ?>" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Plugins -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <!-- Bootstrap css-->
+
+    <!-- Bootstrap css -->
     <link rel="stylesheet" type="text/css" href="<?= $cdn; ?>/css/vendors/bootstrap.css">
-    <!-- App css-->
+
+    <!-- App css -->
     <link rel="stylesheet" type="text/css" href="<?= $cdn; ?>/css/style.css">
     <link id="color" rel="stylesheet" href="<?= $cdn; ?>/css/color-1.css" media="screen">
-    <!-- Responsive css-->
+
+    <!-- Responsive css -->
     <link rel="stylesheet" type="text/css" href="<?= $cdn; ?>/css/responsive.css">
+
+    <!-- Tiêu đề trang -->
     <title>MLIKE.VN - Nhà cung cấp dịch vụ mạng xã hội hàng đầu Việt Nam</title>
 </head>
+
 
 <body class="landing-page">
     <!-- tap on top starts-->
@@ -364,18 +378,18 @@ if (isset($_COOKIE["username"]) && isset($_COOKIE["password"])) {
     <!--footer end-->
     </div>
     <!-- latest jquery-->
-    <script src="<?= $cdn; ?>/js/jquery-3.6.0.min.js"></script>
+    <script src="<?= $cdn; ?>/js/jquery-3.6.0.min.js" async defer></script>
     <!-- Bootstrap js-->
-    <script src="<?= $cdn; ?>/js/bootstrap/bootstrap.bundle.min.js"></script>
-    <!-- scrollbar js-->
+    <script src="<?= $cdn; ?>/js/bootstrap/bootstrap.bundle.min.js" async defer></script>
     <!-- Sidebar jquery-->
-    <script src="<?= $cdn; ?>/js/config.js"></script>
-    <script src="<?= $cdn; ?>/js/landing_sticky.js"></script>
-    <script src="<?= $cdn; ?>/js/landing.js"></script>
-
-    <script src="<?= $cdn; ?>/js/sweet-alert/sweetalert.min.js"></script>
+    <script src="<?= $cdn; ?>/js/config.js" async defer></script>
+    <script src="<?= $cdn; ?>/js/landing_sticky.js" async defer></script>
+    <script src="<?= $cdn; ?>/js/landing.js" async defer></script>
+    <!-- SweetAlert js-->
+    <script src="<?= $cdn; ?>/js/sweet-alert/sweetalert.min.js" async defer></script>
     <!-- Template js-->
-    <script src="<?= $cdn; ?>/js/script.js"></script>
+    <script src="<?= $cdn; ?>/js/script.js" async defer></script>
+
     <!-- login js-->
     <script>
         function load_ajax() {
