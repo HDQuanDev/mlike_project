@@ -48,8 +48,6 @@ if (isset($_COOKIE["username"]) && isset($_COOKIE["password"])) {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <!-- Themify icon-->
-    <link rel="stylesheet" type="text/css" href="/assets/css/vendors/themify.css">
     <!-- Bootstrap css-->
     <link rel="stylesheet" type="text/css" href="<?= $cdn; ?>/css/vendors/bootstrap.css">
     <!-- App css-->
@@ -58,9 +56,6 @@ if (isset($_COOKIE["username"]) && isset($_COOKIE["password"])) {
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="<?= $cdn; ?>/css/responsive.css">
     <title>MLIKE.VN - Nhà cung cấp dịch vụ mạng xã hội hàng đầu Việt Nam</title>
-
-
-    <script src="https://www.google.com/recaptcha/api.js?render=6Ldz7YwhAAAAAFpulWMUt4GwxVNEEAzUGaEGxUWJ"></script>
 </head>
 
 <body class="landing-page">
