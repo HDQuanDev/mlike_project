@@ -1,12 +1,7 @@
 <?php
-//$page = 'login';
 require_once('db.php');
-if ($title) {
-    $t = '' . $title . ' | ' . $s['title'];
-} else {
-    $t = $s['title'];
-}
-$titl = '' . $title . '';
+
+// Get IP address of the client
 if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
     $ipp = $_SERVER['HTTP_CLIENT_IP'];
 } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
@@ -14,67 +9,60 @@ if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
 } else {
     $ipp = $_SERVER['REMOTE_ADDR'];
 }
-$ip = mysqli_query($db, "SELECT * FROM `online` WHERE `ip` = '$ipp' AND `site` = '$site'");
-$ip = mysqli_num_rows($ip);
-$timeon = time();
-if ($login) {
-    $onus = $login;
-    mysqli_query($db, "UPDATE `member` SET `last_ip_login` = '$ipp', `last_time_login` = '$timeon' WHERE `username` = '$login' AND `site` = '$site'");
-} else {
-    $onus = '123';
+
+// Function to perform a count query
+function countRows($db, $table, $condition = '')
+{
+    $query = "SELECT COUNT(*) as count FROM `$table` $condition";
+    $result = mysqli_query($db, $query);
+    $row = mysqli_fetch_assoc($result);
+    return $row['count'];
 }
 
+// Update online users or insert if not exists
+$timeon = time();
+$onus = $login ? $login : '123';
+$titl = $title ? "$title | {$s['title']}" : $s['title'];
+$ipCount = countRows($db, 'online', "WHERE `ip` = '$ipp' AND `site` = '$site'");
+if ($login) {
+    mysqli_query($db, "UPDATE `member` SET `last_ip_login` = '$ipp', `last_time_login` = '$timeon' WHERE `username` = '$login' AND `site` = '$site'");
+}
 
-//session_destroy();
-if ($ip >= 1) {
+if ($ipCount >= 1) {
     mysqli_query($db, "UPDATE `online` SET `time` = '$timeon', `user` = '$onus', `title` = '$titl' WHERE `ip` = '$ipp' AND `site` = '$site'");
 } else {
     mysqli_query($db, "INSERT INTO `online` (`ip`, `user`, `time`, `title`, `site`) VALUES ('$ipp', '$onus', '$timeon', '$titl', '$site')");
 }
-if ($uif != '1') {
-    if ($login) {
-        if ($row['active'] == '1') {
-            Header('Location:/user_update_info.php');
-            die();
-        }
-    }
+
+// Redirect users to update info page if necessary
+if ($uif != '1' && $login && $row['active'] == '1') {
+    header('Location: /user_update_info.php');
+    die();
 }
-$ls = mysqli_query($db, "SELECT * FROM `lichsu` WHERE `user` = '" . $_SESSION['u'] . "' AND `site` = '$site'");
-$ls = mysqli_num_rows($ls);
+
+// Count rows for various tables
+$ls = countRows($db, 'lichsu', "WHERE `user` = '" . $_SESSION['u'] . "' AND `site` = '$site'");
 $dz = time() - 300;
-$ckid = mysqli_query($db, "SELECT * FROM `online` WHERE `time` > '$dz' AND `site` = '$site'");
-$ckid = mysqli_num_rows($ckid);
-$dv = mysqli_query($db, "SELECT * FROM `dichvu` WHERE `bh` = '1' AND `nse` < '3' AND `site` = '$site'");
-$dv = mysqli_num_rows($dv);
-$bh = mysqli_query($db, "SELECT * FROM `dichvu` WHERE `bh` = '2' AND `nse` = '3' AND `site` = '$site'");
-$bh = mysqli_num_rows($bh);
-$cm = mysqli_query($db, "SELECT * FROM `dichvu` WHERE `dv` = 'Cmt' AND `site` = '$site'");
-$cm = mysqli_num_rows($cm);
-$pg = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `dv` = 'fb_page' AND `nse` = 'Server Fanpage 2' AND `site` = '$site'");
-$pg = mysqli_num_rows($pg);
-$sv_4 = mysqli_query($db, "SELECT * FROM `dichvu` WHERE `dv` = 'Like' AND `site` = '$site' AND `nse`='444'");
-$sv_4 = mysqli_num_rows($sv_4);
-$sv_cmt = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `dv` = 'fb_likecmt' AND `site` = '$site' AND `bh`='444'");
-$sv_cmt = mysqli_num_rows($sv_cmt);
-$vt = mysqli_query($db, "SELECT * FROM `video` WHERE `code` = '14' AND `site` = '$site'");
-$vt = mysqli_num_rows($vt);
-$sub = mysqli_query($db, "SELECT * FROM `dichvu` WHERE `dv` = 'Sub' AND `site` = '$site'");
-$sub = mysqli_num_rows($sub);
-$lt = mysqli_query($db, "SELECT * FROM `dichvu` WHERE (`bh` = '1' OR `bh` = '3') AND (`nse` = '4' OR `nse` = 'Server Share 3' OR `nse` = 'Server Share 4' OR `nse` = 'Server Follow 1') AND `site` = '$site'");
-$lt = mysqli_num_rows($lt);
-$tv = mysqli_query($db, "SELECT * FROM `member` WHERE `site` = '$site'");
-$tv = mysqli_num_rows($tv);
-$his = mysqli_query($db, "SELECT * FROM `lichsu` WHERE `site` = '$site'");
-$his = mysqli_num_rows($his);
-$vd = mysqli_query($db, "SELECT * FROM `video` WHERE `site` = '$site'");
-$vd = mysqli_num_rows($vd);
-$mm = mysqli_query($db, "SELECT * FROM `momo` WHERE `site` = '$site'");
-$mm = mysqli_num_rows($mm);
-$likettt = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `dv` = 'tiktok_like_tay'");
-$likettt = mysqli_num_rows($likettt);
-$viewtt = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `dv` = 'tiktok_view' AND `nse` = 'Server View 1'");
-$viewtt = mysqli_num_rows($viewtt);
+$ckid = countRows($db, 'online', "WHERE `time` > '$dz' AND `site` = '$site'");
+if ($row['rule'] == '99') {
+    $dv = countRows($db, 'dichvu', "WHERE `bh` = '1' AND `nse` < '3' AND `site` = '$site'");
+    $bh = countRows($db, 'dichvu', "WHERE `bh` = '2' AND `nse` = '3' AND `site` = '$site'");
+    $cm = countRows($db, 'dichvu', "WHERE `dv` = 'Cmt' AND `site` = '$site'");
+    $pg = countRows($db, 'dv_other', "WHERE `dv` = 'fb_page' AND `nse` = 'Server Fanpage 2' AND `site` = '$site'");
+    $sv_4 = countRows($db, 'dichvu', "WHERE `dv` = 'Like' AND `site` = '$site' AND `nse`='444'");
+    $sv_cmt = countRows($db, 'dv_other', "WHERE `dv` = 'fb_likecmt' AND `site` = '$site' AND `bh`='444'");
+    $vt = countRows($db, 'video', "WHERE `code` = '14' AND `site` = '$site'");
+    $sub = countRows($db, 'dichvu', "WHERE `dv` = 'Sub' AND `site` = '$site'");
+    $lt = countRows($db, 'dichvu', "WHERE (`bh` = '1' OR `bh` = '3') AND (`nse` IN ('4', 'Server Share 3', 'Server Share 4', 'Server Follow 1')) AND `site` = '$site'");
+    $tv = countRows($db, 'member', "WHERE `site` = '$site'");
+    $his = countRows($db, 'lichsu', "WHERE `site` = '$site'");
+    $vd = countRows($db, 'video', "WHERE `site` = '$site'");
+    $mm = countRows($db, 'momo', "WHERE `site` = '$site'");
+    $likettt = countRows($db, 'dv_other', "WHERE `dv` = 'tiktok_like_tay'");
+    $viewtt = countRows($db, 'dv_other', "WHERE `dv` = 'tiktok_view' AND `nse` = 'Server View 1'");
+}
 ?>
+
 
 <!doctype html>
 
@@ -102,7 +90,7 @@ $viewtt = mysqli_num_rows($viewtt);
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<?= $cdn; ?>/css/vendors/font-awesome.css">
-    <link rel="stylesheet" type="text/css" href="<?= $cdn; ?>/css/quan.css?v=<?= time(); ?>">
+    <link rel="stylesheet" type="text/css" href="<?= $cdn; ?>/css/quan.css">
     <!-- ico-font-->
     <link rel="stylesheet" type="text/css" href="<?= $cdn; ?>/css/vendors/icofont.css">
     <!-- Themify icon-->
@@ -118,9 +106,9 @@ $viewtt = mysqli_num_rows($viewtt);
     <link rel="stylesheet" type="text/css" href="<?= $cdn; ?>/css/vendors/vector-map.css">
     <link rel="stylesheet" type="text/css" href="<?= $cdn; ?>/css/vendors/datatables.css">
     <!-- Bootstrap css-->
-    <link rel="stylesheet" type="text/css" href="<?= $cdn; ?>/css/vendors/bootstrap.css?v=<?= time(); ?>">
+    <link rel="stylesheet" type="text/css" href="<?= $cdn; ?>/css/vendors/bootstrap.css">
     <!-- App css-->
-    <link rel="stylesheet" type="text/css" href="<?= $cdn; ?>/css/style.css?v=<?= time(); ?>">
+    <link rel="stylesheet" type="text/css" href="<?= $cdn; ?>/css/style.css">
     <link id="color" rel="stylesheet" href="<?= $cdn; ?>/css/color-1.css" media="screen">
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="<?= $cdn; ?>/css/responsive.css">
