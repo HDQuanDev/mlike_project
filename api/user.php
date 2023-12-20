@@ -15,9 +15,9 @@ if (isset($login)) {
             echo "<script>swal('Hệ Thống!','Địa chỉ email không hợp lệ!','warning');</script>";
           } elseif (!preg_match("/^[0-9]{10}$/", $sdt)) {
             echo "<script>swal('Hệ Thống!','Số điện thoại không hợp lệ!','warning');</script>";
-          } elseif ($validmail->disposable == true) {
+          } elseif ($validmail->data->disposable == true) {
             echo "<script>swal('Hệ Thống!','Vui lòng không sửa dụng email tạm thời hoặc email không tồn tại để cập nhật!','warning');</script>";
-          } elseif ($validmail->dns == false) {
+          } elseif ($validmail->data->deliverable == false) {
             echo "<script>swal('Hệ Thống!','Địa chỉ email này không thể nhận được thư, vui lòng sử dụng địa chỉ email khác!','warning');</script>";
           } elseif ($checkmail1 > 0) {
             echo "<script>swal('Hệ Thống!','Địa chỉ email đã được sử dụng!','warning');</script>";
