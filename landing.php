@@ -52,7 +52,6 @@ if (isset($_COOKIE["username"]) && isset($_COOKIE["password"])) {
     <meta property="og:image" content="<?= $cdn; ?>/images/top.png" />
 
     <!-- Plugins -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
@@ -362,13 +361,6 @@ if (isset($_COOKIE["username"]) && isset($_COOKIE["password"])) {
                 <div class="col-12">
                     <div class="footer-contain"><img class="img-fluid" src="<?= $cdn; ?>/images/logo/logo2.png" alt="">
                         <h2>Bạn còn băn khoăn gì nữa? Hãy sử dụng ngay</h2>
-                        <ul class="star-rate">
-                            <li><i class="fa fa-star font-warning"></i></li>
-                            <li><i class="fa fa-star font-warning"></i></li>
-                            <li><i class="fa fa-star font-warning"></i></li>
-                            <li><i class="fa fa-star font-warning"></i></li>
-                            <li><i class="fa fa-star font-warning"></i></li>
-                        </ul>
                         <div class="btn-footer"><a class="btn btn-lg btn-primary" href="/login.php" data-bs-original-title="" title="">Đăng Nhập</a><a class="btn btn-lg btn-secondary" href="/reg.php" data-bs-original-title="" title="">Đăng Ký</a></div>
                     </div>
                 </div>
@@ -378,17 +370,17 @@ if (isset($_COOKIE["username"]) && isset($_COOKIE["password"])) {
     <!--footer end-->
     </div>
     <!-- latest jquery-->
-    <script src="<?= $cdn; ?>/js/jquery-3.6.0.min.js" async defer></script>
+    <script src="<?= $cdn; ?>/js/jquery-3.6.0.min.js"></script>
     <!-- Bootstrap js-->
-    <script src="<?= $cdn; ?>/js/bootstrap/bootstrap.bundle.min.js" async defer></script>
+    <script src="<?= $cdn; ?>/js/bootstrap/bootstrap.bundle.min.js"></script>
     <!-- Sidebar jquery-->
-    <script src="<?= $cdn; ?>/js/config.js" async defer></script>
-    <script src="<?= $cdn; ?>/js/landing_sticky.js" async defer></script>
-    <script src="<?= $cdn; ?>/js/landing.js" async defer></script>
+    <script src="<?= $cdn; ?>/js/config.js"></script>
+    <script src="<?= $cdn; ?>/js/landing_sticky.js"></script>
+    <script src="<?= $cdn; ?>/js/landing.js"></script>
     <!-- SweetAlert js-->
-    <script src="<?= $cdn; ?>/js/sweet-alert/sweetalert.min.js" async defer></script>
+    <script src="<?= $cdn; ?>/js/sweet-alert/sweetalert.min.js"></script>
     <!-- Template js-->
-    <script src="<?= $cdn; ?>/js/script.js" async defer></script>
+    <script src="<?= $cdn; ?>/js/script.js"></script>
 
     <!-- login js-->
     <script>
