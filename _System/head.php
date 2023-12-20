@@ -234,7 +234,7 @@ if ($row['rule'] == '99') {
                                 </li>
                                 <li>
                                     <div class="d-flex align-items-start">
-                                        <div class="message-img bg-light-primary"><img src="https://graph.facebook.com/100050332187651/picture?width=60&amp;height=60&amp;access_token=6628568379|c1e620fa708a1d5696fb991c1bde5662" alt=""></div>
+                                        <div class="message-img bg-light-primary"><img src="https://ui-avatars.com/api/?background=random&name=QDEVS" alt="QUANDEV"></div>
                                         <div class="flex-grow-1">
                                             <h5 class="mb-1"><a href="https://www.facebook.com/quancp72h" target="_blank" data-bs-original-title="" title=""><span style="color:red;">Hứa Đức Quân</span> (Lập Trình Viên)</style="color:red;"></a></h5>
                                             <p>Đang ở: <strong>[Admin Privacy Protection]</strong></p>
