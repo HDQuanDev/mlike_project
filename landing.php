@@ -1174,17 +1174,17 @@ if (isset($_COOKIE["username"]) && isset($_COOKIE["password"])) {
     <!--footer end-->
     </div>
     <!-- latest jquery-->
-    <script src="<?= $cdn; ?>/js/jquery-3.6.0.min.js"></script>
+    <script async defer src="<?= $cdn; ?>/js/jquery-3.6.0.min.js"></script>
     <!-- Bootstrap js-->
-    <script src="<?= $cdn; ?>/js/bootstrap/bootstrap.bundle.min.js"></script>
+    <script async defer src="<?= $cdn; ?>/js/bootstrap/bootstrap.bundle.min.js"></script>
     <!-- Sidebar jquery-->
-    <script src="<?= $cdn; ?>/js/config.js"></script>
-    <script src="<?= $cdn; ?>/js/landing_sticky.js"></script>
-    <script src="<?= $cdn; ?>/js/landing.js"></script>
+    <script async defer src="<?= $cdn; ?>/js/config.js"></script>
+    <script async defer src="<?= $cdn; ?>/js/landing_sticky.js"></script>
+    <script async defer src="<?= $cdn; ?>/js/landing.js"></script>
     <!-- SweetAlert js-->
-    <script src="<?= $cdn; ?>/js/sweet-alert/sweetalert.min.js"></script>
+    <script async defer src="<?= $cdn; ?>/js/sweet-alert/sweetalert.min.js"></script>
     <!-- Template js-->
-    <script src="<?= $cdn; ?>/js/script.js"></script>
+    <script async defer src="<?= $cdn; ?>/js/script.js"></script>
 
     <!-- login js-->
     <script>
