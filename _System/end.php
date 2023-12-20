@@ -36,41 +36,41 @@ require_once('db.php');
 </div>
 <!-- latest jquery-->
 <!-- Bootstrap js-->
-<script async defer src="<?= $cdn; ?>/js/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="<?= $cdn; ?>/js/bootstrap/bootstrap.bundle.min.js"></script>
 <!-- feather icon js-->
-<script async defer src="<?= $cdn; ?>/js/icons/feather-icon/feather.min.js"></script>
-<script async defer src="<?= $cdn; ?>/js/icons/feather-icon/feather-icon.js"></script>
+<script src="<?= $cdn; ?>/js/icons/feather-icon/feather.min.js"></script>
+<script src="<?= $cdn; ?>/js/icons/feather-icon/feather-icon.js"></script>
 <!-- scrollbar js-->
-<script async src="<?= $cdn; ?>/js/scrollbar/simplebar.js"></script>
-<script async src="<?= $cdn; ?>/js/scrollbar/custom.js"></script>
+<script src="<?= $cdn; ?>/js/scrollbar/simplebar.js"></script>
+<script src="<?= $cdn; ?>/js/scrollbar/custom.js"></script>
 <!-- Sidebar jquery-->
-<script async defer src="<?= $cdn; ?>/js/config.js"></script>
-<script async defer src="<?= $cdn; ?>/js/sidebar-menu.js"></script>
-<script async defer src="<?= $cdn; ?>/js/clipboard/clipboard.min.js"></script>
-<script async defer src="<?= $cdn; ?>/js/custom-card/custom-card.js"></script>
-<script async defer src="<?= $cdn; ?>/js/notify/bootstrap-notify.min.js"></script>
-<script async defer src="<?= $cdn; ?>/js/dashboard/default.js"></script>
-<script async defer src="<?= $cdn; ?>/js/notify/index.js"></script>
-<script async defer src="<?= $cdn; ?>/js/typeahead/handlebars.js"></script>
-<script async defer src="<?= $cdn; ?>/js/typeahead/typeahead.bundle.js"></script>
-<script async defer src="<?= $cdn; ?>/js/typeahead/typeahead.custom.js"></script>
-<script async defer src="<?= $cdn; ?>/js/datatable/datatables/jquery.dataTables.min.js"></script>
-<script async defer src="<?= $cdn; ?>/js/datatable/datatables/datatable.custom.js"></script>
-<script async defer src="<?= $cdn; ?>/js/typeahead-search/handlebars.js"></script>
-<script async defer src="<?= $cdn; ?>/js/typeahead-search/typeahead-custom.js"></script>
-<script async defer src="<?= $cdn; ?>/js/tooltip-init.js"></script>
-<script async defer src="<?= $cdn; ?>/js/sweet-alert/sweetalert.min.js"></script>
-<script async defer src="<?= $cdn; ?>/js/sweet-alert/app.js"></script>
-<script async defer src="https://cdn.datatables.net/buttons/2.3.4/js/dataTables.buttons.min.js"></script>
-<script async defer src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.html5.min.js"></script>
-<script async defer src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-<script async defer src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-<script async defer src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="<?= $cdn; ?>/js/config.js"></script>
+<script src="<?= $cdn; ?>/js/sidebar-menu.js"></script>
+<script src="<?= $cdn; ?>/js/clipboard/clipboard.min.js"></script>
+<script src="<?= $cdn; ?>/js/custom-card/custom-card.js"></script>
+<script src="<?= $cdn; ?>/js/notify/bootstrap-notify.min.js"></script>
+<script src="<?= $cdn; ?>/js/dashboard/default.js"></script>
+<script src="<?= $cdn; ?>/js/notify/index.js"></script>
+<script src="<?= $cdn; ?>/js/typeahead/handlebars.js"></script>
+<script src="<?= $cdn; ?>/js/typeahead/typeahead.bundle.js"></script>
+<script src="<?= $cdn; ?>/js/typeahead/typeahead.custom.js"></script>
+<script src="<?= $cdn; ?>/js/datatable/datatables/jquery.dataTables.min.js"></script>
+<script src="<?= $cdn; ?>/js/datatable/datatables/datatable.custom.js"></script>
+<script src="<?= $cdn; ?>/js/typeahead-search/handlebars.js"></script>
+<script src="<?= $cdn; ?>/js/typeahead-search/typeahead-custom.js"></script>
+<script src="<?= $cdn; ?>/js/tooltip-init.js"></script>
+<script src="<?= $cdn; ?>/js/sweet-alert/sweetalert.min.js"></script>
+<script src="<?= $cdn; ?>/js/sweet-alert/app.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.3.4/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.html5.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 <!-- Template js-->
-<script async defer src="<?= $cdn; ?>/js/script.js"></script>
-<script async defer src="<?= $cdn; ?>/js/theme-customizer/customizer.js"> </script>
+<script src="<?= $cdn; ?>/js/script.js"></script>
+<script src="<?= $cdn; ?>/js/theme-customizer/customizer.js"> </script>
 <!-- login js-->
-<script async defer src="<?= $domain; ?>/assets/js/quan.js?v=<?= time(); ?>"></script>
+<script src="<?= $domain; ?>/assets/js/quan.js?v=<?= time(); ?>"></script>
 
 </body>
 
