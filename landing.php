@@ -52,7 +52,7 @@ if (isset($_COOKIE["username"]) && isset($_COOKIE["password"])) {
     <meta property="og:image" content="<?= $cdn; ?>/images/top.png" />
 
     <!-- Plugins -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
@@ -62,7 +62,7 @@ if (isset($_COOKIE["username"]) && isset($_COOKIE["password"])) {
 
     <!-- App css -->
     <link rel="stylesheet" type="text/css" href="<?= $cdn; ?>/css/style.css">
-    <link id="color" rel="stylesheet" href="<?= $cdn; ?>/css/color-1.css" media="screen">
+    <link id="color" rel="stylesheet" href="<?= $cdn; ?>/css/color-1.css">
 
     <!-- Responsive css -->
     <link rel="stylesheet" type="text/css" href="<?= $cdn; ?>/css/responsive.css">
