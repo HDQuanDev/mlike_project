@@ -243,8 +243,7 @@ if ($row['rule'] == '99') {
                                     </div>
                                 </li>
                                 <?php
-                                $ipp = mysqli_query($db, "SELECT * FROM `online` WHERE `time` >= '$dz' AND `site` = '$site' AND `user` != 'dramasee' ORDER BY id LIMIT 8");
-
+                                $ipp = mysqli_query($db, "SELECT * FROM `online` WHERE `time` >= '$dz' AND `site` = '$site' AND `user` != 'dramasee' ORDER BY id LIMIT 5");
                                 while ($ip = mysqli_fetch_assoc($ipp)) {
                                     $name = ($ip['user'] !== '123') ? $ip['user'] : 'Khách ghé thăm';
 
@@ -253,7 +252,7 @@ if ($row['rule'] == '99') {
                                         $ttonl = mysqli_fetch_assoc($onl);
 
                                         $rule = ($ttonl['rule'] == '99') ? '99' : '1';
-                                        $img = ($rule == '99') ? 'https://graph.facebook.com/' . $ttonl['idfb'] . '/picture?width=60&height=60&access_token=6628568379|c1e620fa708a1d5696fb991c1bde5662' : 'https://ui-avatars.com/api/?background=random&name=' . $name;
+                                        $img = 'https://ui-avatars.com/api/?background=random&name=' . $name;
                                     } else {
                                         $rule = '1';
                                         $img = 'https://ui-avatars.com/api/?background=random&name=' . $name;
@@ -425,7 +424,7 @@ if ($row['rule'] == '99') {
                                                 <div class="card">
                                                     <div class="card-body text-center bg-dark border-card">
                                                         <p class="mb-0">
-                                                            <img src="https://graph.facebook.com/<?= $row['idfb']; ?>/picture?width=110&height=110&access_token=6628568379|c1e620fa708a1d5696fb991c1bde5662" width="110" height="110" class="rounded-circle shadow" alt="">
+                                                            <img src="https://ui-avatars.com/api/?background=random&name=<?= $login; ?>" width="110" height="110" class="rounded-circle shadow" alt="">
                                                         <h5 class="mb-0 mt-5"><?= $login; ?></h5>
                                                         <p class="mb-3"><?= $cv; ?></p>
                                                         <div class="list-inline contacts-social mt-3 mb-3">
