@@ -1,19 +1,15 @@
 <?php
-//error_reporting(0);
 ob_start();
 session_start();
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 define('_PHPVERSION_', '7.4');
 define('_PHPRUN_', phpversion());
 define('_SITE_', 'https://mlike.vn');
-// initializing variables
 $login = $_SESSION['u'];
 require_once('config.php');
 require_once('function.php');
 
-//config tiktok
 $stttiktok = 'off';
-// connect to the database
 $db = mysqli_connect('localhost', 'mlike', 'WEJajXeMBHPeeWbt', 'mlike');
 if (!$db) {
     echo '{"status":"error","message":"Không thể kết nối đến CSDL/không tìm thấy CSDL","error_code": "' . mysqli_connect_errno() . '"}';
@@ -36,12 +32,7 @@ $cdn = 'https://mlike.vn/assets';
 
 $s = mysqli_query($db, "SELECT * FROM `system`");
 $s = mysqli_fetch_assoc($s);
-if (isset($_COOKIE["user"]) && isset($_COOKIE["pass"])) {
-    session_destroy();
-    setcookie("user", "", time() - 31556926, "/");
-    setcookie("pass", "", time() - 31556926, "/");
-    header('location:/');
-}
+
 if ($login) {
     $tko = mysqli_query($db, "SELECT * FROM `member` WHERE `username` = '$login' AND `site` = '$site'");
     $tko = mysqli_num_rows($tko);

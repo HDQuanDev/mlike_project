@@ -255,31 +255,33 @@ if (isset($_COOKIE["username"]) && isset($_COOKIE["password"])) {
     <!--layout section end-->
     <!-- counter-section start-->
     <?php
-    $r = mysqli_query($db, "SELECT * FROM `dv_other` ORDER BY `dv_other`.`id` DESC");
-    $rr = mysqli_fetch_assoc($r);
-    $dvo = $rr['id'];
+    $dv_other_result = mysqli_query($db, "SELECT COUNT(*) as count FROM `dv_other`");
+    $dv_other_row = mysqli_fetch_assoc($dv_other_result);
+    $dvo = $dv_other_row['count'];
 
-    $q = mysqli_query($db, "SELECT * FROM `dichvu` ORDER BY `dichvu`.`id` DESC");
-    $qq = mysqli_fetch_assoc($q);
-    $dv = $qq['id'];
-    $e = mysqli_query($db, "SELECT * FROM `video` ORDER BY `video`.`id` DESC");
-    $ee = mysqli_fetch_assoc($e);
-    $dvv = $ee['id'];
+    $dichvu_result = mysqli_query($db, "SELECT COUNT(*) as count FROM `dichvu`");
+    $dichvu_row = mysqli_fetch_assoc($dichvu_result);
+    $dv = $dichvu_row['count'];
+
+    $video_result = mysqli_query($db, "SELECT COUNT(*) as count FROM `video`");
+    $video_row = mysqli_fetch_assoc($video_result);
+    $dvv = $video_row['count'];
 
     $totaldv = $dvo + $dv + $dvv;
 
-    $u = mysqli_query($db, "SELECT * FROM `member` ORDER BY `member`.`id` DESC");
-    $uu = mysqli_fetch_assoc($u);
-    $user = $uu['id'];
+    $member_result = mysqli_query($db, "SELECT COUNT(*) as count FROM `member`");
+    $member_row = mysqli_fetch_assoc($member_result);
+    $user = $member_row['count'];
 
-    $l = mysqli_query($db, "SELECT * FROM `lichsu` ORDER BY `lichsu`.`id` DESC");
-    $ll = mysqli_fetch_assoc($l);
-    $history = $ll['id'];
+    $lichsu_result = mysqli_query($db, "SELECT COUNT(*) as count FROM `lichsu`");
+    $lichsu_row = mysqli_fetch_assoc($lichsu_result);
+    $history = $lichsu_row['count'];
 
-    $o = mysqli_query($db, "SELECT * FROM `online` ORDER BY `online`.`id` DESC");
-    $oo = mysqli_fetch_assoc($o);
-    $online = $oo['id'];
+    $online_result = mysqli_query($db, "SELECT COUNT(*) as count FROM `online`");
+    $online_row = mysqli_fetch_assoc($online_result);
+    $online = $online_row['count'];
     ?>
+
     <section class="counter-sec section-py-space" id="thongke">
         <div class="custom-container">
             <div class="row counter-block">
