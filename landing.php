@@ -52,7 +52,7 @@ if (isset($_COOKIE["username"]) && isset($_COOKIE["password"])) {
     <meta property="og:image" content="<?= $cdn; ?>/images/top.png" />
 
     <!-- Plugins -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" media="print" onload="this.media='all'">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
@@ -84,7 +84,7 @@ if (isset($_COOKIE["username"]) && isset($_COOKIE["password"])) {
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
-                        <nav class="navbar navbar-light p-0" id="navbar-example2"><a class="navbar-brand" href="javascript:void(0)"> <img class="img-fluid img-90" src="<?= $cdn; ?>/images/logo/logo3.png" alt=""></a>
+                        <nav class="navbar navbar-light p-0" id="navbar-example2"><a class="navbar-brand"> <img class="img-fluid img-90" src="<?= $cdn; ?>/images/logo/logo3.png" alt=""></a>
                             <ul class="landing-menu nav nav-pills">
                                 <li class="nav-item menu-back">back<i class="fa fa-angle-right"></i></li>
                                 <li class="nav-item"><a class="nav-link" href="#home">Trang Chủ</a></li>
@@ -103,7 +103,7 @@ if (isset($_COOKIE["username"]) && isset($_COOKIE["password"])) {
         </header>
         <!-- header end-->
         <!-- landing home start-->
-        <section class="landing-home" id="home"><img class="img-fluid bg-img-cover" src="<?= $cdn; ?>/images/landing/landing-home/home-bg.jpg" alt="">
+        <section class="landing-home" id="home"><img class="img-fluid bg-img-cover" src="<?= $cdn; ?>/images/landing/landing-home/home-bg.webp" alt="">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-5">
@@ -229,13 +229,13 @@ if (isset($_COOKIE["username"]) && isset($_COOKIE["password"])) {
                 <div class="row demo-block">
                     <div class="col-lg-6 col-sm-6 wow pulse">
                         <div class="demo-box">
-                            <div class="img-wrraper"><img class="img-fluid" src="<?= $cdn; ?>/images/icon/vietcombank.png" alt=""></div>
+                            <div class="img-wrraper"><img class="img-fluid" src="<?= $cdn; ?>/images/icon/vietcombank.webp" alt=""></div>
 
                         </div>
                     </div>
                     <div class="col-lg-6 col-sm-6 wow pulse">
                         <div class="demo-box">
-                            <div class="img-wrraper"><img class="img-fluid" src="<?= $cdn; ?>/images/icon/momo.png" alt=""></div>
+                            <div class="img-wrraper"><img class="img-fluid" src="<?= $cdn; ?>/images/icon/momo.webp" alt=""></div>
 
                         </div>
                     </div>
