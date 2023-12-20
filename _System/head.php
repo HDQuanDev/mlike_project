@@ -243,25 +243,49 @@ if ($row['rule'] == '99') {
                                     </div>
                                 </li>
                                 <?php
-                                $onlineQuery = mysqli_query($db, "SELECT online.*, member.rule, member.idfb FROM online LEFT JOIN member ON online.user = member.username WHERE online.time >= '$dz' AND online.site = '$site' AND online.user != 'dramasee' ORDER BY online.id LIMIT 8");
-                                while ($ip = mysqli_fetch_assoc($onlineQuery)) {
-                                    $name = ($ip['user'] !== '123') ? $ip['user'] : 'Khách ghé thăm';
-                                    $img = ($ip['user'] !== '123') ? (($ip['rule'] == '99') ? 'https://graph.facebook.com/' . $ip['idfb'] . '/picture?width=60&height=60&access_token=6628568379|c1e620fa708a1d5696fb991c1bde5662' : 'https://ui-avatars.com/api/?background=random&name=' . $name) : 'https://ui-avatars.com/api/?background=random&name=' . $name;
-                                    $rule = ($ip['rule'] == '99') ? '99' : '1';
-                                ?>
+                                $ipp = mysqli_query($db, "SELECT * FROM `online` WHERE `time` >= '$dz' AND `site` = '$site' AND `user` != 'dramasee' ORDER BY id LIMIT 8");
 
+                                while ($ip = mysqli_fetch_assoc($ipp)) {
+                                    $name = ($ip['user'] !== '123') ? $ip['user'] : 'Khách ghé thăm';
+
+                                    if ($name !== 'Khách ghé thăm') {
+                                        $onl = mysqli_query($db, "SELECT * FROM `member` WHERE `username` = '$name' AND `site` = '$site'");
+                                        $ttonl = mysqli_fetch_assoc($onl);
+
+                                        $rule = ($ttonl['rule'] == '99') ? '99' : '1';
+                                        $img = ($rule == '99') ? 'https://graph.facebook.com/' . $ttonl['idfb'] . '/picture?width=60&height=60&access_token=6628568379|c1e620fa708a1d5696fb991c1bde5662' : 'https://ui-avatars.com/api/?background=random&name=' . $name;
+                                    } else {
+                                        $rule = '1';
+                                        $img = 'https://ui-avatars.com/api/?background=random&name=' . $name;
+                                    }
+                                ?>
                                     <li>
                                         <div class="d-flex align-items-start">
                                             <div class="message-img bg-light-primary"><img src="<?= $img; ?>" alt=""></div>
                                             <div class="flex-grow-1">
-                                                <h5 class="mb-1"><a href="#"><?= ($rule == '99') ? '<span style="color:red;">' : ''; ?><?= $name; ?><?= ($rule == '99') ? '</span>' : ''; ?></a></h5>
+                                                <h5 class="mb-1"><a href="#">
+                                                        <?php
+                                                        if ($rule == '99') {
+                                                            echo '<span style="color:red;">';
+                                                        }
+                                                        ?>
+                                                        <?= $name; ?>
+                                                        <?php
+                                                        if ($rule == '99') {
+                                                            if ($name == 'dramasee') {
+                                                                echo '(Lập Trình Viên)';
+                                                            } else {
+                                                                echo '(Quản Trị Viên)';
+                                                            }
+                                                        }
+                                                        ?>
+                                                        </span></a></h5>
                                                 <p>Đang ở: <?php
-                                                            echo ($ip['rule'] == 99 && in_array($ip['username'], ['dramasee', 'BossSang'])) ? '<strong>[Admin Privacy Protection]</strong>' : $ip['title'];
+                                                            echo ($ttonl['rule'] == 99 && in_array($ttonl['username'], ['dramasee', 'BossSang'])) ? '<strong>[Admin Privacy Protection]</strong>' : $ip['title'];
                                                             ?></p>
                                             </div>
                                         </div>
                                     </li>
-
                                 <?php
                                 }
                                 ?>
