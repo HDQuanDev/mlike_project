@@ -52,12 +52,12 @@ require_once('db.php');
 <script src="<?= $cdn; ?>/js/custom-card/custom-card.js"></script>
 <script src="<?= $cdn; ?>/js/notify/bootstrap-notify.min.js"></script>
 <script src="<?= $cdn; ?>/js/dashboard/default.js"></script>
-<script src="<?= $cdn; ?>/js/notify/index.js?v=<?= time(); ?>"></script>
+<script src="<?= $cdn; ?>/js/notify/index.js"></script>
 <script src="<?= $cdn; ?>/js/typeahead/handlebars.js"></script>
 <script src="<?= $cdn; ?>/js/typeahead/typeahead.bundle.js"></script>
 <script src="<?= $cdn; ?>/js/typeahead/typeahead.custom.js"></script>
 <script src="<?= $cdn; ?>/js/datatable/datatables/jquery.dataTables.min.js"></script>
-<script src="<?= $cdn; ?>/js/datatable/datatables/datatable.custom.js?v=<?= time(); ?>"></script>
+<script src="<?= $cdn; ?>/js/datatable/datatables/datatable.custom.js"></script>
 <script src="<?= $cdn; ?>/js/typeahead-search/handlebars.js"></script>
 <script src="<?= $cdn; ?>/js/typeahead-search/typeahead-custom.js"></script>
 <script src="<?= $cdn; ?>/js/tooltip-init.js"></script>
@@ -69,7 +69,7 @@ require_once('db.php');
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 <!-- Template js-->
-<script src="<?= $cdn; ?>/js/script.js?v=<?= time(); ?>"></script>
+<script src="<?= $cdn; ?>/js/script.js"></script>
 <script src="<?= $cdn; ?>/js/theme-customizer/customizer.js"> </script>
 <!-- login js-->
 <script src="<?= $domain; ?>/assets/js/quan.js?v=<?= time(); ?>"></script>

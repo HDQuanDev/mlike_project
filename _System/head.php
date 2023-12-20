@@ -189,18 +189,23 @@ if ($row['rule'] == '99') {
                                     $sotien = $his['bd'];
                                     $kyhieu = $his['gt'];
                                     $tim = $his['time'];
-                                    if ($loai == '1') {
-                                        $sloai = 'Mua Dịch Vụ ' . $kyhieu . '' . number_format($sotien) . 'đ';
-                                        $icon = 'shopping-cart';
-                                    } elseif ($loai == '2') {
-                                        $sloai = 'Nạp Tiền ' . $kyhieu . '' . number_format($sotien) . 'đ';
-                                        $icon = 'shopping-bag';
-                                    } elseif ($loai == '3') {
-                                        $sloai = 'Thay Đổi Thông Tin';
-                                        $icon = 'edit-3';
-                                    } else {
-                                        $sloai = 'Dịch Vụ Không Xác Định';
-                                        $icon = 'help-circle';
+
+                                    switch ($loai) {
+                                        case '1':
+                                            $sloai = 'Mua Dịch Vụ ' . $kyhieu . '' . number_format($sotien) . 'đ';
+                                            $icon = 'shopping-cart';
+                                            break;
+                                        case '2':
+                                            $sloai = 'Nạp Tiền ' . $kyhieu . '' . number_format($sotien) . 'đ';
+                                            $icon = 'shopping-bag';
+                                            break;
+                                        case '3':
+                                            $sloai = 'Thay Đổi Thông Tin';
+                                            $icon = 'edit-3';
+                                            break;
+                                        default:
+                                            $sloai = 'Dịch Vụ Không Xác Định';
+                                            $icon = 'help-circle';
                                     }
                                 ?>
                                     <li>
@@ -214,6 +219,7 @@ if ($row['rule'] == '99') {
                                 <?php
                                 }
                                 ?>
+
                                 <li><a class="btn btn-primary" href="/history.php">Xem Chi Tiết & Tất Cả</a></li>
                             </ul>
                         </li>
@@ -237,53 +243,29 @@ if ($row['rule'] == '99') {
                                     </div>
                                 </li>
                                 <?php
-                                $ipp = mysqli_query($db, "SELECT * FROM `online` WHERE `time` >= '$dz' AND `site` = '$site' AND `user` != 'dramasee' ORDER BY id LIMIT 8");
-                                while ($ip = mysqli_fetch_assoc($ipp)) {
-                                    if ($ip['user'] !== '123') {
-                                        $name = $ip['user'];
-                                        $onl = mysqli_query($db, "SELECT * FROM `member` WHERE `username` = '$name' AND `site` = '$site'");
-                                        $ttonl = mysqli_fetch_assoc($onl);
-
-                                        if ($ttonl['rule'] == '99') {
-                                            $rule = '99';
-                                            $img = 'https://graph.facebook.com/' . $ttonl['idfb'] . '/picture?width=60&height=60&access_token=6628568379|c1e620fa708a1d5696fb991c1bde5662';
-                                        } else {
-                                            $rule = '1';
-                                            $img = 'https://ui-avatars.com/api/?background=random&name=' . $name . '';
-                                        }
-                                    } else {
-                                        $name = 'Khách ghé thăm';
-                                        $img = 'https://ui-avatars.com/api/?background=random&name=' . $name . '';
-                                        $rule = '1';
-                                    }
+                                $onlineQuery = mysqli_query($db, "SELECT online.*, member.rule, member.idfb FROM online LEFT JOIN member ON online.user = member.username WHERE online.time >= '$dz' AND online.site = '$site' AND online.user != 'dramasee' ORDER BY online.id LIMIT 8");
+                                while ($ip = mysqli_fetch_assoc($onlineQuery)) {
+                                    $name = ($ip['user'] !== '123') ? $ip['user'] : 'Khách ghé thăm';
+                                    $img = ($ip['user'] !== '123') ? (($ip['rule'] == '99') ? 'https://graph.facebook.com/' . $ip['idfb'] . '/picture?width=60&height=60&access_token=6628568379|c1e620fa708a1d5696fb991c1bde5662' : 'https://ui-avatars.com/api/?background=random&name=' . $name) : 'https://ui-avatars.com/api/?background=random&name=' . $name;
+                                    $rule = ($ip['rule'] == '99') ? '99' : '1';
                                 ?>
 
                                     <li>
                                         <div class="d-flex align-items-start">
                                             <div class="message-img bg-light-primary"><img src="<?= $img; ?>" alt=""></div>
                                             <div class="flex-grow-1">
-                                                <h5 class="mb-1"><a href="#"><? if ($rule == '99') {
-                                                                                    echo '<span style="color:red;">';
-                                                                                } ?><?= $name; ?> <? if ($rule == '99') {
-                                                                                                        if ($name == 'dramasee') {
-                                                                                                            echo '(Lập Trình Viên)';
-                                                                                                        } else {
-                                                                                                            echo '(Quản Trị Viên)';
-                                                                                                        }
-                                                                                                    } ?></span></a></h5>
+                                                <h5 class="mb-1"><a href="#"><?= ($rule == '99') ? '<span style="color:red;">' : ''; ?><?= $name; ?><?= ($rule == '99') ? '</span>' : ''; ?></a></h5>
                                                 <p>Đang ở: <?php
-                                                            if ($ttonl['rule'] == 99 && ($ttonl['username'] == 'dramasee' || $ttonl['username'] == 'BossSang')) {
-                                                                echo '<strong>[Admin Privacy Protection]</strong>';
-                                                            } else {
-                                                                echo $ip['title'];
-                                                            } ?></p>
+                                                            echo ($ip['rule'] == 99 && in_array($ip['username'], ['dramasee', 'BossSang'])) ? '<strong>[Admin Privacy Protection]</strong>' : $ip['title'];
+                                                            ?></p>
                                             </div>
-
                                         </div>
                                     </li>
-                                <?
+
+                                <?php
                                 }
                                 ?>
+
                             </ul>
                         </li>
                         <li class="profile-nav onhover-dropdown">
@@ -473,48 +455,41 @@ if ($row['rule'] == '99') {
                         <p><b> Thông Báo! </b>Vui lòng đọc lưu ý trước khi dùng tránh mất tiền oan</p>
                     </div>
                     <?php
-                    if ($row['active'] == '2') {
-                        if ($row['is_verify_mail'] == 'false') {
-                            if ($row['is_email_disposable'] == 'false') {
-                                $email = $row['email'];
-                                $validmail = json_decode(file_get_contents('https://mlike.vn/module/checkmail.php?mail=' . $email));
-                                $checkmail = mysqli_query($db, "SELECT * FROM `member` WHERE `email` = '$email' AND `is_verify_mail` = 'true'");
-                                $checkmail = mysqli_num_rows($checkmail);
-                                if ($checkmail > 1) {
-                                    $show = true;
-                                    $color = 'danger';
-                                    $msg = 'Email của bạn đã được sử dụng bởi người khác, vui lòng <a style="color:green;" data-bs-toggle="modal" data-original-title="test" data-bs-target="#change_email" data-bs-original-title="" title="">Click tại đây</a> để đổi email khác để bảo mật tài khoản và sửa dụng được các chức năng quên mật khẩu,...';
-                                    $show_modal = true;
-                                    $modal_id = 'change_email';
-                                } elseif ($validmail->data->disposable == true) {
-                                    $show = true;
-                                    $color = 'danger';
-                                    $msg = 'Email của bạn đang là email ảo, vui lòng <a style="color:green;" data-bs-toggle="modal" data-original-title="test" data-bs-target="#change_email" data-bs-original-title="" title="">Click tại đây</a> để đổi email khác để bảo mật tài khoản và sửa dụng được các chức năng quên mật khẩu,...';
-                                    $show_modal = true;
-                                    $modal_id = 'change_email';
-                                } elseif ($validmail->data->deliverable == false) {
-                                    $show = true;
-                                    $color = 'danger';
-                                    $msg = 'Địa chỉ email của bạn hiện đang không thể nhận được thư, vui lòng <a style="color:green;" data-bs-toggle="modal" data-original-title="test" data-bs-target="#change_email" data-bs-original-title="" title="">Click tại đây</a> để đổi email khác để bảo mật tài khoản và sửa dụng được các chức năng quên mật khẩu,...';
-                                    $show_modal = true;
-                                    $modal_id = 'change_email';
-                                } elseif ($row['is_verify_mail'] == 'false') {
-                                    $show = true;
-                                    $color = 'warning';
-                                    $msg = 'Email của bạn chưa được xác minh, vui lòng <a style="color:green;" data-bs-toggle="modal" data-original-title="test" data-bs-target="#verify_email" data-bs-original-title="" title="">Click tại đây</a> để xác minh email để bảo mật tài khoản và sửa dụng được các chức năng quên mật khẩu,...';
-                                    $show_modal = true;
-                                    $modal_id = 'verify_email';
-                                } else {
-                                    $show = false;
-                                    $show_modal = false;
-                                }
-                            }
+                    if ($row['active'] == '2' && $row['is_verify_mail'] == 'false' && $row['is_email_disposable'] == 'false') {
+                        $email = $row['email'];
+                        $validmail = json_decode(file_get_contents('https://mlike.vn/module/checkmail.php?mail=' . $email));
+                        $checkmailCount = mysqli_num_rows(mysqli_query($db, "SELECT * FROM `member` WHERE `email` = '$email' AND `is_verify_mail` = 'true'"));
+
+                        $notificationMsg = '';
+                        $notificationColor = '';
+
+                        if ($checkmailCount > 1 || $validmail->data->disposable == true || $validmail->data->deliverable == false) {
+                            $notificationMsg = 'Email của bạn đã được sử dụng bởi người khác, vui lòng <a style="color:green;" data-bs-toggle="modal" data-original-title="test" data-bs-target="#change_email" data-bs-original-title="" title="">Click tại đây</a> để đổi email khác để bảo mật tài khoản và sử dụng các chức năng quên mật khẩu,...';
+                            $notificationColor = 'danger';
+                            $modalId = 'change_email';
+                        } elseif ($validmail->data->disposable == true) {
+                            $notificationMsg = 'Email của bạn đang là email ảo, vui lòng <a style="color:green;" data-bs-toggle="modal" data-original-title="test" data-bs-target="#change_email" data-bs-original-title="" title="">Click tại đây</a> để đổi email khác để bảo mật tài khoản và sử dụng các chức năng quên mật khẩu,...';
+                            $notificationColor = 'danger';
+                            $modalId = 'change_email';
+                        } elseif ($validmail->data->deliverable == false) {
+                            $notificationMsg = 'Địa chỉ email của bạn hiện đang không thể nhận được thư, vui lòng <a style="color:green;" data-bs-toggle="modal" data-original-title="test" data-bs-target="#change_email" data-bs-original-title="" title="">Click tại đây</a> để đổi email khác để bảo mật tài khoản và sử dụng các chức năng quên mật khẩu,...';
+                            $notificationColor = 'danger';
+                            $modalId = 'change_email';
+                        } elseif ($row['is_verify_mail'] == 'false') {
+                            $notificationMsg = 'Email của bạn chưa được xác minh, vui lòng <a style="color:green;" data-bs-toggle="modal" data-original-title="test" data-bs-target="#verify_email" data-bs-original-title="" title="">Click tại đây</a> để xác minh email để bảo mật tài khoản và sử dụng các chức năng quên mật khẩu,...';
+                            $notificationColor = 'warning';
+                            $modalId = 'verify_email';
+                        }
+
+                        if (!empty($notificationMsg)) {
+                            $showNotification = true;
                         }
                     }
-                    if ($show == true) {
+
+                    if ($showNotification) {
                     ?>
-                        <div class="alert alert-<?= $color; ?> outline fade show" role="alert">
-                            <p><b> Thông Báo! </b><?= $msg; ?></p>
+                        <div class="alert alert-<?= $notificationColor; ?> outline fade show" role="alert">
+                            <p><b> Thông Báo! </b><?= $notificationMsg; ?></p>
                         </div>
                         <?php
                     }
