@@ -41,8 +41,8 @@ require_once('db.php');
 <script async defer src="<?= $cdn; ?>/js/icons/feather-icon/feather.min.js"></script>
 <script async defer src="<?= $cdn; ?>/js/icons/feather-icon/feather-icon.js"></script>
 <!-- scrollbar js-->
-<script async defer src="<?= $cdn; ?>/js/scrollbar/simplebar.js"></script>
-<script async defer src="<?= $cdn; ?>/js/scrollbar/custom.js"></script>
+<script async src="<?= $cdn; ?>/js/scrollbar/simplebar.js"></script>
+<script async src="<?= $cdn; ?>/js/scrollbar/custom.js"></script>
 <!-- Sidebar jquery-->
 <script async defer src="<?= $cdn; ?>/js/config.js"></script>
 <script async defer src="<?= $cdn; ?>/js/sidebar-menu.js"></script>
