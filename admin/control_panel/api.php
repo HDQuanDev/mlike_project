@@ -198,7 +198,7 @@ switch ($_GET['act']) {
         $data_files = count(scandir('../../../../backup/database')) - 2;
 
         $get_fw = $api->GetFirewall();
-        $config = json_encode($get);
+        $config = json_encode($get_fw);
         $config = json_decode($config, true);
 
         $response = [
