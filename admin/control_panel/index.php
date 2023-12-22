@@ -137,8 +137,8 @@ require_once('../../_System/head.php');
                 <div class="fact-item">
                     <span class="icon icon-cloud-upload"></span>
                     <div class="details">
-                        <h3 class="mb-0 mt-0 number"><em id="backupsize">Loading...</em></h3>
-                        <p class="mb-0">Dung Lượng Backup</p>
+                        <h3 class="mb-0 mt-0 number"><em id="cachelog">Loading...</em></h3>
+                        <p class="mb-0">Bộ Nhớ Cache/Log</p>
                     </div>
                 </div>
             </div>
@@ -146,9 +146,14 @@ require_once('../../_System/head.php');
                 <div class="fact-item">
                     <span class="icon icon-chart"></span>
                     <div class="details">
-                        <h3 class="mb-0 mt-0 number"><em id="backupfile">Loading...</em></h3>
-                        <p class="mb-0">Site/Database</p>
+                        <h3 class="mb-0 mt-0 number"><em id="performentcahcelog">Loading...</em></h3>
+                        <p class="mb-0">Đã Tối Ưu</p>
                     </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <div class="alert alert-warning" role="alert">
+                    <p>Bạn đang sử dụng gói pro bạn sẽ được xóa và tối tư tự động hóa 300MB miễn phí, hệ thống này đang hoạt động thử nghiệm, để xóa và tối ưu lại vui lòng liên hệ facebook giá siêu rẻ!!</p>
                 </div>
             </div>
         </div>
@@ -173,35 +178,6 @@ require_once('../../_System/head.php');
                         <a href="#" class="btn btn-primary btn-rounded me-1 mb-1">Tối Ưu Hóa Server</a>
                         <hr>
                         <a href="#" data-toggle="modal" data-target="#updatetoken" target="_blank" class="btn btn-primary btn-rounded me-1 mb-1">Cập Nhập Token Facebook</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Buy Pro</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <ul class="list-unstyled">
-                            <li>Kiểm soát sâu đến server</li>
-                            <li>Hỗ trợ nhanh các vấn đề trong 24h kể từ khi nhận được yêu cầu</li>
-                            <li>Truy cập các chức năng theo IP</li>
-                            <li>Liên tục cập nhât bảng điều khiển, trực quan dễ dùng</li>
-                            <li>Và vô vàn tính năng mới sắp update</li>
-                        </ul>
-                        <div id="resultt"></div>
-                        <div id="resultt_loadbalace"></div>
-                    </div>
-                    <div class="modal-footer">
-                        <h3 class="mb-0 mt-0 number"><em>HSD: <?= $hsd; ?></em></h3>
-                        <button type="button" <? if ($bt_buy == 'false') {
-                                                    echo 'disabled';
-                                                } ?> class="btn btn-primary" onclick="load_ajax()" id="button">Buy</button>
                     </div>
                 </div>
             </div>
@@ -265,37 +241,17 @@ require_once('../../_System/head.php');
                 $('#mem_usage').text(data.ram);
                 $('#load').text(data.load);
                 $('#network').text(data.network);
-                $('#bandwidth').text(data.bandwidth);
-                $('#bandwidthdata').text(data.bandwidth_data);
-                $('#backupsize').text(data.backup_usage);
-                $('#backupfile').text(data.backup_size);
+                $('#bandwidth').text(data.bandwidth + 'GB');
+                $('#bandwidthdata').text(data.bandwidth_data + 'GB');
                 $('#fw_all_block').text(data.firewall.total_banned);
                 $('#fw_all_error').text(data.firewall.total_failed);
                 $('#fw_block').text(data.firewall.currently_banned);
                 $('#fw_block_error').text(data.firewall.currently_failed);
+                $('#cachelog').text(data.disklog.size);
+                $('#performentcahcelog').text('300MB');
             }
         });
     }, 1000);
-</script>
-<script>
-    function load_ajax() {
-        $('#button')['html']('<i class="spinner-border spinner-border-sm"></i> Vui lòng chờ...');
-        $.ajax({
-            url: "api.php?act=qrcode",
-            type: "post",
-            dataType: "text",
-            data: {
-                act: 'getqr',
-            },
-            success: function(result) {
-                $('#button')['html']('Buy');
-                $("#resultt").html(result);
-                setInterval(function() {
-                    $('#resultt_loadbalace').load('mlike.php?act=check_payment');
-                }, 1000);
-            }
-        });
-    }
 </script>
 <script>
     function load_token() {
@@ -315,32 +271,6 @@ require_once('../../_System/head.php');
                 $("#result_token").html(result);
             }
 
-        });
-    }
-</script>
-<script>
-    function load_backup() {
-        var token = <?= $_SESSION['key']; ?>;
-        $('#button_backup')['html']('<i class="spinner-border spinner-border-sm"></i> Vui lòng chờ...');
-        $("#button_backup")
-            .prop("disabled", true);
-        $.ajax({
-            url: "api.php?act=get_backup",
-            type: "post",
-            dataType: "text",
-            data: {
-                token,
-            },
-            success: function(result) {
-                $('#button_backup')['html']('Lấy Danh Sách File Backup');
-                console.log(result);
-                $("#result_backup").html(result);
-                $("#button_backup")
-                    .prop("disabled", false);
-            },
-            error: function(error) {
-                alert("error" + error);
-            }
         });
     }
 </script>

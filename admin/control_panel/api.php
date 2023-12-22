@@ -50,6 +50,15 @@ class bt_api
         $data = json_decode($result, true);
         return $result;
     }
+    public function GetDirSite($path)
+    {
+        $url = $this->BT_PANEL . '/files?action=GetDirSize';
+        $p_data = $this->GetKeyData();
+        $p_data['path'] = $path;
+        $result = $this->HttpPostCookie($url, $p_data);
+        $result = str_replace('"', '', $result);
+        return $result;
+    }
     private function GetKeyData()
     {
         $now_time = time();
@@ -156,9 +165,6 @@ $cpu_core = "128";
 $cpu_threat = "256";
 
 switch ($_GET['act']) {
-    case 'firewall_info':
-
-        break;
     case 'server_info':
 
         $cpu = $get["cpu"][0];
@@ -201,6 +207,8 @@ switch ($_GET['act']) {
         $config = json_encode($get_fw);
         $config = json_decode($config, true);
 
+        $get_disk = $api->GetDirSite('/www/wwwlogs');
+
         $response = [
             "cpu" => $cpu,
             "ram" => $ram,
@@ -208,16 +216,15 @@ switch ($_GET['act']) {
             "network" => $network,
             "bandwidth" => $bandwidth,
             "bandwidth_data" => $bandwidth_data,
-            "backup_size" => $backup_size,
-            "backup_usage" => $backup_usage,
-            "site_files" => $site_files,
-            "data_files" => $data_files,
             "firewall" => [
                 "total_banned" => $config["msg"]["total_banned"],
                 "total_failed" => $config["msg"]["total_failed"],
                 "currently_banned" => $config["msg"]["currently_banned"],
                 "currently_failed" => $config["msg"]["currently_failed"],
             ],
+            "disklog" => [
+                "size" => $get_disk,
+            ]
         ];
 
         echo json_encode($response);
@@ -297,7 +304,7 @@ switch ($_GET['act']) {
             </div>
         </div>
 
-        <?
+<?
         break;
     case 'qrcode':
         $img = 'https://img.vietqr.io/image/MB-0919982762-compact2.png?amount=300000&addInfo=buypro mlike&accountName=Hua Duc Quan';
@@ -312,104 +319,6 @@ switch ($_GET['act']) {
             fclose($fh);
             echo '<em><b>Cập Nhật Token Thành Công, Vui Lòng Tải Lại Trang!!</b></em>';
         }
-        break;
-    case 'get_backup':
-        if ($_POST['token'] == $_SESSION['key']) {
-            delete_files("file_backup/website");
-            mkdir("file_backup/website", 0755);
-            $files = recursiveSearch("../../../backup/site", "/^.*\.(tar.gz)$/");
-            $fileCount = count($files);
-            foreach ($files as $file) {
-                $get = explode("/", $file['path']);
-                $check = explode("_", $get[5]);
-                if ($check[1] != 'huaducquan.id.vn') {
-                    $new = 'file_backup/website/' . $get[5];
-                    copy($file['path'], $new);
-                }
-            }
-            delete_files("file_backup/database");
-            mkdir("file_backup/database", 0755);
-            $files = recursiveSearch("../../../backup/database", "/^.*\.(sql.gz)$/");
-            $fileCount = count($files);
-            foreach ($files as $file) {
-                $get = explode("/", $file['path']);
-                $check = explode("_", $get[5]);
-                if ($check[1] != 'hoadon') {
-                    $new = 'file_backup/database/' . $get[5];
-                    copy($file['path'], $new);
-                }
-            }
-            echo '<em><b>Danh Sách File Backup Website</em></b>';
-            $files = recursiveSearch("file_backup/website", "/^.*\.(tar.gz)$/");
-            $fileCount = count($files);
-            foreach ($files as $file) {
-                $get = explode("/", $file['path']);
-                $check = explode("_", $get[2]);
-                $ngay = $check[2];
-                $gio = explode(".", $check[3]);
-                $gio = $gio[0];
-
-        ?>
-                <div class="fact-item">
-                    <div class="details">
-                        <h3 class="mb-0 mt-0 number"><em><?= $check[1]; ?></em> <a href="<?= $file['path']; ?>" target="_blank" class="btn btn-default">Download</a></h3>
-                        <p class="mb-0">Time Backup: <?= substr($ngay, 6, 8); ?>/<?= substr($ngay, 4, 2); ?>/<?= substr($ngay, 0, 4); ?>, <?= substr($gio, 0, 2); ?>:<?= substr($gio, 2, 2); ?>:<?= substr($gio, 4); ?></p>
-                    </div>
-                </div>
-            <?
-            }
-            echo '<hr><em><b>Danh Sách File Backup Database</em></b>';
-            $files = recursiveSearch("file_backup/database", "/^.*\.(sql.gz)$/");
-            $fileCount = count($files);
-            foreach ($files as $file) {
-                $get = explode("/", $file['path']);
-                $check = explode("_", $get[2]);
-                $ngay = $check[2];
-                $gio = explode(".", $check[3]);
-                $gio = $gio[0];
-
-            ?>
-                <div class="fact-item">
-                    <div class="details">
-                        <h3 class="mb-0 mt-0 number"><em><?= $check[1]; ?></em> <a href="<?= $file['path']; ?>" target="_blank" class="btn btn-default">Download</a></h3>
-                        <p class="mb-0">Time Backup: <?= substr($ngay, 6, 8); ?>/<?= substr($ngay, 4, 2); ?>/<?= substr($ngay, 0, 4); ?>, <?= substr($gio, 0, 2); ?>:<?= substr($gio, 2, 2); ?>:<?= substr($gio, 4); ?></p>
-                    </div>
-                </div>
-<?
-            }
-        } else {
-            echo '<em><b>Đã Xảy Ra Lỗi Khi Lấy Danh Sách File, Vui Lòng Tải Lại Trang Và Thử Lại!!</b></em>';
-        }
-        break;
-    case 'doi_port':
-        // // $port = rand(8000, 8999);
-        // // $curl = curl_init();
-
-        // // curl_setopt_array($curl, array(
-        // //     CURLOPT_URL => 'http://194.180.50.114:7800/ajax?action=setPHPMyAdmin',
-        // //     CURLOPT_RETURNTRANSFER => true,
-        // //     CURLOPT_ENCODING => '',
-        // //     CURLOPT_MAXREDIRS => 10,
-        // //     CURLOPT_TIMEOUT => 0,
-        // //     CURLOPT_FOLLOWLOCATION => true,
-        // //     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        // //     CURLOPT_POSTFIELDS => 'port=' . $port,
-        // //     CURLOPT_CUSTOMREQUEST => 'POST',
-        // //     CURLOPT_HTTPHEADER => array(
-        // //         'Accept: */*',
-        // //         'x-http-token: J8AYYYzc6QsY11HNw9XEM5QEzqxjct1Lb9xfxYTacILdbQI8',
-        // //         'DNT: 1',
-        // //         'X-Requested-With: XMLHttpRequest',
-        // //         'x-cookie-token: ',
-        // //         'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36 Edg/116.0.1938.62',
-        // //         'host: 194.180.50.114',
-        // //         'Cookie: 0640b42471562362f87b3c2df65bc36a=90a71fa3-484d-4b8f-b72c-1885bafbc07e.hi5zy1c02ZUo1wT--zNBk5VA9jM; 416923547bc4b77a66f04c2e9f5d8dce=fd4f7901-ae53-4ded-b56c-f32d2c23f956.mmirJyQnVM_bTcGVDumiK0Xp_v4; 460da02e6125467eac043a2119bacfc7=167817f9-bb1e-4bc6-824a-8d070444ab39.NYiKOzPhiJzxboAR6ZfJS9bVb9U; Path=/www/wwwroot/huaducquan.id.vn; __stripe_mid=19ce4fef-7fd4-4515-a5e8-5a9ddf50e1226a7a0a; backup_path=/www/backup; bt_user_info=%7B%22status%22%3Atrue%2C%22msg%22%3A%22Got%20successfully%21%22%2C%22data%22%3A%7B%22username%22%3A%22hdq****.com%22%7D%7D; config-tab=allConfig; d7e3262831a1ea205115ba2ea40475cc=56e39936-a807-4c1b-9dcf-ff65c0d18840.wfvp47fbrBg5uMSamtCfXS4KZmQ; db_page_model=mysql; disk-unitType=KB/s; distribution=centos7; firewall_type=safety; force=0; load_page=3; load_search=undefined; load_type=null; logs_type=panelLogs; ltd_end=-1; memSize=13867; network-unitType=KB/s; order=id%20desc; ph_mqkwGT0JNFqO-zX2t0mW6Tec9yooaVu7xCBlXtHnt5Y_posthog=%7B%22distinct_id%22%3A%22188186c948817ba-040be92d0fb66d-7b515477-1fa400-188186c9489fe2%22%2C%22%24device_id%22%3A%22188186c948817ba-040be92d0fb66d-7b515477-1fa400-188186c9489fe2%22%2C%22%24user_state%22%3A%22anonymous%22%7D; pnull=3; pro_end=-1; rank=list; serial_no=; serverType=apache; site_model=php; sites_path=/www/wwwroot'
-        // //     ),
-        // // ));
-
-        // $config = curl_exec($curl);
-
-        // curl_close($curl);
         break;
     case 'check_payment':
         if ($pay == 'true') {
