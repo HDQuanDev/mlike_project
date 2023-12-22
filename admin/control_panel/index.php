@@ -232,25 +232,23 @@ require_once('../../_System/head.php');
         $('#info').load('api.php?act=info');
     }, 1000);
     setInterval(function() {
-        $.ajax({
-            url: 'api.php?act=server_info',
-            type: 'GET',
-            dataType: 'json',
-            success: function(data) {
-                $('#cpu_load').text(data.cpu);
-                $('#mem_usage').text(data.ram);
-                $('#load').text(data.load);
-                $('#network').text(data.network);
-                $('#bandwidth').text(data.bandwidth + 'GB');
-                $('#bandwidthdata').text(data.bandwidth_data + 'GB');
-                $('#fw_all_block').text(data.firewall.total_banned);
-                $('#fw_all_error').text(data.firewall.total_failed);
-                $('#fw_block').text(data.firewall.currently_banned);
-                $('#fw_block_error').text(data.firewall.currently_failed);
-                $('#cachelog').text(data.disklog.size);
-                $('#performentcahcelog').text('300MB');
-            }
-        });
+        fetch('api.php?act=server_info')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('cpu_load').textContent = data.cpu;
+                document.getElementById('mem_usage').textContent = data.ram;
+                document.getElementById('load').textContent = data.load;
+                document.getElementById('network').textContent = data.network;
+                document.getElementById('bandwidth').textContent = data.bandwidth + 'GB';
+                document.getElementById('bandwidthdata').textContent = data.bandwidth_data + 'GB';
+                document.getElementById('fw_all_block').textContent = data.firewall.total_banned;
+                document.getElementById('fw_all_error').textContent = data.firewall.total_failed;
+                document.getElementById('fw_block').textContent = data.firewall.currently_banned;
+                document.getElementById('fw_block_error').textContent = data.firewall.currently_failed;
+                document.getElementById('cachelog').textContent = data.disklog.size;
+                document.getElementById('performentcahcelog').textContent = '300MB';
+            })
+            .catch(error => console.error('Error:', error));
     }, 1000);
 </script>
 <script>
