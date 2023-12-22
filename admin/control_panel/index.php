@@ -162,17 +162,17 @@ require_once('../../_System/head.php');
                 <div class="fact-item">
                     <div class="details">
                         <h3 class="mb-0 mt-0 number"><em>Liên kết nhanh</em></h3><br>
-                        <a href="get_session.php?act=filemanager&token=<?= @$_SESSION[$_COOKIE['PHPSESSID']]['auth']['login_time']; ?>" target="_blank" class="btn btn-default">File Manager</a>
+                        <a href="https://github.com/QDevTeam/mlike_project" target="_blank" class="btn btn-primary btn-rounded me-1 mb-1">File Manager</a>
                         <hr>
-                        <a href="get_session.php?act=firewallmanager&token=<?= @$_SESSION[$_COOKIE['PHPSESSID']]['auth']['login_time']; ?>" target="_blank" class="btn btn-default">Firewall Manager</a>
+                        <a href="" target="_blank" class="btn btn-primary btn-rounded me-1 mb-1">Firewall Manager</a>
                         <hr>
-                        <a href="get_session.php?act=databasemanager&token=<?= @$_SESSION[$_COOKIE['PHPSESSID']]['auth']['login_time']; ?>" class="btn btn-default" target="_blank">Database Manager</a>
+                        <a href="http://216.9.227.213:888/phpmyadmin_98122d01e88e0708" class="btn btn-primary btn-rounded me-1 mb-1" target="_blank">Database Manager</a>
                         <hr>
-                        <a href="#" data-toggle="modal" data-target="#getbackup" target="_blank" class="btn btn-default">Get Backup File</a>
+                        <a href="#" data-toggle="modal" data-target="#getbackup" target="_blank" class="btn btn-primary btn-rounded me-1 mb-1">Get Backup File</a>
                         <hr>
-                        <a href="#" class="btn btn-default">Tối Ưu Hóa Server</a>
+                        <a href="#" class="btn btn-primary btn-rounded me-1 mb-1">Tối Ưu Hóa Server</a>
                         <hr>
-                        <a href="#" data-toggle="modal" data-target="#updatetoken" target="_blank" class="btn btn-default">Cập Nhập Token Facebook</a>
+                        <a href="#" data-toggle="modal" data-target="#updatetoken" target="_blank" class="btn btn-primary btn-rounded me-1 mb-1">Cập Nhập Token Facebook</a>
                     </div>
                 </div>
             </div>
@@ -253,7 +253,7 @@ require_once('../../_System/head.php');
 </div>
 <script>
     setTimeout(function() {
-        $('#info').load('mlike.php?act=info');
+        $('#info').load('api.php?act=info');
     }, 1000);
     setInterval(function() {
         $.ajax({
@@ -281,7 +281,7 @@ require_once('../../_System/head.php');
     function load_ajax() {
         $('#button')['html']('<i class="spinner-border spinner-border-sm"></i> Vui lòng chờ...');
         $.ajax({
-            url: "mlike.php?act=qrcode",
+            url: "api.php?act=qrcode",
             type: "post",
             dataType: "text",
             data: {
@@ -304,7 +304,7 @@ require_once('../../_System/head.php');
         $("#button_token")
             .prop("disabled", true);
         $.ajax({
-            url: "mlike.php?act=update_token",
+            url: "api.php?act=update_token",
             type: "post",
             dataType: "text",
             data: {
@@ -325,7 +325,7 @@ require_once('../../_System/head.php');
         $("#button_backup")
             .prop("disabled", true);
         $.ajax({
-            url: "mlike.php?act=get_backup",
+            url: "api.php?act=get_backup",
             type: "post",
             dataType: "text",
             data: {
