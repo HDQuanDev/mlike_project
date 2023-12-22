@@ -158,22 +158,15 @@ $cpu_threat = "256";
 
 switch ($_GET['act']) {
     case 'firewall_info':
-        $get = $api->GetFirewall();
-        echo json_encode($get);
+
         break;
-    case 'cpu_load':
-        echo $get["cpu"][0];
-        break;
-    case 'ram_usage':
-        echo $get["mem"]["memCached"] + $get["mem"]["memRealUsed"];
-        break;
-    case 'load':
-        echo $get["load"]["one"];
-        break;
-    case 'network':
-        echo $get["network"]["ens160"]["down"];
-        break;
-    case 'bandwidth':
+    case 'server_info':
+
+        $cpu = $get["cpu"][0];
+        $ram = $get["mem"]["memCached"] + $get["mem"]["memRealUsed"];
+        $load = $get["load"]["one"];
+        $network = $get["network"]["ens160"]["down"];
+
         $up = $get["upTotal"];
         $down = $get["downTotal"];
         $up = $up / pow(1024, 3);
@@ -181,37 +174,54 @@ switch ($_GET['act']) {
         $up = round($up, 2);
         $down = round($down, 2);
         $total = $up + $down;
-        $ph = $total / 5000 * 100;
-        $ph = round($ph, 2);
-        echo '' . $total . '/5000GB (' . $ph . '%)';
-        break;
-    case 'bandwidthdata':
+        $bandwidth = $total / 5000 * 100;
+        $bandwidth = round($bandwidth, 2);
+
         $db = $api->GetDatabase();
-        $getdb = json_encode($db);
-        $db = json_decode($getdb, true);
+        $db = json_decode(json_encode($db), true);
         $received = $db["Bytes_received"];
-        $send = $db["Bytes_sent"];
+        $sent = $db["Bytes_sent"];
         $received = $received / pow(1024, 3);
-        $send = $send / pow(1024, 3);
+        $sent = $sent / pow(1024, 3);
         $received = round($received, 2);
-        $send = round($send, 2);
-        $total = $received + $send;
-        $ph = $total / 10000 * 100;
-        $ph = round($ph, 2);
-        echo '' . $total . '/10000GB (' . $ph . '%)';
-        break;
-    case 'backupsize':
+        $sent = round($sent, 2);
+        $total = $received + $sent;
+        $bandwidth_data = $total / 10000 * 100;
+        $bandwidth_data = round($bandwidth_data, 2);
+
         $site = file_get_contents('site.txt');
         $data = file_get_contents('database.txt');
-        $tong = $site + $data;
-        $ph = $tong / 51200 * 100;
-        $ph = round($ph, 2);
-        echo '' . number_format($tong) . '/51,200MB (' . $ph . '%)';
-        break;
-    case 'backupfile':
-        $site = count(scandir('../../../backup/site')) - 2;
-        $data = count(scandir('../../../backup/database')) - 2;
-        echo '' . $site . '/' . $data . ' File';
+        $backup_size = $site + $data;
+        $backup_usage = $backup_size / 51200 * 100;
+        $backup_usage = round($backup_usage, 2);
+
+        $site_files = count(scandir('../../../backup/site')) - 2;
+        $data_files = count(scandir('../../../backup/database')) - 2;
+
+        $get_fw = $api->GetFirewall();
+        $config = json_encode($get);
+        $config = json_decode($config, true);
+
+        $response = [
+            "cpu" => $cpu,
+            "ram" => $ram,
+            "load" => $load,
+            "network" => $network,
+            "bandwidth" => $bandwidth,
+            "bandwidth_data" => $bandwidth_data,
+            "backup_size" => $backup_size,
+            "backup_usage" => $backup_usage,
+            "site_files" => $site_files,
+            "data_files" => $data_files,
+            "firewall" => [
+                "total_banned" => $config["msg"]["total_banned"],
+                "total_failed" => $config["msg"]["total_failed"],
+                "currently_banned" => $config["msg"]["currently_banned"],
+                "currently_failed" => $config["msg"]["currently_failed"],
+            ],
+        ];
+
+        echo json_encode($response);
         break;
     case 'info':
 ?>

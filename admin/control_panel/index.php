@@ -251,6 +251,99 @@ require_once('../../_System/head.php');
 
     </div>
 </div>
+<script>
+    setTimeout(function() {
+        $('#info').load('mlike.php?act=info');
+    }, 1000);
+    setInterval(function() {
+        $.ajax({
+            url: 'api.php?act=server_info',
+            type: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                $('#cpu_load').text(data.cpu);
+                $('#mem_usage').text(data.ram);
+                $('#load').text(data.load);
+                $('#network').text(data.network);
+                $('#bandwidth').text(data.bandwidth);
+                $('#bandwidthdata').text(data.bandwidth_data);
+                $('#backupsize').text(data.backup_usage);
+                $('#backupfile').text(data.backup_size);
+                $('#fw_all_block').text(data.firewall.total_banned);
+                $('#fw_all_error').text(data.firewall.total_failed);
+                $('#fw_block').text(data.firewall.currently_banned);
+                $('#fw_block_error').text(data.firewall.currently_failed);
+            }
+        });
+    }, 1000);
+</script>
+<script>
+    function load_ajax() {
+        $('#button')['html']('<i class="spinner-border spinner-border-sm"></i> Vui lòng chờ...');
+        $.ajax({
+            url: "mlike.php?act=qrcode",
+            type: "post",
+            dataType: "text",
+            data: {
+                act: 'getqr',
+            },
+            success: function(result) {
+                $('#button')['html']('Buy');
+                $("#resultt").html(result);
+                setInterval(function() {
+                    $('#resultt_loadbalace').load('mlike.php?act=check_payment');
+                }, 1000);
+            }
+        });
+    }
+</script>
+<script>
+    function load_token() {
+        var token = $('#token').val();
+        $('#button_token')['html']('<i class="spinner-border spinner-border-sm"></i> Vui lòng chờ...');
+        $("#button_token")
+            .prop("disabled", true);
+        $.ajax({
+            url: "mlike.php?act=update_token",
+            type: "post",
+            dataType: "text",
+            data: {
+                token,
+            },
+            success: function(result) {
+                $('#button_token')['html']('Cập Nhật');
+                $("#result_token").html(result);
+            }
+
+        });
+    }
+</script>
+<script>
+    function load_backup() {
+        var token = <?= $_SESSION['key']; ?>;
+        $('#button_backup')['html']('<i class="spinner-border spinner-border-sm"></i> Vui lòng chờ...');
+        $("#button_backup")
+            .prop("disabled", true);
+        $.ajax({
+            url: "mlike.php?act=get_backup",
+            type: "post",
+            dataType: "text",
+            data: {
+                token,
+            },
+            success: function(result) {
+                $('#button_backup')['html']('Lấy Danh Sách File Backup');
+                console.log(result);
+                $("#result_backup").html(result);
+                $("#button_backup")
+                    .prop("disabled", false);
+            },
+            error: function(error) {
+                alert("error" + error);
+            }
+        });
+    }
+</script>
 <?php
 require_once('../../_System/end.php');
 ?>
