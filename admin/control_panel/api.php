@@ -1,7 +1,6 @@
 <?php
 @ob_start();
 @session_start();
-require_once('config.php');
 class bt_api
 {
     private $BT_KEY = "oYfrWndyfDFZIIF7cLUJ0ds1RHOpcxBE";
@@ -195,8 +194,8 @@ switch ($_GET['act']) {
         $backup_usage = $backup_size / 51200 * 100;
         $backup_usage = round($backup_usage, 2);
 
-        $site_files = count(scandir('../../../backup/site')) - 2;
-        $data_files = count(scandir('../../../backup/database')) - 2;
+        $site_files = count(scandir('../../../../backup/site')) - 2;
+        $data_files = count(scandir('../../../../backup/database')) - 2;
 
         $get_fw = $api->GetFirewall();
         $config = json_encode($get);
