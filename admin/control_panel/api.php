@@ -302,9 +302,6 @@ switch ($_GET['act']) {
                 'return_url' => 'https://mlike.vn/admin/control_panel/index.php?status=success&message=Thanh toán thành công, hệ thống đang tối ưu lại hết thống file mlike.vn trong vòng 24h',
                 'api' => 'qdevs_mlike',
             ],
-            CURLOPT_HTTPHEADER => [
-                'Content-Type: application/x-www-form-urlencoded',
-            ],
         ]);
 
         $response = curl_exec($curl);
