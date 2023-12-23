@@ -299,7 +299,7 @@ switch ($_GET['act']) {
             CURLOPT_POSTFIELDS => [
                 'sotien' => $get_disk_price,
                 'comment' => 'Tối ưu lại hết thống file mlike.vn',
-                'return_url' => 'https://mlike.vn/admin/control_panel/index.php?status=success&message=Thanh toán thành công, hệ thống đang tối ưu lại hết thống file mlike.vn trong vòng 24h',
+                'return_url' => 'https://mlike.vn/admin/control_panel/payment.php',
                 'api' => 'qdevs_mlike',
             ],
         ]);
