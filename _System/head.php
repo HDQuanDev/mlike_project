@@ -113,7 +113,7 @@ if ($row['rule'] == '99') {
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="<?= $cdn; ?>/css/responsive.css">
     <script src="<?= $cdn; ?>/js/jquery-3.6.0.min.js"></script>
-    <title><?= $t; ?></title>
+    <title><?= $titl; ?></title>
 
 
 
