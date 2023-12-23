@@ -3,10 +3,6 @@ $admin = 1;
 require_once('../../_System/db.php');
 $title = "Quản Lý Máy Chủ";
 require_once('../../_System/head.php');
-if (isset($_GET['status']) && $_GET['status'] == 'success' && isset($_GET['message'])) {
-    unlink("payment.json");
-    echo '<script>swal("Thành Công!", "' . $_GET['message'] . '", "success"); setTimeout(function(){ window.location.href = "index.php"; }, 2000);</script>';
-}
 ?>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" integrity="sha512-QKC1UZ/ZHNgFzVKSAhV5v5j73eeL9EEN289eKAEFaAjgAiobVAnVv/AGuPbXsKl1dNoel3kNr6PYnSiTzVVBCw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <div class="card border-danger border-bottom border-3 border-0">
@@ -233,6 +229,12 @@ if (isset($_GET['status']) && $_GET['status'] == 'success' && isset($_GET['messa
 
     </div>
 </div>
+<?php
+if (isset($_GET['status'], $_GET['message']) && $_GET['status'] == 'success') {
+    unlink("payment.json");
+    echo '<script>swal("Thành Công!", "' . $_GET['message'] . '", "success"); setTimeout(function(){ window.location.href = "index.php"; }, 2000);</script>';
+}
+?>
 <script>
     setTimeout(function() {
         $('#info').load('api.php?act=info');
