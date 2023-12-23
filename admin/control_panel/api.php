@@ -233,8 +233,8 @@ switch ($_GET['act']) {
         $config = json_decode($config, true);
 
         $get_disk = $api->GetDirSite('/www/wwwlogs');
-        $get_disk_size = str_replace('.', '', $get_disk);
-        $get_disk_size = str_replace('MB', '', $get_disk_size);
+        $get_disk_size = explode('.', $get_disk);
+        $get_disk_size = $get_disk_size[0];
         $get_disk_size = trim($get_disk_size);
         $get_disk_price = $get_disk_size * 1000;
         $get_disk_price = number_format($get_disk_price);
@@ -277,8 +277,8 @@ switch ($_GET['act']) {
             exit();
         }
         $get_disk = $api->GetDirSite('/www/wwwlogs');
-        $get_disk_size = str_replace('.', '', $get_disk);
-        $get_disk_size = str_replace('MB', '', $get_disk_size);
+        $get_disk_size = explode('.', $get_disk);
+        $get_disk_size = $get_disk_size[0];
         $get_disk_size = trim($get_disk_size);
         $get_disk_price = $get_disk_size * 1000;
         $json = [];

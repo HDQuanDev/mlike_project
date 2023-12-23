@@ -157,7 +157,7 @@ if (isset($_GET['status']) && $_GET['status'] == 'success' && isset($_GET['messa
             </div>
             <div class="mb-3">
                 <div class="alert alert-warning" role="alert">
-                    <p>Bạn đang sử dụng gói pro bạn sẽ được xóa và tối tư tự động hóa 100MB miễn phí, hệ thống này đang hoạt động thử nghiệm, để xóa và tối ưu lại vui lòng liên hệ facebook giá siêu rẻ!!</p>
+                    <p>Bạn đang sử dụng gói pro bạn sẽ được xóa và tối tư tự động hóa 100MB miễn phí, đôi khi chúng tôi sẽ tự động tối ưu nhẹ để đảm bảo hiệu suất của máy chủ của bạn, hệ thống này đang hoạt động thử nghiệm, để xóa và tối ưu lại vui lòng liên hệ facebook giá siêu rẻ!!</p>
                 </div>
             </div>
             <br>
@@ -252,7 +252,7 @@ if (isset($_GET['status']) && $_GET['status'] == 'success' && isset($_GET['messa
                 document.getElementById('fw_block').textContent = data.firewall.currently_banned;
                 document.getElementById('fw_block_error').textContent = data.firewall.currently_failed;
                 document.getElementById('cachelog').textContent = data.disklog.size_number + 'MB (' + data.disklog.price + 'VND)';
-                document.getElementById('performentcahcelog').textContent = data.disklog.op;
+                document.getElementById('performentcahcelog').textContent = data.disklog.op + 'MB';
             })
             .catch(error => console.error('Error:', error));
     }, 1000);
