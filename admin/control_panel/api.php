@@ -236,14 +236,14 @@ switch ($_GET['act']) {
         $get_disk_size = explode('.', $get_disk);
         $get_disk_size = $get_disk_size[0];
         $get_disk_size = trim($get_disk_size);
-        $get_disk_price = $get_disk_size * 1000;
-        $get_disk_price = number_format($get_disk_price);
-        if ($get_disk_size > 100) {
-            $get_disk_size = $get_disk_size - 100;
+        if ($get_disk_size > 50) {
+            $get_disk_size = $get_disk_size - 50;
             $op = '0';
         } else {
             $op = '100';
         }
+        $get_disk_price = $get_disk_size * 1000;
+        $get_disk_price = number_format($get_disk_price);
         $response = [
             "cpu" => $cpu,
             "ram" => $ram,
@@ -280,6 +280,9 @@ switch ($_GET['act']) {
         $get_disk_size = explode('.', $get_disk);
         $get_disk_size = $get_disk_size[0];
         $get_disk_size = trim($get_disk_size);
+        if ($get_disk_size > 50) {
+            $get_disk_size = $get_disk_size - 50;
+        }
         $get_disk_price = $get_disk_size * 1000;
         $json = [];
         $curl = curl_init();
