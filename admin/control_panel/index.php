@@ -11,6 +11,16 @@ require_once('../../_System/head.php');
     </div>
     <div class="card-body">
         <p class="mb-0">
+            <?php
+            if (isset($_GET['status'], $_GET['message']) && $_GET['status'] == 'success') {
+                unlink("payment.json");
+                echo '<div class="mb-3">
+                <div class="alert alert-success" role="alert">
+                    <p>Bạn đã thanh toán thành công, hệ thống sẽ tự tối ưu và dọn dẹp lại toàn bộ file hệ thống trong vòng 24h!! <a href="index.php">Vui lòng ấn vào đây để load lại trang</a></p>
+                </div>
+            </div>';
+            }
+            ?>
         <div class="row">
             <!-- skill item -->
             <div class="col-md-3 col-sm-6">
@@ -229,12 +239,7 @@ require_once('../../_System/head.php');
 
     </div>
 </div>
-<?php
-if (isset($_GET['status'], $_GET['message']) && $_GET['status'] == 'success') {
-    unlink("payment.json");
-    echo '<script>swal("Thành Công!", "' . $_GET['message'] . '", "success"); setTimeout(function(){ window.location.href = "index.php"; }, 2000);</script>';
-}
-?>
+
 <script>
     setTimeout(function() {
         $('#info').load('api.php?act=info');
