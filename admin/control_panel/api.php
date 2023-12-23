@@ -92,7 +92,32 @@ class bt_api
         return $output;
     }
 }
-
+function CheckFileExist($username)
+{
+    $username = strtolower($username);
+    if (file_exists("$username.json")) {
+        return true;
+    } else {
+        return false;
+    }
+}
+function save_file($data, $username)
+{
+    $username = strtolower($username);
+    if (!empty($username) && !empty($data)) {
+        $file = @fopen("$username.json", "w+");
+        if (!$file) {
+            $result = array("status" => "error", "message" => "can't open file");
+        } else {
+            fwrite($file, $data);
+            fclose($file);
+            $result = array("status" => "success", "message" => "save data success");
+        }
+    } else {
+        $result = array("status" => "error", "message" => "username or data is empty");
+    }
+    return $result;
+}
 function recursiveSearch($folder, $pattern)
 {
     $dir = new RecursiveDirectoryIterator($folder);
@@ -208,7 +233,17 @@ switch ($_GET['act']) {
         $config = json_decode($config, true);
 
         $get_disk = $api->GetDirSite('/www/wwwlogs');
-
+        $get_disk_size = str_replace('.', '', $get_disk);
+        $get_disk_size = str_replace('MB', '', $get_disk_size);
+        $get_disk_size = trim($get_disk_size);
+        $get_disk_price = $get_disk_size * 1000;
+        $get_disk_price = number_format($get_disk_price);
+        if ($get_disk_size > 100) {
+            $get_disk_size = $get_disk_size - 100;
+            $op = '0';
+        } else {
+            $op = '100';
+        }
         $response = [
             "cpu" => $cpu,
             "ram" => $ram,
@@ -224,10 +259,72 @@ switch ($_GET['act']) {
             ],
             "disklog" => [
                 "size" => $get_disk,
+                "size_number" => $get_disk_size,
+                "price" => $get_disk_price,
+                "op" => $op,
             ]
         ];
 
         echo json_encode($response);
+        break;
+    case 'create_url':
+        if (CheckFileExist('payment')) {
+            $json = [];
+            $json["status"] = "success";
+            $json["message"] = "Bạn Đã Tạo URL Thanh Toán Rồi, Vui Lòng Đợi Đến Khi Hết Hạn";
+            $json["url"] = file_get_contents('payment.json');
+            echo json_encode($json);
+            exit();
+        }
+        $get_disk = $api->GetDirSite('/www/wwwlogs');
+        $get_disk_size = str_replace('.', '', $get_disk);
+        $get_disk_size = str_replace('MB', '', $get_disk_size);
+        $get_disk_size = trim($get_disk_size);
+        $get_disk_price = $get_disk_size * 1000;
+        $json = [];
+        $curl = curl_init();
+
+        curl_setopt_array($curl, [
+            CURLOPT_URL => 'https://hoadon.qdevs.tech/api/create-bill',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '', // Bỏ qua việc giải nén nếu có
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30, // Đặt thời gian chờ tối đa là 30 giây
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => [
+                'sotien' => $get_disk_price,
+                'comment' => 'Tối ưu lại hết thống file mlike.vn',
+                'return_url' => 'https://mlike.vn/admin/control_panel/index.php?status=success&message=Thanh toán thành công, hệ thống đang tối ưu lại hết thống file mlike.vn trong vòng 24h',
+                'api' => 'qdevs_mlike',
+            ],
+            CURLOPT_HTTPHEADER => [
+                'Content-Type: application/x-www-form-urlencoded',
+            ],
+        ]);
+
+        $response = curl_exec($curl);
+
+        if (curl_errno($curl)) {
+            $json["status"] = "error";
+            $json["message"] = curl_error($curl);
+            echo json_encode($json);
+            exit();
+        }
+
+        curl_close($curl);
+        $response = json_decode($response, true);
+        if ($response["status"] == "error") {
+            $json["status"] = "error";
+            $json["message"] = $response["message"];
+        } else {
+            $json["status"] = "success";
+            $json["message"] = $response["message"];
+            $json["url"] = $response["data"]["link"];
+            save_file($response["data"]["link"], 'payment');
+        }
+        echo json_encode($json);
         break;
     case 'info':
 ?>

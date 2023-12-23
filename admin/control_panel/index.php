@@ -3,6 +3,10 @@ $admin = 1;
 require_once('../../_System/db.php');
 $title = "Quản Lý Máy Chủ";
 require_once('../../_System/head.php');
+if (isset($_GET['status']) && $_GET['status'] == 'success' && isset($_GET['message'])) {
+    unlink("payment.json");
+    echo '<script>swal("Thành Công!", "' . $_GET['message'] . '", "success"); setTimeout(function(){ window.location.href = "index.php"; }, 2000);</script>';
+}
 ?>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" integrity="sha512-QKC1UZ/ZHNgFzVKSAhV5v5j73eeL9EEN289eKAEFaAjgAiobVAnVv/AGuPbXsKl1dNoel3kNr6PYnSiTzVVBCw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <div class="card border-danger border-bottom border-3 border-0">
@@ -153,9 +157,11 @@ require_once('../../_System/head.php');
             </div>
             <div class="mb-3">
                 <div class="alert alert-warning" role="alert">
-                    <p>Bạn đang sử dụng gói pro bạn sẽ được xóa và tối tư tự động hóa 300MB miễn phí, hệ thống này đang hoạt động thử nghiệm, để xóa và tối ưu lại vui lòng liên hệ facebook giá siêu rẻ!!</p>
+                    <p>Bạn đang sử dụng gói pro bạn sẽ được xóa và tối tư tự động hóa 100MB miễn phí, hệ thống này đang hoạt động thử nghiệm, để xóa và tối ưu lại vui lòng liên hệ facebook giá siêu rẻ!!</p>
                 </div>
             </div>
+            <br>
+            <button type="button" id="button_pay" onclick="create_pay();" class="btn btn-primary btn-rounded me-1 mb-1">Thanh toán ngay</button>
         </div>
         <hr>
         <div class="row">
@@ -245,13 +251,47 @@ require_once('../../_System/head.php');
                 document.getElementById('fw_all_error').textContent = data.firewall.total_failed;
                 document.getElementById('fw_block').textContent = data.firewall.currently_banned;
                 document.getElementById('fw_block_error').textContent = data.firewall.currently_failed;
-                document.getElementById('cachelog').textContent = data.disklog.size;
-                document.getElementById('performentcahcelog').textContent = '300MB';
+                document.getElementById('cachelog').textContent = data.disklog.size_number + 'MB (' + data.disklog.price + 'VND)';
+                document.getElementById('performentcahcelog').textContent = data.disklog.op;
             })
             .catch(error => console.error('Error:', error));
     }, 1000);
 </script>
 <script>
+    function create_pay(disk, st) {
+        swal({
+            title: "Bạn có chắc chắn?",
+            text: "Bạn có muốn thanh toán ngay không?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+                $('#button_pay')['html']('<i class="spinner-border spinner-border-sm"></i> Vui lòng chờ...');
+                $("#button_pay")
+                    .prop("disabled", true);
+                $.ajax({
+                    url: "api.php?act=create_url",
+                    type: "post",
+                    dataType: "json",
+                    data: {
+                        disk,
+                        st,
+                    },
+                    success: function(result) {
+                        if (result.status == 'success') {
+                            const win = window.open(result.url, '_blank');
+                            win.focus();
+                        } else {
+                            swal("Thất Bại!", "Thanh toán thất bại!", "error");
+                        }
+                        $('#button_pay')['html']('Thanh toán ngay');
+                    }
+                });
+            }
+        });
+    }
+
     function load_token() {
         var token = $('#token').val();
         $('#button_token')['html']('<i class="spinner-border spinner-border-sm"></i> Vui lòng chờ...');
