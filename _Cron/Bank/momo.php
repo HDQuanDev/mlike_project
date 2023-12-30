@@ -4,7 +4,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 $hdq = 'ok';
 require_once('../../_System/db.php');
-$token = '7a2aae54d2007408a0128f-0286-72de-f724-21b8e407486d';
+$token = 'e30d9ade3f5b5f761f658b-c46b-f64c-40a8-2d21ff927a1b';
 $url = 'https://api.web2m.com/historyapimomo/' . $token;
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
