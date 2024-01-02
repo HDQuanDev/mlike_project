@@ -21,7 +21,7 @@ if (isset($page)) {
     } elseif ($page == 'page_fb') {
         $sv2 = 'on';
     } elseif ($page == 'share_fb') {
-        $sv4 = 'off';
-        $sv5 = 'off';
+        $sv4 = 'on';
+        $sv5 = 'on';
     }
 }
