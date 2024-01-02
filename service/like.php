@@ -95,7 +95,7 @@ swal({
                     <div class="form-check">
                         <input class="form-check-input" <? if ($sv4 == 'off') {
                                                             echo 'checked';
-                                                        }; ?> id="flexRadioDefault1" type="radio" name="sv" value="1" data-bs-toggle="collapse" data-bs-target="#sv1" aria-expanded="false" aria-controls="sv1" /><label class="form-check-label" for="flexRadioDefault1">Server Like 1 (Tốc độ nhanh, chất lượng tốt tụt ít, cấm album, Max 5k ) </span> <span style="color:red;"><?= $gia1; ?>₫</span> <span class="badge bg-success">ổn định</span></label>
+                                                        }; ?> id="flexRadioDefault1" type="radio" name="sv" value="1" data-bs-toggle="collapse" data-bs-target="#sv1" aria-expanded="false" aria-controls="sv1" /><label class="form-check-label" for="flexRadioDefault1">Server Like 1 (Tốc độ nhanh, chất lượng tốt tụt ít, cấm album, Max 10k+ ) </span> <span style="color:red;"><?= $gia1; ?>₫</span> <span class="badge bg-success">ổn định</span></label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" id="flexRadioDefault1" type="radio" name="sv" value="2" data-bs-toggle="collapse" data-bs-target="#sv2" aria-expanded="false" aria-controls="sv2" /><label class="form-check-label" for="flexRadioDefault1">Server Like 2 ( Tốc độ nhanh <span style="color: red;">Album dể lỗi</span> Max 100k ) <span style="color:red;"><?= $gia2; ?>₫</span> <span class="badge bg-warning">Trung bình</span></label>
@@ -138,7 +138,7 @@ swal({
                         <input class="form-check-input" id="flexRadioDefault1" type="radio" name="sv" value="8" data-bs-toggle="collapse" data-bs-target="#sv8" aria-expanded="false" aria-controls="sv8" /><label class="form-check-label" for="flexRadioDefault1">Server Like 8 ( Tốc độ trung bình - nhanh, tạm ổn) <span style="color:Blue;"><?= $gia8; ?>₫</span> <span class="badge bg-success">Tạm ổn</span></label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input"  id="flexRadioDefault1" type="radio" name="sv" value="9" data-bs-toggle="collapse" data-bs-target="#sv9" aria-expanded="false" aria-controls="sv9" /><label class="form-check-label" for="flexRadioDefault1">Server Like 9 ( Tốc độ chậm - trung bình, test ít cảm nhận ) <span style="color:Blue;"><?= $gia9; ?>₫</span> <span class="badge bg-success">Trung bình</span></label>
+                        <input class="form-check-input"  id="flexRadioDefault1" type="radio" name="sv" value="9" data-bs-toggle="collapse" data-bs-target="#sv9" aria-expanded="false" aria-controls="sv9" /><label class="form-check-label" for="flexRadioDefault1">Server Like 9 ( Tốc độ nhanh like clone, max 80k ) <span style="color:Blue;"><?= $gia9; ?>₫</span> <span class="badge bg-success">Nhanh</span></label>
                     </div>
                     <!-- <div class="form-check">
                          <input class="form-check-input"  id="flexRadioDefault1" type="radio" name="sv" value="10" data-bs-toggle="collapse" data-bs-target="#sv9" aria-expanded="false" aria-controls="sv10" /><label class="form-check-label" for="flexRadioDefault1">Server Like 10 ( Tốc độ nhanh, mẹo chia nhỏ nhiều sẽ lên nhanh hơn vidu 1k chia 5 đơn 200. <span style="color: red;">Max 100k</span>) <span style="color:Blue;"><?= $gia10; ?>₫</span> <span class="badge bg-warning">Thử nghiệm</span></label>
