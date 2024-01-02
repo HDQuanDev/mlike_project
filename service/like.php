@@ -135,7 +135,7 @@ swal({
             </div>
            -->
                     <div class="form-check">
-                        <input class="form-check-input" id="flexRadioDefault1" type="radio" name="sv" value="8" data-bs-toggle="collapse" data-bs-target="#sv8" aria-expanded="false" aria-controls="sv8" /><label class="form-check-label" for="flexRadioDefault1">Server Like 8 ( Tốc độ trung bình - nhanh, tạm ổn) <span style="color:Blue;"><?= $gia8; ?>₫</span> <span class="badge bg-success">Tạm ổn</span></label>
+                        <input class="form-check-input" id="flexRadioDefault1" type="radio" name="sv" value="8" data-bs-toggle="collapse" data-bs-target="#sv8" aria-expanded="false" aria-controls="sv8" /><label class="form-check-label" for="flexRadioDefault1">Server Like 8 ( Tốc độ nhanh, ổn định) <span style="color:Blue;"><?= $gia8; ?>₫</span> <span class="badge bg-success">Tạm ổn</span></label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input"  id="flexRadioDefault1" type="radio" name="sv" value="9" data-bs-toggle="collapse" data-bs-target="#sv9" aria-expanded="false" aria-controls="sv9" /><label class="form-check-label" for="flexRadioDefault1">Server Like 9 ( Tốc độ nhanh like clone, max 80k ) <span style="color:Blue;"><?= $gia9; ?>₫</span> <span class="badge bg-success">Nhanh</span></label>
