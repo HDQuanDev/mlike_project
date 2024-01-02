@@ -162,7 +162,7 @@ switch ($_GET["act"]) {
                             } elseif ($sv == 5) {
                                 $tongtien = $sl * $gia5;
                                 $nse = 'Server Share 5';
-                                $min = '10000';
+                                $min = '1000';
                                 $max = '100000000';
                             }
                         }
