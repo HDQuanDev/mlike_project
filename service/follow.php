@@ -72,7 +72,7 @@ switch ($_GET['act']) {
 
                     <div class="mb-3">
                         <label>Nhập ID Profile Facebook:</label>
-                        <input type="text" oninput="getIDP('id');" name="id" class="form-control mb-3" aria-label="Recipient's username" aria-describedby="basic-addon2" placeholder="NHẬP LINK HỆ THỐNG TỰ GET ID !" required="" id="idbuff_like">
+                        <input type="text" oninput="calc()" name="id" class="form-control mb-3" aria-label="Recipient's username" aria-describedby="basic-addon2" placeholder="Nhập nguyên link" required="" id="idbuff_like">
                     </div>
                     <!-- <div class="alert alert-warning alert-dismissible fade show" role="alert">
               <strong>Chú Ý:</strong><br>
