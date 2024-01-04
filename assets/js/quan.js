@@ -412,16 +412,15 @@ function getFollow(elm) {
 
 function GetIDCmt(elm) {
     var link = $("[name=" + elm + "]").val();
-    var id = link["match"](/(.*)\/comment_id=([0-9]{8,})/);
-    if (id) {
-        result = id[2];
-        $("[name=" + elm + "]")
-            .prop("disabled", false)
-            .val(result);
+    if (!isValidUrl(link)) {
+        return;
+    }
+    var id = link.match(/comment_id=([0-9]+)/);
+    var result = id ? id[1] : null;
+    if (result == null) {
+        $("[name=" + elm + "]").prop("disabled", false).val("Không tìm thấy id comment trong link của bạn, vui lòng click vào thời gian của cmt muốn tăng và copy link!");
     } else {
-        $("[name=" + elm + "]")
-            .prop("disabled", false)
-            .val("Link của bạn không hợp lệ, vui lòng click vào thời gian của cmt muốn tăng và copy link!");
+        $("[name=" + elm + "]").prop("disabled", false).val(result);
     }
 }
 
