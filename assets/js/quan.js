@@ -413,6 +413,7 @@ function getFollow(elm) {
 function GetIDCmt(elm) {
     var link = $("[name=" + elm + "]").val();
     if (!isValidUrl(link)) {
+        $("[name=" + elm + "]").prop("disabled", false).val("Vui lòng kiểm tra lại link của bạn, link không đúng định dạng!");
         return;
     }
     var id = link.match(/comment_id=([0-9]+)/);
