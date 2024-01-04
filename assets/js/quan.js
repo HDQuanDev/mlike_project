@@ -410,84 +410,20 @@ function getFollow(elm) {
     }, 100);
 }
 
-$(document).ready(function () {
-    $("#get").click(function () {
-        var id = $("#idbuff_like")["val"]();
-        var result = null;
-        var post_id = id["match"](/(.*)\/posts\/([0-9]{8,})/);
-        var ins_id_post = id["match"](/(.*)\/p\/([a-zA-Z0-9]{8,})/);
-        var photo_id = id["match"](/(.*)\/?fbid=([0-9]{8,})/);
-        var album_id = id["match"](/(.*)\/media_set\?set=a.([0-9]{8,})/);
-        var video_id = id["match"](/(.*)\/video.php\?v=([0-9]{8,})/);
-        var story_id = id["match"](/(.*)\/story.php\?story_fbid=([0-9]{8,})/);
-        var link_id = id["match"](/(.*)\/permalink.php\?story_fbid=([0-9]{8,})/);
-        var tiktok_id = id["match"](
-            /(.*)\/([a-zA-Z0-9]{1,})\/share\/([a-zA-Z0-9.]{2,})\/([a-zA-Z0-9.]{4,})/
-        );
-        var video_id_2 = id["match"](/(.*)\/?v=([0-9]{8,})/);
-        var other_id = id["match"](/(.*)\/([a-zA-Z0-9.]{4,})/);
-        var group_id = id["match"](/(.*)\/group\/([a-zA-Z0-9.]{4,})/);
-        var tiktok_p = id["match"](/(.*)\/@([a-zA-Z0-9.]{3,})/);
-        var comment_id = id["match"](/(.*)comment_id=([0-9]{8,})/);
-        if (post_id) {
-            result = post_id[2];
-        } else {
-            if (tiktok_id) {
-                result = tiktok_id[4];
-            } else {
-                if (tiktok_p) {
-                    result = tiktok_p[2];
-                } else {
-                    if (group_id) {
-                        result = group_id[2];
-                    } else {
-                        if (ins_id_post) {
-                            result = ins_id_post[2];
-                        } else {
-                            if (photo_id) {
-                                result = photo_id[2];
-                            } else {
-                                if (video_id) {
-                                    result = video_id[2];
-                                } else {
-                                    if (video_id_2) {
-                                        result = video_id_2[2];
-                                    } else {
-                                        if (album_id) {
-                                            result = album_id[2];
-                                        } else {
-                                            if (story_id) {
-                                                result = story_id[2];
-                                            } else {
-                                                if (link_id) {
-                                                    result = link_id[2];
-                                                } else {
-                                                    if (other_id) {
-                                                        result = other_id[2];
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        if (comment_id) {
-            result += "_" + comment_id[2];
-        }
-        console.log(result);
-        if (result == null) {
-            result =
-                "Link bài viết không hợp lệ hoặc không hỗ trợ vui lòng liên hệ admin.";
-        }
-        $("#idbuff_like").val(result);
-        $("#idbuff").val(result);
-    });
-});
+function GetIDCmt(elm) {
+    var link = $("[name=" + elm + "]").val();
+    var id = link["match"](/(.*)\/comment_id=([0-9]{8,})/);
+    if (id) {
+        result = id[2];
+        $("[name=" + elm + "]")
+            .prop("disabled", false)
+            .val(result);
+    } else {
+        $("[name=" + elm + "]")
+            .prop("disabled", false)
+            .val("Link của bạn không hợp lệ, vui lòng click vào thời gian của cmt muốn tăng và copy link!");
+    }
+}
 
 function getUID(elm) {
     setTimeout(() => {

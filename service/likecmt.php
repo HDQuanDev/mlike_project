@@ -59,21 +59,18 @@ switch ($_GET['act']) {
                     <input type="hidden" id="token" value="<?= $row['token']; ?>">
                     <label>Chọn Server Like:</label>
                     <div class="form-check">
-                        <input class="form-check-input"  ="checked" id="flexRadioDefault1" type="radio" name="sv" value="1" data-bs-toggle="collapse" data-bs-target="#sv1" aria-expanded="false" aria-controls="sv1" /><label class="form-check-label" for="flexRadioDefault1">Server Like 1 (<b><?= $gia1; ?>₫</b>) ( Tốc độ chậm , cài số lượng nhỏ lên được hãy cài tiếp )<span class="badge bg-success">Hoạt động</span></label>
+                        <input class="form-check-input"="checked" id="flexRadioDefault1" type="radio" name="sv" value="1" data-bs-toggle="collapse" data-bs-target="#sv1" aria-expanded="false" aria-controls="sv1" /><label class="form-check-label" for="flexRadioDefault1">Server Like 1 (<b><?= $gia1; ?>₫</b>) ( Tốc độ chậm , cài số lượng nhỏ lên được hãy cài tiếp )<span class="badge bg-success">Hoạt động</span></label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input"   id="flexRadioDefault1" type="radio" name="sv" value="2" data-bs-toggle="collapse" data-bs-target="#sv2" aria-expanded="false" aria-controls="sv2" /><label class="form-check-label" for="flexRadioDefault1">Server Like 2 (<b><?= $gia2; ?>₫</b>) (Tốc độ nhanh. Có thể lên hụt 1-10%) <span class="badge danger">Bảo trì</span> </label>
+                        <input class="form-check-input" id="flexRadioDefault1" type="radio" name="sv" value="2" data-bs-toggle="collapse" data-bs-target="#sv2" aria-expanded="false" aria-controls="sv2" /><label class="form-check-label" for="flexRadioDefault1">Server Like 2 (<b><?= $gia2; ?>₫</b>) (Tốc độ nhanh. Có thể lên hụt 1-10%) <span class="badge danger">Bảo trì</span> </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input"   disabled id="flexRadioDefault1" type="radio" name="sv" value="3" data-bs-toggle="collapse" data-bs-target="#sv3" aria-expanded="false" aria-controls="sv3" /><label class="form-check-label" for="flexRadioDefault1">Server Like 3 (<b><?= $gia3; ?>₫</b>) (Gửi riêng admin siêu tốc độ . Chỉ hỗ trợ cảm xúc like ) <span class="badge bg-danger">Bảo trì</span> </label>
+                        <input class="form-check-input" disabled id="flexRadioDefault1" type="radio" name="sv" value="3" data-bs-toggle="collapse" data-bs-target="#sv3" aria-expanded="false" aria-controls="sv3" /><label class="form-check-label" for="flexRadioDefault1">Server Like 3 (<b><?= $gia3; ?>₫</b>) (Gửi riêng admin siêu tốc độ . Chỉ hỗ trợ cảm xúc like ) <span class="badge bg-danger">Bảo trì</span> </label>
                     </div>
                     <div class="form-group">
                         <label>Nhập ID Bài Viết:</label>
                         <div class="input-group mb-3">
-                            <input type="text" oninput="calc()" name="id" class="form-control mb-3" aria-label="Recipient's username" aria-describedby="basic-addon2" placeholder="Nhập Link bài viết hoặc nhập ID!" required="" id="idbuff_like">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-warning" id="get" type="button">GET ID</button>
-                            </div>
+                            <input type="text" oninput="GetIDCmt('id');" name="id" class="form-control mb-3" aria-label="Recipient's username" aria-describedby="basic-addon2" placeholder="Nhập Link bài viết hoặc nhập ID!" required="" id="idbuff_like">
                         </div>
                         <label>(*) Nếu nhập <code>link bài viết</code> vui lòng ấn vào <code>"GET ID"</code></label>
                     </div>
@@ -91,7 +88,7 @@ switch ($_GET['act']) {
                             - Nhớ chọn cảm xúc trước khi thanh toán <br>
                             - Sv1 tốc độ chậm tài nguyên ít nên lên chậm nên đặt trước số lượng nhỏ test lên được hãy cài tiếp <br>
                             - Sv2 tốc độ nhanh, tuy nhiên tốc độ cũng thay đổi tùy vào thời điểm nên test trước khi cài <br>
-                            - Sv3 xử lý lâu tốc độ lên nhanh, khuyến khích cài 1 lần. Min 5k max 20k. Chú ý chỉ hỗ trợ cảm xúc like <br> 
+                            - Sv3 xử lý lâu tốc độ lên nhanh, khuyến khích cài 1 lần. Min 5k max 20k. Chú ý chỉ hỗ trợ cảm xúc like <br>
                         </p>
                     </div>
                     <div class="form-group">
