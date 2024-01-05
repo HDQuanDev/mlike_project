@@ -16,7 +16,7 @@ function check_tt($url, $act)
 {
     $curl = curl_init();
     curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://huaducquan.id.vn/mlike/tiktok.php?type=' . $act,
+        CURLOPT_URL => 'https://shopmmo.co/assets/api/tiktok.php?type=' . $act,
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,
