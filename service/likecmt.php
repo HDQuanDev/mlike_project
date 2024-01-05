@@ -59,7 +59,7 @@ switch ($_GET['act']) {
                     <input type="hidden" id="token" value="<?= $row['token']; ?>">
                     <label>Chọn Server Like:</label>
                     <div class="form-check">
-                        <input class="form-check-input"="checked" id="flexRadioDefault1" type="radio" name="sv" value="1" data-bs-toggle="collapse" data-bs-target="#sv1" aria-expanded="false" aria-controls="sv1" /><label class="form-check-label" for="flexRadioDefault1">Server Like 1 (<b><?= $gia1; ?>₫</b>) ( Tốc độ chậm , cài số lượng nhỏ lên được hãy cài tiếp )<span class="badge bg-success">Hoạt động</span></label>
+                        <input class="form-check-input"=" checked id="flexRadioDefault1" type="radio" name="sv" value="1" data-bs-toggle="collapse" data-bs-target="#sv1" aria-expanded="false" aria-controls="sv1" /><label class="form-check-label" for="flexRadioDefault1">Server Like 1 (<b><?= $gia1; ?>₫</b>) ( Tốc độ chậm , cài số lượng nhỏ lên được hãy cài tiếp )<span class="badge bg-success">Hoạt động</span></label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" id="flexRadioDefault1" type="radio" name="sv" value="2" data-bs-toggle="collapse" data-bs-target="#sv2" aria-expanded="false" aria-controls="sv2" /><label class="form-check-label" for="flexRadioDefault1">Server Like 2 (<b><?= $gia2; ?>₫</b>) (Tốc độ nhanh. Có thể lên hụt 1-10%) <span class="badge danger">Bảo trì</span> </label>
