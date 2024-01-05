@@ -12,8 +12,7 @@ if ($tach[2] !== $allowed_referer) {
     die(json_encode($array));
 }
 
-function check_tt($url, $act)
-{
+if (isset($_GET['type']) && isset($_POST['url'])) {
     $curl = curl_init();
     curl_setopt_array($curl, array(
         CURLOPT_URL => 'https://shopmmo.co/assets/api/tiktok.php?type=' . $act,
@@ -34,6 +33,5 @@ function check_tt($url, $act)
     $response = curl_exec($curl);
 
     curl_close($curl);
-    return $response;
+    echo $response;
 }
-echo check_tt($_POST['url'], $_GET['type']);
