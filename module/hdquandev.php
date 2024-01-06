@@ -15,7 +15,7 @@ if ($tach[2] !== $allowed_referer) {
 if (isset($_GET['type']) && isset($_POST['url'])) {
     $curl = curl_init();
     curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://shopmmo.co/assets/api/tiktok.php?type=' . $act,
+        CURLOPT_URL => 'https://shopmmo.co/assets/api/tiktok.php?type=' . $_GET['type'],
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,
@@ -23,7 +23,7 @@ if (isset($_GET['type']) && isset($_POST['url'])) {
         CURLOPT_FOLLOWLOCATION => true,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => 'POST',
-        CURLOPT_POSTFIELDS => 'url=' . $url,
+        CURLOPT_POSTFIELDS => 'url=' . $_POST['url'],
         CURLOPT_HTTPHEADER => array(
             'Content-Type: application/x-www-form-urlencoded',
             'TOKEN_AU: huaducquanapi'
@@ -31,7 +31,11 @@ if (isset($_GET['type']) && isset($_POST['url'])) {
     ));
 
     $response = curl_exec($curl);
-
+    $err = curl_error($curl);
+    if ($err) {
+        echo "cURL Error #:" . $err;
+    } else {
+        echo $response;
+    }
     curl_close($curl);
-    echo $response;
 }
