@@ -195,7 +195,7 @@ switch ($_GET['act']) {
         $cpu = $get["cpu"][0];
         $ram = $get["mem"]["memCached"] + $get["mem"]["memRealUsed"];
         $load = $get["load"]["one"];
-        $network = $get["network"]["ens160"]["down"];
+        $network = $get["network"]["ens192"]["down"];
 
         $up = $get["upTotal"];
         $down = $get["downTotal"];
