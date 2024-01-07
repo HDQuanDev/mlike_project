@@ -432,6 +432,86 @@ switch ($_GET['act']) {
         $json["data"][0]["class"] = 'warning';
         echo json_encode($json);
         break;
+        case 'test':
+             $cpu = $get["cpu"][0];
+        $ram = $get["mem"]["memCached"] + $get["mem"]["memRealUsed"];
+        $load = $get["load"]["one"];
+        $network = $get["network"]["ens192"]["down"];
+
+        $up = $get["upTotal"];
+        $down = $get["downTotal"];
+        $up = $up / pow(1024, 3);
+        $down = $down / pow(1024, 3);
+        $up = round($up, 2);
+        $down = round($down, 2);
+        $total = $up + $down;
+        $bandwidth = $total / 5000 * 100;
+        $bandwidth = round($bandwidth, 2);
+
+        $db = $api->GetDatabase();
+        $db = json_decode(json_encode($db), true);
+        $received = $db["Bytes_received"];
+        $sent = $db["Bytes_sent"];
+        $received = $received / pow(1024, 3);
+        $sent = $sent / pow(1024, 3);
+        $received = round($received, 2);
+        $sent = round($sent, 2);
+        $total = $received + $sent;
+        $bandwidth_data = $total / 10000 * 100;
+        $bandwidth_data = round($bandwidth_data, 2);
+
+        $site = file_get_contents('site.txt');
+        $data = file_get_contents('database.txt');
+        $backup_size = $site + $data;
+        $backup_usage = $backup_size / 51200 * 100;
+        $backup_usage = round($backup_usage, 2);
+
+        $site_files = count(scandir('../../../../backup/site')) - 2;
+        $data_files = count(scandir('../../../../backup/database')) - 2;
+
+        // $get_fw = $api->GetFirewall();
+        // $config = json_encode($get_fw);
+        // $config = json_decode($config, true);
+
+        $get_disk = $api->GetDirSite('/www/wwwlogs');
+        $get_disk_size = explode('.', $get_disk);
+        $get_disk_size = $get_disk_size[0];
+        $get_disk_size = trim($get_disk_size);
+        if ($get_disk_size > 50) {
+            $get_disk_size = $get_disk_size - 50;
+            $op = '0';
+        } else {
+            $op = '100';
+        }
+        $get_disk_price = $get_disk_size * 1000;
+        $get_disk_price = number_format($get_disk_price);
+        $response = [
+            "cpu" => $cpu,
+            "ram" => $ram,
+            "load" => $load,
+            "network" => $network,
+            "bandwidth" => $bandwidth,
+            "bandwidth_data" => $bandwidth_data,
+            "firewall" => [
+                // "total_banned" => $config["msg"]["total_banned"],
+                // "total_failed" => $config["msg"]["total_failed"],
+                // "currently_banned" => $config["msg"]["currently_banned"],
+                // "currently_failed" => $config["msg"]["currently_failed"],
+                 "total_banned" => 999999,
+                 "total_failed" => 999999,
+                 "currently_banned" => 999999,
+                 "currently_failed" => 999999,
+            ],
+            "disklog" => [
+                "size" => $get_disk,
+                "size_number" => $get_disk_size,
+                "price" => $get_disk_price,
+                "op" => $op,
+            ]
+        ];
+
+        echo $response;
+        break;
     default:
         # code...
         break;
