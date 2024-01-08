@@ -11,61 +11,6 @@ function fb($dv, $time, $func, $type)
     return $result;
 }
 
-function total($dv, $type, $num = 0)
-{
-    global $db;
-    date_default_timezone_set('Asia/Ho_Chi_Minh');
-    $tz = new DateTimeZone('Asia/Ho_Chi_Minh');
-    $tomorrow = date("Y-m-d 00:00:00", strtotime("yesterday") + 86400);
-    $tomorrow = strtotime($tomorrow);
-
-    $yesterday = $tomorrow - 86400;
-
-    $firstDay = new DateTime('first day of this month', $tz);
-    $firstDay = $firstDay->format("Y-m-d");
-    $firstDay = strtotime($firstDay);
-
-    // Initialize stats array
-    $stats = array(
-        'todayPurchases' => 0,
-        'monthPurchases' => 0,
-        'todayProfit' => 0,
-        'yesterdayProfit' => 0,
-        'monthProfit' => 0
-    );
-
-    // Query to get all purchases for this service
-    $result = mysqli_query($db, "SELECT * FROM `$type` WHERE `dv` = '$dv'");
-
-    while ($ro = mysqli_fetch_assoc($result)) {
-        $purchaseTime = $ro['time'];
-        $sotien = $ro['sotien'];
-        $sl = $ro['sl'];
-        $dvv = $ro['dv'];
-        $gsv = $ro['nse'];
-        $so = $sotien;
-
-        if ($purchaseTime >= $tomorrow) {
-            $stats['todayPurchases'] += $sl;
-            $stats['todayProfit'] += $so;
-        }
-
-        if ($purchaseTime >= $yesterday && $purchaseTime < $tomorrow) {
-            $stats['yesterdayProfit'] += $so;
-        }
-
-        if ($purchaseTime >= $firstDay) {
-            $stats['monthPurchases'] += $sl;
-            $stats['monthProfit'] += $so;
-        }
-    }
-
-    return json_encode($stats);
-}
-
-function totalall($time)
-{
-}
 
 function check_isMobile()
 {

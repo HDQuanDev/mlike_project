@@ -3,18 +3,100 @@ $admin = '1';
 require_once('../_System/db.php');
 $title = "Thống Kê Hệ Thống";
 require_once('../_System/head.php');
-require_once('../_System/function.php'); //gọi function hỗ trợ thống kê
 
-date_default_timezone_set('Asia/Ho_Chi_Minh');
-$tz = new DateTimeZone('Asia/Ho_Chi_Minh');
-$tomorrow = date("Y-m-d 00:00:00", strtotime("yesterday") + 86400);
-$tomorrow = strtotime($tomorrow);
 
-$yesterday = $tomorrow - 86400;
+function total($dv, $type, $num = 0)
+{
+    global $db;
+    date_default_timezone_set('Asia/Ho_Chi_Minh');
+    $tz = new DateTimeZone('Asia/Ho_Chi_Minh');
+    $tomorrow = date("Y-m-d 00:00:00", strtotime("yesterday") + 86400);
+    $tomorrow = strtotime($tomorrow);
 
-$firstDay = new DateTime('first day of this month', $tz);
-$firstDay = $firstDay->format("Y-m-d");
-$firstDay = strtotime($firstDay);
+    $yesterday = $tomorrow - 86400;
+
+    $firstDay = new DateTime('first day of this month', $tz);
+    $firstDay = $firstDay->format("Y-m-d");
+    $firstDay = strtotime($firstDay);
+
+    // Initialize stats array
+    $stats = array(
+        'todayPurchases' => 0,
+        'monthPurchases' => 0,
+        'todayProfit' => 0,
+        'yesterdayProfit' => 0,
+        'monthProfit' => 0
+    );
+
+    // Query to get all purchases for this service
+    $result = mysqli_query($db, "SELECT * FROM `$type` WHERE `dv` = '$dv'");
+
+    while ($ro = mysqli_fetch_assoc($result)) {
+        $purchaseTime = $ro['time'];
+        $sotien = $ro['sotien'];
+        $sl = $ro['sl'];
+        $so = $sotien;
+
+        if ($purchaseTime >= $tomorrow) {
+            $stats['todayPurchases'] += $sl;
+            $stats['todayProfit'] += $so;
+        }
+
+        if ($purchaseTime >= $yesterday && $purchaseTime < $tomorrow) {
+            $stats['yesterdayProfit'] += $so;
+        }
+
+        if ($purchaseTime >= $firstDay) {
+            $stats['monthPurchases'] += $sl;
+            $stats['monthProfit'] += $so;
+        }
+    }
+
+    return json_encode($stats);
+}
+
+function totalall()
+{
+    global $db;
+    date_default_timezone_set('Asia/Ho_Chi_Minh');
+    $tz = new DateTimeZone('Asia/Ho_Chi_Minh');
+    $tomorrow = date("Y-m-d 00:00:00", strtotime("yesterday") + 86400);
+    $tomorrow = strtotime($tomorrow);
+    $yesterday = $tomorrow - 86400;
+    $firstDay = new DateTime('first day of this month', $tz);
+    $firstDay = $firstDay->format("Y-m-d");
+    $firstDay = strtotime($firstDay);
+    $stats = [
+        'todayProfit' => 0,
+        'yesterdayProfit' => 0,
+        'monthProfit' => 0
+    ];
+
+    $tables = ['dichvu', 'dv_other', 'video'];
+
+    foreach ($tables as $table) {
+        $result = mysqli_query($db, "SELECT * FROM `$table`");
+
+        while ($ro = mysqli_fetch_assoc($result)) {
+            $purchaseTime = $ro['time'];
+            $sotien = $ro['sotien'];
+
+            if ($purchaseTime >= $tomorrow) {
+                $stats['todayProfit'] += $sotien;
+            }
+
+            if ($purchaseTime >= $yesterday && $purchaseTime < $tomorrow) {
+                $stats['yesterdayProfit'] += $sotien;
+            }
+
+            if ($purchaseTime >= $firstDay) {
+                $stats['monthProfit'] += $sotien;
+            }
+        }
+    }
+
+    return json_encode($stats);
+}
 
 $listdv = 'Like,dichvu,Tăng Like Facebook|Sub,dichvu,Tăng Follow Facebook|Cmt,dichvu,Tăng Comment Facebook|Share,dichvu,Tăng Share Facebook|view,video,Tăng View Video Facebook|mat,video,Tăng Mắt Video Facebook|fb_group,dv_other,Tăng Member Group Facebook|fb_page,dv_other,Tăng Like Fanpage Facebook|fb_feeling,dv_other,Tăng Like Cảm Xúc Facebook|fb_viewstory,dv_other,Tăng View Story Facebook|ins_follow,dv_other,Tăng Follow Instagram|ins_like,dv_other,Tăng Like Instagram|ins_view,dv_other,Tăng View Instagram|tiktok_follow,dv_other,Tăng Follow TikTok|tiktok_like,dv_other,Tăng Like TikTok|tiktok_like_tay,dv_other,Tăng Like Tay TikTok|tiktok_view,dv_other,Tăng View TikTok|ytb_sub,dv_other,Tăng Sub YouTube|ytb_view,dv_other,Tăng View YouTube';
 ?>
@@ -98,7 +180,43 @@ $listdv = 'Like,dichvu,Tăng Like Facebook|Sub,dichvu,Tăng Follow Facebook|Cmt,
 
             <?php
             }
+            $get = json_decode(totalall(), true);
+            $todayProfit = $get['todayProfit'];
+            $yesterdayProfit = $get['yesterdayProfit'];
+            $monthProfit = $get['monthProfit'];
             ?>
+            <div class="col-12 col-xl-4">
+                <h6 class="mb-0 text-uppercase">Tổng Số Doanh Thu</h6>
+                <hr />
+                <div class="card">
+                    <div class="card-body">
+                        <ul class="list-group">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">Tổng Tiền Hôm Nay <span class="badge bg-primary rounded-pill"><?= number_format($todayProfit); ?>₫</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">Tổng Tiền Hôm Qua <span class="badge bg-primary rounded-pill"><?= number_format($yesterdayProfit); ?>₫</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">Tổng Tiền Tháng Này <span class="badge bg-primary rounded-pill"><?= number_format($monthProfit); ?>₫</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-xl-4">
+                <h6 class="mb-0 text-uppercase">Thông Tin</h6>
+                <hr />
+                <div class="card">
+                    <div class="card-body">
+                        <ul class="list-group">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">Phiên Bản <span class="badge bg-primary rounded-pill">1.0</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">PHP Vesrion <span class="badge bg-primary rounded-pill"><?= phpversion(); ?></span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">MySQL Version <span class="badge bg-primary rounded-pill"><?= mysqli_get_server_info($db); ?></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
