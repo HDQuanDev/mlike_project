@@ -69,7 +69,7 @@ switch ($_GET['act']) {
                     </div>
                     <div class="mb-3">
                         <label>Nhập Link Fanpage:</label>
-                        <input type="text" oninput="getIDP('id');" name="id" class="form-control mb-3" aria-label="Recipient's username" aria-describedby="basic-addon2" placeholder="Nhập ID!" required="" id="idbuff_like">
+                        <input type="number" id="sl" oninput="calc()" class="form-control mb-3" placeholder="Nhập số Follow..." name="sl" value="" required="">
                     </div>
                     <label>(*) Chỉ dùng <code>link fanpage</code> để buff, hệ thống tự động get id cho bạn!</label>
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
