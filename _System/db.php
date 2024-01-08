@@ -62,7 +62,37 @@ if ($login) {
         setcookie("password", "", time() - 31556926, "/");
         header('location:/');
     }
-
+    if (isset($_COOKIE['username'], $_COOKIE['password'], $_COOKIE['token'])) {
+        $login = $_COOKIE['username'];
+        $pass = $_COOKIE['password'];
+        $token = $_COOKIE['token'];
+    
+        $stmt = $db->prepare("SELECT * FROM `member` WHERE `username` = ? AND `password` = ? AND `token` = ?");
+        $stmt->bind_param("sss", $login, $pass, $token);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows === 0) {
+            session_destroy();
+            setcookie("username", "", time() - 31556926, "/");
+            setcookie("password", "", time() - 31556926, "/");
+            setcookie("token", "", time() - 31556926, "/");
+            setcookie("cv", "", time() - 31556926, "/");
+            header('location:/');
+        } elseif (empty($_SESSION['cv'])) {
+            $row = $result->fetch_assoc();
+            $_SESSION['cv'] = $row['rule'];
+        }
+        $stmt->close();
+    } else {
+        session_destroy();
+        setcookie("username", "", time() - 31556926, "/");
+        setcookie("password", "", time() - 31556926, "/");
+        setcookie("token", "", time() - 31556926, "/");
+        setcookie("cv", "", time() - 31556926, "/");
+        header('location:/');
+    }
+    ?>
+    
     if ($row['rule'] == 99) {
         $cv = "Admin!";
     } elseif ($row['rule'] == 33) {
