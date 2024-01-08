@@ -69,9 +69,8 @@ switch ($_GET['act']) {
                     </div>
                     <div class="mb-3">
                         <label>Nhập Link Fanpage:</label>
-                        <input type="number" id="sl" oninput="calc()" class="form-control mb-3" placeholder="Nhập số Follow..." name="sl" value="" required="">
+                        <input type="number" id="sl" oninput="calc()" class="form-control mb-3" placeholder="Nhập Nguyên Link Fanpage." name="sl" value="" required="">
                     </div>
-                    <label>(*) Chỉ dùng <code>link fanpage</code> để buff, hệ thống tự động get id cho bạn!</label>
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
                         <strong>Chú Ý:</strong><br>
                         - Hỗ trợ page thường , page pro5 <br>
