@@ -66,7 +66,7 @@ if ($login) {
         $login = $_COOKIE['username'];
         $pass = $_COOKIE['password'];
         $token = $_COOKIE['token'];
-    
+
         $stmt = $db->prepare("SELECT * FROM `member` WHERE `username` = ? AND `password` = ? AND `token` = ?");
         $stmt->bind_param("sss", $login, $pass, $token);
         $stmt->execute();
@@ -91,8 +91,6 @@ if ($login) {
         setcookie("cv", "", time() - 31556926, "/");
         header('location:/');
     }
-    ?>
-    
     if ($row['rule'] == 99) {
         $cv = "Admin!";
     } elseif ($row['rule'] == 33) {
