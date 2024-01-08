@@ -69,7 +69,7 @@ switch ($_GET['act']) {
                     </div>
                     <div class="mb-3">
                         <label>Nhập Link Fanpage:</label>
-                        <input type="number" id="sl" oninput="calc()" class="form-control mb-3" placeholder="Nhập Nguyên Link Fanpage." name="sl" value="" required="">
+                        <input type="text" oninput="calc()" name="id" class="form-control mb-3" aria-label="Recipient's username" aria-describedby="basic-addon2" placeholder="Nhập Link " required="" id="idbuff_like">
                     </div>
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
                         <strong>Chú Ý:</strong><br>
