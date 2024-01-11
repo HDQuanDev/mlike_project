@@ -575,7 +575,7 @@ $(function () {
                 render: function (data, type, row, meta) {
                     if (type === 'display') {
                         if (getCookieValue("cv") == '99') {
-                            data = '<a href="?act=history&id=' + row.id + '&user=' + row.user + '&st=' + row.sotien + '">Hủy Đơn</a>';
+                            data = '<a href="?act=history&id=' + row.id_order + '&user=' + row.user + '&st=' + row.sotien + '">Hủy Đơn</a>';
                         } else {
                             data = null;
                         }
