@@ -19,6 +19,7 @@ mysqli_set_charset($db, "utf8");
 $urll = $_SERVER['SCRIPT_NAME'];
 $site = $_SERVER['HTTP_HOST'];
 $domain = 'https://' . $site . '';
+$percent_promotion = 10;
 if ($site == 'like1s.vn') {
     $site = 'mlike.vn';
     $domain = 'https://like1s.vn';

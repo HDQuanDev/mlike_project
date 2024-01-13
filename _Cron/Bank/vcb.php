@@ -26,7 +26,7 @@ for ($i = 0; $i < $countlist; $i++) {
     $xlnd = strtolower($delnd);
     $r = '/(mlike\s)([A-Za-z0-9_]*)/';
     preg_match($r, $xlnd, $getkey);
-    $cpnd = trim($getkey[1]); 
+    $cpnd = trim($getkey[1]);
     $user = $getkey[2];
     if ($cpnd == 'mlike') {
         // Thực hiện cộng tiền cho khách
@@ -71,6 +71,19 @@ for ($i = 0; $i < $countlist; $i++) {
                 $tx = 'Nap Qua AUTO VCB (mlike #' . $tranid . ')';
                 $hi = 'AUTO VCB';
                 mysqli_query($db, "INSERT INTO `momo` SET `user` = '$user',`vnd` = '$tien',`tranid`='$tranid',`time`='$time', `text`='$tx',`app`='$hi', `hien` = '0', `site` = 'mlike.vn'");
+                // thực hiện cộng tiền khuyễn mãi
+                $get_user = mysqli_query($db, "SELECT * FROM `member` WHERE `username` = '$user' AND `site` = '$site'");
+                $get_user = mysqli_fetch_assoc($get_user);
+                if ($get_user['activated_km'] == true) {
+                    $time = time();
+                    $nd = 'Nhận tiền khuyến mãi từ nạp tiền qua VCB';
+                    $bd = $tien / 100 * $percent_promotion;
+                    $gtls = '+';
+                    $dd = $get_user['vnd'];
+                    mysqli_query($db, "INSERT INTO `lichsu` SET `nd` = '$nd',`bd` = '$bd',`user`='$user',`time`='$time', `loai` = '2', `goc` = '$dd', `idgd` = '$bd', `gt` = '$gtls', `site` = '$site'");
+                    mysqli_query($db, "UPDATE `member` SET `vnd` = `vnd`+'$bd' WHERE `username` = '$user' AND `site` = '$site'");
+                    mysqli_query($db, "UPDATE `member` SET `vndkm` = `vndkm`+'$bd' WHERE `username` = '$user' AND `site` = '$site'");
+                }
             }
         }
     }

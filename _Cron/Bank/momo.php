@@ -67,6 +67,20 @@ for ($i = 0; $i < $countlist; $i++) {
                 $tx = 'Nap Qua AUTO Momo (mlike #' . $tranid . ')';
                 $hi = 'AUTO MOMO';
                 mysqli_query($db, "INSERT INTO `momo` SET `user` = '$user',`vnd` = '$tien',`tranid`='$tranid',`time`='$time', `text`='$tx',`app`='$hi', `hien` = '0', `site` = 'mlike.vn'");
+
+                // thực hiện cộng tiền khuyễn mãi
+                $get_user = mysqli_query($db, "SELECT * FROM `member` WHERE `username` = '$user' AND `site` = '$site'");
+                $get_user = mysqli_fetch_assoc($get_user);
+                if ($get_user['activated_km'] == true) {
+                    $time = time();
+                    $dd = $get_user['vnd'];
+                    $nd = 'Nhận tiền khuyến mãi từ nạp tiền:';
+                    $ck = $tien / 100 * $percent_promotion;
+                    $ck = round($ck);
+                    mysqli_query($db, "INSERT INTO `lichsu` SET `nd` = '$nd',`bd` = '$ck',`user`='$user',`time`='$time', `loai` = '2', `goc` = '$dd', `idgd` = '$ck', `gt` = '+', `site` = '$site'");
+                    mysqli_query($db, "UPDATE `member` SET `vnd` = `vnd`+'$ck' WHERE `username` = '$user' AND `site` = '$site'");
+                    mysqli_query($db, "UPDATE `member` SET `vndkm` = `vndkm`+'$ck' WHERE `username` = '$user' AND `site` = '$site'");
+                }
             }
         }
     }
