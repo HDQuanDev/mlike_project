@@ -178,12 +178,13 @@ WHERE `username` = '$id' AND `site` = '$site'");
                                 $del = mysqli_query($db, "UPDATE `member` SET `activated_km` = 'false' WHERE `username` = '$id' AND `site` = 'mlike.vn'");
                                 if ($del) {
                                     echo '<script>swal("Hệ Thống!","Đã hủy khuyến mãi cho User: ' . $id . '","success");</script>';
-                                    echo '<script>setTimeout(function(){ window.location="' . $url . '";}, 2000);</script>';
+                                    header('Location: user?edit=' . $id . '');
                                 }
                             } else {
                                 $del = mysqli_query($db, "UPDATE `member` SET `activated_km` = 'true' WHERE `username` = '$id' AND `site` = 'mlike.vn'");
                                 if ($del) {
                                     echo '<script>swal("Hệ Thống!","Đã kích hoạt khuyến mãi cho User: ' . $id . '","success");</script>';
+                                    header('Location: user?edit=' . $id . '');
                                 }
                             }
                         }
