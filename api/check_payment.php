@@ -7,7 +7,7 @@ if (isset($login)) {
         $qc = mysqli_query($db, "SELECT * FROM `momo` WHERE `user` = '$login' AND `time` > '$tcheck' AND `hien` = '0' ORDER BY id DESC LIMIT 1");
         $qc = mysqli_num_rows($qc);
         if ($qc == 1) {
-            $result = mysqli_query($db, "SELECT * FROM `momo` WHERE `user` = '$login' AND `time` > '$tcheck' ORDER BY id DESC LIMIT 1");
+            $result = mysqli_query($db, "SELECT * FROM `momo` WHERE `user` = '$login' AND `time` > '$tcheck' AND `hien` = '0' ORDER BY id DESC LIMIT 1");
             $quan = mysqli_fetch_assoc($result);
             if ($quan) {
                 $vn = $quan['vnd'];

@@ -82,11 +82,10 @@ for ($i = 0; $i < $countlist; $i++) {
                     $dd = $get_user['vnd'];
                     mysqli_query($db, "INSERT INTO `lichsu` SET `nd` = '$nd',`bd` = '$bd',`user`='$user',`time`='$time', `loai` = '2', `goc` = '$dd', `idgd` = '$bd', `gt` = '$gtls', `site` = '$site'");
                     mysqli_query($db, "UPDATE `member` SET `vnd` = `vnd`+'$bd' WHERE `username` = '$user' AND `site` = '$site'");
-                    mysqli_query($db, "UPDATE `member` SET `vndkm` = `vndkm`+'$bd' WHERE `username` = '$user' AND `site` = '$site'");
                     $tx = 'Cộng tiền khuyến mãi (mlike #' . $tranid . ')';
                     $hi = 'KHUYEN MAI';
-                    $idr = rand(100000000, 999999999);
-                    mysqli_query($db, "INSERT INTO `momo` SET `user` = '$user',`vnd` = '$ck',`tranid`='$idr',`time`='$time', `text`='$tx',`app`='$hi', `hien` = '1', `site` = '$site'");
+                    $idr = rand(1000000000, 2000000000);
+                    mysqli_query($db, "INSERT INTO `momo` SET `user` = '$user',`vnd` = '$bd',`tranid`='$idr',`time`='$time', `text`='$tx',`app`='$hi', `hien` = '1', `site` = '$site'");
                 }
             }
         }
