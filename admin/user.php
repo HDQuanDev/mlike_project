@@ -175,14 +175,14 @@ WHERE `username` = '$id' AND `site` = '$site'");
                         $tko = mysqli_num_rows($tko);
                         if ($tko != 0) {
                             if ($u['activated_km'] == true) {
-                                $del = mysqli_query($db, "UPDATE `member` SET `activated_km` = 'false' WHERE `username` = '$id' AND `site` = '$site'");
+                                $del = mysqli_query($db, "UPDATE `member` SET `activated_km` = 'false' WHERE `username` = '$id' AND `site` = 'mlike.vn'");
                                 if ($del) {
-                                    echo 'Đã tắt khuyến mãi cho User: ' . $id . '<br>';
+                                    echo '<script>swal("Hệ Thống!","Đã hủy khuyến mãi cho User: ' . $id . '","success");</script>';
                                 }
                             } else {
-                                $del = mysqli_query($db, "UPDATE `member` SET `activated_km` = 'true' WHERE `username` = '$id' AND `site` = '$site'");
+                                $del = mysqli_query($db, "UPDATE `member` SET `activated_km` = 'true' WHERE `username` = '$id' AND `site` = 'mlike.vn'");
                                 if ($del) {
-                                    echo 'Đã bật khuyến mãi cho User: ' . $id . '<br>';
+                                    echo '<script>swal("Hệ Thống!","Đã kích hoạt khuyến mãi cho User: ' . $id . '","success");</script>';
                                 }
                             }
                         }
