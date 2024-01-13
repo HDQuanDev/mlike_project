@@ -40,7 +40,6 @@ WHERE `username` = '$id' AND `site` = '$site'");
                         $vnd = mysqli_real_escape_string($db, $_POST['vnd']);
                         $cv = mysqli_real_escape_string($db, $_POST['cv']);
                         $gt = mysqli_real_escape_string($db, $_POST['gt']);
-                        $activated_km = mysqli_real_escape_string($db, $_POST['activated_km']);
                         if (empty($gt)) {
                             echo "<script>swal('OOPS!','Vui lòng chọn giá trị tiền!','warning');</script>";
                             echo '<script>setTimeout(function(){
@@ -100,11 +99,6 @@ WHERE `username` = '$id' AND `site` = '$site'");
                                 }
                                 mysqli_query($db, "INSERT INTO `lichsu` SET `nd` = '$nd1',`bd` = '$bd',`user`='$user',`time`='$time', `loai` = '2', `goc` = '$dd', `idgd` = '$idgd', `gt` = '$gtls'");
                                 mysqli_query($db, "UPDATE `member` SET `vnd` = '$vn' WHERE `username` = '$user' AND `site` = '$site'");
-                            }
-                            if ($activated_km == 'true') {
-                                mysqli_query($db, "UPDATE `member` SET `activated_km` = 'true' WHERE `username` = '$user' AND `site` = '$site'");
-                            } else {
-                                mysqli_query($db, "UPDATE `member` SET `activated_km` = 'false' WHERE `username` = '$user' AND `site` = '$site'");
                             }
                             echo "<script>swal('Hệ Thống!','Chỉnh sửa thành viên thành công!','success');</script>";
                             echo '<script>setTimeout(function(){
@@ -175,6 +169,24 @@ WHERE `username` = '$id' AND `site` = '$site'");
                             }
                         }
                     }
+                    if ($_GET['activated_km']) {
+                        $id = $_GET['activated_km'];
+                        $tko = mysqli_query($db, "SELECT * FROM `member` WHERE `username` = '$id' AND `site` = '$site'");
+                        $tko = mysqli_num_rows($tko);
+                        if ($tko != 0) {
+                            if ($u['activated_km'] == true) {
+                                $del = mysqli_query($db, "UPDATE `member` SET `activated_km` = 'false' WHERE `username` = '$id' AND `site` = '$site'");
+                                if ($del) {
+                                    echo 'Đã tắt khuyến mãi cho User: ' . $id . '<br>';
+                                }
+                            } else {
+                                $del = mysqli_query($db, "UPDATE `member` SET `activated_km` = 'true' WHERE `username` = '$id' AND `site` = '$site'");
+                                if ($del) {
+                                    echo 'Đã bật khuyến mãi cho User: ' . $id . '<br>';
+                                }
+                            }
+                        }
+                    }
                     echo '- Trạng Thái: ' . $quandz . '<br>- Số Tiền: ' . $u['vnd'] . '<br>- Kích Hoạt Khuyến Mãi: ' . $u['activated_km'] . '';
                     echo '<form action="" id="info" method="POST" accept-charset="utf-8" class="user">
 <div class="mb-3"><label>Chọn chức vụ :</label><select name="cv" class="form-select mb-3" required="">
@@ -188,13 +200,11 @@ WHERE `username` = '$id' AND `site` = '$site'");
 <option value="10">Cộng</option>
 <Option value="5">Trừ</option></select></div>
 <div class="mb-3"><label>Nhập số tiền:</label><input type="number" class="form-control mb-3" name="vnd" placeholder="1000" value="0" required=""></div>
-<div class="mb-3"><label>Chọn kích hoạt khuyến mãi:</label><select name="activated_km" class="form-select mb-3" required="">
-<Option value="true">Kích Hoạt</option>
-<option value="false">Không Kích Hoạt</option></select></div>
 <button type="submit" class="btn btn-success btn-rounded btn-block me-1 mb-1" name="st"><i class="fa fa-lock"></i> Chỉnh Sửa </button></form>
 <br>
 <a class="btn btn-warning btn-rounded btn-block me-1 mb-1" href="user?edit=' . $id . '&resetpass=' . $id . '" role="button"><i class="fa fa-trash"></i> Thay Đổi Pass</a>
 <br>
+<a class="btn btn-warning btn-rounded btn-block me-1 mb-1" href="user?edit=' . $id . '&activated_km=' . $id . '" role="button"><i class="fa fa-trash"></i> Kích Hoạt/Hủy Khuyến Mãi</a>
 <a class="btn btn-danger btn-rounded btn-block me-1 mb-1" href="user?del=' . $id . '" role="button"><i class="fa fa-trash"></i> Xoá Thành Viên</a>
 </p></div></div></p></div></div>';
 
