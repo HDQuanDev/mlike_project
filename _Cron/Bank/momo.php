@@ -71,7 +71,7 @@ for ($i = 0; $i < $countlist; $i++) {
                 // thực hiện cộng tiền khuyễn mãi
                 $get_user = mysqli_query($db, "SELECT * FROM `member` WHERE `username` = '$user' AND `site` = '$site'");
                 $get_user = mysqli_fetch_assoc($get_user);
-                if ($get_user['activated_km'] == true) {
+                if ($get_user['activated_km'] == 'true') {
                     $time = time();
                     $dd = $get_user['vnd'];
                     $nd = 'Nhận tiền khuyến mãi từ nạp tiền:';
