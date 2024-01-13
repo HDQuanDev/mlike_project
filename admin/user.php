@@ -231,6 +231,7 @@ WHERE `username` = '$id' AND `site` = '$site'");
                         <th class="sort" data-sort="cv">Chức Vụ</th>
                         <th class="sort" data-sort="vnd">Số Tiền</th>
                         <th class="sort" data-sort="sd">Số Tiền Đã Dùng</th>
+                        <th class="sort" data-sort="sd">Kích Hoạt Khuyến Mãi</th>
                         <th class="sort" data-sort="sd">Đăng Ký Cách Đây</th>
                         <th class="sort" data-sort="ip">Last IP Login</th>
                         <th class="sort" data-sort="ip">Last Time Login</th>
@@ -274,6 +275,7 @@ WHERE `username` = '$id' AND `site` = '$site'");
                                                 $formattedNum = number_format($vnd);
                                                 $vnd = $formattedNum;
                                                 echo $vnd; ?> ₫</td>
+                                <td class="sd"><?php echo $ro['activated_km']; ?></td>
                                 <td class="ip"><?= time_func($ro['time']); ?></td>
                                 <td class="ip"><?= $ro['last_ip_login']; ?></td>
                                 <td class="ip"><?= time_func($ro['last_time_login']); ?></td>
