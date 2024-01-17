@@ -7,6 +7,7 @@ require_once('../../../module/autofb88.php');
 require_once('../../../module/ongtrum.php');
 require_once('../../../module/tiktok.php');
 require_once('../../../module/buffviewer.php');
+require_once('../../../module/boosterviews.php');
 $gia = $gia1;
 $api = new Api();
 $array = [];
@@ -117,19 +118,30 @@ switch ($_GET['act']) {
             if ($tko == '1') {
                 $row = mysqli_fetch_assoc($uu);
                 $login = $row['username'];
-                $check = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `dv`='tiktok_view' AND `id` = '$id_order' AND `user` = '$login' AND `nse` = 'Server View 7'");
+                $check = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `dv`='tiktok_view' AND `id` = '$id_order' AND `user` = '$login' AND (`nse` = 'Server View 7' OR `nse` = 'Server View 9')");
                 $c = mysqli_num_rows($check);
                 if ($c == '1') {
                     $get = mysqli_fetch_assoc($check);
                     $idgd = $get["idgd"];
                     if ($idgd > 0) {
-                        $refill = json_decode(bv_refill_view($idgd), true);
-                        if ($refill["data"][0]["status"] == true) {
-                            $array["status"] = 'success';
-                            $array["msg"] = 'Đã refill thành công!';
-                        } else {
-                            $array["status"] = 'error';
-                            $array["msg"] = $refill["data"][0]["message"];
+                        if ($get["nse"] == 'Server View 7') {
+                            $refill = json_decode(bv_refill_view($idgd), true);
+                            if ($refill["data"][0]["status"] == true) {
+                                $array["status"] = 'success';
+                                $array["msg"] = 'Đã refill thành công!';
+                            } else {
+                                $array["status"] = 'error';
+                                $array["msg"] = $refill["data"][0]["message"];
+                            }
+                        } elseif ($get["nse"] == 'Server View 9') {
+                            $refill = json_decode(boosterviews_refill($idgd), true);
+                            if (isset($refill["refill"])) {
+                                $array["status"] = 'success';
+                                $array["msg"] = 'Đã refill thành công!';
+                            } else {
+                                $array["status"] = 'error';
+                                $array["msg"] = 'Đơn hàng này chưa cần bảo hành, vui lòng thử lại sau!';
+                            }
                         }
                     } else {
                         $array["status"] = 'error';
@@ -198,6 +210,11 @@ switch ($_GET['act']) {
                 } elseif ($sv == 8) {
                     $tongtien = $sl * $gia8;
                     $nse = 'Server View 8';
+                    $min = 1000;
+                    $max = 2000000000;
+                } elseif ($sv == 9) {
+                    $tongtien = $sl * $gia9;
+                    $nse = 'Server View 9';
                     $min = 1000;
                     $max = 2000000000;
                 }
@@ -494,6 +511,49 @@ switch ($_GET['act']) {
                             } else {
                                 $array["status"] = 'error';
                                 $array["msg"] = $buff["data"][0]["status"]["message"];
+                            }
+                        } else {
+                            $array["status"] = 'error';
+                            $array["msg"] = 'Không thể lấy thông tin từ UID/Link này, vui lòng thử lại!!!';
+                        }
+                    } elseif ($sv == 9) {
+                        if (isset($_POST['view']) && isset($_POST['uid'])) {
+                            $ttid = $_POST['uid'];
+                            $ttview = $_POST['view'];
+                            $checkne = '200';
+                        } else {
+                            $tt = json_decode(check_tt($link, "video"));
+                            if ($stttiktok == 'on') {
+                                $checkne = $tt->success;
+                                $ttid = $tt->data->id;
+                                $ttview = $tt->data->playCount;
+                            } else {
+                                $checkne = '200';
+                                $ttid = $id;
+                                $ttview = 'null';
+                            }
+                        }
+                        if ($checkne == '200') {
+                            $buff = json_decode(boosterviews($link, $sl, "1040"), true);
+                            if (isset($buff["order"])) {
+                                $nd1 = 'Tăng View TikTok ID:';
+                                $bd = $tongtien;
+                                $gt = '-';
+                                $idgd = '' . $id . ' (' . $sl . ')';
+                                $goc = $row['vnd'];
+                                $time = time();
+                                $iddon = $buff["order"];
+                                mysqli_query($db, "INSERT INTO `lichsu` SET `nd` = '$nd1',`bd` = '$bd',`user`='$login',`time`='$time', `goc` = '$goc', `loai` = '1', `idgd` = '$idgd', `gt` = '$gt'");
+                                mysqli_query($db, "INSERT INTO `dv_other` SET `dv` = 'tiktok_view',`sl` = '$sl', `trangthai` = '1', `user`='$login',`profile`='$ttid',`time` = '$time', `sttdone` = '10', `sotien` = '$tongtien', `done` = '0', `nse` = '$nse', `cmt` = '$ttid', `iddon` = '$ttview', `idgd` = '$iddon'");
+                                mysqli_query($db, "UPDATE `member` SET `vnd` = `vnd`-'$tongtien', `sd` = `sd`+'$tongtien' WHERE `username` = '$login' AND `site` = '$site'");
+                                $array["status"] = 'success';
+                                $array["msg"] = 'Mua View Thành Công! Cảm ơn bạn!!';
+                                $r = mysqli_query($db, "SELECT * FROM `dv_other` ORDER BY `dv_other`.`id` DESC");
+                                $rr = mysqli_fetch_assoc($r);
+                                $array["id_order"] = $rr['id'];
+                            } else {
+                                $array["status"] = 'error';
+                                $array["msg"] = 'Đã xảy ra lỗi, vui lòng thử lại sau!';
                             }
                         } else {
                             $array["status"] = 'error';

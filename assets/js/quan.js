@@ -588,7 +588,7 @@ $(function () {
                 data: null,
                 render: function (data, type, row) {
                     if (type === 'display') {
-                        if (row.server == 'Server View 7') {
+                        if (row.server == 'Server View 7' || row.server == 'Server View 9') {
                             data = '<form><button type="button" id="button_' + row.id_order + '" class="btn btn-primary btn-rounded" onclick="huy_order_view(\'' + row.id_order + '\',\'' + decodeURIComponent(getCookieValue("token")) + '\')">Bảo Hành</button></form>';
                         } else {
                             data = null;
