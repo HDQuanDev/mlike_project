@@ -19,7 +19,7 @@ function boosterviews($id, $sv, $sl)
         CURLOPT_FOLLOWLOCATION => true,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => 'POST',
-        CURLOPT_POSTFIELDS => http_build_query($data),
+        CURLOPT_POSTFIELDS => $data,
         CURLOPT_HTTPHEADER => array(
             'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0',
             'Content-Type: application/x-www-form-urlencoded',
@@ -50,7 +50,7 @@ function boosterviews_refill($id)
         CURLOPT_FOLLOWLOCATION => true,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => 'POST',
-        CURLOPT_POSTFIELDS => http_build_query($data),
+        CURLOPT_POSTFIELDS => $data,
         CURLOPT_HTTPHEADER => array(
             'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0',
             'Content-Type: application/x-www-form-urlencoded',
