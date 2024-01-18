@@ -95,7 +95,7 @@ swal({
                     <div class="form-check">
                         <input class="form-check-input" <? if ($sv4 == 'off') {
                                                             echo 'checked';
-                                                        }; ?> id="flexRadioDefault1" type="radio" name="sv" value="1" data-bs-toggle="collapse" data-bs-target="#sv1" aria-expanded="false" aria-controls="sv1" /><label class="form-check-label" for="flexRadioDefault1">Server Like 1 (Tốc độ nhanh khá ổn định, chất lượng tốt tụt ít, cấm album, Max 10k+ ) </span> <span style="color:red;"><?= $gia1; ?>₫</span> <span class="badge bg-success">ổn định</span></label>
+                                                        }; ?> id="flexRadioDefault1" type="radio" name="sv" value="1" data-bs-toggle="collapse" data-bs-target="#sv1" aria-expanded="false" aria-controls="sv1" /><label class="form-check-label" for="flexRadioDefault1">Server Like 1 (Tốc độ nhanh khá ổn định, chất lượng tốt có thể dư, cấm album, Max 10k+ ) </span> <span style="color:red;"><?= $gia1; ?>₫</span> <span class="badge bg-success">ổn định</span></label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" id="flexRadioDefault1" type="radio" name="sv" value="2" data-bs-toggle="collapse" data-bs-target="#sv2" aria-expanded="false" aria-controls="sv2" /><label class="form-check-label" for="flexRadioDefault1">Server Like 2 ( Tốc độ nhanh ổn định <span style="color: red;">Album dể lỗi test ít lên được thì cài tiếp</span> Max 100k ) <span style="color:red;"><?= $gia2; ?>₫</span> <span class="badge bg-success">Rất nhanh</span></label>
@@ -183,7 +183,7 @@ swal({
                                 - Riêng với avt bìa vui lòng lấy bằng máy tính kích vào hình ảnh rồi copy link có chữ photo mới đúng<br>
                                 *<span style="color: red;"> Chú ý </span> : bật nút like ở trong cài đặt ra trước khi cài (Vào cài đặt => bài viết công khai => bật công khai hết ra nhé <br>
                                 - Đối với bài viết chia sẽ trên điện thoại thường lấy nhầm vào link gốc vui lòng dùng máy tính để lấy <br>
-                                - Cài số lượng nhỏ lên được hãy cài tiếp tránh cài sll ko lên được sẽ k hỗ trợ hủy, có thể gửi riêng admin hỗ trợ chạy nhanh hơn <br>
+                                - Cài số lượng nhỏ lên được hãy cài tiếp tránh cài sll ko lên được sẽ k hỗ trợ hủy, admin nhận riêng sll siêu tốc độ ib nhé <br>
                                 - Không đọc lưu ý và mô tả , nhập Sai ID sẽ k hoàn tiền. <br>
                         </div>
                     </div>
