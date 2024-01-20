@@ -139,9 +139,8 @@ switch ($_GET['act']) {
                         - DÙNG LINK RÚT GỌN Ở ĐIỆN THOẠI HOẶC MÁY TÍNH ĐỀU ĐƯỢC <BR>
                         - ĐƠN CŨ HOÀN THÀNH MỚI ĐƯỢC CÀI ĐƠN MỚI. NẾU CÀI ĐÈ ĐƠN CÓ BỊ THIẾU BÊN MÌNH KHÔNG HỖ TRỢ. HOÀN THÀNH = GỐC + SỐ MUA <BR>
                         - ĐƠN ĐANG CHẠY TRÊN MLIKE MÀ BẠN VẪN CHẠY Ở CHỖ KHÁC NẾU CÓ TÌNH TRẠNG HỤT SỐ LƯỢNG BÊN MÌNH SẼ KHÔNG XỬ LÝ.<BR>
-                        - <mark style="color:red;"><strong> CHÍNH SÁCH BẢO HÀNH :</strong></mark> CHỈ BẢO HÀNH THEO TỪNG ĐƠN HÀNG KHÔNG TÍNH SỐ LƯỢNG TỔNG NÊN HẠN CHẾ CHIA NHỎ. TRƯỜNG HỢP MUA VIEW RẺ RỒI QUA MUA BẢO HÀNH SẼ K TÍNH VIEW GỐC <br>
-                        - VIDU : VIEW GỐC LOẠI RẺ 100K (LOẠI TỤT) MUA THÊM 50K ( LOẠI BH ), KHI TỤT CÒN 10K THÌ HỆ THỐNG SẼ TÍNH VIEW GỐC LẠI 10K VÀ BẢO HÀNH THÊM 50K. TRƯỜNG HỢP NÀY NẾU HỆ THỐNG GHI NHẬN QUÁ NHIỀU CHÍNH SÁCH CÓ THỂ THAY ĐỔI <BR>
-                        - KHI BỊ TỤT VIEW MỌI NGƯỜI VÀO LỊCH SỬ MUA ĐƠN BẤM NÚT BẢO HÀNH ( MỖI ĐƠN HÀNG CHỈ ĐƯỢC BẤM NÚT BẢO HÀNH SAU 30H KỂ TỪ LẦN BẢO HÀNH CUỐI) <br>
+                        - <mark style="color:red;"><strong> CHÍNH SÁCH BẢO HÀNH :</strong></mark> Bảo hành theo từng đơn hàng, khi bấm bảo hành sẽ chạy lại số lượng đã mua. <BR>
+                        - KHI BỊ TỤT VIEW MỌI NGƯỜI VÀO LỊCH SỬ MUA ĐƠN BẤM NÚT BẢO HÀNH ( MỖI ĐƠN HÀNG CHỈ ĐƯỢC BẤM NÚT BẢO HÀNH SAU 24H KỂ TỪ LẦN BẢO HÀNH CUỐI) <br>
                     </div>
                     <!-- thong bao 
                     <? if (!isset($_POST['add'])) { ?>
