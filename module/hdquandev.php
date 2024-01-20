@@ -15,7 +15,7 @@ if ($tach[2] !== $allowed_referer) {
 if (isset($_GET['type']) && isset($_POST['url'])) {
     $curl = curl_init();
     curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://shopmmo.co/assets/api/tiktok.php?type=' . $_GET['type'],
+        CURLOPT_URL => 'https://mlike.vn/api/tiktok.php?type=' . $_GET['type'],
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,
