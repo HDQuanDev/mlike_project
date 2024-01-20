@@ -63,14 +63,16 @@ while ($ro = mysqli_fetch_assoc($result1)) {
         $dview = (int)$ddview + (int)$gview;
         if ($ddview >= $view) {
             $trangthai = '2';
+            $text_tt = 'Đã hoàn thành';
         } else {
             $trangthai = '3';
+            $text_tt = 'Đang chạy';
         }
         mysqli_query($db, "UPDATE `dv_other` SET `timedown` = '$mtime', `done`='$ddview', `trangthai`='$trangthai', `timeup`='$time' WHERE `id` = '$id'");
         mysqli_query($db, "UPDATE `ttstat` SET `success`=`success`+'1' WHERE `id` = '1'");
         echo ' ' . $id . ' -> success<br>';
         $fp = @fopen('logview.txt', "a+");
-        $data = '[' . date('H:i:s - d/m', $time) . '] ' . $id . ' -> success [run on server ' . $get_url . ' (ip ' . $ip_sv . ')]
+        $data = '[' . date('H:i:s - d/m', $time) . '] ' . $id . ' -> success [result: ' . $text_tt . '] [run on server ' . $get_url . ' (ip ' . $ip_sv . ')]
             ';
         fwrite($fp, $data);
     } elseif ($check->success == '400') {
@@ -86,7 +88,7 @@ while ($ro = mysqli_fetch_assoc($result1)) {
             mysqli_query($db, "UPDATE `ttstat` SET `error`=`error`+'1' WHERE `id` = '1'");
             echo '' . $id . ' -> link die<br>';
             $fp = @fopen('logview.txt', "a+");
-            $data = '[' . date('H:i:s - d/m', $time) . '] ' . $id . ' -> error [run on server ' . $get_url . ' (ip ' . $ip_sv . ')]
+            $data = '[' . date('H:i:s - d/m', $time) . '] ' . $id . ' -> error [result: Link Loi] [run on server ' . $get_url . ' (ip ' . $ip_sv . ')]
             ';
             fwrite($fp, $data);
         }
@@ -95,7 +97,7 @@ while ($ro = mysqli_fetch_assoc($result1)) {
         mysqli_query($db, "UPDATE `dv_other` SET `timedown`='$mtime' WHERE `id` = '$id'");
         echo '' . $id . ' -> error<br>';
         $fp = @fopen('logview.txt', "a+");
-        $data = '[' . date('H:i:s - d/m', $time) . '] ' . $id . ' -> error [run on server ' . $get_url . ' (ip ' . $ip_sv . ')]
+        $data = '[' . date('H:i:s - d/m', $time) . '] ' . $id . ' -> error [result: Khong the xu ly phia server] [run on server ' . $get_url . ' (ip ' . $ip_sv . ')]
             ';
         fwrite($fp, $data);
     }
