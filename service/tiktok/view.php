@@ -120,9 +120,9 @@ switch ($_GET['act']) {
                         </div>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" id="flexRadioDefault1" type="radio" name="sv" value="9" data-bs-toggle="collapse" data-bs-target="#sv9" aria-expanded="false" aria-controls="sv9" /><label class="form-check-label" for="flexRadioDefault1">Server View 9 (<b><?= $gia9; ?>₫</b>) ( <span style="color: red;">Min 1k </span> note ) <span class="badge bg-info">Comingsoon</span></label>
+                        <input class="form-check-input" id="flexRadioDefault1" type="radio" name="sv" value="9" data-bs-toggle="collapse" data-bs-target="#sv9" aria-expanded="false" aria-controls="sv9" /><label class="form-check-label" for="flexRadioDefault1">Server View 9 (<b><?= $gia9; ?>₫</b>) ( <span style="color: red;">Min 1k . View dạng mới ít tụt hoặc không tụt, tốc độ ổn, có nút bảo hành </span> note ) <span class="badge bg-info">Bảo hành 60 Ngày</span></label>
                         <div id="sv9" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#sv9">
-                            <div class="accordion-body alert alert-danger">Bảo hành 30 ngày </div>
+                            <div class="accordion-body alert alert-danger">Bảo hành 60 ngày </div>
                         </div>
                     </div>
                     <div class="mb-3">
