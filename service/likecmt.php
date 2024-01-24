@@ -70,7 +70,7 @@ switch ($_GET['act']) {
                     <div class="form-group">
                         <label>Nhập ID Bài Viết:</label>
                         <div class="input-group mb-3">
-                            <input type="text" oninput="GetIDCmt('id');" name="id" class="form-control mb-3" aria-label="Recipient's username" aria-describedby="basic-addon2" placeholder="Nhập Link bài viết hoặc nhập ID!" required="" id="idbuff_like">
+                            <input type="text" oninput="calc()" name="id" class="form-control mb-3" aria-label="Recipient's username" aria-describedby="basic-addon2" placeholder=" nhập ID!" required="" id="idbuff_like">
                         </div>
                         <label>(*) Nếu nhập <code>link bài viết</code> vui lòng ấn vào <code>"GET ID"</code></label>
                     </div>
