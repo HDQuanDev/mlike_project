@@ -369,7 +369,7 @@ if ($row['rule'] == '99') {
                                                             <li><a href="/admin/momo.php"><i class="bx bx-right-arrow-alt"></i>Thống Kê Nạp Tiền MoMo <span class="badge bg-danger"><?= $mm; ?></span></a></li>
                                                             <li><a href="/admin/setting.php"><i class="bx bx-right-arrow-alt"></i>Cài đặt website</a></li>
                                                             <li><a href="/admin/nganhang.php"><i class="bx bx-right-arrow-alt"></i>Cài đặt ngân hàng</a></li>
-                                                            <li><a href="/admin/managerjs/index"><i class="bx bx-right-arrow-alt"></i>Quản lý tệp tin</a></li>
+                                                            <li><a href="/admin/control_panel"><i class="bx bx-right-arrow-alt"></i>Quản lý hệ thống</a></li>
                                                             <li><a href="/admin/gia.php"><i class="bx bx-right-arrow-alt"></i>Chỉnh giá dịch vụ</a></li>
                                                             <li> <a href="/admin/ref.php"><i class="bx bx-right-arrow-alt"></i>Thống kê giới thiệu</a></li>
                                                             <li><a href="/admin/static.php"><i class="bx bx-right-arrow-alt"></i>Thống kê chi tiêu</a></li>

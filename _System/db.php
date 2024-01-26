@@ -11,6 +11,7 @@ require_once('function.php');
 
 $stttiktok = 'off';
 $db = mysqli_connect('localhost', 'mlike', 'nWHA2GrTEe8rCh2k', 'mlike');
+//$db = mysqli_connect('localhost', 'root', '', 'mlike');
 if (!$db) {
     echo '{"status":"error","message":"Không thể kết nối đến CSDL/không tìm thấy CSDL","error_code": "' . mysqli_connect_errno() . '"}';
     exit;
@@ -23,10 +24,12 @@ $percent_promotion = 10;
 if ($site == 'like1s.vn') {
     $site = 'mlike.vn';
     $domain = 'https://like1s.vn';
-}
-if ($site == 'api.like1s.vn') {
+}elseif ($site == 'api.like1s.vn') {
     $site = 'mlike.vn';
     $domain = 'https://api.like1s.vn';
+}elseif ($site == 'localhost') {
+    $site = 'mlike.vn';
+    $domain = 'https://mlike.vn';
 }
 
 $cdn = 'https://mlike.vn/assets';

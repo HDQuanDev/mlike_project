@@ -171,7 +171,7 @@ $listdv = 'Like,dichvu,Tăng Like Facebook|Sub,dichvu,Tăng Follow Facebook|Cmt,
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-center">Tổng Tiền Hôm Qua <span class="badge bg-primary rounded-pill"><?= number_format($yesterdayProfit); ?>₫</span>
                                 </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center">Tổng Tháng Tháng Này <span class="badge bg-primary rounded-pill"><?= number_format($monthProfit); ?>₫</span>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">Tổng Tiền Tháng Này <span class="badge bg-primary rounded-pill"><?= number_format($monthProfit); ?>₫</span>
                                 </li>
                             </ul>
                         </div>

@@ -181,7 +181,7 @@ require_once('../../_System/head.php');
                         <h3 class="mb-0 mt-0 number"><em>Liên kết nhanh</em></h3><br>
                         <a href="https://github.com/QDevTeam/mlike_project" target="_blank" class="btn btn-primary btn-rounded me-1 mb-1">File Manager</a>
                         <hr>
-                        <a href="" target="_blank" class="btn btn-primary btn-rounded me-1 mb-1">Firewall Manager</a>
+                        <a href="firewall/index.php" class="btn btn-primary btn-rounded me-1 mb-1">Firewall Manager</a>
                         <hr>
                         <a href="http://216.9.227.213:203/phpmyadmin_17ccc32bd3da950d/index.php" class="btn btn-primary btn-rounded me-1 mb-1" target="_blank">Database Manager</a>
                         <hr>

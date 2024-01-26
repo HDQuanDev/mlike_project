@@ -11,20 +11,19 @@
     "theme_color": "#171829",
     "id": "mlike_webapp",
     "lang": "vi",
-    "icons": [
-      {
-        "src": "/assets/images/icon.png",
-        "sizes": "192x192",
-        "type": "image/png"
-      },
-      {
-        "src": "/assets/images/top.png",
-        "sizes": "512x512",
-        "type": "image/png"
-      }
+    "icons": [{
+            "src": "/assets/images/icon.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/assets/images/top.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
     ],
     "categories": [
-      "shopping",
-      "social"
+        "shopping",
+        "social"
     ]
-  }
+}
