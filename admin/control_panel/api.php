@@ -219,18 +219,6 @@ switch ($_GET['act']) {
         $bandwidth_data = $total / 10000 * 100;
         $bandwidth_data = round($bandwidth_data, 2);
 
-        $site = file_get_contents('site.txt');
-        $data = file_get_contents('database.txt');
-        $backup_size = $site + $data;
-        $backup_usage = $backup_size / 51200 * 100;
-        $backup_usage = round($backup_usage, 2);
-
-        $site_files = count(scandir('../../../../backup/site')) - 2;
-        $data_files = count(scandir('../../../../backup/database')) - 2;
-
-        $get_fw = $api->GetFirewall();
-        $config = json_encode($get_fw);
-        $config = json_decode($config, true);
 
         $get_disk = $api->GetDirSite('/www/wwwlogs');
         $get_disk_size = explode('.', $get_disk);
@@ -252,10 +240,10 @@ switch ($_GET['act']) {
             "bandwidth" => $bandwidth,
             "bandwidth_data" => $bandwidth_data,
             "firewall" => [
-                "total_banned" => $config["msg"]["total_banned"],
-                "total_failed" => $config["msg"]["total_failed"],
-                "currently_banned" => $config["msg"]["currently_banned"],
-                "currently_failed" => $config["msg"]["currently_failed"],
+                "total_banned" => '9999',
+                "total_failed" => '9999',
+                "currently_banned" => '9999',
+                "currently_failed" => '9999',
             ],
             "disklog" => [
                 "size" => $get_disk,
@@ -432,8 +420,8 @@ switch ($_GET['act']) {
         $json["data"][0]["class"] = 'warning';
         echo json_encode($json);
         break;
-        case 'test':
-             $cpu = $get["cpu"][0];
+    case 'test':
+        $cpu = $get["cpu"][0];
         $ram = $get["mem"]["memCached"] + $get["mem"]["memRealUsed"];
         $load = $get["load"]["one"];
         $network = $get["network"]["ens192"]["down"];
@@ -497,10 +485,10 @@ switch ($_GET['act']) {
                 // "total_failed" => $config["msg"]["total_failed"],
                 // "currently_banned" => $config["msg"]["currently_banned"],
                 // "currently_failed" => $config["msg"]["currently_failed"],
-                 "total_banned" => 999999,
-                 "total_failed" => 999999,
-                 "currently_banned" => 999999,
-                 "currently_failed" => 999999,
+                "total_banned" => 999999,
+                "total_failed" => 999999,
+                "currently_banned" => 999999,
+                "currently_failed" => 999999,
             ],
             "disklog" => [
                 "size" => $get_disk,
@@ -510,7 +498,7 @@ switch ($_GET['act']) {
             ]
         ];
 
-        echo $response;
+        echo json_encode($response);
         break;
     default:
         # code...
