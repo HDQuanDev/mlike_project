@@ -61,7 +61,20 @@ if (isset($_COOKIE["username"]) && isset($_COOKIE["password"])) {
     <!-- App css -->
     <link rel="stylesheet" type="text/css" href="<?= $cdn; ?>/css/style.css">
     <link id="color" rel="stylesheet" href="<?= $cdn; ?>/css/color-1.css">
-
+    <!-- manifest -->
+    <link rel="manifest" href="/manifest.json">
+    <!-- server worker -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js')
+                .then(function(registration) {
+                    console.log('Registration successful, scope is:', registration.scope);
+                })
+                .catch(function(error) {
+                    console.log('Service worker registration failed, error:', error);
+                });
+        }
+    </script>
 
     <!-- Tiêu đề trang -->
     <title>MLIKE.VN - Nhà cung cấp dịch vụ mạng xã hội hàng đầu Việt Nam</title>
