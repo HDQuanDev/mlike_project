@@ -113,10 +113,20 @@ if ($row['rule'] == '99') {
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="<?= $cdn; ?>/css/responsive.css">
     <script src="<?= $cdn; ?>/js/jquery-3.6.0.min.js"></script>
+    <!-- manifest meta -->
+    <link rel="manifest" href="/manifest.json">
     <title><?= $titl; ?></title>
-
-
-
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                }, function(err) {
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+            });
+        }
+    </script>
 </head>
 
 
