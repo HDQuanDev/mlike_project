@@ -10,11 +10,10 @@ if (isset($login)) {
     if ($_GET['act'] == 'check') {
         $time = time();
         $tcheck = $time - 900;
-        $qc = mysqli_query($db, "SELECT * FROM `momo` WHERE `user` = '$login' AND `time` > '$tcheck' AND `hien` = '0' ORDER BY id DESC LIMIT 1");
-        $qc = mysqli_num_rows($qc);
+        $qcc = mysqli_query($db, "SELECT * FROM `momo` WHERE `user` = '$login' AND `time` > '$tcheck' AND `hien` = '0' ORDER BY id DESC LIMIT 1");
+        $qc = mysqli_num_rows($qcc);
         if ($qc == 1) {
-            $result = mysqli_query($db, "SELECT * FROM `momo` WHERE `user` = '$login' AND `time` > '$tcheck' AND `hien` = '0' ORDER BY id DESC LIMIT 1");
-            $quan = mysqli_fetch_assoc($result);
+            $quan = mysqli_fetch_assoc($qcc);
             $vn = $quan['vnd'];
             $array['status'] = 'success';
             $array['username'] = $login;
