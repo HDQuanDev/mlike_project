@@ -473,7 +473,9 @@ if ($row['rule'] == '99') {
                             text: data.msg,
                             icon: 'success',
                             button: 'Đóng',
-                        });
+                        }.then((value) => {
+                        location.reload();
+                        }));
                     }else if(data.show == '2'){
                         window.location.href = '/landing.php';
                     }

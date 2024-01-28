@@ -18,23 +18,34 @@ if (isset($login)) {
             if ($quan) {
                 $vn = $quan['vnd'];
                 $array['status'] = 'success';
+                $array['username'] = $login;
                 $array['message'] = 'Nạp thành công ' . number_format(floatval($vn)) . 'VNĐ từ ' . $quan['app'] . ' vào tài khoản!';
                 $array['show'] = '1';
                 mysqli_query($db, "UPDATE `momo` SET `hien`= '1' WHERE `id`='$id'");
+                echo json_encode($array);
+                exit();
             }
         } else {
             $array['status'] = 'error';
+            $array['username'] = $login;
             $array['message'] = 'Không có giao dịch nào mới!';
             $array['show'] = '0';
+            echo json_encode($array);
+            exit();
         }
     } else {
         $array['status'] = 'error';
+        $array['username'] = $login;
         $array['message'] = 'Không có giao dịch nào mới!';
         $array['show'] = '0';
+        echo json_encode($array);
+        exit();
     }
 } else {
     $array['status'] = 'error';
+    $array['username'] = NULL;
     $array['message'] = 'Bạn chưa đăng nhập!';
     $array['show'] = '2';
+    echo json_encode($array);
+    exit();
 }
-echo json_encode($array);
