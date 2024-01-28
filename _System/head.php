@@ -473,14 +473,16 @@ if ($row['rule'] == '99') {
                 text: data.message,
                 icon: 'success',
                 button: 'Đóng',
-            }.then((value) => {
-            location.reload();
-            }));
+            }).then((value) => {
+                location.reload();
+            });
         }else if(data.show == '2'){
             window.location.href = '/landing.php';
         }
+    })
+    .catch(error => {
+        console.error('Error:', error);
     });
-}, 5000);
     function getCookie(name){
     var pattern = RegExp(name + "=.[^;]*");
     var matched = document.cookie.match(pattern);
