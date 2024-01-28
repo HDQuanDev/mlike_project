@@ -483,6 +483,7 @@ if ($row['rule'] == '99') {
     .catch(error => {
         console.error('Error:', error);
     });
+}, 5000);
     function getCookie(name){
     var pattern = RegExp(name + "=.[^;]*");
     var matched = document.cookie.match(pattern);
