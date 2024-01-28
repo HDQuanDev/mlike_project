@@ -460,21 +460,26 @@ if ($row['rule'] == '99') {
                     <noscript>
                         <meta http-equiv="refresh" content="0; URL=/nojavascript.html">
                     </noscript>
-                    <div id="check_payment"></div>
-                    <?php
-                    if ($login != 'BossSang') {
-                    ?>
-                        <script>
-                            setInterval(function() {
-                                $('#check_payment').load('/api/check_payment.php?act=check');
-                            }, 10000)
-                        </script>
-
-                    <?
-                    }
-                    ?>
                     <script type="text/JavaScript">
-                        function getCookie(name){
+                        setInterval(() => {
+            fetch('/api/check_payment.php', {
+                    method: 'POST'
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status == 'success' && data.show == '1'){
+                        swal({
+                            title: 'Thông Báo',
+                            text: data.msg,
+                            icon: 'success',
+                            button: 'Đóng',
+                        });
+                    }else if(data.show == '2'){
+                        window.location.href = '/landing.php';
+                    }
+                });
+        }, 5000);
+    function getCookie(name){
     var pattern = RegExp(name + "=.[^;]*");
     var matched = document.cookie.match(pattern);
     if(matched){

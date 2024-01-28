@@ -15,10 +15,13 @@ if (isset($_POST['login'])) {
         $query = "SELECT * FROM member WHERE username='$u' AND password='$p' AND `site`='$site'";
         $results = mysqli_query($db, $query);
         if (mysqli_num_rows($results) == 1) {
+            $row = mysqli_fetch_assoc($results);
             $_SESSION['u'] = $u;
             $_SESSION['p'] = $p;
             setcookie("username", $u, time() + 31556926, "/");
             setcookie("password", $p, time() + 31556926, "/");
+            setcookie("token", $row['token'], time() + 31556926, "/");
+            setcookie("cv", $row['cv'], time() + 31556926, "/");
             echo "<script>swal('System!','Đăng nhập thành công vui lòng chờ chuyển hướng!','success');</script>";
             echo '<script>setTimeout(function(){
     window.location="' . $r . '";

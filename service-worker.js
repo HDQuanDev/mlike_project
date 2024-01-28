@@ -1,7 +1,7 @@
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js');
 
 const CACHE = "pwabuilder-page";
-const offlineFallbackPage = "offline.html";
+const offlineFallbackPage = "/offline.html";
 
 var FILES_TO_CACHE = [
     '/assets/css/vendors/font-awesome.css',

@@ -58,14 +58,10 @@ VALUES('$username', '$password', '$userc', '$code', '0', '$time', '$site')";
         }
       }
       mysqli_query($db, $query);
-      $_SESSION['u'] = $username;
-      $_SESSION['p'] = $password;
-      setcookie("username", $username, time() + 31556926, "/");
-      setcookie("password", $password, time() + 31556926, "/");
-      echo "<script>swal('SUCCESS!','Đăng ký tài khoản thành công!','success');</script>";
+      echo "<script>swal('SUCCESS!','Đăng ký tài khoản thành công, vui lòng đăng nhập để bắt đầu sử dụng!','success');</script>";
       echo '<script>setTimeout(function(){
     window.location="/index.php";
-}, 3000);</script>';
+}, 2000);</script>';
     }
   }
 }
