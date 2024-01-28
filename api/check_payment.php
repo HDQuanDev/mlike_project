@@ -15,6 +15,7 @@ if (isset($login)) {
         if ($qc == 1) {
             $quan = mysqli_fetch_assoc($qcc);
             $vn = $quan['vnd'];
+            $id = $quan['id'];
             $array['status'] = 'success';
             $array['username'] = $login;
             $array['message'] = 'Nạp thành công ' . number_format(floatval($vn)) . 'VNĐ từ ' . $quan['app'] . ' vào tài khoản!';

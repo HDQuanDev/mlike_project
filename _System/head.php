@@ -462,25 +462,25 @@ if ($row['rule'] == '99') {
                     </noscript>
                     <script type="text/JavaScript">
                         setInterval(() => {
-            fetch('/api/check_payment.php?act=check', {
-                    method: 'POST'
-                })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.status == 'success' && data.show == '1'){
-                        swal({
-                            title: 'Thông Báo',
-                            text: data.msg,
-                            icon: 'success',
-                            button: 'Đóng',
-                        }.then((value) => {
-                        location.reload();
-                        }));
-                    }else if(data.show == '2'){
-                        window.location.href = '/landing.php';
-                    }
-                });
-        }, 5000);
+    fetch('/api/check_payment.php?act=check', {
+        method: 'POST'
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.status == 'success' && data.show == '1'){
+            swal({
+                title: 'Thông Báo',
+                text: data.message,
+                icon: 'success',
+                button: 'Đóng',
+            }.then((value) => {
+            location.reload();
+            }));
+        }else if(data.show == '2'){
+            window.location.href = '/landing.php';
+        }
+    });
+}, 5000);
     function getCookie(name){
     var pattern = RegExp(name + "=.[^;]*");
     var matched = document.cookie.match(pattern);
