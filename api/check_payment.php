@@ -9,7 +9,7 @@ $array = [];
 if (isset($login)) {
     if ($_GET['act'] == 'check') {
         $time = time();
-        $tcheck = $time - 500;
+        $tcheck = $time - 900;
         $qc = mysqli_query($db, "SELECT * FROM `momo` WHERE `user` = '$login' AND `time` > '$tcheck' AND `hien` = '0' ORDER BY id DESC LIMIT 1");
         $qc = mysqli_num_rows($qc);
         if ($qc == 1) {

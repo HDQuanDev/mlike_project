@@ -462,7 +462,7 @@ if ($row['rule'] == '99') {
                     </noscript>
                     <script type="text/JavaScript">
                         setInterval(() => {
-            fetch('/api/check_payment.php', {
+            fetch('/api/check_payment.php?act=check', {
                     method: 'POST'
                 })
                 .then(res => res.json())
