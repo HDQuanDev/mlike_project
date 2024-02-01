@@ -3,8 +3,8 @@
 @session_start();
 class bt_api
 {
-    private $BT_KEY = "GcR6iOW1cZcieXTTfvDldFeQZsFiZn1b";
-    private $BT_PANEL = "http://216.9.227.213:8888";
+    private $BT_KEY = "8djpDMP3q4RSqMeV4p22EuFVhhPYjoRN";
+    private $BT_PANEL = "http://216.9.227.213:1411";
     public function __construct($bt_panel = null, $bt_key = null)
     {
         if ($bt_panel) $this->BT_PANEL = $bt_panel;

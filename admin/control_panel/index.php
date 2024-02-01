@@ -183,7 +183,7 @@ require_once('../../_System/head.php');
                         <hr>
                         <a href="firewall/index.php" class="btn btn-primary btn-rounded me-1 mb-1">Firewall Manager</a>
                         <hr>
-                        <a href="http://216.9.227.213:203/phpmyadmin_17ccc32bd3da950d/index.php" class="btn btn-primary btn-rounded me-1 mb-1" target="_blank">Database Manager</a>
+                        <a href="http://216.9.227.213:888/phpmyadmin_6f9fbf6645d8951f/index.php" class="btn btn-primary btn-rounded me-1 mb-1" target="_blank">Database Manager</a>
                         <hr>
                         <a href="#" data-toggle="modal" data-target="#getbackup" target="_blank" class="btn btn-primary btn-rounded me-1 mb-1">Get Backup File</a>
                         <hr>
