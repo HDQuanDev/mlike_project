@@ -219,6 +219,9 @@ switch ($_GET['act']) {
         $bandwidth_data = $total / 10000 * 100;
         $bandwidth_data = round($bandwidth_data, 2);
 
+        $get_fw = $api->GetFirewall();
+        $config = json_encode($get_fw);
+        $config = json_decode($config, true);
 
         $get_disk = $api->GetDirSite('/www/wwwlogs');
         $get_disk_size = explode('.', $get_disk);
@@ -240,10 +243,10 @@ switch ($_GET['act']) {
             "bandwidth" => $bandwidth,
             "bandwidth_data" => $bandwidth_data,
             "firewall" => [
-                "total_banned" => '9999',
-                "total_failed" => '9999',
-                "currently_banned" => '9999',
-                "currently_failed" => '9999',
+                "total_banned" => $config["msg"]["total_banned"],
+                "total_failed" => $config["msg"]["total_failed"],
+                "currently_banned" => $config["msg"]["currently_banned"],
+                "currently_failed" => $config["msg"]["currently_failed"],
             ],
             "disklog" => [
                 "size" => $get_disk,
