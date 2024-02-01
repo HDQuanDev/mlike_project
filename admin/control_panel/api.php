@@ -188,6 +188,7 @@ $config = json_decode($config, true);
 $cpu_name = "Intel(R) Xeon(R) CPU E5-2699C v4 @ 2.20GHz";
 $cpu_core = "32";
 $cpu_threat = "32";
+$ram = "32";
 
 switch ($_GET['act']) {
     case 'server_info':
@@ -321,19 +322,19 @@ switch ($_GET['act']) {
 ?>
         <div class="fact-item">
             <div class="details">
-                <h3 class="mb-0 mt-0 number"><em>AMD EPYC Genoa 9554 * 2</em></h3>
+                <h3 class="mb-0 mt-0 number"><em><?= $cpu_name; ?></em></h3>
                 <p class="mb-0">CPU</p>
             </div>
         </div>
         <div class="fact-item">
             <div class="details">
-                <h3 class="mb-0 mt-0 number"><em>128</em></h3>
+                <h3 class="mb-0 mt-0 number"><em><?= $cpu_core; ?></em></h3>
                 <p class="mb-0">CPU Core</p>
             </div>
         </div>
         <div class="fact-item">
             <div class="details">
-                <h3 class="mb-0 mt-0 number"><em>128</em></h3>
+                <h3 class="mb-0 mt-0 number"><em><?= $ram; ?></em></h3>
                 <p class="mb-0">Total Ram</p>
             </div>
         </div>
