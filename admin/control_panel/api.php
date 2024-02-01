@@ -185,9 +185,9 @@ $get = json_decode($quan, true);
 // $encf = json_encode($get_config);
 $config = json_decode($config, true);
 
-$cpu_name = "AMD EPYC Genoa 9554 * 2";
-$cpu_core = "128";
-$cpu_threat = "256";
+$cpu_name = "Intel(R) Xeon(R) CPU E5-2699C v4 @ 2.20GHz";
+$cpu_core = "32";
+$cpu_threat = "32";
 
 switch ($_GET['act']) {
     case 'server_info':
@@ -457,9 +457,9 @@ switch ($_GET['act']) {
         $site_files = count(scandir('../../../../backup/site')) - 2;
         $data_files = count(scandir('../../../../backup/database')) - 2;
 
-        // $get_fw = $api->GetFirewall();
-        // $config = json_encode($get_fw);
-        // $config = json_decode($config, true);
+        $get_fw = $api->GetFirewall();
+        $config = json_encode($get_fw);
+        $config = json_decode($config, true);
 
         $get_disk = $api->GetDirSite('/www/wwwlogs');
         $get_disk_size = explode('.', $get_disk);
@@ -481,14 +481,14 @@ switch ($_GET['act']) {
             "bandwidth" => $bandwidth,
             "bandwidth_data" => $bandwidth_data,
             "firewall" => [
-                // "total_banned" => $config["msg"]["total_banned"],
-                // "total_failed" => $config["msg"]["total_failed"],
-                // "currently_banned" => $config["msg"]["currently_banned"],
-                // "currently_failed" => $config["msg"]["currently_failed"],
-                "total_banned" => 999999,
-                "total_failed" => 999999,
-                "currently_banned" => 999999,
-                "currently_failed" => 999999,
+                "total_banned" => $config["msg"]["total_banned"],
+                "total_failed" => $config["msg"]["total_failed"],
+                "currently_banned" => $config["msg"]["currently_banned"],
+                "currently_failed" => $config["msg"]["currently_failed"],
+                // "total_banned" => 999999,
+                // "total_failed" => 999999,
+                // "currently_banned" => 999999,
+                // "currently_failed" => 999999,
             ],
             "disklog" => [
                 "size" => $get_disk,
