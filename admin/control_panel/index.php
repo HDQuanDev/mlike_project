@@ -262,7 +262,7 @@ require_once('../../_System/head.php');
                 document.getElementById('performentcahcelog').textContent = data.disklog.op + 'MB';
             })
             .catch(error => console.error('Error:', error));
-    }, 1000);
+    }, 3000);
 </script>
 <script>
     function create_pay(disk, st) {
