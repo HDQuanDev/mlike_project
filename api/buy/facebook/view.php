@@ -4,6 +4,7 @@ $page = 'view_fb';
 require_once('../../../_System/db.php');
 require_once('../../../_System/config.php');
 require_once('../../../module/view.php');
+require_once('../../../module/buffviewer.php');
 $gia = $gia1;
 $min = '1000';
 $max = '10000000';
