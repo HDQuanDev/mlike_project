@@ -308,40 +308,68 @@ switch ($_GET['act']) {
                         }
                     } elseif ($tdd == '5') {
                         if ($sv5 == 'on') {
-                            $nd1 = 'Tăng View Video Facebook ID:';
-                            $bd = $tongtien;
-                            $gt = '-';
-                            $idgd = '(' . $sv . ') ' . $id . ' (' . $sl . ')';
-                            $goc = $row['vnd'];
-                            $time = time();
-                            mysqli_query($db, "INSERT INTO `lichsu` SET `nd` = '$nd1',`bd` = '$bd',`user`='$login',`time`='$time', `idgd` = '$idgd', `gt` = '$gt', `goc` = '$goc', `loai` = '1'");
-                            mysqli_query($db, "INSERT INTO `video` SET `dv` = 'view',`sl` = '$sl', `trangthai` = '1', `user`='$login',`profile`='$id',`time` = '$time', `start` = 'Đang lấy...', `idgd` = '203', `sttdone` = '0', `done` = '0', `code`='14', `auto` = '0', `sv` = '$sv', `sotien` = '$tongtien'");
-                            mysqli_query($db, "UPDATE `member` SET `vnd` = `vnd`-'$tongtien', `sd` = `sd`+'$tongtien' WHERE `username` = '$login' AND `site` = '$site'");
-                            $array["status"] = 'success';
-                            $array["msg"] = 'Mua View Thành Công! Cảm ơn bạn!!';
-                            $r = mysqli_query($db, "SELECT * FROM `video` ORDER BY `video`.`id` DESC");
-                            $rr = mysqli_fetch_assoc($r);
-                            $array["id_order"] = $rr['id'];
+                            if ($tay_or_auto == 'auto') {
+                                $buffview = bv_viewfb($id, $sl, '1', $mgr);
+                                $buffview = json_decode($buffview);
+                            } elseif ($tay_or_auto == 'tay') {
+                                $buffview = [];
+                                $buffview['status'] = 'true';
+                                $buffview = json_encode($buffview);
+                                $buffview = json_decode($buffview);
+                            }
+                            if ($buffview->status == 'true') {
+                                $nd1 = 'Tăng View Video Facebook ID:';
+                                $bd = $tongtien;
+                                $gt = '-';
+                                $idgd = '(' . $sv . ') ' . $id . ' (' . $sl . ')';
+                                $goc = $row['vnd'];
+                                $time = time();
+                                mysqli_query($db, "INSERT INTO `lichsu` SET `nd` = '$nd1',`bd` = '$bd',`user`='$login',`time`='$time', `idgd` = '$idgd', `gt` = '$gt', `goc` = '$goc', `loai` = '1'");
+                                mysqli_query($db, "INSERT INTO `video` SET `dv` = 'view',`sl` = '$sl', `trangthai` = '1', `user`='$login',`profile`='$id',`time` = '$time', `start` = 'Đang lấy...', `idgd` = '203', `sttdone` = '0', `done` = '0', `code`='14', `auto` = '0', `sv` = '$sv', `sotien` = '$tongtien'");
+                                mysqli_query($db, "UPDATE `member` SET `vnd` = `vnd`-'$tongtien', `sd` = `sd`+'$tongtien' WHERE `username` = '$login' AND `site` = '$site'");
+                                $array["status"] = 'success';
+                                $array["msg"] = 'Mua View Thành Công! Cảm ơn bạn!!';
+                                $r = mysqli_query($db, "SELECT * FROM `video` ORDER BY `video`.`id` DESC");
+                                $rr = mysqli_fetch_assoc($r);
+                                $array["id_order"] = $rr['id'];
+                            } else {
+                                $array["status"] = 'error';
+                                $array["msg"] = 'Đã xảy ra lỗi vui lòng thử lại nếu lỗi vẫn tiếp tục xảy ra vui lòng liên hệ admin!';
+                            }
                         } else {
                             $array["status"] = 'error';
                             $array["msg"] = 'Server đang quá tải vui lòng dùng server khác';
                         }
                     } elseif ($tdd == '4') {
                         if ($sv4 == 'on') {
-                            $nd1 = 'Tăng View Video Facebook ID:';
-                            $bd = $tongtien;
-                            $gt = '-';
-                            $idgd = '(' . $sv . ') ' . $id . ' (' . $sl . ')';
-                            $goc = $row['vnd'];
-                            $time = time();
-                            mysqli_query($db, "INSERT INTO `lichsu` SET `nd` = '$nd1',`bd` = '$bd',`user`='$login',`time`='$time', `idgd` = '$idgd', `gt` = '$gt', `goc` = '$goc', `loai` = '1'");
-                            mysqli_query($db, "INSERT INTO `video` SET `dv` = 'view',`sl` = '$sl', `trangthai` = '1', `user`='$login',`profile`='$id',`time` = '$time', `start` = 'Đang lấy...', `idgd` = '203', `sttdone` = '0', `done` = '0', `code`='14', `auto` = '0', `sv` = '$sv', `sotien` = '$tongtien'");
-                            mysqli_query($db, "UPDATE `member` SET `vnd` = `vnd`-'$tongtien', `sd` = `sd`+'$tongtien' WHERE `username` = '$login' AND `site` = '$site'");
-                            $array["status"] = 'success';
-                            $array["msg"] = 'Mua View Thành Công! Cảm ơn bạn!!';
-                            $r = mysqli_query($db, "SELECT * FROM `video` ORDER BY `video`.`id` DESC");
-                            $rr = mysqli_fetch_assoc($r);
-                            $array["id_order"] = $rr['id'];
+                            if ($tay_or_auto == 'auto') {
+                                $buffview = bv_viewfb($id, $sl, '1', $mgr);
+                                $buffview = json_decode($buffview);
+                            } elseif ($tay_or_auto == 'tay') {
+                                $buffview = [];
+                                $buffview['status'] = 'true';
+                                $buffview = json_encode($buffview);
+                                $buffview = json_decode($buffview);
+                            }
+                            if ($buffview->status == 'true') {
+                                $nd1 = 'Tăng View Video Facebook ID:';
+                                $bd = $tongtien;
+                                $gt = '-';
+                                $idgd = '(' . $sv . ') ' . $id . ' (' . $sl . ')';
+                                $goc = $row['vnd'];
+                                $time = time();
+                                mysqli_query($db, "INSERT INTO `lichsu` SET `nd` = '$nd1',`bd` = '$bd',`user`='$login',`time`='$time', `idgd` = '$idgd', `gt` = '$gt', `goc` = '$goc', `loai` = '1'");
+                                mysqli_query($db, "INSERT INTO `video` SET `dv` = 'view',`sl` = '$sl', `trangthai` = '1', `user`='$login',`profile`='$id',`time` = '$time', `start` = 'Đang lấy...', `idgd` = '203', `sttdone` = '0', `done` = '0', `code`='14', `auto` = '0', `sv` = '$sv', `sotien` = '$tongtien'");
+                                mysqli_query($db, "UPDATE `member` SET `vnd` = `vnd`-'$tongtien', `sd` = `sd`+'$tongtien' WHERE `username` = '$login' AND `site` = '$site'");
+                                $array["status"] = 'success';
+                                $array["msg"] = 'Mua View Thành Công! Cảm ơn bạn!!';
+                                $r = mysqli_query($db, "SELECT * FROM `video` ORDER BY `video`.`id` DESC");
+                                $rr = mysqli_fetch_assoc($r);
+                                $array["id_order"] = $rr['id'];
+                            } else {
+                                $array["status"] = 'error';
+                                $array["msg"] = 'Đã xảy ra lỗi vui lòng thử lại nếu lỗi vẫn tiếp tục xảy ra vui lòng liên hệ admin!';
+                            }
                         } else {
                             $array["status"] = 'error';
                             $array["msg"] = 'Server đang quá tải vui lòng dùng server khác';
