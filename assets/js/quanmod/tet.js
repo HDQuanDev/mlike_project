@@ -11,6 +11,7 @@ if (delay_end > 0) {
     setTimeout(function () {
         location.reload();
     }, delay_end);
+    var audio = document.getElementById('audio_tet');
     if (delay > 0) {
         setTimeout(function () {
             var script = document.createElement('script');
@@ -35,6 +36,8 @@ if (delay_end > 0) {
 
             // Add new classes to body
             document.body.classList.add('vsc-initialized', 'dark-only');
+
+            audio.play();
 
         }, delay);
     } else {
@@ -62,6 +65,7 @@ if (delay_end > 0) {
             // Add new classes to body
             document.body.classList.add('vsc-initialized', 'dark-only');
 
+            audio.play();
         }, 1000);
     }
 } else {

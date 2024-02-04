@@ -139,7 +139,7 @@ if ($row['rule'] == '99') {
         </div>
 
         <div class="stage-container remove">
-            
+            <audio loop src="/assets/audio/Happy New Year - ABBA.mp3" id="audio_tet" nocontrols></audio>
             <div class='canvas-container'>
                 <canvas height='0' id='trails-canvas' style='position:fixed;width:100%;pointer-events:none;z-index:9999;' width='1440' />
                 <canvas height='0' id='main-canvas' style='position:fixed;width:100%;pointer-events:none;z-index:9999;' width='1440' />
