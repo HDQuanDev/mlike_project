@@ -71,7 +71,7 @@ require_once('db.php');
 <script src="<?= $cdn; ?>/js/theme-customizer/customizer.js"> </script>
 <!-- login js-->
 <script src="<?= $domain; ?>/assets/js/quan.js?v=<?= time(); ?>"></script>
-<script src="<?= $domain; ?>/assets/js/quanmod/tet.js?v=<?= time(); ?>"></script>
+<script src="<?= $domain; ?>/assets/js/quanmod/tet.js?v=0.1"></script>
 </body>
 
 </html>

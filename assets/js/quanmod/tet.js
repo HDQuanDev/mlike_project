@@ -1,3 +1,4 @@
+console.clear();
 var now = new Date();
 console.log("Ngày giờ hiện tại: " + now);
 
