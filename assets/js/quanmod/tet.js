@@ -7,6 +7,9 @@ console.log("Ngày giờ đích: " + targetDate);
 var delay = targetDate.getTime() - now.getTime();
 var delay_end = targetDate_end.getTime() - now.getTime();
 console.log("Thời gian còn lại: " + delay);
+
+var html_tet = document.getElementById('phaohoa');
+html_tet.style.display = 'none';
 if (delay_end > 0) {
     setTimeout(function () {
         location.reload();
@@ -14,6 +17,7 @@ if (delay_end > 0) {
     var audio = document.getElementById('audio_tet');
     if (delay > 0) {
         setTimeout(function () {
+            html_tet.style.display = 'block';
             var script = document.createElement('script');
             script.src = '/assets/js/quanmod/phaohoa.js';
             document.body.appendChild(script);
@@ -42,6 +46,7 @@ if (delay_end > 0) {
         }, delay);
     } else {
         setTimeout(function () {
+            html_tet.style.display = 'block';
             var script = document.createElement('script');
             script.src = '/assets/js/quanmod/phaohoa.js';
             document.body.appendChild(script);
