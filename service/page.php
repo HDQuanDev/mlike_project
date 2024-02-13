@@ -211,9 +211,9 @@ switch ($_GET['act']) {
                         <tbody class="list">
                             <?php
                             if ($row['rule'] == 99) {
-                                $result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `dv` = 'fb_page' ORDER BY id DESC LIMIT 0,1000");
+                                $result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `dv` = 'fb_page' ORDER BY id DESC LIMIT 0,200");
                             } else {
-                                $result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `user` = '" . $login . "' AND `dv` = 'fb_page' ORDER BY id DESC LIMIT 0,1000");
+                                $result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `user` = '" . $login . "' AND `dv` = 'fb_page' ORDER BY id DESC LIMIT 0,200");
                             }
                             if ($result1) {
                                 while ($ro = mysqli_fetch_assoc($result1)) {
