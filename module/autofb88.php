@@ -114,7 +114,7 @@ function likett88($id, $sl)
         CURLOPT_FOLLOWLOCATION => true,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => 'POST',
-        CURLOPT_POSTFIELDS => '{"object_id":"' . $id . '","quantity":"' . $sl . '","speed":"0","notes":"quannehihi","package_name":"30_10","object_type":"like"}',
+        CURLOPT_POSTFIELDS => '{"object_id":"' . $id . '","quantity":"' . $sl . '","speed":"0","notes":"quannehihi","package_name":"30_9","object_type":"like"}',
         CURLOPT_HTTPHEADER => array(
             'api-token: MTA4MTY1ODAzODI3Mw==6a34b201388883825595',
             'Content-Type: application/json'
