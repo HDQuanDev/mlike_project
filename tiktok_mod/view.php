@@ -23,7 +23,7 @@ while ($ro = mysqli_fetch_assoc($result1)) {
     }
     $get_url = rand(1, 3);
     if ($get_url == 1) {
-        $url_run = 'https://shopmmo.co/assets/api/tiktok.php?type=video';
+        $url_run = 'http://216.9.227.50/tiktok.php?type=video';
         $ip_sv = '185.113.114.51';
     } elseif ($get_url == 2) {
         $url_run = 'https://shopviaads247.com/api/tiktok.php?type=video';
