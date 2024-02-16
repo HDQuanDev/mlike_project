@@ -40,54 +40,83 @@ function file_get_contents_curl($url, $type)
     }
     return json_encode($get);
 }
+function get_info_view($id)
+{
+    $rand = rand(1, 2);
+    if ($rand == 1) {
+        $url = 'https://api16-normal-c-useast1a.tiktokv.com/aweme/v1/feed/?aweme_id=' . $id;
+    } else {
+        $url = 'https://api2.musical.ly/aweme/v1/feed/?aweme_id=' . $id;
+    }
+    $curl = curl_init();
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => $url,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'GET',
+    ));
+    $response = curl_exec($curl);
+    curl_close($curl);
+    $xuly = json_decode($response, true);
+    $result = [];
+    if ($xuly['aweme_list'][0]['aweme_id'] == $id) {
+        $get = $xuly['aweme_list'][0];
+        $encode = json_encode($get);
+        return $encode;
+    } else {
+        $result['success'] = 400;
+        $result['message'] = 'Không tìm thấy video';
+        return json_encode($result);
+    }
+}
 switch ($_GET['type']) {
     case 'video':
         if (isset($_POST['url'])) {
-            $pos = strpos($_POST['url'], '@');
-            if ($pos == false) {
-                $getlin = get_link($_POST['url']);
-            } else {
-                $getlin = $_POST['url'];
-            }
+            $url = $_POST['url'];
+            $getlin = get_link($url);
             $getlinkk = explode("/", $getlin);
             $getlink = $getlinkk[5];
             $xoa = explode("?", $getlink);
             $xoa = $xoa[0];
             $user = $getlinkk[3];
-            $get = file_get_contents_curl($getlin, 'view');
-            $get = json_decode($get, true);
-            $info = $get["$xoa"];
-
+            $info = get_info_view($xoa);
+            $get = json_decode($info, true);
             $array = [];
-            if (empty($get["author"]["id"])) {
-                $array["success"] = '400';
-                $array["message"] = 'Không tìm thấy video';
+            if (empty($get['aweme_id'])) {
+                $array['success'] = 400;
+                $array['message'] = 'Không tìm thấy video';
             } else {
-                $array["success"] = '200';
-                $array["message"] = 'Lấy thông tin thành công';
+                $array['success'] = 200;
+                $array['message'] = 'Lấy thông tin thành công';
             }
-            $array["data"]["id"] = $get["id"];
+            $array["data"]["id"] = $get["aweme_id"];
             $array["data"]["link"] = $getlin;
-            $array["data"]["diggCount"] = $get["stats"]["diggCount"];
-            $array["data"]["playCount"] = $get["stats"]["playCount"];
-            $array["data"]["shareCount"] = $get["stats"]["shareCount"];
-            $array["data"]["commentCount"] = $get["stats"]["commentCount"];
-            $array["data"]["collectCount"] = $get["stats"]["collectCount"];
-            $array["data"]["video_cover"] = $get["video"]["originCover"];
-            $array["data"]["video_createTime"] = $get["createTime"];
+            $array["data"]["diggCount"] = $get["statistics"]["digg_count"];
+            $array["data"]["playCount"] = $get["statistics"]["play_count"];
+            $array["data"]["shareCount"] = $get["statistics"]["share_count"];
+            $array["data"]["commentCount"] = $get["statistics"]["comment_count"];
+            $array["data"]["collectCount"] = $get["statistics"]["collect_count"];
+            $array["data"]["downloadCount"] = $get["statistics"]["download_count"];
+            $array["data"]["video_cover"] = $get["video"]["cover"]["url_list"][0];
+            $array["data"]["video_createTime"] = $get["create_time"];
             $array["data"]["name"] = $get["author"]["nickname"];
             $array["data"]["user"] = $user;
-            $array["data"]["user_cover"] = $get["author"]["avatarLarger"];
+            $array["data"]["user_cover"] = $get["author"]["avatar_larger"]["url_list"][0];
             $array["data"]["user_verified"] = $get["author"]["verified"];
             $array["code_by"] = "Hứa Đức Quân - Liên hệ mua api https://www.facebook.com/quancp72h";
             echo json_encode($array);
         } else {
             $array = [];
-            $array["success"] = '400';
+            $array["success"] = 400;
             $array["message"] = 'Vui lòng nhập url';
             $array["code_by"] = "Hứa Đức Quân - Liên hệ mua api https://www.facebook.com/quancp72h";
             echo json_encode($array);
         }
+
         break;
     case 'user':
         if (isset($_POST['url'])) {

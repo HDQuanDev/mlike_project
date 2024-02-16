@@ -3,7 +3,7 @@ function check_tt($url, $act)
 {
     $curl = curl_init();
     curl_setopt_array($curl, array(
-        CURLOPT_URL => 'http://216.9.227.50/tiktok.php?type=' . $act,
+        CURLOPT_URL => 'https://mlike.vn/api/tiktok.php?type=' . $act,
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,

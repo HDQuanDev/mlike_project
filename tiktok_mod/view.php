@@ -21,7 +21,7 @@ while ($ro = mysqli_fetch_assoc($result1)) {
     } else {
         $url = $ur;
     }
-    $get_url = rand(1, 3);
+    $get_url = rand(2, 3);
     if ($get_url == 1) {
         $url_run = 'http://216.9.227.50/tiktok.php?type=video';
         $ip_sv = '185.113.114.51';
