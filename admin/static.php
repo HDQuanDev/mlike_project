@@ -75,7 +75,7 @@ function totalall()
     $tables = ['dichvu', 'dv_other', 'video'];
 
     foreach ($tables as $table) {
-        $result = mysqli_query($db, "SELECT * FROM `$table`");
+        $result = mysqli_query($db, "SELECT `time`,`sotien` FROM `$table`");
 
         while ($ro = mysqli_fetch_assoc($result)) {
             $purchaseTime = $ro['time'];
