@@ -10,7 +10,7 @@ require_once('config.php');
 require_once('function.php');
 
 $stttiktok = 'off';
-$db = mysqli_connect('localhost', 'mlike', 'nWHA2GrTEe8rCh2k', 'mlike');
+$db = mysqli_connect('localhost', 'data', 'PnhN4A56Dr84P5BW', 'data');
 //$db = mysqli_connect('localhost', 'root', '', 'mlike');
 if (!$db) {
     echo '{"status":"error","message":"Không thể kết nối đến CSDL/không tìm thấy CSDL","error_code": "' . mysqli_connect_errno() . '"}';
