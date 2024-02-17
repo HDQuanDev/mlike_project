@@ -272,9 +272,9 @@ switch ($_GET['act']) {
                         <tbody class="list">
                             <?php
                             if ($row['rule'] == 99) {
-                                $result1 = mysqli_query($db, "SELECT * FROM `video` WHERE `dv` = 'view' ORDER BY id DESC LIMIT 0,2000");
+                                $result1 = mysqli_query($db, "SELECT * FROM `video` WHERE `dv` = 'view' ORDER BY id DESC LIMIT 0,5000");
                             } else {
-                                $result1 = mysqli_query($db, "SELECT * FROM `video` WHERE `user` = '" . $login . "' AND `dv` = 'view' ORDER BY id DESC LIMIT 0,2000");
+                                $result1 = mysqli_query($db, "SELECT * FROM `video` WHERE `user` = '" . $login . "' AND `dv` = 'view' ORDER BY id DESC LIMIT 0,5000");
                             }
                             if ($result1) {
                                 while ($ro = mysqli_fetch_assoc($result1)) {
