@@ -127,9 +127,11 @@ switch ($_GET['act']) {
                 } elseif ($sl < $min) {
                     $array["status"] = 'error';
                     $array["msg"] = 'Số lượng phải lớn hơn ' . $min . '';
+                    $array["sl"] = $sl;
                 } elseif ($sl > $max) {
                     $array["status"] = 'error';
                     $array["msg"] = 'Số lượng tối đa ' . $max . '!';
+                    $array["sl"] = $sl;
                 } elseif ($row['vnd'] < $tongtien) {
                     $array["status"] = 'error';
                     $array["msg"] = 'Bạn không đủ tiền!';

@@ -167,7 +167,7 @@ xin vui lòng không sử dụng kí tự đặc biệt hoặc icon để tránh
     ?>
         <div class="card border-danger border-bottom border-3 border-0">
             <div class="card-header">
-                <h4 class="card-title">Lịch Sử Tăng Like</h4>
+                <h4 class="card-title">Lịch Sử Tăng Comment</h4>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
