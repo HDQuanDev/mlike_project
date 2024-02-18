@@ -61,7 +61,7 @@ switch ($_GET['act']) {
                     </div>
                     <div class="mb-3">
                         <label>Nhập Nội Dung Comment (Mỗi 1 dòng tương ứng với 1 comment):</label>
-                        <textarea type="text" id="sl" onchange="countLines()" class="form-control mb-3" rows="7" placeholder="Nhập nội dung comment, mỗi một dòng tương ứng với 1 comment
+                        <textarea type="text" id="sl" oninput="countLines()" class="form-control mb-3" rows="7" placeholder="Nhập nội dung comment, mỗi một dòng tương ứng với 1 comment
 xin vui lòng không sử dụng kí tự đặc biệt hoặc icon để tránh lỗi, cảm ơn!" name="sl" required=""></textarea>
                     </div>
                     <div class="alert alert-info" role="alert">Bạn đã nhập: <span id="total_cmt">0</span> Comment
@@ -96,8 +96,25 @@ xin vui lòng không sử dụng kí tự đặc biệt hoặc icon để tránh
             function countLines() {
                 var textarea = document.getElementById('sl');
                 var text = textarea.value;
+                var originalText = text;
+
+                // Loại bỏ các ký tự đặc biệt
+                text = text.replace(/[\u{1F600}-\u{1F64F}]/gu, ''); // loại bỏ các biểu tượng cảm xúc
+                text = text.replace(/\|/g, ''); // loại bỏ dấu |
+
+                // Kiểm tra xem nội dung đã được thay đổi hay không
+                if (text !== originalText) {
+                    // Cập nhật nội dung của textarea
+                    textarea.value = text;
+
+                    // Hiển thị thông báo swal
+                    swal("Đã loại bỏ các ký tự không hợp lệ!", "Bạn đã nhập một hoặc nhiều ký tự không hợp lệ, chúng đã được tự động loại bỏ.", "warning");
+                }
+
                 var lines = text.split('\n');
                 var lineCount = lines.length;
+
+                // Cập nhật số dòng vào thẻ div
                 var div = document.getElementById('total_cmt');
                 div.textContent = lineCount;
                 var gia = '<?= $gia1; ?>';
