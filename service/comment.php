@@ -99,7 +99,7 @@ xin vui lòng không sử dụng kí tự đặc biệt hoặc icon để tránh
                 var originalText = text;
 
                 // Loại bỏ các ký tự đặc biệt
-                text = text.replace(/[\u{1F600}-\u{1F64F}]/gu, ''); // loại bỏ các biểu tượng cảm xúc
+                text = text.replace(/[\u{1F300}-\u{1F5FF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F900}-\u{1F9FF}]/gu, ''); // loại bỏ các biểu tượng cảm xúc
                 text = text.replace(/\|/g, ''); // loại bỏ dấu |
 
                 // Kiểm tra xem nội dung đã được thay đổi hay không
@@ -111,7 +111,7 @@ xin vui lòng không sử dụng kí tự đặc biệt hoặc icon để tránh
                     swal("Đã loại bỏ các ký tự không hợp lệ!", "Bạn đã nhập một hoặc nhiều ký tự không hợp lệ, chúng đã được tự động loại bỏ.", "warning");
                 }
 
-                var lines = text.split('\n');
+                var lines = text.split(/\r\n|\r|\n/);
                 var lineCount = lines.length;
 
                 // Cập nhật số dòng vào thẻ div
@@ -121,28 +121,25 @@ xin vui lòng không sử dụng kí tự đặc biệt hoặc icon để tránh
                 var tien = lineCount * gia;
                 var quan = tien.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
                 document.getElementById("total").innerHTML = quan;
-
             }
 
             function send_order() {
                 var id = $('#idbuff_like').val();
                 var sv = $("input[name='sv']:checked").val();
                 var cmt = $('#sl').val();
-                var count_cmt = cmt.split(/\r\n|\r|\n/).length;
                 var token = $('#token').val();
                 $('#button')['html']('<i class="spinner-border spinner-border-sm"></i> Vui lòng chờ...');
                 $("#button")
                     .prop("disabled", true);
                 $('#button').addClass('spinning');
                 $.ajax({
-                    url: "/api/buy/facebook/like.php",
+                    url: "/api/buy/facebook/cmt.php",
                     type: "post",
                     dataType: "json",
                     data: {
                         id,
                         sv,
-                        sl,
-                        gift,
+                        cmt,
                         token,
                     },
                     success: function(response) {
