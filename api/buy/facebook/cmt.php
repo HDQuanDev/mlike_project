@@ -33,7 +33,7 @@ switch ($_GET['act']) {
                     $done = $ro['done'];
                     $profile = $ro['profile'];
                     $tt = $ro['trangthai'];
-                    $sv = $ro['nse'];
+                    $sv = $ro['server'];
                     $user = $ro['user'];
                     $t = $ro['time'];
                     $array["data"]["$id"]["id"] = "$profile";
@@ -101,7 +101,10 @@ switch ($_GET['act']) {
     default:
         if (isset($_POST['token']) && isset($_POST['id']) && isset($_POST['cmt']) && isset($_POST['sv'])) {
             $id = mysqli_real_escape_string($db, $_POST['id']);
-            $cmt = mysqli_real_escape_string($db, $_POST['cmt']);
+            $text = $_POST['cmt'];
+            $text = preg_replace('/[\x{1F300}-\x{1F5FF}\x{1F600}-\x{1F64F}\x{1F680}-\x{1F6FF}\x{2600}-\x{26FF}\x{2700}-\x{27BF}\x{1F900}-\x{1F9FF}]/u', '', $text); // loại bỏ các biểu tượng cảm xúc
+            $text = str_replace("|", "", $text); // loại bỏ dấu |
+            $cmt = mysqli_real_escape_string($db, $text);
             $lines = preg_split("/\r\n|\r|\n/", $_POST['cmt']);
             $lineCount = count($lines);
             $sl = $lineCount;
