@@ -37,7 +37,7 @@ switch ($_GET['act']) {
         <!--end-->
         <div class="card border-danger border-bottom border-3 border-0">
             <div class="card-header ">
-                <h4>Tăng Like Bài Viết</h4>
+                <h4>Tăng Comment Bài Viết</h4>
             </div>
             <div class="card-body">
                 <p class="mb-0">
@@ -179,7 +179,8 @@ xin vui lòng không sử dụng kí tự đặc biệt hoặc icon để tránh
                                 <th>Số Lượng</th>
                                 <th>Đã Tăng</th>
                                 <th>ID BUFF</th>
-                                <th>Server Like</th>
+                                <th>Comment</th>
+                                <th>Server</th>
                                 <th>Người Mua</th>
                                 <th>Trạng Thái</th>
                                 <th>Chức Năng</th>
@@ -188,9 +189,9 @@ xin vui lòng không sử dụng kí tự đặc biệt hoặc icon để tránh
                         <tbody>
                             <?php
                             if ($row['rule'] == 99) {
-                                $result1 = mysqli_query($db, "SELECT * FROM `dichvu` WHERE `dv` = 'Like' ORDER BY id DESC LIMIT 0,3000");
+                                $result1 = mysqli_query($db, "SELECT * FROM `dv_cmt` ORDER BY id DESC LIMIT 0,3000");
                             } else {
-                                $result1 = mysqli_query($db, "SELECT * FROM `dichvu` WHERE `user` = '" . $login . "' AND `dv` = 'Like' ORDER BY id DESC LIMIT 0,3000");
+                                $result1 = mysqli_query($db, "SELECT * FROM `dv_cmt` WHERE `user` = '" . $login . "' ORDER BY id DESC LIMIT 0,3000");
                             }
                             if ($result1) {
                                 while ($ro = mysqli_fetch_assoc($result1)) {
@@ -209,7 +210,8 @@ xin vui lòng không sử dụng kí tự đặc biệt hoặc icon để tránh
                                         <td><?php echo $ro['sl']; ?></td>
                                         <td><?php echo $done; ?></td>
                                         <td><a href="https://facebook.com/<?php echo $ro['profile']; ?>" target="_blank"><?php echo $ro['profile']; ?></a></td>
-                                        <td><?php echo $ro['sve']; ?></td>
+                                        <td><textarea class="form-control" rows="3"><?php echo $ro['cmt']; ?></textarea></td>
+                                        <td><?php echo $ro['server']; ?></td>
                                         <td><?php echo $ro['user']; ?></td>
                                         <td><?php trangthai($tt); ?></td>
                                         <?php
@@ -228,7 +230,7 @@ xin vui lòng không sử dụng kí tự đặc biệt hoặc icon để tránh
                                             $("#button_<?= $ro["id"]; ?>")
                                                 .prop("disabled", true);
                                             $.ajax({
-                                                url: "/api/buy/facebook/like.php?act=cancel_order",
+                                                url: "/api/buy/facebook/cmt.php?act=cancel_order",
                                                 type: "post",
                                                 dataType: "json",
                                                 data: {

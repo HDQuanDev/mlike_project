@@ -1,0 +1,171 @@
+<?
+$hdq = "ok";
+$page = 'cmt_fb';
+require_once('../../../_System/db.php');
+$min = '10';
+$max = '20000';
+$array = [];
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    header('Method Not Allowed', true, 405);
+    echo '' . $_SERVER['REQUEST_METHOD'] . ' method requests are not accepted for this resource';
+    exit;
+}
+switch ($_GET['act']) {
+    case 'history':
+        if (isset($_POST['token']) && isset($_POST['limit'])) {
+            $token = mysqli_real_escape_string($db, $_POST['token']);
+            $limit = mysqli_real_escape_string($db, $_POST['limit']);
+            $show_cmt = mysqli_real_escape_string($db, $_POST['show_cmt']);
+            $uu = mysqli_query($db, "SELECT * FROM `member` WHERE `token`='$token' AND `site` = '$site'");
+            $tko = mysqli_num_rows($uu);
+            if ($tko == '1') {
+                $row = mysqli_fetch_assoc($uu);
+                $login = $row['username'];
+                $array["status"] = 'success';
+                $result1 = mysqli_query($db, "SELECT * FROM `dv_cmt` WHERE `user` = '" . $login . "' ORDER BY id DESC LIMIT $limit");
+                while ($ro = mysqli_fetch_assoc($result1)) {
+                    if ($_GET['type'] == 'id_order') {
+                        $id = $ro['id'];
+                    } else {
+                        $id = $ro['profile'];
+                    }
+                    $sl = $ro['sl'];
+                    $done = $ro['done'];
+                    $profile = $ro['profile'];
+                    $tt = $ro['trangthai'];
+                    $sv = $ro['nse'];
+                    $user = $ro['user'];
+                    $t = $ro['time'];
+                    $array["data"]["$id"]["id"] = "$profile";
+                    $array["data"]["$id"]["number"] = "$sl";
+                    $array["data"]["$id"]["done"] = "$done";
+                    $array["data"]["$id"]["server"] = "$sv";
+                    if ($show_cmt == true) {
+                        $array["data"]["$id"]["cmt"] = $ro['cmt'];
+                    } else {
+                        $array["data"]["$id"]["cmt"] = 'null';
+                    }
+                    $array["data"]["$id"]["user"] = "$user";
+                    $array["data"]["$id"]["time"] = "$t";
+                    $array["data"]["$id"]["status"] = "$tt";
+                }
+            } else {
+                $array["status"] = 'error';
+                $array["msg"] = 'Token không tồn tại!';
+            }
+            echo json_encode($array);
+        } else {
+            echo '{"status":"error","msg":"Không đủ phần tử gọi đến api"}';
+        }
+        break;
+    case 'cancel_order':
+        if (isset($_POST['token']) && isset($_POST['id_order'])) {
+            $token = mysqli_real_escape_string($db, $_POST['token']);
+            $id_order = mysqli_real_escape_string($db, $_POST['id_order']);
+            $done = mysqli_real_escape_string($db, $_POST['done']);
+            $status = mysqli_real_escape_string($db, $_POST['status']);
+            $uu = mysqli_query($db, "SELECT * FROM `member` WHERE `token`='$token' AND `site` = '$site'");
+            $tko = mysqli_num_rows($uu);
+            if ($tko == '1') {
+                $row = mysqli_fetch_assoc($uu);
+                $login = $row['username'];
+                $check = mysqli_query($db, "SELECT * FROM `dv_cmt` WHERE `id` = '$id_order' AND `user` = '$login' AND `trangthai` = '7'");
+                $c = mysqli_num_rows($check);
+                if ($c == '1') {
+                    $get = mysqli_fetch_assoc($check);
+                    $sotien = $get["sotien"];
+                    $time = time();
+                    $dd = $row['vnd'];
+                    $nd1 = 'Hoàn tiền mua comment facebook ID (' . $id_order . '):';
+                    $gtls = '+';
+                    $bd = $sotien;
+                    $array["status"] = 'success';
+                    mysqli_query($db, "INSERT INTO `lichsu` SET `nd` = '$nd1',`bd` = '$bd',`user`='$login',`time`='$time', `loai` = '2', `goc` = '$dd', `idgd` = '$bd', `gt` = '$gtls', `site` = '$site'");
+                    mysqli_query($db, "UPDATE `dv_cmt` SET `trangthai` = '8' WHERE `id` = '$id_order'");
+                    mysqli_query($db, "UPDATE `member` SET `vnd` = `vnd`+'$sotien' WHERE `username` = '$login'");
+                    $array["msg"] = 'Hủy và hoàn tiền đơn hàng ' . $id_order . ' thành công!';
+                    $array["sotien"] = $bd;
+                } else {
+                    $array["status"] = 'error';
+                    $array["msg"] = 'ID_ORDER không tồn tại, hoặc trạng thái đơn không hợp lệ để hủy!';
+                }
+            } else {
+                $array["status"] = 'error';
+                $array["msg"] = 'Token không tồn tại!';
+            }
+            echo json_encode($array);
+        } else {
+            echo '{"status":"error","msg":"Không đủ phần tử gọi đến api"}';
+        }
+        break;
+    default:
+        if (isset($_POST['token']) && isset($_POST['id']) && isset($_POST['cmt']) && isset($_POST['sv'])) {
+            $id = mysqli_real_escape_string($db, $_POST['id']);
+            $cmt = mysqli_real_escape_string($db, $_POST['cmt']);
+            $lines = preg_split("/\r\n|\r|\n/", $cmt);
+            $lineCount = count($lines);
+            $sl = $lineCount;
+            $sv = mysqli_real_escape_string($db, $_POST['sv']);
+            $token = mysqli_real_escape_string($db, $_POST['token']);
+            $uu = mysqli_query($db, "SELECT * FROM `member` WHERE `token`='$token' AND `site` = '$site'");
+            $tko = mysqli_num_rows($uu);
+            if ($tko == '1') {
+                $row = mysqli_fetch_assoc($uu);
+                $login = $row['username'];
+
+                if ($sv == 1) {
+                    $tongtien = ($sl * $gia1);
+                    $nse = 'Server CMT 1';
+                }
+
+                if (empty($id)) {
+                    $array["status"] = 'error';
+                    $array["msg"] = 'Vui lòng nhập số ID Post Facebook!';
+                } elseif (empty($cmt)) {
+                    $array["status"] = 'error';
+                    $array["msg"] = 'Vui lòng nhập Comment!';
+                } elseif ($sl < $min) {
+                    $array["status"] = 'error';
+                    $array["msg"] = 'Số lượng phải lớn hơn ' . $min . '';
+                } elseif ($sl > $max) {
+                    $array["status"] = 'error';
+                    $array["msg"] = 'Số lượng tối đa ' . $max . '!';
+                } elseif ($row['vnd'] < $tongtien) {
+                    $array["status"] = 'error';
+                    $array["msg"] = 'Bạn không đủ tiền!';
+                } else {
+                    if ($sv == 1) {
+                        $nd1 = 'Tăng Comment Post Facebook ID:';
+                        $bd = $tongtien;
+                        $gt = '-';
+                        $idgd = '(' . $sv . ') ' . $id . ' (' . $sl . ')';
+                        $goc = $row['vnd'];
+                        $time = time();
+                        $save = mysqli_query($db, "INSERT INTO `dv_cmt` SET `sl` = '$sl', `trangthai` = '1', `user`='$login',`profile`='$id',`time` = '$time', `sttdone` = '0', `sotien` = '$tongtien', `done` = '0', `server` = '$nse', `cmt` = '$cmt'");
+                        if ($save) {
+                            mysqli_query($db, "INSERT INTO `lichsu` SET `nd` = '$nd1',`bd` = '$bd',`user`='$login',`time`='$time', `goc` = '$goc', `loai` = '1', `idgd` = '$idgd', `gt` = '$gt'");
+                            mysqli_query($db, "UPDATE `member` SET `vnd` = `vnd`-'$tongtien', `sd` = `sd`+'$tongtien' WHERE `username` = '$login' AND `site` = '$site'");
+                            $array["status"] = 'success';
+                            $array["msg"] = 'Mua Comment Thành Công! Cảm ơn bạn!!';
+                            $r = mysqli_query($db, "SELECT * FROM `dv_cmt` ORDER BY `dv_cmt`.`id` DESC");
+                            $rr = mysqli_fetch_assoc($r);
+                            $array["id_order"] = $rr['id'];
+                        } else {
+                            $array["status"] = 'error';
+                            $array["msg"] = 'Đã xảy ra lỗi khi lên đơn cho bạn, vui lòng thử lại!';
+                        }
+                    } else {
+                        $array["status"] = 'error';
+                        $array["msg"] = 'Lỗi Server Tăng Commnet Không Đúng!';
+                    }
+                }
+            } else {
+                $array["status"] = 'error';
+                $array["msg"] = 'Token không tồn tại!';
+            }
+            echo json_encode($array);
+        } else {
+            echo '{"status":"error","msg":"Không đủ phần tử gọi đến api"}';
+        }
+        break;
+}
