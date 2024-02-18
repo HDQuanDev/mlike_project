@@ -1,204 +1,70 @@
 <?
-$page = 'cmt_fb';
+
+$page = "cmt_fb";
+//$admin = "1";
 require_once('../_System/db.php');
 $title = "Tăng Comment Facebook";
 require_once('../_System/head.php');
-require_once('../module/baostar.php');
+
+// function send mail
+
+
+// token check server 5
+$token = $s['token'];
+if (!isset($_SESSION['bugdi'])) {
+    $mane = rand(1, 9999999999);
+    $_SESSION['bugdi'] = $mane;
+}
+?>
+<?php
 switch ($_GET['act']) {
     default:
-        $gia = $gia1;
-        $min = '20';
-        $max = '5000';
-        $qcmt = $gia2;
 ?>
 
-        <?php
-        if (isset($_POST['add']) && isset($login)) {
-            if (isset($_POST['g-recaptcha-response'])) {
-                $captcha = $_POST['g-recaptcha-response'];
-            } else {
-                $captcha = false;
-            }
-            if (!$captcha) {
-                echo "<script>swal('Bảo Mật!','Lỗi Bảo Mật, Vui Lòng Load Lại Trang Và Thử Lại!!','warning');</script>";
-                exit('<script>setTimeout(function(){
-window.location="' . $url . '";
-}, 3000);</script>');
-            } else {
-                $secret   = '6Ldz7YwhAAAAAFnYKoYSR1IBjI8pWLeZ6paOGIS2';
-                $response = file_get_contents(
-                    "https://www.google.com/recaptcha/api/siteverify?secret=" . $secret . "&response=" . $captcha . "&remoteip=" . $_SERVER['REMOTE_ADDR']
-                );
-                $response = json_decode($response);
-                if ($response->success === false) {
-                    echo "<script>swal('Bảo Mật!','Phát Hiện Robot, Vui Lòng Load Lại Trang Và Thử Lại!!','warning');</script>";
-                    exit('<script>setTimeout(function(){
-    window.location="' . $url . '";
-    }, 3000);</script>');
-                }
-            }
-            if ($response->success == true && $response->score <= 0.5) {
-                echo "<script>swal('Bảo Mật!','Lỗi Hệ Thống, Vui Lòng Load Lại Trang Và Thử Lại!!','warning');</script>";
-                exit('<script>setTimeout(function(){
-window.location="' . $url . '";
-}, 3000);</script>');
-            }
-            $id = mysqli_real_escape_string($db, $_POST['id']);
-            $sl = mysqli_real_escape_string($db, $_POST['sl']);
-            $sv = mysqli_real_escape_string($db, $_POST['sv']);
-            if ($sv == '2') {
-                $cmt = $_POST['sl'];
-                $qu = explode("\n", $cmt);
-                $qua = json_encode($qu);
-                $b = count($qu);
-                $tongtien = $b * $qcmt;
-                if (empty($id)) {
-                    echo "<script>swal('OOPS!','Vui lòng nhập Link hoặc ID Bài Viết Facebook!','warning');</script>";
-                } elseif (empty($sl)) {
-                    echo "<script>swal('OOPS!','Vui lòng điền nội dung Comment!','warning');</script>";
-                } elseif ($b < '10') {
-                    echo "<script>swal('OOPS!','Số lượng phải lớn hơn 10 Comment','warning');</script>";
-                } elseif ($row['vnd'] < $tongtien) {
-                    echo "<script>swal('OOPS!','Bạn không đủ tiền!','warning');</script>";
-                } else {
-                    $nd1 = 'Tăng Comment Bài Viết ID:';
-                    $bd = $tongtien;
-                    $gt = '-';
-                    $idgd = '(2) ' . $id . ' (' . $b . ')';
-                    $goc = $row['vnd'];
-                    $time = time();
-                    $sve = 'Server CMT 2';
-                    $cm = str_replace("\r\n", "\\n", $cmt);
-                    $curl = curl_init();
-
-                    curl_setopt_array($curl, array(
-                        CURLOPT_URL => 'https://api.baostar.pro/api/facebook-binh-luan/buy',
-                        CURLOPT_RETURNTRANSFER => true,
-                        CURLOPT_ENCODING => '',
-                        CURLOPT_MAXREDIRS => 10,
-                        CURLOPT_TIMEOUT => 0,
-                        CURLOPT_FOLLOWLOCATION => true,
-                        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                        CURLOPT_CUSTOMREQUEST => 'POST',
-                        CURLOPT_POSTFIELDS => '{
-    "object_id": "' . $_POST['id'] . '",
-    "package_name": "facebook_comment_sv10",
-    "list_message":"' . $cm . '"
-}',
-                        CURLOPT_HTTPHEADER => array(
-                            'api-key: MTExNjkwbm93MzgxM2ZlOGVhYjk0YjgwNDg0YzA4M2NlNA==',
-                            'Content-Type: application/json'
-                        ),
-                    ));
-
-                    $response = curl_exec($curl);
-                    curl_close($curl);
-                    $send = json_decode($response);
-                    if ($send->status == '200') {
-                        mysqli_query($db, "INSERT INTO `dichvu` SET `dv` = 'Cmt',`sl` = '$b', `cmt`='$sl', `trangthai` = '1', `user`='$login',`profile`='$id',`time` = '$time', `sotien` = '$tongtien', `done` = '0', `nse` = '2', `bh`='1', `sttdone` = '10', `sve`='$sve'");
-                        mysqli_query($db, "INSERT INTO `lichsu` SET `nd` = '$nd1',`bd` = '$bd',`user`='$login',`time`='$time', `idgd` = '$idgd', `gt` = '$gt', `goc` = '$goc', `loai` = '1'");
-                        mysqli_query($db, "UPDATE `member` SET `vnd` = `vnd`-'$tongtien', `sd` = `sd`+'$tongtien' WHERE `username` = '$login' AND `site` = '$site'");
-                        echo "<script>swal('Hệ Thống!','Tăng Comment Bài Viết Thành Công! Cảm ơn bạn!!','success');</script>";
-                        echo '<script>setTimeout(function(){
-    window.location="' . $url . '";
-}, 3000);</script>';
-                    } else {
-                        echo "<script>swal('Hệ Thống!','" . $send->message . "','warning');</script>";
-                        echo '<script>setTimeout(function(){
-    window.location="' . $url . '";
-}, 3000);</script>';
-                    }
-                }
-            }
-        }
-
-
-        ?>
-        <script>
-            function format_curency(a) {
-                a.value = a.value.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
-            }
-        </script>
         <script>
             function calc() {
                 var sl = document.getElementById("sl").value;
                 var idbuff = document.getElementById("idbuff_like").value;
                 var sv = document.querySelector('input[name="sv"]:checked').value;
                 if (sv == '1') {
-                    var gia = '<?= $gia; ?>';
-                } else if (sv == '2') {
-                    var gia = '<?= $qcmt; ?>';
+                    var gia = '<?= $gia1; ?>';
                 }
-                var t = 0;
-                var q = sl.split('\n');
-                var c = q.length;
-                for (i = 0; i < c; i++) {
-                    var t = t + 1;
-                }
-                var sl = t;
                 var tien = sl * gia;
                 var quan = tien.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
-                var dz = sl.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
                 document.getElementById("total").innerHTML = quan;
-                document.getElementById("giacmt").innerHTML = gia;
-                document.getElementById("slmua").innerHTML = dz;
-                document.getElementById("idbuff").innerHTML = idbuff;
             }
         </script>
-        <!-- thong bao -->
-        <!-- thong bao -->
-        <? if (!isset($_POST['add'])) { ?>
-            <script>
-                var sangml = document.createElement("sangml");
-                sangml.innerHTML = "<img class='card-img-top' src='https://daotao.ulis.vnu.edu.vn/files/uploads/2018/04/thong-bao660x350-600x350.png'><hr><big><center style='color:#3794ff;'> Bảo trì dich vụ cmt . Admin nhận riêng cmt tay 500đ </center></big></b>";
-                swal({
-                    content: sangml,
-                    buttons: false
-                });
-            </script>
-        <? } ?>
-        <!--end-->
-
         <!--end-->
         <div class="card border-danger border-bottom border-3 border-0">
-            <div class="card-header">
-                <h4 class="card-title" data-anchor="data-anchor">Tăng Comment Bài Viết</h4>
+            <div class="card-header ">
+                <h4>Tăng Like Bài Viết</h4>
             </div>
             <div class="card-body">
                 <p class="mb-0">
-                <form action="" id="form_id" class="user" method="POST" accept-charset="utf-8">
-                    <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
-                    <input type="hidden" name="action" value="validate_captcha">
+                <form>
+                    <input type="hidden" value="<?= $row['token']; ?>" id="token">
                     <label>Chọn Server Comment:</label>
                     <div class="form-check">
-                        <input class="form-check-input" disabled id="flexRadioDefault1" type="radio" name="sv" value="1" data-bs-toggle="collapse" data-bs-target="#sv1" aria-expanded="false" aria-controls="sv1" /><label class="form-check-label" for="flexRadioDefault1">Server CMT 1 (<b><?= $gia; ?>₫</b>) (BẢO TRÌ) </label>
-                        <div class="collapse" id="sv1">
-                            <div class="alert alert-danger" role="alert">Không bị giới hạn nội dung , đa số đều được auto duyệt.<br>
-                                Không chạy được link share , avt , bìa , album...<br>
-                                Chạy được cho fanpage, không chạy được link share, avt bìa</div>
-                        </div>
+                        <input class="form-check-input" id="flexRadioDefault1" type="radio" name="sv" value="1" data-bs-toggle="collapse" data-bs-target="#sv2" aria-expanded="false" aria-controls="sv2" /><label class="form-check-label" for="flexRadioDefault1">Server CMT 1 ( <span style="color:red;"><?= $gia1; ?>₫</span> <span class="badge bg-success">test</span></label>
                     </div>
-                   <!-- <div class="form-check">
-                        <input class="form-check-input" checked id="flexRadioDefault1" type="radio" name="sv" value="2" data-bs-toggle="collapse" data-bs-target="#sv2" aria-expanded="false" aria-controls="sv2"><label class="form-check-label" for="flexRadioDefault1">Server CMT 2 (<b><?= $qcmt; ?>₫</b>) (Tốc độ nhanh, chạy được live , album, group)</label>
-                    </div>-->
 
-
-                    <div class="mb-3">
-                        <label>Nhập Link Bài Viết:</label>
+                    <div class="form-group">
+                        <label>Nhập ID Hoặc Link Bài Viết:</label>
                         <div class="input-group mb-3">
                             <input type="text" oninput="getIDP('id');" name="id" class="form-control mb-3" aria-label="Recipient's username" aria-describedby="basic-addon2" placeholder="Nhập Link Hoặc ID Bài Viết" required="" id="idbuff_like">
-                            <div class="input-group-append">
-
-                            </div>
                         </div>
                         <label>
-                            <h5> <span style="color: red;">(*) Vui Lòng Đọc Lưu Ý trước khi dùng tránh mất tiền</span></h5>
+                            <h4> <span style="color: red;">(*) Hãy đọc lưu ý trước khi dùng tránh mất tiền</span></h4>
                         </label>
+                    </div>
+                    <div id="notine">
                     </div>
                     <div class="mb-3">
                         <label>Nhập Nội Dung Comment (Mỗi 1 dòng tương ứng với 1 comment):</label>
-                        <textarea type="text" id="sl" oninput="calc()" class="form-control mb-3" rows="7" placeholder="Nhập nội dung comment, mỗi một dòng tương ứng với 1 comment
+                        <textarea type="text" id="sl" onchange="countLines()" class="form-control mb-3" rows="7" placeholder="Nhập nội dung comment, mỗi một dòng tương ứng với 1 comment
 xin vui lòng không sử dụng kí tự đặc biệt hoặc icon để tránh lỗi, cảm ơn!" name="sl" required=""></textarea>
+                    </div>
+                    <div class="alert alert-info" role="alert">Bạn đã nhập: <span id="total_cmt">0</span> Comment
                     </div>
                     <div class="alert alert-warning" role="alert">
                         <strong>Lưu Ý:</strong><br>
@@ -212,87 +78,184 @@ xin vui lòng không sử dụng kí tự đặc biệt hoặc icon để tránh
                     </div>
 
                     <div class="alert alert-success" role="alert">
-                        <center><strong>Giá: <span id="giacmt">0</span> VNĐ / 1 CMT<br>Thành Tiền: <span id="total">0</span> VNĐ</strong></center>
+                        <center><strong>Thành Tiền: <span id="total">0</span> VNĐ</strong>
+                        </center>
                     </div>
                     <center>
-                        <button type="submit" name="add" class="btn btn-success btn-rounded me-1 mb-1"><i class="fa fa-dollar-sign"></i> Thanh Toán</button>
+                        <button type="button" id="button" class="btn btn-primary btn-rounded me-1 mb-1" onclick="send_order()"><i class="fa fa-dollar-sign"></i> Thanh Toán</button>
                     </center>
                 </form>
                 </p>
             </div>
             <div class="card-footer border-0 text-center py-4">
                 <a href="?act=history" class="btn btn-primary">Lịch Sử Mua Đơn <i class="fa fa-angle-double-down scale2 ml-2"></i></a>
+
             </div>
         </div>
+        <script>
+            function countLines() {
+                var textarea = document.getElementById('sl');
+                var text = textarea.value;
+                var lines = text.split('\n');
+                var lineCount = lines.length;
+                var div = document.getElementById('total_cmt');
+                div.textContent = lineCount;
+                var gia = '<?= $gia1; ?>';
+                var tien = lineCount * gia;
+                var quan = tien.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+                document.getElementById("total").innerHTML = quan;
+
+            }
+
+            function send_order() {
+                var id = $('#idbuff_like').val();
+                var sv = $("input[name='sv']:checked").val();
+                var cmt = $('#sl').val();
+                var count_cmt = cmt.split(/\r\n|\r|\n/).length;
+                var token = $('#token').val();
+                $('#button')['html']('<i class="spinner-border spinner-border-sm"></i> Vui lòng chờ...');
+                $("#button")
+                    .prop("disabled", true);
+                $('#button').addClass('spinning');
+                $.ajax({
+                    url: "/api/buy/facebook/like.php",
+                    type: "post",
+                    dataType: "json",
+                    data: {
+                        id,
+                        sv,
+                        sl,
+                        gift,
+                        token,
+                    },
+                    success: function(response) {
+                        if (response.status === 'success') {
+                            swal('Hệ Thống!', response.msg, 'success');
+                            setTimeout(function() {
+                                    window.location = "";
+                                },
+                                1500);
+                        } else {
+                            swal('Hệ Thống!', response.msg, 'warning');
+                        }
+                        $('#button')['html']('<i class="fa fa-dollar-sign"></i> Thanh Toán');
+                        $("#button")
+                            .prop("disabled", false);
+                        $('#button').removeClass('spinning');
+
+                    }
+                });
+            }
+        </script>
     <?php
         break;
     case 'history':
     ?>
-
         <div class="card border-danger border-bottom border-3 border-0">
             <div class="card-header">
-                <h4 class="card-title">Lịch Sử Tăng Comment</h4>
+                <h4 class="card-title">Lịch Sử Tăng Like</h4>
             </div>
             <div class="card-body">
-                <div class="table-responsive scrollbar">
-                    <table class="table table-striped table-bordered" id="example">
-                        <thead class="bg-200 text-900">
+                <div class="table-responsive">
+                    <table class="display" id="example">
+                        <thead>
                             <tr>
-                                <th class="sort" data-sort="id"><b>#</b></th>
-                                <th class="sort" data-sort="time">Thời Gian</th>
-                                <th class="sort" data-sort="sl">Số Lượng</th>
-                                <th class="sort" data-sort="sv">Server CMT</th>
-                                <th class="sort" data-sort="done">Đã Tăng</th>
-                                <th class="sort" data-sort="profile">ID BUFF</th>
-                                <th class="sort" data-sort="nd">Nội Dung Comment</th>
-                                <th class="sort" data-sort="user">Người Mua</th>
-                                <th class="sort" data-sort="tt">Trạng Thái</th>
+                                <th>#</th>
+                                <th>Thời Gian</th>
+                                <th>Số Lượng</th>
+                                <th>Đã Tăng</th>
+                                <th>ID BUFF</th>
+                                <th>Server Like</th>
+                                <th>Người Mua</th>
+                                <th>Trạng Thái</th>
+                                <th>Chức Năng</th>
                             </tr>
                         </thead>
-                        <tbody class="list">
+                        <tbody>
                             <?php
                             if ($row['rule'] == 99) {
-                                $result1 = mysqli_query($db, "SELECT * FROM `dichvu` WHERE `dv` = 'Cmt' ORDER BY id DESC LIMIT 0,1000");
+                                $result1 = mysqli_query($db, "SELECT * FROM `dichvu` WHERE `dv` = 'Like' ORDER BY id DESC LIMIT 0,3000");
                             } else {
-                                $result1 = mysqli_query($db, "SELECT * FROM `dichvu` WHERE `user` = '" . $login . "' AND `dv` = 'Cmt' ORDER BY id DESC LIMIT 0,1000");
+                                $result1 = mysqli_query($db, "SELECT * FROM `dichvu` WHERE `user` = '" . $login . "' AND `dv` = 'Like' ORDER BY id DESC LIMIT 0,3000");
                             }
                             if ($result1) {
                                 while ($ro = mysqli_fetch_assoc($result1)) {
                                     $tt = $ro['trangthai'];
-                                    $cmt = $ro['cmt'];
                                     $t = $ro['time'];
+                                    $done = $ro['done'];
+                                    if ($done == 14102003) {
+                                        $done = 'Không áp dụng';
+                                    } else {
+                                        $done = $done;
+                                    }
                             ?>
                                     <tr>
-                                        <td class="id"><?= $ro['id']; ?></td>
-                                        <td class="time"><?php echo time_func($t); ?></td>
-                                        <td class="sl"><?php echo $ro['sl']; ?></td>
-                                        <td class="sv"><?php echo $ro['sve']; ?></td>
-                                        <td class="done"><?php echo $ro['done']; ?></td>
-                                        <td class="profile"><a href="https://facebook.com/<?php echo $ro['profile']; ?>" target="_blank"><?php echo $ro['profile']; ?></a></td>
-                                        <td class="nd"><?php echo limit_text($cmt, 10); ?></td>
-                                        <td class="user"><?php echo $ro['user']; ?></td>
-                                        <td class="tt"><?php trangthai($tt); ?></td>
+                                        <td><?= $ro['id']; ?></td>
+                                        <td><?php echo time_func($t); ?></td>
+                                        <td><?php echo $ro['sl']; ?></td>
+                                        <td><?php echo $done; ?></td>
+                                        <td><a href="https://facebook.com/<?php echo $ro['profile']; ?>" target="_blank"><?php echo $ro['profile']; ?></a></td>
+                                        <td><?php echo $ro['sve']; ?></td>
+                                        <td><?php echo $ro['user']; ?></td>
+                                        <td><?php trangthai($tt); ?></td>
+                                        <?php
+                                        if ($tt == '7') {
+                                            echo '<td><form><input id="id_order_' . $ro["id"] . '" value="' . $ro['id'] . '" type="hidden"><input id="token" value="' . $row['token'] . '" type="hidden"><button type="button" id="button_' . $ro["id"] . '" class="btn btn-primary btn-rounded" onclick="huy_order_' . $ro["id"] . '()">Hủy & Hoàn Tiền</button></form></td>';
+                                        } else {
+                                            echo '<td>NULL</td>';
+                                        }
+                                        ?>
                                     </tr>
+                                    <script>
+                                        function huy_order_<?= $ro["id"]; ?>() {
+                                            var id_order = $('#id_order_<?= $ro["id"]; ?>').val();
+                                            var token = $('#token').val();
+                                            $('#button_<?= $ro["id"]; ?>')['html']('<i class="spinner-border spinner-border-sm"></i> Vui lòng chờ...');
+                                            $("#button_<?= $ro["id"]; ?>")
+                                                .prop("disabled", true);
+                                            $.ajax({
+                                                url: "/api/buy/facebook/like.php?act=cancel_order",
+                                                type: "post",
+                                                dataType: "json",
+                                                data: {
+                                                    id_order,
+                                                    token,
+                                                },
+                                                success: function(response) {
+                                                    if (response.status === 'success') {
+                                                        swal('Hệ Thống!', response.msg, 'success');
+                                                    } else {
+                                                        swal('Hệ Thống!', response.msg, 'warning');
+                                                        $("#button_<?= $ro["id"]; ?>")
+                                                            .prop("disabled", false)
+                                                    }
+                                                    $('#button_<?= $ro["id"]; ?>')['html']('Hủy & Hoàn Tiền');
+                                                }
+                                            });
+                                        }
+                                    </script>
                             <?php
                                 }
                                 echo '</tbody>
+                                
 </table>
 ';
                             }
                             ?>
 
                 </div>
-
             </div>
             <div class="card-footer border-0 text-center py-4">
-
                 <a href="?act=buy" class="btn btn-primary">Quay Lại Mua Đơn <i class="fa fa-angle-double-down scale2 ml-2"></i></a>
+
 
             </div>
         </div>
-
 <?php
         break;
 }
+?>
+
+<?php
 require('../_System/end.php');
 ?>
