@@ -381,7 +381,7 @@ if ($row['rule'] == '99') {
                                         <?php
                                         }
                                         ?>
-                                        <li class="sidebar-list"><a class="sidebar-link" href="https://documenter.getpostman.com/view/17576313/VV4zNuAb"><i data-feather="edit-3"></i><span>Tài Liệu API</span></a></li>
+                                        <li class="sidebar-list"><a class="sidebar-link" href="https://documenter.getpostman.com/view/17576313/VV4zNuAb" target="_blank"><i data-feather="book"></i><span>API Document</span></a></li>
                                         <li class="sidebar-list"><a class="sidebar-link" href="/payment.php"><i data-feather="folder-plus"></i><span>Nạp Tiền</span></a></li>
                                         <?php
                                         $list = 'Tiện Ích:list#Trang Cá Nhân|/profile.php!Lịch Sử Hoạt Động|/history.php!Tạo SITE CON|/sitecon.php
