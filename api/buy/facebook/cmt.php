@@ -102,7 +102,7 @@ switch ($_GET['act']) {
         if (isset($_POST['token']) && isset($_POST['id']) && isset($_POST['cmt']) && isset($_POST['sv'])) {
             $id = mysqli_real_escape_string($db, $_POST['id']);
             $cmt = mysqli_real_escape_string($db, $_POST['cmt']);
-            $lines = preg_split("/\r\n|\r|\n/", $cmt);
+            $lines = preg_split("/\r\n|\r|\n/", $_POST['cmt']);
             $lineCount = count($lines);
             $sl = $lineCount;
             $sv = mysqli_real_escape_string($db, $_POST['sv']);
