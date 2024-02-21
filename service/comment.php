@@ -69,11 +69,11 @@ xin vui lòng không sử dụng kí tự đặc biệt hoặc icon để tránh
                     <div class="alert alert-warning" role="alert">
                         <strong>Lưu Ý:</strong><br>
                         <p>
-                            - Buff dư ra 30-50% tránh tụt, vì acc clone chạy có thể die trong quá trình chạy dẫn đến hụt là chuyện bình thường.<br>
                             - Cách lấy link kích vào thời gian đăng bài, kích vào hình ảnh là sai nhé<br>
                             - Vui lòng vào cài đặt => bài viết công khai => ai có thể bình luận vào bài viết của tôi bật mọi người ra trước khi cài <br>
-                            - Nên soạn trước cmt rồi copy lại tránh cài lỗi bị mất nội dung <br>
-                            - Admin nhận cmt tay acc thật siêu tốc, chạy được tất cả các loại . Ai cần inbox gửi riêng nhé. Sll có giá tốt.</p>
+                            - Không hỗ trợ nội dung có chứa icon , kí tự đặc biệt, bài viết trong group <br>
+                            - Hệ thống dùng acc clone có avt, đang update chia sẽ bài viết trên wall cho giống thật <br>
+                            - Buff số lượng lớn hơn 3k có thể bị lặp lại acc <p>
 
                     </div>
 
