@@ -244,6 +244,7 @@ if (isset($login) || isset($_POST['token'])) {
                 $gia7 = $q['ttview_7'];
                 $gia8 = $q['ttview_8'];
                 $gia9 = $q['ttview_9'];
+                $gia10 = $q['ttview_10'];
             } elseif ($page == 'tim_tt') {
                 $gia1 = $q['ttlike_1'];
                 $gia2 = $q['ttlike_2'];
@@ -389,6 +390,7 @@ if (isset($login) || isset($_POST['token'])) {
                     $gia7 = 0.345;
                     $gia8 = 0.045;
                     $gia9 = 0.29;
+                    $gia10 = 100;
                 } elseif ($page == 'tim_tt') {
                     $gia1 = 15;
                     $gia2 = 17;
@@ -533,6 +535,7 @@ if (isset($login) || isset($_POST['token'])) {
                     $gia7 = 0.345;
                     $gia8 = 0.045;
                     $gia9 = 0.29;
+                    $gia10 = 100;
                 } elseif ($page == 'tim_tt') {
                     $gia1 = 16;
                     $gia2 = 19;
@@ -677,6 +680,7 @@ if (isset($login) || isset($_POST['token'])) {
                     $gia7 = 0.345;
                     $gia8 = 0.045;
                     $gia9 = 0.29;
+                    $gia10 = 100;
                 } elseif ($page == 'tim_tt') {
                     $gia1 = 16;
                     $gia2 = 19;
