@@ -2,7 +2,7 @@
 ob_start();
 session_start();
 date_default_timezone_set('Asia/Ho_Chi_Minh');
-define('_PHPVERSION_', '7.4');
+define('_PHPVERSION_', '7.3');
 define('_PHPRUN_', phpversion());
 define('_SITE_', 'https://mlike.vn');
 $login = $_SESSION['u'];
@@ -10,7 +10,7 @@ require_once('config.php');
 require_once('function.php');
 
 $stttiktok = 'off';
-$db = mysqli_connect('localhost', 'data', 'PnhN4A56Dr84P5BW', 'data');
+$db = mysqli_connect('localhost', 'data', 'hP7PmS2e8PTL7CY6', 'data');
 //$db = mysqli_connect('localhost', 'root', '', 'mlike');
 if (!$db) {
     echo '{"status":"error","message":"Không thể kết nối đến CSDL/không tìm thấy CSDL","error_code": "' . mysqli_connect_errno() . '"}';
