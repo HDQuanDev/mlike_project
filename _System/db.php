@@ -600,7 +600,7 @@ if (isset($login) || isset($_POST['token'])) {
                 } elseif ($page == 'fb_likecmt') {
                     $gia1 = 18;
                     $gia2 = 22;
-                    $gia3 = 17;
+                    $gia3 = 15;
                 } elseif ($page == 'cmt_fb') {
                     $gia1 = 40;
                     $gia2 = 300;
