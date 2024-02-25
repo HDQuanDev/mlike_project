@@ -69,7 +69,6 @@ xin vui lòng không sử dụng kí tự đặc biệt hoặc icon để tránh
                     <div class="alert alert-warning" role="alert">
                         <strong>Lưu Ý:</strong><br>
                         <p>
-                            - Cách lấy link kích vào thời gian đăng bài, kích vào hình ảnh là sai nhé<br>
                             - Vui lòng vào cài đặt => bài viết công khai => ai có thể bình luận vào bài viết của tôi bật mọi người ra trước khi cài <br>
                             - Không hỗ trợ nội dung có chứa icon , kí tự đặc biệt, bài viết trong group <br>
                             - Buff số lượng lớn hơn 3k có thể bị lặp lại acc <p>
