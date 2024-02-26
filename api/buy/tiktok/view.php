@@ -257,7 +257,7 @@ switch ($_GET['act']) {
                             die();
                         }
                         if ($sv == 1) {
-                            $order = $api->order(array('service' => 1835, 'link' => '' . $id . '', 'quantity' => $sl));
+                            $order = $api->order(array('service' => 1793, 'link' => '' . $id . '', 'quantity' => $sl));
                         } elseif ($sv == 2) {
                             $order = $api->order(array('service' => 1918, 'link' => '' . $id . '', 'quantity' => $sl));
                         }
