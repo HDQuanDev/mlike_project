@@ -14,7 +14,7 @@ if (isset($page)) {
         $sv6 = 'off';
         $sv7 = 'on';
         $sv8 = 'on';
-        $tay_or_auto = 'tay'; //auto: tự động, tay: thủ công
+        $tay_or_auto = 'auto'; //auto: tự động, tay: thủ công
     } elseif ($page == 'tim_tt_tay') {
         $sv1 = 'off'; //bật tắt sv1
     } elseif ($page == 'like_fb') {
