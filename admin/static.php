@@ -29,8 +29,11 @@ function total($dv, $type, $num = 0)
     );
 
     // Query to get all purchases for this service
-    $result = mysqli_query($db, "SELECT * FROM `$type` WHERE `dv` = '$dv'");
-
+    if ($dv == 'cmt_not') {
+        $result = mysqli_query($db, "SELECT * FROM `$type`");
+    } else {
+        $result = mysqli_query($db, "SELECT * FROM `$type` WHERE `dv` = '$dv'");
+    }
     while ($ro = mysqli_fetch_assoc($result)) {
         $purchaseTime = $ro['time'];
         $sotien = $ro['sotien'];
@@ -72,7 +75,7 @@ function totalall()
         'monthProfit' => 0
     ];
 
-    $tables = ['dichvu', 'dv_other', 'video'];
+    $tables = ['dichvu', 'dv_other', 'video', 'dv_cmt'];
 
     foreach ($tables as $table) {
         $result = mysqli_query($db, "SELECT `time`,`sotien` FROM `$table`");
@@ -98,7 +101,7 @@ function totalall()
     return json_encode($stats);
 }
 
-$listdv = 'Like,dichvu,Tăng Like Facebook|Sub,dichvu,Tăng Follow Facebook|Cmt,dichvu,Tăng Comment Facebook|Share,dichvu,Tăng Share Facebook|view,video,Tăng View Video Facebook|mat,video,Tăng Mắt Video Facebook|fb_group,dv_other,Tăng Member Group Facebook|fb_page,dv_other,Tăng Like Fanpage Facebook|fb_feeling,dv_other,Tăng Like Cảm Xúc Facebook|fb_viewstory,dv_other,Tăng View Story Facebook|ins_follow,dv_other,Tăng Follow Instagram|ins_like,dv_other,Tăng Like Instagram|ins_view,dv_other,Tăng View Instagram|tiktok_follow,dv_other,Tăng Follow TikTok|tiktok_like,dv_other,Tăng Like TikTok|tiktok_like_tay,dv_other,Tăng Like Tay TikTok|tiktok_view,dv_other,Tăng View TikTok|ytb_sub,dv_other,Tăng Sub YouTube|ytb_view,dv_other,Tăng View YouTube';
+$listdv = 'Like,dichvu,Tăng Like Facebook|Sub,dichvu,Tăng Follow Facebook|cmt_not,dv_cmt,Tăng Comment Facebook|Share,dichvu,Tăng Share Facebook|view,video,Tăng View Video Facebook|mat,video,Tăng Mắt Video Facebook|fb_group,dv_other,Tăng Member Group Facebook|fb_page,dv_other,Tăng Like Fanpage Facebook|fb_feeling,dv_other,Tăng Like Cảm Xúc Facebook|fb_viewstory,dv_other,Tăng View Story Facebook|ins_follow,dv_other,Tăng Follow Instagram|ins_like,dv_other,Tăng Like Instagram|ins_view,dv_other,Tăng View Instagram|tiktok_follow,dv_other,Tăng Follow TikTok|tiktok_like,dv_other,Tăng Like TikTok|tiktok_like_tay,dv_other,Tăng Like Tay TikTok|tiktok_view,dv_other,Tăng View TikTok|ytb_sub,dv_other,Tăng Sub YouTube|ytb_view,dv_other,Tăng View YouTube';
 ?>
 <div class="card border-danger border-bottom border-3 border-0">
     <div class="card-header">
