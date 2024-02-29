@@ -2,7 +2,7 @@
 $hdq = "ok";
 $page = 'cmt_fb';
 require_once('../../../_System/db.php');
-require_once('../../../model/telegram.php');
+require_once('../../../module/telegram.php');
 $min = '10';
 $max = '20000';
 $array = [];
@@ -186,7 +186,7 @@ switch ($_GET['act']) {
                 } else {
                     if ($sv == 1) {
                         $tg = date("G:i:s d/m/Y", time());
-                        $send_tele = telegram_send('', '<b>***Bạn vừa có một đơn hàng Comment Facebook Mới***</b>%0A- ID: <a href="https://www.facebook.com/' . $id . '">' . $id . '</a>%0A- Số lượng: ' . $sl . ' Like%0A- Người mua: <a href="https://mlike.vn/admin/user.php?edit=' . $login . '">' . $login . '</a>%0A- Thời Gian: ' . $tg . '%0A- Để kiểm tra vui lòng: <a href="https://mlike.vn/service/cmt.php?act=history">ấn vào đây</a>%0A(<b>QBOT Notification</b>)');
+                        $send_tele = telegram_send('94974', '<b>***Bạn vừa có một đơn hàng Comment Facebook Mới***</b>%0A- ID: <a href="https://www.facebook.com/' . $id . '">' . $id . '</a>%0A- Số lượng: ' . $sl . ' Like%0A- Người mua: <a href="https://mlike.vn/admin/user.php?edit=' . $login . '">' . $login . '</a>%0A- Thời Gian: ' . $tg . '%0A- Để kiểm tra vui lòng: <a href="https://mlike.vn/service/cmt.php?act=history">ấn vào đây</a>%0A(<b>QBOT Notification</b>)');
                         $send_tele = json_decode($send_tele);
                         if ($send_tele->ok == 'true') {
                             $nd1 = 'Tăng Comment Post Facebook ID:';
