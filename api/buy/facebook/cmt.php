@@ -58,6 +58,50 @@ switch ($_GET['act']) {
             echo '{"status":"error","msg":"Không đủ phần tử gọi đến api"}';
         }
         break;
+    case 'history_id':
+        if (isset($_POST['token']) && isset($_POST['limit']) && isset($_POST['id'])) {
+            $token = mysqli_real_escape_string($db, $_POST['token']);
+            $limit = mysqli_real_escape_string($db, $_POST['limit']);
+            $id = mysqli_real_escape_string($db, $_POST['id']);
+            $show_cmt = mysqli_real_escape_string($db, $_POST['show_cmt']);
+            $uu = mysqli_query($db, "SELECT * FROM `member` WHERE `token`='$token' AND `site` = '$site'");
+            $tko = mysqli_num_rows($uu);
+            if ($tko == '1') {
+                $row = mysqli_fetch_assoc($uu);
+                $login = $row['username'];
+                $array["status"] = 'success';
+                $result1 = mysqli_query($db, "SELECT * FROM `dv_cmt` WHERE `user` = '" . $login . "' AND `id` = '$id' ORDER BY id DESC LIMIT $limit");
+                while ($ro = mysqli_fetch_assoc($result1)) {
+                    $sl = $ro['sl'];
+                    $done = $ro['done'];
+                    $profile = $ro['profile'];
+                    $tt = $ro['trangthai'];
+                    $sv = $ro['server'];
+                    $user = $ro['user'];
+                    $t = $ro['time'];
+                    $array["data"]["id"] = "$profile";
+                    $array["data"]["number"] = "$sl";
+                    $array["data"]["done"] = "$done";
+                    $array["data"]["server"] = "$sv";
+                    if ($show_cmt == true) {
+                        $array["data"]["cmt"] = $ro['cmt'];
+                    } else {
+                        $array["data"]["cmt"] = 'null';
+                    }
+                    $array["data"]["user"] = "$user";
+                    $array["data"]["time"] = "$t";
+                    $array["data"]["status"] = "$tt";
+                }
+            } else {
+                $array["status"] = 'error';
+                $array["msg"] = 'Token không tồn tại!';
+            }
+            echo json_encode($array);
+        } else {
+            echo '{"status":"error","msg":"Không đủ phần tử gọi đến api"}';
+        }
+        break;
+
     case 'cancel_order':
         if (isset($_POST['token']) && isset($_POST['id_order'])) {
             $token = mysqli_real_escape_string($db, $_POST['token']);
