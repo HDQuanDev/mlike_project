@@ -158,7 +158,7 @@ swal({
                         </div>
                         <label>
                             <!-- thong bao -->
-                              <? if (!isset($_POST['add'])) { ?>
+                             <!-- <? if (!isset($_POST['add'])) { ?>
                                 <script>
                                     function sayHello() {
                                         var sangml = document.createElement("sangml")
@@ -170,7 +170,7 @@ swal({
                                     }
                                     setTimeout(sayHello, 1500);
                                 </script>
-                            <? } ?> 
+                            <? } ?> -->
                             <h4> <span style="color: red;">(*) Hãy đọc lưu ý trước khi dùng tránh mất tiền</span></h4>
                         </label>
                     </div>
