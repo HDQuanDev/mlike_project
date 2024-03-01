@@ -103,7 +103,7 @@ swal({
                     <!--    <div class="form-check">
                         <input class="form-check-input"  id="flexRadioDefault1" type="radio" name="sv" value="3" data-bs-toggle="collapse" data-bs-target="#sv3" aria-expanded="false" aria-controls="sv3" /><label class="form-check-label" for="flexRadioDefault1">Server Like 3 (Tốc độ nhanh , nên cài bài viết k có like gốc, Bảo Hành tự động 1 tháng, <span style="color: red;">,max 10k </span> ) <span style="color:red;"><?= $gia3; ?>₫</span> <span class="badge bg-success">Hoạt động</span></label> 
 
-                    </div> -->
+                    </div> 
                     <div class="form-check">
                         <input class="form-check-input" <? if ($sv4 == 'on') {
                                                             echo 'checked';
@@ -117,7 +117,7 @@ swal({
                         <div id="sv4" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#sv4">
                             <div class="accordion-body alert alert-success"> Mỗi ID chỉ được mua 1 lần </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="form-check">
                         <input class="form-check-input" id="flexRadioDefault1" type="radio" name="sv" value="5" data-bs-toggle="collapse" data-bs-target="#sv2" aria-expanded="false" aria-controls="sv2" /><label class="form-check-label" for="flexRadioDefault1">Server Like 5 ( Tốc độ ưu tiên nhanh, <span style="color: red;">Album dể lỗi</span> <span style="color: red;"> max 50k </span> ) <span style="color:red;"><?= $gia5; ?>₫</span> <span class="badge bg-success">Nhanh</span></label>
                     </div>
@@ -158,11 +158,11 @@ swal({
                         </div>
                         <label>
                             <!-- thong bao -->
-                            <!--  <? if (!isset($_POST['add'])) { ?>
+                              <? if (!isset($_POST['add'])) { ?>
                                 <script>
                                     function sayHello() {
                                         var sangml = document.createElement("sangml")
-                                        sangml.innerHTML = "<img class='card-img-top' src='https://daotao.ulis.vnu.edu.vn/files/uploads/2018/04/thong-bao660x350-600x350.png'><hr><big><center style='color:#3794ff;'> Fb đang quét tài nguyên die có thể tụt like nhiều, tốc độ 1 số sv sẽ rất chậm </big></b>";
+                                        sangml.innerHTML = "<img class='card-img-top' src='https://daotao.ulis.vnu.edu.vn/files/uploads/2018/04/thong-bao660x350-600x350.png'><hr><big><center style='color:#3794ff;'> FB fix like beta tạm đóng sv </big></b>";
                                         swal({
                                             content: sangml,
                                             buttons: false
@@ -170,7 +170,7 @@ swal({
                                     }
                                     setTimeout(sayHello, 1500);
                                 </script>
-                            <? } ?> -->
+                            <? } ?> 
                             <h4> <span style="color: red;">(*) Hãy đọc lưu ý trước khi dùng tránh mất tiền</span></h4>
                         </label>
                     </div>
