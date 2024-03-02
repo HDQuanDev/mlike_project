@@ -125,7 +125,7 @@ switch ($_GET['act']) {
                         <input class="form-check-input" disabled id="flexRadioDefault1" type="radio" name="sv" value="6" data-bs-toggle="collapse" data-bs-target="#sv2" aria-expanded="false" aria-controls="sv2" /><label class="form-check-label" for="flexRadioDefault1">Server Live 6 (<b><?= $gia6; ?>₫</b>) (ổn định nhất , lên ngay - Nên dùng) </label>
                         <div class="collapse" id="sv6">
                         </div>
-                    </div> -->
+                    </div>
                     <div class="form-check">
                         <input class="form-check-input" disabled id="flexRadioDefault1" type="radio" name="sv" value="7" data-bs-toggle="collapse" data-bs-target="#sv2" aria-expanded="false" aria-controls="sv2" /><label class="form-check-label" for="flexRadioDefault1">Server Live 7 (<b><?= $gia7; ?>₫</b>) (Chú ý chỉ nhập ID LÀ SỐ , mắt dao động 70-120%) ( LỖI KHÔNG HỖ TRỢ ) </label>
                         <div class="collapse" id="sv6">
@@ -135,7 +135,7 @@ switch ($_GET['act']) {
                         <input class="form-check-input" disabled id="flexRadioDefault1" type="radio" name="sv" value="8" data-bs-toggle="collapse" data-bs-target="#sv2" aria-expanded="false" aria-controls="sv2" /><label class="form-check-label" for="flexRadioDefault1">Server Live 8 (<b><?= $gia8; ?>₫</b>) (Chú ý chỉ nhập ID LÀ SỐ , mắt dao động 70-120%) ( LỖI KHÔNG HỖ TRỢ )</label>
                         <div class="collapse" id="sv6">
                         </div>
-                    </div>
+                    </div>   -->
                     <div class="form-check">
                         <input class="form-check-input" disabled id="flexRadioDefault1" type="radio" name="sv" value="9" data-bs-toggle="collapse" data-bs-target="#sv2" aria-expanded="false" aria-controls="sv2" /><label class="form-check-label" for="flexRadioDefault1">Server Live 9 ( VIP ) (<b><?= $gia9; ?>₫</b>) (ỔN ĐỊNH ĐẶT LỊCH TRƯỚC ADMIN CHỪA SLOT) </span> <span class="badge bg-success">INBOX ĐẶT LỊCH ADMIN TRƯỚC</span></label> 
                         <div class="collapse" id="sv6">
