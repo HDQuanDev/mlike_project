@@ -70,7 +70,7 @@ switch ($_GET['act']) {
                     <div class="mb-3">
                         <label>Nhập ID Hoặc Link Group:</label>
                         <div class="input-group mb-3">
-                            <input type="text" oninput="calc()" name="id" class="form-control mb-3" aria-label="Recipient's username" aria-describedby="basic-addon2" placeholder="Nhập Link hoặc nhập ID!" required="" id="idbuff_like">
+                            <input type="text" oninput="calc()" checked name="id" class="form-control mb-3" aria-label="Recipient's username" aria-describedby="basic-addon2" placeholder="Nhập Link hoặc nhập ID!" required="" id="idbuff_like">
                             <div class="input-group-append">
                                 <button class="btn btn-outline-warning" id="get" type="button">GET ID</button>
                             </div>
