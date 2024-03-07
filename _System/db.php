@@ -221,6 +221,7 @@ if (isset($login) || isset($_POST['token'])) {
                 $gia1 = $q['fbviplike_1'];
             } elseif ($page == 'view_story') {
                 $gia1 = $q['fbstory_1'];
+                $gia2 = $q['fbstory_2'];
             } elseif ($page == 'like_ig') {
                 $gia1 = $q['iglike_1'];
                 $gia2 = $q['iglike_2'];
@@ -365,6 +366,7 @@ if (isset($login) || isset($_POST['token'])) {
                     $gia7 = 1.2;
                 } elseif ($page == 'viplike_fb') {
                     $gia1 = 35;
+                    $gia2 = 100;
                 } elseif ($page == 'view_story') {
                     $gia1 = 8;
                 } elseif ($page == 'like_ig') {
@@ -512,6 +514,7 @@ if (isset($login) || isset($_POST['token'])) {
                     $gia1 = 35;
                 } elseif ($page == 'view_story') {
                     $gia1 = 10;
+                    $gia2 = 100;
                 } elseif ($page == 'like_ig') {
                     $gia1 = 47;
                     $gia2 = 15;
@@ -657,6 +660,7 @@ if (isset($login) || isset($_POST['token'])) {
                     $gia1 = 35;
                 } elseif ($page == 'view_story') {
                     $gia1 = 9;
+                    $gia2 = 100;
                 } elseif ($page == 'like_ig') {
                     $gia1 = 47;
                     $gia2 = 15;
