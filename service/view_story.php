@@ -34,12 +34,16 @@ switch ($_GET['act']) {
                 <? } ?>
                 if (sv == '1') {
                     var gia = '<?= $gia1; ?>';
+                    var tien = sl * gia;
                 } else if (sv == '2') {
                     var gia = '<?= $gia2; ?>';
+                    var tien = sl * gia;
                 }
                 var giam = (sl * gia) - ((sl * gia) * dis / 100);
                 var dz = giam.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
                 document.getElementById("giamgia").innerHTML = dz;
+                var quan = tien.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+                document.getElementById("total").innerHTML = quan;
             }
         </script>
 
