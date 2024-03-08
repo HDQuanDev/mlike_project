@@ -8,7 +8,7 @@ if (isset($page)) {
     } elseif ($page == 'view_fb') {
         $sv1 = 'off'; //bật tắt sv1
         $sv2 = 'off';
-        $sv3 = 'off';
+        $sv3 = 'on';
         $sv4 = 'on';
         $sv5 = 'on';
         $sv6 = 'off';
