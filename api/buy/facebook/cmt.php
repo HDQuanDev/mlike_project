@@ -2,7 +2,7 @@
 $hdq = "ok";
 $page = 'cmt_fb';
 require_once('../../../_System/db.php');
-$min = '10';
+$min = '5';
 $max = '20000';
 $array = [];
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
