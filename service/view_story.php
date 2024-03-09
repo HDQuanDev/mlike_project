@@ -102,6 +102,7 @@ switch ($_GET['act']) {
                             - Tốc độ rất nhanh từ 5-30p đổ lại <br>
                             - Hiện tại chỉ max 2500 view, nhiều hơn gửi riêng admin.... <br>
                             - Không chạy được story của fanpage
+                        </p>
 
                     </div>
                     <!-- thong bao-->
