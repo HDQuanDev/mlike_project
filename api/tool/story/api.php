@@ -37,7 +37,7 @@ switch ($_GET['act']) {
                     $done = $ro['done'];
                     $profile = $ro['profile'];
                     $tt = $ro['trangthai'];
-                    $sv = $ro['sve'];
+                    $sv = $ro['nse'];
                     $user = $ro['user'];
                     $t = $ro['time'];
                     $quan["id"] = "$id";

@@ -192,6 +192,7 @@ switch ($_GET['act']) {
                                 <th class="sort" data-sort="sl">Số Lượng</th>
                                 <th class="sort" data-sort="sl">Đã Tăng</th>
                                 <th class="sort" data-sort="profile">ID BUFF</th>
+                                <th class="sort" data-sort="server">Server</th>
                                 <th class="sort" data-sort="user">Người Mua</th>
                                 <th class="sort" data-sort="tt">Trạng Thái</th>
                                 <th class="sort" data-sort="tt">Chức Năng</th>
@@ -215,6 +216,7 @@ switch ($_GET['act']) {
                                         <td class="sl"><?php echo $ro['sl']; ?></td>
                                         <td class="sl"><?php echo $ro['done']; ?></td>
                                         <td class="profile"><a href="https://facebook.com/<?php echo $ro['profile']; ?>" target="_blank"><?php echo $ro['profile']; ?></a></td>
+                                        <td class="server"><?php echo $ro['nse']; ?></td>
                                         <td class="user"><?= $ro['user']; ?></td>
                                         <td class="tt"><?php trangthai($tt); ?></td>
                                         <?php
