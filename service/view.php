@@ -67,7 +67,7 @@ switch ($_GET['act']) {
             }
         </script>
         <!-- thong bao-->
-         <? if (!isset($_POST['add'])) { ?>
+        <!--  <? if (!isset($_POST['add'])) { ?>
                         <script>
                             function sayHello() {
                                 var sangml = document.createElement("sangml")
@@ -80,7 +80,7 @@ switch ($_GET['act']) {
                             setTimeout(sayHello, 1500);
                         </script>
                     <? } ?>
-        <!--end-->
+        <!--end--> 892884162574062
         <div class="card border-danger border-bottom border-3 border-0">
             <div class="card-header">
                 <h4 class="card-title" data-anchor="data-anchor">Tăng View Video Facebook</h4>
@@ -110,7 +110,7 @@ switch ($_GET['act']) {
                         </label>
                     </div> -->
                     <div class="form-check">
-                        <input class="form-check-input" disabled type="radio" name="sv" value="4" id="td" oninput="calc()" /><label class="form-check-label" for="flexRadioDefault1"> Server View 4 <span style="color:Blue;">[View 3s] [Tốc độ trung bình, dự kiến 5K-10K/ngày ]</span> <span style="color:red;">[Chạy được Reel] </span> <span style="color:Blue;"><?= $gia3; ?>₫ </span> <? if ($sv4  == 'off') {
+                        <input class="form-check-input"  checked type="radio" name="sv" value="4" id="td" oninput="calc()" /><label class="form-check-label" for="flexRadioDefault1"> Server View 4 <span style="color:Blue;">[View 3s] [Tốc độ trung bình, dự kiến 5K-10K/ngày ]</span> <span style="color:red;">[Chạy được Reel] </span> <span style="color:Blue;"><?= $gia3; ?>₫ </span> <? if ($sv4  == 'off') {
                                                                                                                                                                                                                                                                                                                                                                                                                     echo '<span class="badge bg-danger">Quá tải</span>';
                                                                                                                                                                                                                                                                                                                                                                                                                 } else {
                                                                                                                                                                                                                                                                                                                                                                                                                     echo '<span class="badge bg-success">Hoạt động</span>';
@@ -118,7 +118,7 @@ switch ($_GET['act']) {
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" checked type="radio" name="sv" value="5" id="td" oninput="calc()" /><label class="form-check-label" for="flexRadioDefault1"> Server View 5 <span style="color:Blue;">[View 3s] [ Tốc độ ưu tiên, tốc độ 10k-30k/ngày )</span> <span style="color:red;">[Chạy được Reel] </span> <span style="color:Blue;"><?= $gia4; ?>₫ </span> <? if ($sv5  == 'off') {
+                        <input class="form-check-input"  type="radio" name="sv" value="5" id="td" oninput="calc()" /><label class="form-check-label" for="flexRadioDefault1"> Server View 5 <span style="color:Blue;">[View 3s] [ Tốc độ ưu tiên, tốc độ 10k-30k/ngày )</span> <span style="color:red;">[Chạy được Reel] </span> <span style="color:Blue;"><?= $gia4; ?>₫ </span> <? if ($sv5  == 'off') {
                                                                                                                                                                                                                                                                                                                                                                                                                                 echo '<span class="badge bg-danger">Quá tải</span>';
                                                                                                                                                                                                                                                                                                                                                                                                                             } else {
                                                                                                                                                                                                                                                                                                                                                                                                                                 echo '<span class="badge bg-success">Hoạt động</span>';
