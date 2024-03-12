@@ -81,9 +81,9 @@ require_once('../_System/head.php');
                     <?php
                     if ($_GET['status']) {
                         $dv = $_GET['status'];
-                        $result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `trangthai` = '$dv' AND `dv` = 'fb_page' AND `nse` = 'Server Fanpage 2' ORDER BY id DESC LIMIT 200");
+                        $result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `trangthai` = '$dv' AND `dv` = 'fb_page' AND `nse` = 'Server Fanpage 2' ORDER BY id DESC LIMIT 500");
                     } else {
-                        $result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `dv` = 'fb_page' AND `nse` = 'Server Fanpage 2' ORDER BY id DESC LIMIT 200");
+                        $result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `dv` = 'fb_page' AND `nse` = 'Server Fanpage 2' ORDER BY id DESC LIMIT 500");
                     }
                     if ($result1) {
 
