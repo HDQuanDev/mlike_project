@@ -5,6 +5,7 @@ require_once('../../../_System/db.php');
 require_once('../../../module/viewyt.php');
 require_once('../../../module/autofb88.php');
 require_once('../../../module/ongtrum.php');
+require_once('../../../module/tiktok.php');
 require_once('../../../module/buffviewer.php');
 require_once('../../../module/boosterviews.php');
 $gia = $gia1;
