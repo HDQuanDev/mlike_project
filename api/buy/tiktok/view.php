@@ -151,14 +151,6 @@ switch ($_GET['act']) {
                     $array["status"] = 'error';
                     $array["msg"] = 'ID_ORDER không tồn tại, hoặc trạng thái đơn không hợp lệ để refill!';
                 }
-            } else {
-                $array["status"] = 'error';
-                $array["msg"] = 'Token không tồn tại!';
-            }
-            echo json_encode($array);
-        } else {
-            echo '{"status":"error","msg":"Không đủ phần tử gọi đến api"}';
-        }
         break;
     default:
         if (isset($_POST['token']) && isset($_POST['id']) && isset($_POST['sl']) && isset($_POST['sv'])) {
