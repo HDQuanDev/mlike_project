@@ -48,7 +48,7 @@ switch ($_GET['act']) {
                         </div>
                     </div> -->
                     <div class="form-check">
-                        <input class="form-check-input" checked id="flexRadioDefault1" type="radio" name="sv" value="2" data-bs-toggle="collapse" data-bs-target="#sv2" aria-expanded="false" aria-controls="sv2" /><label class="form-check-label" for="flexRadioDefault1">Server Save 2<i class="wi wi-time-1"></i><i class="wi wi-moon-1"></i> (<b><?= $gia2; ?>₫</b>) ( Lưu mục yêu thích ) ( Tây ) ( Min 100 ) ( Nhanh ) ( BH 30 ngày ) <span class="badge bg-success">Hoạt động</span></label>
+                        <input class="form-check-input" disabled  id="flexRadioDefault1" type="radio" name="sv" value="2" data-bs-toggle="collapse" data-bs-target="#sv2" aria-expanded="false" aria-controls="sv2" /><label class="form-check-label" for="flexRadioDefault1">Server Save 2<i class="wi wi-time-1"></i><i class="wi wi-moon-1"></i> (<b><?= $gia2; ?>₫</b>) ( Lưu mục yêu thích ) ( Tây ) ( Min 100 ) ( Nhanh ) ( BH 30 ngày ) <span class="badge bg-success">Bảo trì</span></label>
                         <div id="sv2" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#sv2">
                             <div class="accordion-body alert alert-danger">Bảo hành 30 ngày</div>
                         </div>
