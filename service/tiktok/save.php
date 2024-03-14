@@ -41,12 +41,12 @@ switch ($_GET['act']) {
                     <input type="hidden" id="token" value="<?= $row['token']; ?>">
                     <label>Chọn Server:</label>
                     <div class="form-check">
-                        <input class="form-check-input" disabled id="flexRadioDefault1" type="radio" name="sv" value="1" data-bs-toggle="collapse" data-bs-target="#sv1" aria-expanded="false" aria-controls="sv1" /><label class="form-check-label" for="flexRadioDefault1">Server Save 1<i class="wi wi-time-1"></i><i class="wi wi-moon-1"></i> (<b><?= $gia1; ?>₫</b>) ( Min 50, bắt đầu từ 1h-72h, giá rẻ không ổn định tốc độ. Lỗi không hỗ trợ ) <span class="badge bg-success">Hoạt động</span></label>
+                    <!--    <input class="form-check-input" disabled id="flexRadioDefault1" type="radio" name="sv" value="1" data-bs-toggle="collapse" data-bs-target="#sv1" aria-expanded="false" aria-controls="sv1" /><label class="form-check-label" for="flexRadioDefault1">Server Save 1<i class="wi wi-time-1"></i><i class="wi wi-moon-1"></i> (<b><?= $gia1; ?>₫</b>) ( Min 50, bắt đầu từ 1h-72h, giá rẻ không ổn định tốc độ. Lỗi không hỗ trợ ) <span class="badge bg-success">Hoạt động</span></label>
                         <div id="sv1" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#sv1">
                             <div class="accordion-body alert alert-danger"> - Bắt đầu 0-1 giờ. Tốc độ 5k/ngày.<br>
                                 - Giá rẻ ko ổn định về tốc độ. </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="form-check">
                         <input class="form-check-input" checked id="flexRadioDefault1" type="radio" name="sv" value="2" data-bs-toggle="collapse" data-bs-target="#sv2" aria-expanded="false" aria-controls="sv2" /><label class="form-check-label" for="flexRadioDefault1">Server Save 2<i class="wi wi-time-1"></i><i class="wi wi-moon-1"></i> (<b><?= $gia2; ?>₫</b>) ( Lưu mục yêu thích ) ( Tây ) ( Min 100 ) ( Nhanh ) ( BH 30 ngày ) <span class="badge bg-success">Hoạt động</span></label>
                         <div id="sv2" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#sv2">
