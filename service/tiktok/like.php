@@ -65,7 +65,7 @@ switch ($_GET['act']) {
                             <div class="accordion-body alert alert-danger">  Max 50k </div>
                         </div>
                     </div>
-                   <div class="form-check">
+                  <div class="form-check">
                         <input class="form-check-input" disabled id="flexRadioDefault1" type="radio" name="sv" value="2" data-bs-toggle="collapse" data-bs-target="#sv2" aria-expanded="false" aria-controls="sv2" /><label class="form-check-label" for="flexRadioDefault1">Server Like 2 (<b><?= $gia2; ?>₫</b>) ( <span style="color: red;">Tim tây tốc độ nhanh, đôi khi delay 3h-12h không quá lâu, test ít cảm nhận </span>.Tốc độ tạm ổn 5k-10k+ / ngày <span style="color: red;">Max 50k</span> ) <span class="badge bg-success ">Lúc nhanh lúc chậm</span> </label>
                         <div id="sv2" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#sv2">
                             <div class="accordion-body alert alert-danger"> Không được đè đơn </div>
@@ -100,7 +100,7 @@ switch ($_GET['act']) {
                             </div>
                         </div>
                     </div> -->
-                    <div class="form-check">
+                    <!-- <div class="form-check">
                         <input class="form-check-input" disabled id="flexRadioDefault1" type="radio" name="sv" value="6" data-bs-toggle="collapse" data-bs-target="#sv6" aria-expanded="false" aria-controls="sv6" /><label class="form-check-label" for="flexRadioDefault1">Server Like 6 (<b><?= $gia6; ?>₫</b>) (<span style="color: red;">Tim tây nhanh 10k-30k / ngày thích hợp chạy sll, max 10k 1 lần cài </span> Đôi khi delay 1-3 ngày ko thể can thiệp.  Hạn chế chia nhỏ tránh lỗi <span style="color: red;"></span><span style="color: red;">Max 60k </span> )
                         </label>
                         <div id="sv6" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#sv6">
@@ -108,7 +108,7 @@ switch ($_GET['act']) {
                                 * Không thể hủy/dừng đơn .
                             </div>
                         </div>
-                    </div>
+                    </div>  -->
                     <div class="form-check">
                         <input class="form-check-input" id="flexRadioDefault1" type="radio" name="sv" value="7" data-bs-toggle="collapse" data-bs-target="#sv7" aria-expanded="false" aria-controls="sv7" /><label class="form-check-label" for="flexRadioDefault1">Server Like 7 (<b><?= $gia7; ?>₫</b>) (<span style="color: red;">Tim Việt tốc độ trung bình, </span> Max 5k 1 lần cài <span style="color: red;">Max 100k </span> ) <span class="badge bg-warning ">Trung Bình</span>
                         </label>
