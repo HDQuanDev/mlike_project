@@ -43,7 +43,7 @@ switch ($_GET['act']) {
                     <input type="hidden" id="token" value="<?= $row['token']; ?>">
                     <label>Chọn Server View:</label>
                     <div class="form-check">
-                        <input class="form-check-input" checked="checked" id="flexRadioDefault1" type="radio" name="sv" value="1" data-bs-toggle="collapse" data-bs-target="#sv1" aria-expanded="false" aria-controls="sv1" /><label class="form-check-label" for="flexRadioDefault1">Server View 1 (<b><?= $gia; ?>₫</b>) ( Video/Reel/TV ) </label>
+                        <input class="form-check-input" disabled ="checked" id="flexRadioDefault1" type="radio" name="sv" value="1" data-bs-toggle="collapse" data-bs-target="#sv1" aria-expanded="false" aria-controls="sv1" /><label class="form-check-label" for="flexRadioDefault1">Server View 1 (<b><?= $gia; ?>₫</b>) ( Bảo trì ) </label>
                         <div class="collapse" id="sv1">
                         </div>
                     </div>
