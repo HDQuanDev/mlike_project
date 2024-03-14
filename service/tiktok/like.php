@@ -108,7 +108,7 @@ switch ($_GET['act']) {
                                 * Không thể hủy/dừng đơn .
                             </div>
                         </div>
-                    </div>  -->
+                    </div>  
                     <div class="form-check">
                         <input class="form-check-input" id="flexRadioDefault1" type="radio" name="sv" value="7" data-bs-toggle="collapse" data-bs-target="#sv7" aria-expanded="false" aria-controls="sv7" /><label class="form-check-label" for="flexRadioDefault1">Server Like 7 (<b><?= $gia7; ?>₫</b>) (<span style="color: red;">Tim Việt tốc độ trung bình, </span> Max 5k 1 lần cài <span style="color: red;">Max 100k </span> ) <span class="badge bg-warning ">Trung Bình</span>
                         </label>
@@ -117,7 +117,7 @@ switch ($_GET['act']) {
                                 * Không thể hủy/dừng đơn .
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                      <!-- <div class="form-check">
                         <input class="form-check-input" disabled id="flexRadioDefault1" type="radio" name="sv" value="8" data-bs-toggle="collapse" data-bs-target="#sv8" aria-expanded="false" aria-controls="sv8" /><label class="form-check-label" for="flexRadioDefault1">Server Like 8 (<b><?= $gia8; ?>₫</b>) (<span style="color: red;">Tim tây </span> Tốc độ đang thử nghiệm sẽ cập nhật sau <span style="color: blude;">test ít lên ổn thì dùng nhé ) </span><span class="badge bg-danger">Đang theo dõi tốc độ đơn cũ để cập nhật</span> </span> 
                         </label>
