@@ -127,7 +127,7 @@ swal({
                     </div> -->
                     <!--    <div class="form-check">
                         <input class="form-check-input"  id="flexRadioDefault1" type="radio" name="sv" value="7" data-bs-toggle="collapse" data-bs-target="#sv7" aria-expanded="false" aria-controls="sv" /><label class="form-check-label" for="flexRadioDefault1">Server Like 7 ( Tốc độ rất chậm không ổn định test ít cảm nhận, cài sẽ load báo thành công hơi lâu kiên nhẫn chờ đợi, CẤM ALBUM <span style="color: red;"> ,max 10k </span>) <span style="color:Blue;"><?= $gia7; ?>₫</span> <span class="badge bg-danger">Rẻ Chậm</span></label>
-                    </div>-->
+                    </div> -->
                     <!--  
                     <div class="form-check">
                     </div>
