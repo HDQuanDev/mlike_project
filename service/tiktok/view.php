@@ -57,7 +57,7 @@ switch ($_GET['act']) {
                 <form>
                     <input type="hidden" id="token" value="<?= $row['token']; ?>">
                     <label>Chọn Server View:</label>
-
+                 <!--
                     <div class="form-check">
                         <input class="form-check-input" disabled id="flexRadioDefault1" type="radio" name="sv" value="1" data-bs-toggle="collapse" data-bs-target="#sv1" aria-expanded="false" aria-controls="sv1" /><label class="form-check-label" for="flexRadioDefault1">Server View 1 (<b><?= $gia; ?>₫</b>) ( <span style="color: red;">Min 1k, </span> <span style="color: blue;">Tốc độ lên từ từ đều ổn định ít delay, đôi khi delay 6h-24h <span style="color: red;"> Test ít lên nhanh thì dùng. KBH </span> ) <?php if ($sv1 == 'on') {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         echo '<span class="badge bg-success">Hoạt động</span>';
@@ -67,7 +67,7 @@ switch ($_GET['act']) {
                         <div id="sv1" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#sv1">
                             <div class="accordion-body alert alert-danger">*Rẻ tốc độ không ổn định</div>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- <div class="form-check">
                         <input class="form-check-input"  id="flexRadioDefault1" type="radio" name="sv" value="2" data-bs-toggle="collapse" data-bs-target="#sv2" aria-expanded="false" aria-controls="sv2" /><label class="form-check-label" for="flexRadioDefault1">Server View 2 (<b><?= $gia2; ?>₫</b>) ( <span style="color: red;">Min 1k </span>.Tố độ lúc nhanh lúc chậm tùy đơn bị delay <span style="color: red;">đôi khi delay 6h-24h </span> <span style="color: red;"> </span>.rẻ có thể bị tụt tùy video. KBH) <?php if ($sv2 == 'on') {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 echo '<span class="badge bg-warning">Trung bình</span>';
