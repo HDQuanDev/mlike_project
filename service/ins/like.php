@@ -56,12 +56,12 @@ switch ($_GET['act']) {
                             </div>
                         </div>
                     </div>
-                    <div class="form-check">
+                 <!--   <div class="form-check">
                         <input class="form-check-input" id="flexRadioDefault1" type="radio" name="sv" value="3" data-bs-toggle="collapse" data-bs-target="#sv3" aria-expanded="false" aria-controls="sv3" /><label class="form-check-label" for="flexRadioDefault1">Server Like 3 (<b><?= $gia3; ?>₫</b>) (Like tây, lên nhanh)(<mark style="color:red;"><strong>Nhập Nguyên Link</strong></mark>)</label>
                         <div id="sv3" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#sv3">
                             <div class="accordion-body alert alert-danger"> Like tây rẻ nhanh</div>
                         </div>
-                    </div><br>
+                    </div><br>  -->
                     <div class="mb-3">
                         <label>Nhập ID Hoặc Link Instagram:</label>
                         <div class="input-group mb-3">
