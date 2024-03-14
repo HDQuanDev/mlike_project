@@ -215,7 +215,7 @@ switch ($_GET['act']) {
                                         <td class="time"><?php echo time_func($t); ?></td>
                                         <td class="sl"><?php echo $ro['sl']; ?></td>
                                         <td class="sl"><?php echo $ro['done']; ?></td>
-                                        <td class="profile"><a href="https://facebook.com/<?php echo $ro['profile']; ?>" target="_blank"><?php echo $ro['profile']; ?></a></td>
+                                        <td class="profile"><a href="https://facebook.com/stories/<?php echo $ro['profile']; ?>" target="_blank"><?php echo $ro['profile']; ?></a></td>
                                         <td class="server"><?php echo $ro['nse']; ?></td>
                                         <td class="user"><?= $ro['user']; ?></td>
                                         <td class="tt"><?php trangthai($tt); ?></td>
