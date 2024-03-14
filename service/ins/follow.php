@@ -46,12 +46,12 @@ switch ($_GET['act']) {
                         <input class="form-check-input"="checked" id="flexRadioDefault1" type="radio" name="sv" value="1" data-bs-toggle="collapse" data-bs-target="#sv1" aria-expanded="false" aria-controls="sv1" /><label class="form-check-label" for="flexRadioDefault1">Server Follow 1 (<b><?= $gia1; ?>₫</b>) ( Sub việt thật ,lên nhanh, không bảo hành ) </label>
                         <div class="collapse" id="sv1">
                         </div>
-                    </div>  -->
+                    </div> 
                     <div class="form-check">
                         <input class="form-check-input" id="flexRadioDefault1" type="radio" name="sv" value="2" data-bs-toggle="collapse" data-bs-target="#sv2" aria-expanded="false" aria-controls="sv2" /><label class="form-check-label" for="flexRadioDefault1">Server Follow 2 (<b><?= $gia2; ?>₫</b>) (Sub tây, tốc độ 80k / ngày . Bắt đầu 15p - vài giờ , hiện tại ít tụt. Bảo hành 60 ngày ) </label>
                         <div class="collapse" id="sv2">
                         </div>
-                    </div>
+                    </div>  -->
                     <div class="form-check">
                         <input class="form-check-input" checked id="flexRadioDefault1" type="radio" name="sv" value="3" data-bs-toggle="collapse" data-bs-target="#sv3" aria-expanded="false" aria-controls="sv3" /><label class="form-check-label" for="flexRadioDefault1">Server Follow 3 (<b><?= $gia3; ?>₫</b>) (Sub việt, tốc độ nhanh, tụt 5-10% , ko bảo hành) </label>
 
