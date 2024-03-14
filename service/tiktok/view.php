@@ -55,7 +55,8 @@ switch ($_GET['act']) {
             <div class="card-body">
                 <p class="mb-0">
                 <form>
-                    <input type="hidden" id="token" value="<?= $row['token']; ?>">
+                <input type="text" oninput="calc()" name="id" class="form-control mb-3" aria-label="Recipient's username" aria-describedby="basic-addon2" placeholder="Nhập Link Video hoặc nhập ID!" required="" id="idbuff_like">
+
                     <label>Chọn Server View:</label>
                  <!--
                     <div class="form-check">
