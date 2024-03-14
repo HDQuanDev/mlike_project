@@ -68,7 +68,7 @@ switch ($_GET['act']) {
                             <div class="accordion-body alert alert-danger">*Rẻ tốc độ không ổn định</div>
                         </div>
                     </div> 
-                    <!-- <div class="form-check">
+                     <div class="form-check">
                         <input class="form-check-input"  id="flexRadioDefault1" type="radio" name="sv" value="2" data-bs-toggle="collapse" data-bs-target="#sv2" aria-expanded="false" aria-controls="sv2" /><label class="form-check-label" for="flexRadioDefault1">Server View 2 (<b><?= $gia2; ?>₫</b>) ( <span style="color: red;">Min 1k </span>.Tố độ lúc nhanh lúc chậm tùy đơn bị delay <span style="color: red;">đôi khi delay 6h-24h </span> <span style="color: red;"> </span>.rẻ có thể bị tụt tùy video. KBH) <?php if ($sv2 == 'on') {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 echo '<span class="badge bg-warning">Trung bình</span>';
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             } else {
@@ -79,7 +79,7 @@ switch ($_GET['act']) {
                             <div class="accordion-body alert alert-danger">Sale tốc độ không ổn định</div>
                         </div>
                     </div>
-                     -->
+                    
                     <div class="form-check">
                         <input class="form-check-input"  id="flexRadioDefault1" type="radio" name="sv" value="3" data-bs-toggle="collapse" data-bs-target="#sv3" aria-expanded="false" aria-controls="sv3" /><label class="form-check-label" for="flexRadioDefault1">Server View 3 (<b><?= $gia3; ?>₫</b>) ( <span style="color: red;">Min 1k </span> Tốc độ lúc nhanh lúc chậm, test ít thấy nhanh thì dùng, <span style="color: red;"> đôi khi delay 6h-24h </span>, rẻ có thể bị tụt tùy video. KBH ) <?php if ($sv3 == 'on') {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     echo '<span class="badge bg-success">Thử nghiệmn</span>';
@@ -90,13 +90,13 @@ switch ($_GET['act']) {
                             <div class="accordion-body alert alert-danger"> Nếu delay lâu sẽ hủy hoàn sau 7 ngày</div>
                         </div>
                     </div>
-                    <!-- <div class="form-check">
+                    <div class="form-check">
                         <input class="form-check-input" disabled id="flexRadioDefault1" type="radio" name="sv" value="4" data-bs-toggle="collapse" data-bs-target="#sv4" aria-expanded="false" aria-controls="sv4" /><label class="form-check-label" for="flexRadioDefault1">Server View 4 (<b><?= $gia4; ?>₫</b>) ( <span style="color: red;">Min 1k </span> Các đơn đã cài tụt gửi admin bảo hành<span style="color: red;"> </span> <span style="color: red;">BẢO HÀNH 30 NGÀY </span> ) <span class="badge bg-danger">Bảo trì</span></label>
                         <div id="sv4" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#sv4">
                             <div class="accordion-body alert alert-danger">Chỉ bảo hành đối với video có gốc thấp , tránh trường hợp mua rẻ rồi qua mua bảo hành sẽ không được bảo hành</div>
                         </div>
-                    </div> -->
-                    <!--  <div class="form-check">
+                    </div> 
+                     <div class="form-check">
                         <input class="form-check-input"    id="flexRadioDefault1" type="radio" name="sv" value="5" data-bs-toggle="collapse" data-bs-target="#sv5" aria-expanded="false" aria-controls="sv5" /><label class="form-check-label" for="flexRadioDefault1">Server View 5 (<b><?= $gia5; ?>₫</b>) ( <span style="color: red;">Min 1k </span> Tốc độ nhanh thường lên ngay <span style="color: red;">vài giây - vài phút</span>.  Test ít để cảm nhận có bị delay hay không nhé, ổn thì dùng) <span class="badge bg-success">Hoạt động</span></label>
                         <div id="sv5" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#sv5">
                             <div class="accordion-body alert alert-danger">Test ít để biết có delay ko, nhanh thì dùng nhá</div>
@@ -108,13 +108,13 @@ switch ($_GET['act']) {
                         <div id="sv6" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#sv6">
                             <div class="accordion-body alert alert-danger">Nếu delay lâu sẽ hủy hoàn sau 7 ngày </div>
                         </div>
-                    </div> -->
-                    <!--  <div class="form-check">
+                    </div> 
+                      <div class="form-check">
                         <input class="form-check-input" id="flexRadioDefault1"  type="radio" name="sv" value="7" data-bs-toggle="collapse" data-bs-target="#sv7" aria-expanded="false" aria-controls="sv7" /><label class="form-check-label" for="flexRadioDefault1">Server View 7 (<b><?= $gia7; ?>₫</b>) ( <span style="color: red;">Min 1k </span> Tốc độ nhanh, view dạng mới ít tụt hoặc không tụt. Bảo hành 30 ngày ) <span class="badge bg-success">Thử nghiệm</span></label>
                         <div id="sv7" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#sv7">
                             <div class="accordion-body alert alert-danger">Bảo hành 30 ngày </div>
                         </div>
-                    </div> -->
+                    </div> 
                     <div class="form-check">
                         <input class="form-check-input"  id="flexRadioDefault1" type="radio" name="sv" value="8" data-bs-toggle="collapse" data-bs-target="#sv8" aria-expanded="false" aria-controls="sv8" /><label class="form-check-label" for="flexRadioDefault1">Server View 8 (<b><?= $gia8; ?>₫</b>) ( <span style="color: red;">Min 1k </span> Tốc độ nhanh dự dòng ít delay, test ít lên ổn thì dùng nhé. KBH ) <span class="badge bg-success">Thử nghiệm</span></label>
                         <div id="sv8" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#sv8">
