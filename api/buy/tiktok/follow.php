@@ -60,10 +60,9 @@ if (isset($_POST['token']) && isset($_POST['id']) && isset($_POST['sl']) && isse
             $array["msg"] = 'Bạn không đủ tiền!';
         } else {
             if (filter_var($id, FILTER_VALIDATE_URL) !== false) {
-                $tt = json_decode(check_tt($id, "user"));
-                $ttid = $tt->data->id;
-                $ttfollow = $tt->data->user_follower;
-                $uname = '@' . $tt->data->user;
+                $ttid = 0;
+                $ttfollow = 0;
+                $uname = $id;
                 if ($sv == 1) {
                     require_once('../../../module/autofbpro.php');
                     $buff = tiktok("$id", "$sl", "follow");

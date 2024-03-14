@@ -133,7 +133,7 @@ switch ($_GET['act']) {
                     <h4> <span style="color: red;">(*) Hãy đọc lưu ý trước khi dùng tránh mất tiền</span></h4>
                     <label>Nhập ID Hoặc Link Video:</label>
                     <div class="input-group mb-3">
-                        <input type="text" oninput="getTym('id');" name="id" class="form-control mb-3" aria-label="Recipient's username" aria-describedby="basic-addon2" placeholder="Nhập Link hoặc nhập ID!" required="" id="idbuff_like">
+                        <input type="text" name="id" class="form-control mb-3" aria-label="Recipient's username" aria-describedby="basic-addon2" placeholder="Nhập Link hoặc nhập ID!" required="" id="idbuff_like">
 
                     </div>
                     <div id="detailServer">

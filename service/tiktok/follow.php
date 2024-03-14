@@ -75,7 +75,7 @@ switch ($_GET['act']) {
                         <h4> <span style="color: red;">(*) Hãy đọc lưu ý trước khi dùng tránh mất tiền</span></h4>
                         <label>Nhập Link Profile:</label>
                         <div class="input-group mb-3">
-                            <input type="text" oninput="getFollow('id');" name="id" class="form-control mb-3" placeholder="Nhập ID!" required id="idbuff_like">
+                            <input type="text" name="id" class="form-control mb-3" placeholder="Nhập ID!" required id="idbuff_like">
                         </div>
                     </div>
 

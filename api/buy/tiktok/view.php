@@ -565,22 +565,9 @@ switch ($_GET['act']) {
                             $array["msg"] = 'Không thể lấy thông tin từ UID/Link này, vui lòng thử lại!!!';
                         }
                     } elseif ($sv == 10) {
-                        if (isset($_POST['view']) && isset($_POST['uid'])) {
-                            $ttid = $_POST['uid'];
-                            $ttview = $_POST['view'];
-                            $checkne = '200';
-                        } else {
-                            $tt = json_decode(check_tt($link, "video"));
-                            if ($stttiktok == 'on') {
-                                $checkne = $tt->success;
-                                $ttid = $tt->data->id;
-                                $ttview = $tt->data->playCount;
-                            } else {
-                                $checkne = '200';
-                                $ttid = $id;
-                                $ttview = 'null';
-                            }
-                        }
+                        $checkne = '200';
+                        $ttid = $id;
+                        $ttview = 'null';
                         if ($checkne == '200') {
                             $buff = json_decode(boosterviews($link, $sl, "1028"), true);
                             if (isset($buff["order"])) {

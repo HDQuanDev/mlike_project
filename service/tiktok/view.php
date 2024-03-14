@@ -136,7 +136,7 @@ switch ($_GET['act']) {
                     <div class="mb-3">
                         <h4> <span style="color: red;">(*) Hãy đọc lưu ý trước khi dùng tránh mất tiền</span></h4>
                         <label>Nhập Link Video TikTok:</label>
-                        <input type="text" oninput="getView('id');" name="id" class="form-control mb-3" aria-label="Recipient's username" aria-describedby="basic-addon2" placeholder="Nhập Link" required="" id="idbuff_like">
+                        <input type="text" name="id" class="form-control mb-3" aria-label="Recipient's username" aria-describedby="basic-addon2" placeholder="Nhập Link" required="" id="idbuff_like">
                     </div>
                     <input type="hidden" id="view" value="">
                     <input type="hidden" id="uid" value="">
