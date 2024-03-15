@@ -369,6 +369,7 @@ if (isset($login) || isset($_POST['token'])) {
                     $gia2 = 100;
                 } elseif ($page == 'view_story') {
                     $gia1 = 8;
+                    $gia2 = 3.5;
                 } elseif ($page == 'like_ig') {
                     $gia1 = 47;
                     $gia2 = 15;
@@ -514,7 +515,7 @@ if (isset($login) || isset($_POST['token'])) {
                     $gia1 = 35;
                 } elseif ($page == 'view_story') {
                     $gia1 = 10;
-                    $gia2 = 100;
+                    $gia2 = 3.5;
                 } elseif ($page == 'like_ig') {
                     $gia1 = 47;
                     $gia2 = 15;
@@ -660,7 +661,7 @@ if (isset($login) || isset($_POST['token'])) {
                     $gia1 = 35;
                 } elseif ($page == 'view_story') {
                     $gia1 = 9;
-                    $gia2 = 100;
+                    $gia2 = 3.5;
                 } elseif ($page == 'like_ig') {
                     $gia1 = 47;
                     $gia2 = 15;
