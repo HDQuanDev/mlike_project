@@ -4,7 +4,7 @@ $page = 'view_story';
 require_once('../../../_System/db.php');
 include('../../../module/tds.php');
 $gia = $gia1;
-$min = '50';
+$min = '10';
 $max = '10000';
 $array = [];
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
