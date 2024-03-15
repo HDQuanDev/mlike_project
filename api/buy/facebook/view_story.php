@@ -160,12 +160,12 @@ switch ($_GET['act']) {
                             if ($sv == 1) {
                                 $tongtien = ($sl * $gia1) - (($sl * $gia1) / 100 * $dis);
                                 $nse = 'Server View Story 1';
-                                $min = '1000';
+                                $min = '100';
                                 $max = '100000';
                             } elseif ($sv == 2) {
                                 $tongtien = ($sl * $gia2) - (($sl * $gia2) / 100 * $dis);
                                 $nse = 'Server View Story 2';
-                                $min = '1000';
+                                $min = '10';
                                 $max = '20000';
                             }
                         } else {
