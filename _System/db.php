@@ -291,7 +291,7 @@ if (isset($login) || isset($_POST['token'])) {
                     $gia1 = 6.5; //Server 1
                     $gia2 = 10.5; // 2
                     $gia3 = 18; // 3
-                    $gia4 = 1.5; // 4
+                    $gia4 = 2.5; // 4
                     $gia5 = 20; // 5
                     $gia6 = 5; // 5
                     $gia7 = 5.3;
@@ -438,7 +438,7 @@ if (isset($login) || isset($_POST['token'])) {
                     $gia1 = 6.5; //Server 1
                     $gia2 = 11; // 2
                     $gia3 = 18; // 3
-                    $gia4 = 1.5; // 4
+                    $gia4 = 2.5; // 4
                     $gia5 = 21; // 5
                     $gia6 = 4.5; // 5
                     $gia7 = 5.8;
@@ -584,7 +584,7 @@ if (isset($login) || isset($_POST['token'])) {
                     $gia1 = 6.5; //Server 1
                     $gia2 = 11; // 2
                     $gia3 = 18; // 3
-                    $gia4 = 1.5; // 4
+                    $gia4 = 2.5; // 4
                     $gia5 = 22; // 5
                     $gia6 = 5; // 5
                     $gia7 = 5.4;
