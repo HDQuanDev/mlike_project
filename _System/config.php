@@ -10,7 +10,7 @@ if (isset($page)) {
         $sv2 = 'off';
         $sv3 = 'off';
         $sv4 = 'off';
-        $sv5 = 'off';
+        $sv5 = 'on';
         $sv6 = 'off';
         $sv7 = 'on';
         $sv8 = 'on';
