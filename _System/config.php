@@ -9,16 +9,16 @@ if (isset($page)) {
         $sv1 = 'off'; //bật tắt sv1
         $sv2 = 'off';
         $sv3 = 'off';
-        $sv4 = 'off';
+        $sv4 = 'on';
         $sv5 = 'on';
         $sv6 = 'off';
-        $sv7 = 'off';
-        $sv8 = 'off';
-        $tay_or_auto = 'tay'; //auto: tự động, tay: thủ công
+        $sv7 = 'on';
+        $sv8 = 'on';
+        $tay_or_auto = 'auto'; //auto: tự động, tay: thủ công
     } elseif ($page == 'tim_tt_tay') {
         $sv1 = 'off'; //bật tắt sv1
     } elseif ($page == 'like_fb') {
-        $sv4 = 'on';
+        $sv4 = 'off';
     } elseif ($page == 'page_fb') {
         $sv2 = 'on';
     } elseif ($page == 'share_fb') {
