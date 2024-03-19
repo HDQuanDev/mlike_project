@@ -187,9 +187,9 @@ xin vui lòng không sử dụng kí tự đặc biệt hoặc icon để tránh
                         <tbody>
                             <?php
                             if ($row['rule'] == 99) {
-                                $result1 = mysqli_query($db, "SELECT * FROM `dv_cmt` ORDER BY id DESC LIMIT 0,500");
+                                $result1 = mysqli_query($db, "SELECT * FROM `dv_cmt` ORDER BY id DESC LIMIT 0,200");
                             } else {
-                                $result1 = mysqli_query($db, "SELECT * FROM `dv_cmt` WHERE `user` = '" . $login . "' ORDER BY id DESC LIMIT 0,500");
+                                $result1 = mysqli_query($db, "SELECT * FROM `dv_cmt` WHERE `user` = '" . $login . "' ORDER BY id DESC LIMIT 0,200");
                             }
                             if ($result1) {
                                 while ($ro = mysqli_fetch_assoc($result1)) {
