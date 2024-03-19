@@ -29,10 +29,11 @@ function total($dv, $type, $num = 0)
     );
 
     // Query to get all purchases for this service
+    // Query to get all purchases for this service
     if ($dv == 'cmt_not') {
-        $result = mysqli_query($db, "SELECT * FROM `$type`");
+        $result = mysqli_query($db, "SELECT `time`, `sotien`, `sl` FROM `$type`");
     } else {
-        $result = mysqli_query($db, "SELECT * FROM `$type` WHERE `dv` = '$dv'");
+        $result = mysqli_query($db, "SELECT `time`, `sotien`, `sl` FROM `$type` WHERE `dv` = '$dv'");
     }
     while ($ro = mysqli_fetch_assoc($result)) {
         $purchaseTime = $ro['time'];

@@ -68,6 +68,32 @@ switch ($_GET['act']) {
             <input type="text" name="time_2" value="<?= time(); ?>"><br>
             <input type="submit" value="Xóa">
         </form>
+    <?php
+        break;
+    case 'delcmt':
+        $sl = $_GET['sl'];
+        $time = $_GET['time'];
+        $time_2 = $_GET['time_2'];
+        $del = mysqli_query($db, "DELETE FROM `cmt` WHERE `time` > '$time' AND `time` < '$time_2' LIMIT $sl");
+        echo $del;
+        echo '<meta http-equiv="refresh" content="2;url=/admin/xoadon?note=Success&act=cmt">';
+        break;
+
+    case 'cmt':
+        if (isset($_GET['note'])) {
+            echo '<script>
+            
+              alert("Xóa Thành Công");
+            
+            </script>';
+        }
+    ?>
+        <form action="?act=delcmt" method="GET">
+            <input type="text" name="sl" placeholder="Nhập số lượng cmt cần xóa">
+            <input type="text" name="time" placeholder="Nhập thời gian bắt đầu">
+            <input type="text" name="time_2" placeholder="Nhập thời gian kết thúc">
+            <input type="submit" value="Xóa">
+        </form>
 <?php
         break;
 }
