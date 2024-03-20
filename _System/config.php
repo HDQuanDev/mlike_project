@@ -18,7 +18,7 @@ if (isset($page)) {
     } elseif ($page == 'tim_tt_tay') {
         $sv1 = 'off'; //bật tắt sv1
     } elseif ($page == 'like_fb') {
-        $sv4 = 'on';
+        $sv4 = 'off';
     } elseif ($page == 'page_fb') {
         $sv2 = 'off';
     } elseif ($page == 'share_fb') {
