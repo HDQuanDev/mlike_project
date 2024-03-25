@@ -41,7 +41,7 @@ switch ($_GET['act']) {
             }
         </script>
         <!-- thong bao -->
-         <? if (!isset($_POST['add'])) { ?>
+        <!-- <? if (!isset($_POST['add'])) { ?>
                         <script>
                             function sayHello() {
                                 var sangml = document.createElement("sangml")
