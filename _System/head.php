@@ -423,7 +423,7 @@ if ($row['rule'] == '99') {
                                             </a>
                                         </li>
                                         <li class="sidebar-list">
-                                            <a href="https://mlike.vn/sanginfo/index.php" class="sidebar-link" target="_blank">
+                                            <a href="https://www.facebook.com/Mlike.vn" class="sidebar-link" target="_blank">
                                                 <i data-feather="briefcase"></i>
                                                 <span>Liên Hệ FB Admin</span>
                                             </a>
