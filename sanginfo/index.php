@@ -9315,12 +9315,12 @@ loadCSS("https://use.fontawesome.com/releases/v5.1.0/css/all.css");loadCSS("http
 <div class='py-3 px-2 px-lg-4 py-lg-5'>
 <div class='row'>
 <div class='avatarBox col-12 col-lg-5'>
-<img class='img-fluid' src='/sanginfo/Sang.jpg'/>
+<img class='img-fluid' src='/sanginfo/a.jpg'/>
 </div>
 <div class='infoBox col-12 col-lg-6 mt-2 mt-lg-0'>
 <p class='sayHi'>Hello</p>
 <div class='name'>
-<p><span>I'm</span> Thanh Sang</p>
+<p><span>I'm</span> Sang Star</p>
 <p class='s'>Verified
 									<span class='ion-ios-checkmark-outline'></span>
 </p>
@@ -9334,7 +9334,7 @@ loadCSS("https://use.fontawesome.com/releases/v5.1.0/css/all.css");loadCSS("http
 </div>
 <div class='row my-2'>
 <div class='col-lg-4 col-12 boldd'>Facebook:</div>
-<div class='col-lg-8 col-12 b'><a href='https://www.facebook.com/Mlike.vn'>MLIKE SUPPORT</a></div>
+<div class='col-lg-8 col-12 b'><a href='https://www.facebook.com/Mlike.vn'>Star Sang</a></div>
 </div>
 <div class='row my-2'>
 <div class='col-lg-4 col-12 boldd'>Email:</div>
