@@ -2,12 +2,12 @@
 <html xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
 <head>
 <link href='https://www.blogger.com/static/v1/widgets/2549344219-widget_css_bundle.css' rel='stylesheet' type='text/css'/>
-<title>Admin Mlike.Vn</title>
+<title>Sang Star ★</title>
 <meta charset='UTF-8'/>
 <meta content='width=device-width, initial-scale=1' name='viewport'/>
 <link href='/favicon.ico' rel='icon' type='image/x-icon'/>
 <link href='https://i.imgur.com/01gikK4.png' rel='icon' type='image/x-icon'/>
-<meta content='Thanh Sang ' property='og:description'/>
+<meta content='Sang Star ★ ' property='og:description'/>
 <meta content='https://1.bp.blogspot.com/-Ns_IQYHYMfg/XXXVzQ___eI/AAAAAAAAEqw/2OPFU8uE38QUvLiiiGlx6fgunaVjKPC0ACLcBGAs/s1600/coder.jpg' property='og:image'/>
 <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
 <style>
@@ -9334,7 +9334,7 @@ loadCSS("https://use.fontawesome.com/releases/v5.1.0/css/all.css");loadCSS("http
 </div>
 <div class='row my-2'>
 <div class='col-lg-4 col-12 boldd'>Facebook:</div>
-<div class='col-lg-8 col-12 b'><a href='https://www.facebook.com/Mlike.vn'>Star Sang</a></div>
+<div class='col-lg-8 col-12 b'><a href='https://www.facebook.com/profile.php?id=100009266248580'>Star Sang</a></div>
 </div>
 <div class='row my-2'>
 <div class='col-lg-4 col-12 boldd'>Email:</div>
@@ -9354,7 +9354,7 @@ loadCSS("https://use.fontawesome.com/releases/v5.1.0/css/all.css");loadCSS("http
 <div id='text'><h2>/ Welcome to my personal page /</h2></div>
 <div class='profile-card-ctr'>
 <button class='profile-card__button button--blue js-message-btn'>
-<a href='https://m.me/Mlike.vn' target='_blank'><i class='fab fa-facebook-messenger'></i> Messenger</a></button>
+<a href='https://m.me/100009266248580' target='_blank'><i class='fab fa-facebook-messenger'></i> Messenger</a></button>
 <button class='profile-card__button button--orange'>
 <a href='https://www.facebook.com/Mlike.vn' target='_blank'><i class='fab fa-facebook'></i> Facebook</a></button>
 </div>
