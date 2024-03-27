@@ -291,7 +291,7 @@ if (isset($login) || isset($_POST['token'])) {
                     $gia1 = 6.5; //Server 1
                     $gia2 = 10.5; // 2
                     $gia3 = 18; // 3
-                    $gia4 = 2.5; // 4
+                    $gia4 = 15; // 4
                     $gia5 = 20; // 5
                     $gia6 = 5; // 5
                     $gia7 = 5.3;
@@ -322,7 +322,7 @@ if (isset($login) || isset($_POST['token'])) {
                     $gia4 = 1;
                     $gia5 = 8;
                 } elseif ($page == 'follow_fb') {
-                    $gia1 = 19;
+                    $gia1 = 29;
                     $gia2 = 22;
                     $gia3 = 23;
                     $gia4 = 17;
@@ -355,7 +355,7 @@ if (isset($login) || isset($_POST['token'])) {
                     $gia1 = 50;
                     $gia2 = 40;
                     $gia3 = 30;
-                    $gia4 = 25;
+                    $gia4 = 45;
                 } elseif ($page == 'view_fb') {
                     $gia1 = 20;
                     $gia2 = 7;
@@ -369,7 +369,7 @@ if (isset($login) || isset($_POST['token'])) {
                     $gia2 = 100;
                 } elseif ($page == 'view_story') {
                     $gia1 = 8;
-                    $gia2 = 3.5;
+                    $gia2 = 8;
                 } elseif ($page == 'like_ig') {
                     $gia1 = 47;
                     $gia2 = 15;
@@ -438,7 +438,7 @@ if (isset($login) || isset($_POST['token'])) {
                     $gia1 = 6.5; //Server 1
                     $gia2 = 11; // 2
                     $gia3 = 18; // 3
-                    $gia4 = 2.5; // 4
+                    $gia4 = 15; // 4
                     $gia5 = 21; // 5
                     $gia6 = 4.5; // 5
                     $gia7 = 5.8;
@@ -469,7 +469,7 @@ if (isset($login) || isset($_POST['token'])) {
                     $gia4 = 1;
                     $gia5 = 8;
                 } elseif ($page == 'follow_fb') {
-                    $gia1 = 19;
+                    $gia1 = 29;
                     $gia2 = 22;
                     $gia3 = 23;
                     $gia4 = 17;
@@ -502,7 +502,7 @@ if (isset($login) || isset($_POST['token'])) {
                     $gia1 = 50;
                     $gia2 = 40;
                     $gia3 = 30;
-                    $gia4 = 25;
+                    $gia4 = 45;
                 } elseif ($page == 'view_fb') {
                     $gia1 = 20;
                     $gia2 = 8;
@@ -515,7 +515,7 @@ if (isset($login) || isset($_POST['token'])) {
                     $gia1 = 35;
                 } elseif ($page == 'view_story') {
                     $gia1 = 10;
-                    $gia2 = 3.5;
+                    $gia2 = 8;
                 } elseif ($page == 'like_ig') {
                     $gia1 = 47;
                     $gia2 = 15;
@@ -584,7 +584,7 @@ if (isset($login) || isset($_POST['token'])) {
                     $gia1 = 6.5; //Server 1
                     $gia2 = 11; // 2
                     $gia3 = 18; // 3
-                    $gia4 = 2.5; // 4
+                    $gia4 = 15; // 4
                     $gia5 = 22; // 5
                     $gia6 = 5; // 5
                     $gia7 = 5.4;
@@ -615,7 +615,7 @@ if (isset($login) || isset($_POST['token'])) {
                     $gia4 = 1;
                     $gia5 = 8;
                 } elseif ($page == 'follow_fb') {
-                    $gia1 = 19;
+                    $gia1 = 29;
                     $gia2 = 22;
                     $gia3 = 23;
                     $gia4 = 7;
@@ -648,7 +648,7 @@ if (isset($login) || isset($_POST['token'])) {
                     $gia1 = 50;
                     $gia2 = 40;
                     $gia3 = 30;
-                    $gia4 = 25;
+                    $gia4 = 45;
                 } elseif ($page == 'view_fb') {
                     $gia1 = 20;
                     $gia2 = 8;
@@ -661,7 +661,7 @@ if (isset($login) || isset($_POST['token'])) {
                     $gia1 = 35;
                 } elseif ($page == 'view_story') {
                     $gia1 = 9;
-                    $gia2 = 3.5;
+                    $gia2 = 8;
                 } elseif ($page == 'like_ig') {
                     $gia1 = 47;
                     $gia2 = 15;

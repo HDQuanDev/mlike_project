@@ -56,7 +56,7 @@ switch ($_GET['act']) {
                     <input type="hidden" id="token" value="<?= $row['token']; ?>">
                     <label>Chọn Server Member:</label>
                    <!-- <div class="form-check">
-                        <input class="form-check-input" checked="checked" id="flexRadioDefault1" type="radio" name="sv" value="1" data-bs-toggle="collapse" data-bs-target="#sv1" aria-expanded="false" aria-controls="sv1" /><label class="form-check-label" for="flexRadioDefault1">Server Group 1 (<b><?= $gia1; ?>₫</b>) ( Mem thật max 100k lên nhanh, xịn nhất, có thể có tương tác )</label>
+                        <input class="form-check-input" checked="" id="flexRadioDefault1" type="radio" name="sv" value="1" data-bs-toggle="collapse" data-bs-target="#sv1" aria-expanded="false" aria-controls="sv1" /><label class="form-check-label" for="flexRadioDefault1">Server Group 1 (<b><?= $gia1; ?>₫</b>) ( Mem thật max 100k lên nhanh, xịn nhất, có thể có tương tác )</label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" id="flexRadioDefault1" type="radio" name="sv" value="2" data-bs-toggle="collapse" data-bs-target="#sv2" aria-expanded="false" aria-controls="sv2" /><label class="form-check-label" for="flexRadioDefault1">Server Group 2 (<b><?= $gia2; ?>₫</b>)( Người dùng thật gr ko tắt duyệt vẫn chạy ok, Max 40k) </label>
@@ -65,7 +65,7 @@ switch ($_GET['act']) {
                         <input class="form-check-input" id="flexRadioDefault1" type="radio" name="sv" value="3" data-bs-toggle="collapse" data-bs-target="#sv4" aria-expanded="false" aria-controls="sv4" /><label class="form-check-label" for="flexRadioDefault1">Server Group 3 (<b><?= $gia3; ?>₫</b>) (clone thật avt max 300k)</label>
                     </div> -->
                     <div class="form-check">
-                        <input class="form-check-input" id="flexRadioDefault1" type="radio" name="sv" value="4" data-bs-toggle="collapse" data-bs-target="#sv4" aria-expanded="false" aria-controls="sv4" /><label class="form-check-label" for="flexRadioDefault1">Server Group 4 (<b><?= $gia4; ?>₫</b>) (Mem page + clone tên việt avt đẹp, Max 20k. Done trong 24h)</label>
+                        <input class="form-check-input" checked id="flexRadioDefault1" type="radio" name="sv" value="4" data-bs-toggle="collapse" data-bs-target="#sv4" aria-expanded="false" aria-controls="sv4" /><label class="form-check-label" for="flexRadioDefault1">Server Group 4 (<b><?= $gia4; ?>₫</b>) (Mem page + clone tên việt avt đẹp, Max 20k. Done trong 24h)</label>
                     </div>
                     <div class="mb-3">
                         <label>Nhập ID Hoặc Link Group:</label>
