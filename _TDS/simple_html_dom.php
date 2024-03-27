@@ -136,23 +136,23 @@ class simple_html_dom_node
 	public $tag_start = 0;
 	private $dom = null;
 
-	function __construct($dom)
+	public function __construct($dom)
 	{
 		$this->dom = $dom;
 		$dom->nodes[] = $this;
 	}
 
-	function __destruct()
+	public function __destruct()
 	{
 		$this->clear();
 	}
 
-	function __toString()
+	public function __toString()
 	{
 		return $this->outertext();
 	}
 
-	function clear()
+	public function clear()
 	{
 		$this->dom = null;
 		$this->nodes = null;
@@ -160,7 +160,7 @@ class simple_html_dom_node
 		$this->children = null;
 	}
 
-	function dump($show_attr = true, $depth = 0)
+	public function dump($show_attr = true, $depth = 0)
 	{
 		echo str_repeat("\t", $depth) . $this->tag;
 
@@ -181,7 +181,7 @@ class simple_html_dom_node
 		}
 	}
 
-	function dump_node($echo = true)
+	public function dump_node($echo = true)
 	{
 		$string = $this->tag;
 
@@ -234,7 +234,7 @@ class simple_html_dom_node
 		}
 	}
 
-	function parent($parent = null)
+	public function parent($parent = null)
 	{
 		// I am SURE that this doesn't work properly.
 		// It fails to unset the current node from it's current parents nodes or
@@ -248,12 +248,12 @@ class simple_html_dom_node
 		return $this->parent;
 	}
 
-	function has_child()
+	public function has_child()
 	{
 		return !empty($this->children);
 	}
 
-	function children($idx = -1)
+	public function children($idx = -1)
 	{
 		if ($idx === -1) {
 			return $this->children;
@@ -266,7 +266,7 @@ class simple_html_dom_node
 		return null;
 	}
 
-	function first_child()
+	public function first_child()
 	{
 		if (count($this->children) > 0) {
 			return $this->children[0];
@@ -274,7 +274,7 @@ class simple_html_dom_node
 		return null;
 	}
 
-	function last_child()
+	public function last_child()
 	{
 		if (count($this->children) > 0) {
 			return end($this->children);
@@ -282,7 +282,7 @@ class simple_html_dom_node
 		return null;
 	}
 
-	function next_sibling()
+	public function next_sibling()
 	{
 		if ($this->parent === null) {
 			return null;
@@ -297,7 +297,7 @@ class simple_html_dom_node
 		return null;
 	}
 
-	function prev_sibling()
+	public function prev_sibling()
 	{
 		if ($this->parent === null) {
 			return null;
@@ -312,7 +312,7 @@ class simple_html_dom_node
 		return null;
 	}
 
-	function find_ancestor_tag($tag)
+	public function find_ancestor_tag($tag)
 	{
 		global $debug_object;
 		if (is_object($debug_object)) { $debug_object->debug_log_entry(1); }
@@ -338,7 +338,7 @@ class simple_html_dom_node
 		return $ancestor;
 	}
 
-	function innertext()
+	public function innertext()
 	{
 		if (isset($this->_[HDOM_INFO_INNER])) {
 			return $this->_[HDOM_INFO_INNER];
@@ -357,7 +357,7 @@ class simple_html_dom_node
 		return $ret;
 	}
 
-	function outertext()
+	public function outertext()
 	{
 		global $debug_object;
 
@@ -414,7 +414,7 @@ class simple_html_dom_node
 		return $ret;
 	}
 
-	function text()
+	public function text()
 	{
 		if (isset($this->_[HDOM_INFO_INNER])) {
 			return $this->_[HDOM_INFO_INNER];
@@ -456,7 +456,7 @@ class simple_html_dom_node
 		return $ret;
 	}
 
-	function xmltext()
+	public function xmltext()
 	{
 		$ret = $this->innertext();
 		$ret = str_ireplace('<![CDATA[', '', $ret);
@@ -464,7 +464,7 @@ class simple_html_dom_node
 		return $ret;
 	}
 
-	function makeup()
+	public function makeup()
 	{
 		// text, comment, unknown
 		if (isset($this->_[HDOM_INFO_TEXT])) {
@@ -507,7 +507,7 @@ class simple_html_dom_node
 		return $ret . $this->_[HDOM_INFO_ENDSPACE] . '>';
 	}
 
-	function find($selector, $idx = null, $lowercase = false)
+	public function find($selector, $idx = null, $lowercase = false)
 	{
 		$selectors = $this->parse_selector($selector);
 		if (($count = count($selectors)) === 0) { return array(); }
@@ -965,7 +965,7 @@ class simple_html_dom_node
 		return $selectors;
 	}
 
-	function __get($name)
+	public function __get($name)
 	{
 		if (isset($this->attr[$name])) {
 			return $this->convert_text($this->attr[$name]);
@@ -979,7 +979,7 @@ class simple_html_dom_node
 		}
 	}
 
-	function __set($name, $value)
+	public function __set($name, $value)
 	{
 		global $debug_object;
 		if (is_object($debug_object)) { $debug_object->debug_log_entry(1); }
@@ -1001,7 +1001,7 @@ class simple_html_dom_node
 		$this->attr[$name] = $value;
 	}
 
-	function __isset($name)
+	public function __isset($name)
 	{
 		switch ($name) {
 			case 'outertext': return true;
@@ -1012,12 +1012,12 @@ class simple_html_dom_node
 		return (array_key_exists($name, $this->attr)) ? true : isset($this->attr[$name]);
 	}
 
-	function __unset($name)
+	public function __unset($name)
 	{
 		if (isset($this->attr[$name])) { unset($this->attr[$name]); }
 	}
 
-	function convert_text($text)
+	public function convert_text($text)
 	{
 		global $debug_object;
 		if (is_object($debug_object)) { $debug_object->debug_log_entry(1); }
@@ -1094,7 +1094,7 @@ class simple_html_dom_node
 		return true;
 	}
 
-	function get_display_size()
+	public function get_display_size()
 	{
 		global $debug_object;
 
@@ -1179,7 +1179,7 @@ class simple_html_dom_node
 		return $result;
 	}
 
-	function save($filepath = '')
+	public function save($filepath = '')
 	{
 		$ret = $this->outertext();
 
@@ -1190,7 +1190,7 @@ class simple_html_dom_node
 		return $ret;
 	}
 
-	function addClass($class)
+	public function addClass($class)
 	{
 		if (is_string($class)) {
 			$class = explode(' ', $class);
@@ -1215,7 +1215,7 @@ class simple_html_dom_node
 		}
 	}
 
-	function hasClass($class)
+	public function hasClass($class)
 	{
 		if (is_string($class)) {
 			if (isset($this->class)) {
@@ -1230,7 +1230,7 @@ class simple_html_dom_node
 		return false;
 	}
 
-	function removeClass($class = null)
+	public function removeClass($class = null)
 	{
 		if (!isset($this->class)) {
 			return;
@@ -1255,39 +1255,39 @@ class simple_html_dom_node
 		}
 	}
 
-	function getAllAttributes()
+	public function getAllAttributes()
 	{
 		return $this->attr;
 	}
 
-	function getAttribute($name)
+	public function getAttribute($name)
 	{
 		return $this->__get($name);
 	}
 
-	function setAttribute($name, $value)
+	public function setAttribute($name, $value)
 	{
 		$this->__set($name, $value);
 	}
 
-	function hasAttribute($name)
+	public function hasAttribute($name)
 	{
 		return $this->__isset($name);
 	}
 
-	function removeAttribute($name)
+	public function removeAttribute($name)
 	{
 		$this->__set($name, null);
 	}
 
-	function remove()
+	public function remove()
 	{
 		if ($this->parent) {
 			$this->parent->removeChild($this);
 		}
 	}
 
-	function removeChild($node)
+	public function removeChild($node)
 	{
 		$nidx = array_search($node, $this->nodes, true);
 		$cidx = array_search($node, $this->children, true);
@@ -1318,67 +1318,67 @@ class simple_html_dom_node
 		}
 	}
 
-	function getElementById($id)
+	public function getElementById($id)
 	{
 		return $this->find("#$id", 0);
 	}
 
-	function getElementsById($id, $idx = null)
+	public function getElementsById($id, $idx = null)
 	{
 		return $this->find("#$id", $idx);
 	}
 
-	function getElementByTagName($name)
+	public function getElementByTagName($name)
 	{
 		return $this->find($name, 0);
 	}
 
-	function getElementsByTagName($name, $idx = null)
+	public function getElementsByTagName($name, $idx = null)
 	{
 		return $this->find($name, $idx);
 	}
 
-	function parentNode()
+	public function parentNode()
 	{
 		return $this->parent();
 	}
 
-	function childNodes($idx = -1)
+	public function childNodes($idx = -1)
 	{
 		return $this->children($idx);
 	}
 
-	function firstChild()
+	public function firstChild()
 	{
 		return $this->first_child();
 	}
 
-	function lastChild()
+	public function lastChild()
 	{
 		return $this->last_child();
 	}
 
-	function nextSibling()
+	public function nextSibling()
 	{
 		return $this->next_sibling();
 	}
 
-	function previousSibling()
+	public function previousSibling()
 	{
 		return $this->prev_sibling();
 	}
 
-	function hasChildNodes()
+	public function hasChildNodes()
 	{
 		return $this->has_child();
 	}
 
-	function nodeName()
+	public function nodeName()
 	{
 		return $this->tag;
 	}
 
-	function appendChild($node)
+	public function appendChild($node)
 	{
 		$node->parent($this);
 		return $node;
@@ -1458,7 +1458,7 @@ class simple_html_dom
 		'tr' => array('td' => 1, 'th' => 1, 'tr' => 1),
 	);
 
-	function __construct(
+	public function __construct(
 		$str = null,
 		$lowercase = true,
 		$forceTagsClosed = true,
@@ -1491,12 +1491,12 @@ class simple_html_dom
 		$this->_target_charset = $target_charset;
 	}
 
-	function __destruct()
+	public function __destruct()
 	{
 		$this->clear();
 	}
 
-	function load(
+	public function load(
 		$str,
 		$lowercase = true,
 		$stripRN = true,
@@ -1550,7 +1550,7 @@ class simple_html_dom
 		return $this;
 	}
 
-	function load_file()
+	public function load_file()
 	{
 		$args = func_get_args();
 
@@ -1561,29 +1561,29 @@ class simple_html_dom
 		}
 	}
 
-	function set_callback($function_name)
+	public function set_callback($function_name)
 	{
 		$this->callback = $function_name;
 	}
 
-	function remove_callback()
+	public function remove_callback()
 	{
 		$this->callback = null;
 	}
 
-	function save($filepath = '')
+	public function save($filepath = '')
 	{
 		$ret = $this->root->innertext();
 		if ($filepath !== '') { file_put_contents($filepath, $ret, LOCK_EX); }
 		return $ret;
 	}
 
-	function find($selector, $idx = null, $lowercase = false)
+	public function find($selector, $idx = null, $lowercase = false)
 	{
 		return $this->root->find($selector, $idx, $lowercase);
 	}
 
-	function clear()
+	public function clear()
 	{
 		if (isset($this->nodes)) {
 			foreach ($this->nodes as $n) {
@@ -1616,7 +1616,7 @@ class simple_html_dom
 		unset($this->noise);
 	}
 
-	function dump($show_attr = true)
+	public function dump($show_attr = true)
 	{
 		$this->root->dump($show_attr);
 	}
@@ -2222,7 +2222,7 @@ class simple_html_dom
 		}
 	}
 
-	function restore_noise($text)
+	public function restore_noise($text)
 	{
 		global $debug_object;
 		if (is_object($debug_object)) { $debug_object->debug_log_entry(1); }
@@ -2268,7 +2268,7 @@ class simple_html_dom
 		return $text;
 	}
 
-	function search_noise($text)
+	public function search_noise($text)
 	{
 		global $debug_object;
 		if (is_object($debug_object)) { $debug_object->debug_log_entry(1); }
@@ -2280,12 +2280,12 @@ class simple_html_dom
 		}
 	}
 
-	function __toString()
+	public function __toString()
 	{
 		return $this->root->innertext();
 	}
 
-	function __get($name)
+	public function __get($name)
 	{
 		switch ($name) {
 			case 'outertext':
@@ -2301,52 +2301,52 @@ class simple_html_dom
 		}
 	}
 
-	function childNodes($idx = -1)
+	public function childNodes($idx = -1)
 	{
 		return $this->root->childNodes($idx);
 	}
 
-	function firstChild()
+	public function firstChild()
 	{
 		return $this->root->first_child();
 	}
 
-	function lastChild()
+	public function lastChild()
 	{
 		return $this->root->last_child();
 	}
 
-	function createElement($name, $value = null)
+	public function createElement($name, $value = null)
 	{
 		return @str_get_html("<$name>$value</$name>")->firstChild();
 	}
 
-	function createTextNode($value)
+	public function createTextNode($value)
 	{
 		return @end(str_get_html($value)->nodes);
 	}
 
-	function getElementById($id)
+	public function getElementById($id)
 	{
 		return $this->find("#$id", 0);
 	}
 
-	function getElementsById($id, $idx = null)
+	public function getElementsById($id, $idx = null)
 	{
 		return $this->find("#$id", $idx);
 	}
 
-	function getElementByTagName($name)
+	public function getElementByTagName($name)
 	{
 		return $this->find($name, 0);
 	}
 
-	function getElementsByTagName($name, $idx = -1)
+	public function getElementsByTagName($name, $idx = -1)
 	{
 		return $this->find($name, $idx);
 	}
 
-	function loadFile()
+	public function loadFile()
 	{
 		$args = func_get_args();
 		$this->load_file($args);
