@@ -46,7 +46,7 @@ switch ($_GET['act']) {
         
         </script>';
         }
-?>
+        ?>
         <form action="?act=del" method="GET">
             <input type="hidden" value="del" name="act">
             <label for="" class="">Nhập Bảng Muốn Xóa</label>
@@ -69,7 +69,7 @@ switch ($_GET['act']) {
             <input type="submit" value="Xóa">
         </form>
     <?php
-        break;
+                break;
     case 'delcmt':
         $sl = $_GET['sl'];
         $time = $_GET['time'];
@@ -87,7 +87,7 @@ switch ($_GET['act']) {
             
             </script>';
         }
-    ?>
+        ?>
         <form action="?act=delcmt" method="GET">
             <input type="text" name="sl" placeholder="Nhập số lượng cmt cần xóa">
             <input type="text" name="time" placeholder="Nhập thời gian bắt đầu">
@@ -95,5 +95,5 @@ switch ($_GET['act']) {
             <input type="submit" value="Xóa">
         </form>
 <?php
-        break;
+            break;
 }
