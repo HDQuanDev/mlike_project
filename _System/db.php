@@ -307,7 +307,7 @@ if (isset($login) || isset($_POST['token'])) {
                     $gia4 = 10;
                 } elseif ($page == 'fb_feeling') {
                     $gia1 = 9.9;
-                    $gia2 = 8;
+                    $gia2 = 10;
                 } elseif ($page == 'fb_likecmt') {
                     $gia1 = 18;
                     $gia2 = 22;
@@ -454,7 +454,7 @@ if (isset($login) || isset($_POST['token'])) {
                     $gia4 = 10.5;
                 } elseif ($page == 'fb_feeling') {
                     $gia1 = 11;
-                    $gia2 = 9;
+                    $gia2 = 10;
                 } elseif ($page == 'fb_likecmt') {
                     $gia1 = 18;
                     $gia2 = 22;
@@ -600,7 +600,7 @@ if (isset($login) || isset($_POST['token'])) {
                     $gia4 = 12;
                 } elseif ($page == 'fb_feeling') {
                     $gia1 = 10;
-                    $gia2 = 8;
+                    $gia2 = 10;
                 } elseif ($page == 'fb_likecmt') {
                     $gia1 = 18;
                     $gia2 = 22;
