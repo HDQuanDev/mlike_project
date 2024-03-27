@@ -52,41 +52,41 @@ require_once('../_System/head.php');
                 }
             }
 
-            if ($_GET['action']) {
-                $id = $_GET['id'];
-                $tt = $_GET['action'];
-                $dn = $_GET['sl'];
-                if ($tt == 2) {
-                    mysqli_query($db, "UPDATE `dichvu` SET `trangthai` = '$tt', `done` = '$dn' WHERE `id` = '$id'");
-                } else {
-                    mysqli_query($db, "UPDATE `dichvu` SET `trangthai` = '$tt' WHERE `id` = '$id'");
-                }
-                echo "<script>swal('Hệ Thống!','Chỉnh sửa trạng thái ID " . $id . " thành công!','success');</script>";
-                echo '<script>setTimeout(function(){
+if ($_GET['action']) {
+    $id = $_GET['id'];
+    $tt = $_GET['action'];
+    $dn = $_GET['sl'];
+    if ($tt == 2) {
+        mysqli_query($db, "UPDATE `dichvu` SET `trangthai` = '$tt', `done` = '$dn' WHERE `id` = '$id'");
+    } else {
+        mysqli_query($db, "UPDATE `dichvu` SET `trangthai` = '$tt' WHERE `id` = '$id'");
+    }
+    echo "<script>swal('Hệ Thống!','Chỉnh sửa trạng thái ID " . $id . " thành công!','success');</script>";
+    echo '<script>setTimeout(function(){
     window.location="' . $url . '#' . $id . '";
 }, 3000);</script>';
-            }
+}
 
-            if ($_POST['dn']) {
-                $dn = $_POST['dn'];
-                $id = $_GET['id'];
-                $c = mysqli_query($db, "SELECT * FROM `dichvu` WHERE `id`='$id'");
-                $c = mysqli_fetch_assoc($c);
-                $done = $c['done'];
-                if ($done <= $dn && $c['trangthai'] == 3) {
-                    mysqli_query($db, "UPDATE `dichvu` SET `done` = '$dn' WHERE `id` = '$id'");
-                    echo "<script>swal('Hệ Thống!','Chỉnh sửa số lượng hoàn thành ID " . $id . " thành công!','success');</script>";
-                    echo '<script>setTimeout(function(){
+if ($_POST['dn']) {
+    $dn = $_POST['dn'];
+    $id = $_GET['id'];
+    $c = mysqli_query($db, "SELECT * FROM `dichvu` WHERE `id`='$id'");
+    $c = mysqli_fetch_assoc($c);
+    $done = $c['done'];
+    if ($done <= $dn && $c['trangthai'] == 3) {
+        mysqli_query($db, "UPDATE `dichvu` SET `done` = '$dn' WHERE `id` = '$id'");
+        echo "<script>swal('Hệ Thống!','Chỉnh sửa số lượng hoàn thành ID " . $id . " thành công!','success');</script>";
+        echo '<script>setTimeout(function(){
     window.location="' . $url . '#' . $id . '";
 }, 3000);</script>';
-                } else {
-                    echo "<script>swal('Hệ Thống!','ID " . $id . " không tồn tại hoặc ID này không ở trạng thái Đang Chạy, vui lòng kiểm tra lại!','warning');</script>";
-                    echo '<script>setTimeout(function(){
+    } else {
+        echo "<script>swal('Hệ Thống!','ID " . $id . " không tồn tại hoặc ID này không ở trạng thái Đang Chạy, vui lòng kiểm tra lại!','warning');</script>";
+        echo '<script>setTimeout(function(){
     window.location="' . $url . '#' . $id . '";
 }, 3000);</script>';
-                }
-            }
-            ?>
+    }
+}
+?>
             <table class="table table-striped table-bordered" id="example">
                 <thead class="bg-200 text-900">
                     <tr>
@@ -105,30 +105,30 @@ require_once('../_System/head.php');
                 </thead>
                 <tbody class="list">
                     <?php
-                    if (isset($_GET['limit'])) {
-                        $limit = $_GET['limit'];
-                    } else {
-                        $limit = 200;
-                    }
-                    if ($_GET['status']) {
-                        $dv = $_GET['status'];
-                        $result1 = mysqli_query($db, "SELECT * FROM `dichvu` WHERE `trangthai` = '$dv' AND `nse` = '444' ORDER BY id DESC LIMIT $limit");
-                    } else {
-                        $result1 = mysqli_query($db, "SELECT * FROM `dichvu` WHERE `nse` = '444' ORDER BY id DESC LIMIT $limit");
-                    }
-                    if ($result1) {
+        if (isset($_GET['limit'])) {
+            $limit = $_GET['limit'];
+        } else {
+            $limit = 200;
+        }
+if ($_GET['status']) {
+    $dv = $_GET['status'];
+    $result1 = mysqli_query($db, "SELECT * FROM `dichvu` WHERE `trangthai` = '$dv' AND `nse` = '444' ORDER BY id DESC LIMIT $limit");
+} else {
+    $result1 = mysqli_query($db, "SELECT * FROM `dichvu` WHERE `nse` = '444' ORDER BY id DESC LIMIT $limit");
+}
+if ($result1) {
 
 
-                        while ($ro = mysqli_fetch_assoc($result1)) {
-                            $dv = $ro['dv'];
-                            $tt = $ro['trangthai'];
-                            if ($ro['api'] == '') {
-                                $api = 'Không Có';
-                            } else {
-                                $api = $ro['api'];
-                            }
-                            $t = $ro['time'];
-                    ?>
+    while ($ro = mysqli_fetch_assoc($result1)) {
+        $dv = $ro['dv'];
+        $tt = $ro['trangthai'];
+        if ($ro['api'] == '') {
+            $api = 'Không Có';
+        } else {
+            $api = $ro['api'];
+        }
+        $t = $ro['time'];
+        ?>
                             <tr>
                                 <td class="id"><span id="<?= $ro['id']; ?>"><?php echo $ro['id']; ?></span></td>
                                 <td class="dv"><?php dichvut($dv);  ?></td>
@@ -137,8 +137,8 @@ require_once('../_System/head.php');
                                 <td class="profile"><a href="https://facebook.com/<?php echo $ro['profile']; ?>" target="_blank"><?php echo $ro['profile']; ?></a></td>
                                 <td class="api"><?php echo $ro['bh']; ?></td>
                                 <?php
-                                if ($tt == 3) {
-                                ?>
+                    if ($tt == 3) {
+                        ?>
                                     <td class="done">
                                         <form method="post" action="?id=<?= $ro['id']; ?>">
                                             <div class="form-group"><input value="<?= $ro['done']; ?>" type="text" name="dn" class="form-control"></div>
@@ -146,37 +146,37 @@ require_once('../_System/head.php');
                                         </form>
                                     </td>
                                 <?php
-                                } else {
-                                    echo '<td class="done">Không thể chỉnh sửa</td>';
-                                }
-                                ?>
+                    } else {
+                        echo '<td class="done">Không thể chỉnh sửa</td>';
+                    }
+        ?>
                                 <td colspan="time"><?php echo time_func($t); ?></td>
                                 <td class="tt"><?php trangthai($tt); ?></td>
                                 <?php
-                                if ($tt == 1 || $tt == 3) {
-                                ?>
+        if ($tt == 1 || $tt == 3) {
+            ?>
                                     <td class="cn"><a href="?action=3&id=<?= $ro['id']; ?>">Đang Chạy</a> | <a href="?action=7&id=<?= $ro['id']; ?>">Bị Hủy</a> | <a href="?action=2&id=<?= $ro['id']; ?>&sl=<?= $ro['sl']; ?>">Hoàn Thành</a></td>
                                 <?php
-                                } else {
-                                    echo '<td class="cn"></td>';
-                                }
-                                ?>
+        } else {
+            echo '<td class="cn"></td>';
+        }
+        ?>
                                 <?php
-                                if ($tt != '4' && $tt != '2') {
-                                    echo '<td class="tt"><a href="?act=history&id=' . $ro['id'] . '&user=' . $ro['user'] . '&st=' . $ro['sotien'] . '">Hủy Đơn</a></td>';
-                                } else {
-                                    echo '<td class="tt">NULL</td>';
-                                }
+        if ($tt != '4' && $tt != '2') {
+            echo '<td class="tt"><a href="?act=history&id=' . $ro['id'] . '&user=' . $ro['user'] . '&st=' . $ro['sotien'] . '">Hủy Đơn</a></td>';
+        } else {
+            echo '<td class="tt">NULL</td>';
+        }
 
-                                ?>
+        ?>
                             </tr>
                     <?php
-                        }
-                        echo '</tbody>
+    }
+    echo '</tbody>
 </table>
 ';
-                    }
-                    ?>
+}
+?>
         </div>
     </div>
 </div>

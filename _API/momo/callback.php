@@ -1,4 +1,5 @@
 <?php
+
 $hdq = 'ok';
 require_once('../../_System/db.php');
 $api_key = 'quan1410200317181910'; // Lấy API KEY tại nhà cung cấp dịch vụ

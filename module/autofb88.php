@@ -1,4 +1,5 @@
 <?php
+
 function live8($id, $sl, $min, $sv)
 {
     $curl = curl_init();

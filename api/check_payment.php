@@ -1,4 +1,5 @@
 <?php
+
 require_once('../_System/db.php');
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     echo json_encode(['status' => 'error', 'message' => 'Method not allowed!']);
@@ -44,7 +45,7 @@ if (isset($login)) {
     }
 } else {
     $array['status'] = 'error';
-    $array['username'] = NULL;
+    $array['username'] = null;
     $array['message'] = 'Bạn chưa đăng nhập!';
     $array['show'] = '2';
     $array['step'] = '4';

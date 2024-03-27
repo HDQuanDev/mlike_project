@@ -6,9 +6,9 @@ require_once('../_System/head.php');
 
 switch ($_GET['act']) {
     default:
-?>
+        ?>
         <?php
-        if (isset($_POST['add']) && isset($login)) {
+                if (isset($_POST['add']) && isset($login)) {
                     $stk = mysqli_real_escape_string($db, $_POST['stk']);
                     $nh = mysqli_real_escape_string($db, $_POST['nh']);
                     $ten = mysqli_real_escape_string($db, $_POST['ten']);
@@ -17,11 +17,11 @@ switch ($_GET['act']) {
                     } elseif (empty($nh)) {
                         echo "<script>swal('OOPS!','Vui lòng nhập Tên Ngân Hàng!','warning');</script>";
                     } else {
-                          mysqli_query($db, "INSERT INTO `stk` SET `stk` = '$stk',`nganhang` = '$nh', `name` = '$ten', `site`='$site'");
-                          echo "<script>swal('Hệ Thóng!','Thêm thành công!','success');</script>";
+                        mysqli_query($db, "INSERT INTO `stk` SET `stk` = '$stk',`nganhang` = '$nh', `name` = '$ten', `site`='$site'");
+                        echo "<script>swal('Hệ Thóng!','Thêm thành công!','success');</script>";
                     }
                 }
-            
+
         ?>
 
 
@@ -60,10 +60,10 @@ switch ($_GET['act']) {
                 <a href="?act=manager" class="btn btn-primary">Quản Lý STK <i class="fa fa-angle-double-down scale2 ml-2"></i></a>
             </div>
         </div>
-    <?
+    <?php
         break;
     case 'manager':
-    ?>
+        ?>
         <div class="card border-danger border-bottom border-3 border-0">
             <div class="card-header">
                 <h5 class="card-title" data-anchor="data-anchor">Quản Lý STK</h5>
@@ -83,13 +83,13 @@ switch ($_GET['act']) {
                         </thead>
                         <tbody class="list">
                             <?php
-                          
-                                $result1 = mysqli_query($db, "SELECT * FROM `stk` WHERE `site` = '" . $site . "'");
-                            
-                            if ($result1) {
-                                while ($ro = mysqli_fetch_assoc($result1)) {
-                                  
-                            ?>
+
+                                    $result1 = mysqli_query($db, "SELECT * FROM `stk` WHERE `site` = '" . $site . "'");
+
+        if ($result1) {
+            while ($ro = mysqli_fetch_assoc($result1)) {
+
+                ?>
                                     <tr>
                                         <td class="id"><b><?= $ro['id']; ?></b></td>
                                         <td class="sl"><?php echo $ro['stk']; ?></td>
@@ -98,12 +98,12 @@ switch ($_GET['act']) {
                                      
                                     </tr>
                             <?php
-                                }
-                                echo '</tbody>
+            }
+            echo '</tbody>
 </table>
 ';
-                            }
-                            ?>
+        }
+        ?>
 
                 </div>
             </div>

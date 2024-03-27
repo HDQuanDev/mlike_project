@@ -156,6 +156,6 @@ $myFile = "../voice/quan-$name.mp3";
                     </p>
             </div>
     </div>
-    <?
+    <?php
     require_once('../_System/end.php');
-    ?>
+?>

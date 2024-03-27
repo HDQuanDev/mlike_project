@@ -1,4 +1,5 @@
 <?php
+
 function CheckFileExist($username)
 {
     $username = strtolower($username);

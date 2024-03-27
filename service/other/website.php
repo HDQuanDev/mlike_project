@@ -11,46 +11,46 @@ switch ($_GET['act']) {
         $min = '100';
         $max = '100000';
         $api = new Api();
-?>
+        ?>
 
         <?php
-        if (isset($_POST['add']) && isset($login)) {
-          
-            $id = mysqli_real_escape_string($db, $_POST['id']);
-            $sl = mysqli_real_escape_string($db, $_POST['sl']);
-            $tongtien = $sl * $gia;
-            if (empty($id)) {
-                echo "<script>swal('OOPS!','Vui lòng nhập Link cần tăng View TikTok!','warning');</script>";
-            } elseif (empty($sl)) {
-                echo "<script>swal('OOPS!','Vui lòng nhập số lượng!','warning');</script>";
-            } elseif ($sl < $min) {
-                echo "<script>swal('OOPS!','Số lượng phải lớn hơn " . $min . "','warning');</script>";
-            } elseif ($sl > $max) {
-                echo "<script>swal('Cảnh Báo','Số lượng tối đa " . $max . " 1 lần ( Có thể order nhiều lần )!','warning');</script>";
-            } elseif ($row['vnd'] < $tongtien) {
-                echo "<script>swal('OOPS!','Bạn không đủ tiền!','warning');</script>";
-            } else {
-                $order = $api->order(array('service' => 182, 'link' => '' . $id . '', 'quantity' => $sl));
-                //$buff = json_decode($order);
-                if (isset($order)) {
-                    $nd1 = 'Tăng View Website Link:';
-                    $bd = $tongtien;
-                    $gt = '-';
-                    $idgd = '' . $id . ' (' . $sl . ')';
-                    $goc = $row['vnd'];
-                    $time = time();
-                    mysqli_query($db, "INSERT INTO `lichsu` SET `nd` = '$nd1',`bd` = '$bd',`user`='$login',`time`='$time', `goc` = '$goc', `loai` = '1', `idgd` = '$idgd', `gt` = '$gt'");
-                    mysqli_query($db, "INSERT INTO `dv_other` SET `dv` = 'ws_view',`sl` = '$sl', `trangthai` = '1', `user`='$login',`profile`='$id',`time` = '$time', `sttdone` = '0', `sotien` = '$tongtien', `done` = '0'");
-                    mysqli_query($db, "UPDATE `member` SET `vnd` = `vnd`-'$tongtien', `sd` = `sd`+'$tongtien' WHERE `username` = '$login' AND `site` = '$site'");
-                    echo "<script>swal('Hệ Thống!','Tăng Thành Công! Cảm ơn bạn!!','success');</script>";
-                    echo '<script>setTimeout(function(){
+                if (isset($_POST['add']) && isset($login)) {
+
+                    $id = mysqli_real_escape_string($db, $_POST['id']);
+                    $sl = mysqli_real_escape_string($db, $_POST['sl']);
+                    $tongtien = $sl * $gia;
+                    if (empty($id)) {
+                        echo "<script>swal('OOPS!','Vui lòng nhập Link cần tăng View TikTok!','warning');</script>";
+                    } elseif (empty($sl)) {
+                        echo "<script>swal('OOPS!','Vui lòng nhập số lượng!','warning');</script>";
+                    } elseif ($sl < $min) {
+                        echo "<script>swal('OOPS!','Số lượng phải lớn hơn " . $min . "','warning');</script>";
+                    } elseif ($sl > $max) {
+                        echo "<script>swal('Cảnh Báo','Số lượng tối đa " . $max . " 1 lần ( Có thể order nhiều lần )!','warning');</script>";
+                    } elseif ($row['vnd'] < $tongtien) {
+                        echo "<script>swal('OOPS!','Bạn không đủ tiền!','warning');</script>";
+                    } else {
+                        $order = $api->order(array('service' => 182, 'link' => '' . $id . '', 'quantity' => $sl));
+                        //$buff = json_decode($order);
+                        if (isset($order)) {
+                            $nd1 = 'Tăng View Website Link:';
+                            $bd = $tongtien;
+                            $gt = '-';
+                            $idgd = '' . $id . ' (' . $sl . ')';
+                            $goc = $row['vnd'];
+                            $time = time();
+                            mysqli_query($db, "INSERT INTO `lichsu` SET `nd` = '$nd1',`bd` = '$bd',`user`='$login',`time`='$time', `goc` = '$goc', `loai` = '1', `idgd` = '$idgd', `gt` = '$gt'");
+                            mysqli_query($db, "INSERT INTO `dv_other` SET `dv` = 'ws_view',`sl` = '$sl', `trangthai` = '1', `user`='$login',`profile`='$id',`time` = '$time', `sttdone` = '0', `sotien` = '$tongtien', `done` = '0'");
+                            mysqli_query($db, "UPDATE `member` SET `vnd` = `vnd`-'$tongtien', `sd` = `sd`+'$tongtien' WHERE `username` = '$login' AND `site` = '$site'");
+                            echo "<script>swal('Hệ Thống!','Tăng Thành Công! Cảm ơn bạn!!','success');</script>";
+                            echo '<script>setTimeout(function(){
     window.location="' . $url . '";
 }, 3000);</script>';
-                } else {
-                    echo "<script>swal('OOPS!','" . $buff->message . "','warning');</script>";
+                        } else {
+                            echo "<script>swal('OOPS!','" . $buff->message . "','warning');</script>";
+                        }
+                    }
                 }
-            }
-        }
 
         ?>
         <script>
@@ -113,7 +113,7 @@ switch ($_GET['act']) {
     <?php
         break;
     case 'history':
-    ?>
+        ?>
         <div class="card border-danger border-bottom border-3 border-0">
             <div class="card-header">
                 <h4 class="card-title">Lịch Sử</h4>
@@ -132,16 +132,16 @@ switch ($_GET['act']) {
                         </thead>
                         <tbody class="list">
                             <?php
-                            if ($row['rule'] == 99) {
-                                $result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `dv` = 'ws_view' ORDER BY id DESC LIMIT 0,1000");
-                            } else {
-                                $result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `user` = '" . $login . "' AND `dv` = 'ws_view' ORDER BY id DESC LIMIT 0,1000");
-                            }
-                            if ($result1) {
-                                while ($ro = mysqli_fetch_assoc($result1)) {
-                                    $tt = $ro['trangthai'];
-                                    $t = $ro['time'];
-                            ?>
+                                if ($row['rule'] == 99) {
+                                    $result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `dv` = 'ws_view' ORDER BY id DESC LIMIT 0,1000");
+                                } else {
+                                    $result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `user` = '" . $login . "' AND `dv` = 'ws_view' ORDER BY id DESC LIMIT 0,1000");
+                                }
+        if ($result1) {
+            while ($ro = mysqli_fetch_assoc($result1)) {
+                $tt = $ro['trangthai'];
+                $t = $ro['time'];
+                ?>
                                     <tr>
                                         <td class="id"><?= $ro['id']; ?></td>
                                         <td class="time"><?php echo time_func($t); ?></td>
@@ -150,12 +150,12 @@ switch ($_GET['act']) {
                                         <td class="user"><?php echo $ro['user']; ?></td>
                                     </tr>
                             <?php
-                                }
-                                echo '</tbody>
+            }
+            echo '</tbody>
 </table>
 ';
-                            }
-                            ?>
+        }
+        ?>
                 </div>
             </div>
             <div class="card-footer border-0 text-center py-4"><a href="?act=buy" class="btn btn-primary">Quay Lại Mua Đơn <i class="fa fa-angle-double-down scale2 ml-2"></i></a></div>

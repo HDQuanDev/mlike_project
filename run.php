@@ -1,4 +1,5 @@
 <?php
+
 $db = mysqli_connect('localhost', 'admin_data', 'PIpOBoXJSJ', 'admin_data');
 function getUserAgent()
 {
@@ -90,7 +91,7 @@ function login($user, $pass)
     global $cookie, $uge;
     $curl = curl_init();
     curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://traodoisub.com/scr/login.php', 
+    CURLOPT_URL => 'https://traodoisub.com/scr/login.php',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => '',
     CURLOPT_MAXREDIRS => 10,

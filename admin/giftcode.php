@@ -6,9 +6,9 @@ require_once('../_System/head.php');
 
 switch ($_GET['act']) {
     default:
-?>
+        ?>
         <?php
-        if (isset($_POST['add']) && isset($login)) {
+                if (isset($_POST['add']) && isset($login)) {
                     $dis = mysqli_real_escape_string($db, $_POST['dis']);
                     $ex = mysqli_real_escape_string($db, $_POST['ex']);
                     $code = mysqli_real_escape_string($db, $_POST['code']);
@@ -17,16 +17,16 @@ switch ($_GET['act']) {
                         echo "<script>swal('OOPS!','Vui lòng nhập Mã giảm giá','warning');</script>";
                     } elseif (empty($dis)) {
                         echo "<script>swal('OOPS!','Vui lòng nhập Chiết khấu mã giảm giá!','warning');</script>";
-                    }  elseif (empty($ex)) {
+                    } elseif (empty($ex)) {
                         echo "<script>swal('OOPS!','Vui lòng nhập Thời gian hết hạn mã giảm giá!','warning');</script>";
-                    }  elseif (empty($use)) {
+                    } elseif (empty($use)) {
                         echo "<script>swal('OOPS!','Vui lòng nhập số lần sử dụng mã giảm giá/user/ngày!','warning');</script>";
                     } else {
-                          mysqli_query($db, "INSERT INTO `giftcode` SET `dis` = '$dis',`ex` = '$ex', `code` = '$code', `use`='$use', `site` = '$site'");
-                          echo "<script>swal('Hệ Thóng!','Thêm mã giản giá thành công!','success');</script>";
+                        mysqli_query($db, "INSERT INTO `giftcode` SET `dis` = '$dis',`ex` = '$ex', `code` = '$code', `use`='$use', `site` = '$site'");
+                        echo "<script>swal('Hệ Thóng!','Thêm mã giản giá thành công!','success');</script>";
                     }
                 }
-            
+
         ?>
 
 
@@ -70,10 +70,10 @@ switch ($_GET['act']) {
                 <a href="?act=manager" class="btn btn-primary">Quản Lý Mã Giảm Giá <i class="fa fa-angle-double-down scale2 ml-2"></i></a>
             </div>
         </div>
-    <?
+    <?php
         break;
     case 'manager':
-    ?>
+        ?>
         <div class="card border-danger border-bottom border-3 border-0">
             <div class="card-header">
                 <h5 class="card-title" data-anchor="data-anchor">Quản Lý Mã Giảm Giá</h5>
@@ -94,13 +94,13 @@ switch ($_GET['act']) {
                         </thead>
                         <tbody class="list">
                             <?php
-                          
-                                $result1 = mysqli_query($db, "SELECT * FROM `giftcode` WHERE `site` = '" . $site . "'");
-                            
-                            if ($result1) {
-                                while ($ro = mysqli_fetch_assoc($result1)) {
-                                  $t = $ro['ex'];
-                            ?>
+
+                                    $result1 = mysqli_query($db, "SELECT * FROM `giftcode` WHERE `site` = '" . $site . "'");
+
+        if ($result1) {
+            while ($ro = mysqli_fetch_assoc($result1)) {
+                $t = $ro['ex'];
+                ?>
                                     <tr>
                                         <td class="id"><b><?= $ro['id']; ?></b></td>
                                         <td class="sl"><?php echo $ro['code']; ?></td>
@@ -110,12 +110,12 @@ switch ($_GET['act']) {
                                      
                                     </tr>
                             <?php
-                                }
-                                echo '</tbody>
+            }
+            echo '</tbody>
 </table>
 ';
-                            }
-                            ?>
+        }
+        ?>
 
                 </div>
             </div>

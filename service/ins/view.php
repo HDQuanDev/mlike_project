@@ -8,7 +8,7 @@ switch ($_GET['act']) {
     default:
         // Điều Chỉnh Giá
         $gia = $gia1;
-?>
+        ?>
         <script>
             function format_curency(a) {
                 a.value = a.value.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
@@ -137,9 +137,9 @@ switch ($_GET['act']) {
             }
         </script>
     <?php
-        break;
+                break;
     case 'history':
-    ?>
+        ?>
         <div class="card border-danger border-bottom border-3 border-0">
             <div class="card-header">
                 <h4 class="card-title">Lịch Sử</h4>
@@ -159,16 +159,16 @@ switch ($_GET['act']) {
                         </thead>
                         <tbody class="list">
                             <?php
-                            if ($row['rule'] == 99) {
-                                $result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `dv` = 'ins_view' ORDER BY id DESC LIMIT 0,1000");
-                            } else {
-                                $result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `user` = '" . $login . "' AND `dv` = 'ins_view' ORDER BY id DESC LIMIT 0,1000");
-                            }
-                            if ($result1) {
-                                while ($ro = mysqli_fetch_assoc($result1)) {
-                                    $tt = $ro['trangthai'];
-                                    $t = $ro['time'];
-                            ?>
+                                if ($row['rule'] == 99) {
+                                    $result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `dv` = 'ins_view' ORDER BY id DESC LIMIT 0,1000");
+                                } else {
+                                    $result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `user` = '" . $login . "' AND `dv` = 'ins_view' ORDER BY id DESC LIMIT 0,1000");
+                                }
+        if ($result1) {
+            while ($ro = mysqli_fetch_assoc($result1)) {
+                $tt = $ro['trangthai'];
+                $t = $ro['time'];
+                ?>
                                     <tr>
                                         <td class="id"><?= $ro['id']; ?></td>
                                         <td class="time"><?php echo time_func($t); ?></td>
@@ -178,12 +178,12 @@ switch ($_GET['act']) {
                                         <td class="user"><?php echo $ro['user']; ?></td>
                                     </tr>
                             <?php
-                                }
-                                echo '</tbody>
+            }
+            echo '</tbody>
 </table>
 ';
-                            }
-                            ?>
+        }
+        ?>
 
                 </div>
             </div>

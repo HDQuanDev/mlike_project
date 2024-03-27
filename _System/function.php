@@ -1,4 +1,5 @@
 <?php
+
 require_once('db.php');
 
 function fb($dv, $time, $func, $type)
@@ -15,22 +16,27 @@ function fb($dv, $time, $func, $type)
 function check_isMobile()
 {
     $is_mobile = '0';
-    if (preg_match('/(android|iphone|ipad|up.browser|up.link|mmp|symbian|smartphone|midp|wap|phone)/i', strtolower($_SERVER['HTTP_USER_AGENT'])))
+    if (preg_match('/(android|iphone|ipad|up.browser|up.link|mmp|symbian|smartphone|midp|wap|phone)/i', strtolower($_SERVER['HTTP_USER_AGENT']))) {
         $is_mobile = 1;
-    if ((strpos(strtolower($_SERVER['HTTP_ACCEPT']), 'application/vnd.wap.xhtml+xml') > 0) or ((isset($_SERVER['HTTP_X_WAP_PROFILE']) or isset($_SERVER['HTTP_PROFILE']))))
+    }
+    if ((strpos(strtolower($_SERVER['HTTP_ACCEPT']), 'application/vnd.wap.xhtml+xml') > 0) or ((isset($_SERVER['HTTP_X_WAP_PROFILE']) or isset($_SERVER['HTTP_PROFILE'])))) {
         $is_mobile = 1;
+    }
     $mobile_ua = strtolower(substr($_SERVER['HTTP_USER_AGENT'], 0, 4));
     $mobile_agents = array('w3c ', 'acs-', 'alav', 'alca', 'amoi', 'andr', 'audi', 'avan', 'benq', 'bird', 'blac', 'blaz', 'brew', 'cell', 'cldc', 'cmd-', 'dang', 'doco', 'eric', 'hipt', 'inno', 'ipaq', 'java', 'jigs', 'kddi', 'keji', 'leno', 'lg-c', 'lg-d', 'lg-g', 'lge-', 'maui', 'maxo', 'midp', 'mits', 'mmef', 'mobi', 'mot-', 'moto', 'mwbp', 'nec-', 'newt', 'noki', 'oper', 'palm', 'pana', 'pant', 'phil', 'play', 'port', 'prox', 'qwap', 'sage', 'sams', 'sany', 'sch-', 'sec-', 'send', 'seri', 'sgh-', 'shar', 'sie-', 'siem', 'smal', 'smar', 'sony', 'sph-', 'symb', 't-mo', 'teli', 'tim-', 'tosh', 'tsm-', 'upg1', 'upsi', 'vk-v', 'voda', 'wap-', 'wapa', 'wapi', 'wapp', 'wapr', 'webc', 'winw', 'winw', 'xda', 'xda-');
 
-    if (in_array($mobile_ua, $mobile_agents))
+    if (in_array($mobile_ua, $mobile_agents)) {
         $is_mobile = 1;
+    }
 
     if (isset($_SERVER['ALL_HTTP'])) {
-        if (strpos(strtolower($_SERVER['ALL_HTTP']), 'OperaMini') > 0)
+        if (strpos(strtolower($_SERVER['ALL_HTTP']), 'OperaMini') > 0) {
             $is_mobile = 1;
+        }
     }
-    if (strpos(strtolower($_SERVER['HTTP_USER_AGENT']), 'windows') > 0)
+    if (strpos(strtolower($_SERVER['HTTP_USER_AGENT']), 'windows') > 0) {
         $is_mobile = 0;
+    }
     return $is_mobile;
 }
 
@@ -185,7 +191,7 @@ function time_func($time_ago)
         echo "Cách đây $seconds giây";
     }
     //Minutes
-    else if ($minutes <= 60) {
+    elseif ($minutes <= 60) {
         if ($minutes == 1) {
             echo "Cách đây 1 phút";
         } else {
@@ -193,7 +199,7 @@ function time_func($time_ago)
         }
     }
     //Hours
-    else if ($hours <= 24) {
+    elseif ($hours <= 24) {
         if ($hours == 1) {
             echo "Cách đây 1 tiếng";
         } else {
@@ -201,7 +207,7 @@ function time_func($time_ago)
         }
     }
     //Days
-    else if ($days <= 7) {
+    elseif ($days <= 7) {
         if ($days == 1) {
             echo "Ngày hôm qua";
         } else {
@@ -209,7 +215,7 @@ function time_func($time_ago)
         }
     }
     //Weeks
-    else if ($weeks <= 4.3) {
+    elseif ($weeks <= 4.3) {
         if ($weeks == 1) {
             echo "Cách đây 1 tuần";
         } else {
@@ -217,7 +223,7 @@ function time_func($time_ago)
         }
     }
     //Months
-    else if ($months <= 12) {
+    elseif ($months <= 12) {
         if ($months == 1) {
             echo "Cách đây 1 tháng";
         } else {

@@ -191,5 +191,5 @@ if (isset($_GET['post'])) {
 }
 if (isset($_GET['test'])) {
     $link = $_GET['link'];
-    echo (getid($link));
+    echo(getid($link));
 }

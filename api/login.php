@@ -1,4 +1,5 @@
 <?php
+
 $u = 'login';
 require_once('../_System/db.php');
 if (isset($_POST['login'])) {
@@ -6,7 +7,8 @@ if (isset($_POST['login'])) {
     $p = mysqli_real_escape_string($db, $_POST['password']);
     $r = $_POST['redirect'];
     if (empty($u)) {
-        echo "<script>swal('OOPS!','Vui lòng nhập tài khoản!','warning');</script>";;
+        echo "<script>swal('OOPS!','Vui lòng nhập tài khoản!','warning');</script>";
+        ;
     } elseif (empty($p)) {
         echo "<script>swal('OOPS!','Vui lòng nhập mật khẩu!','warning');";
         echo '</script>';

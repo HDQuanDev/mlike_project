@@ -6,7 +6,7 @@ require_once('../../_System/head.php');
 switch ($_GET['act']) {
     default:
         $gia = $gia1;
-?>
+        ?>
         <script>
             function format_curency(a) {
                 a.value = a.value.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
@@ -60,7 +60,7 @@ switch ($_GET['act']) {
 
                     </div>
                     <!-- thong bao -->
-                    <? if (!isset($_POST['add'])) { ?>
+                    <?php if (!isset($_POST['add'])) { ?>
                         <script>
                             var sangml = document.createElement("sangml");
                             sangml.innerHTML = "<img class='card-img-top' src='https://daotao.ulis.vnu.edu.vn/files/uploads/2018/04/thong-bao660x350-600x350.png'><hr><big><center style='color:#3794ff;'>Admin Nhận kéo share sll các cuộc thi giá cực rẻ có thể thương lượng.</big></b>";
@@ -69,7 +69,7 @@ switch ($_GET['act']) {
                                 buttons: false
                             });
                         </script>
-                    <? } ?>
+                    <?php } ?>
                     <!--<label style="font-size:18px;">Hướng dẫn Lấy id  <a href="https://findids.net/username-to-id-tiktok" target="_blank">Tại đây</a></label> 
  </div>-->
 
@@ -140,9 +140,9 @@ switch ($_GET['act']) {
             }
         </script>
     <?php
-        break;
+                break;
     case 'history':
-    ?>
+        ?>
         <div class="card border-danger border-bottom border-3 border-0">
             <div class="card-header">
 
@@ -163,16 +163,16 @@ switch ($_GET['act']) {
                         </thead>
                         <tbody class="list">
                             <?php
-                            if ($row['rule'] == 99) {
-                                $result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `dv` = 'tiktok_share' ORDER BY id DESC LIMIT 0,1000");
-                            } else {
-                                $result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `user` = '" . $login . "' AND `dv` = 'tiktok_share' ORDER BY id DESC LIMIT 0,1000");
-                            }
-                            if ($result1) {
-                                while ($ro = mysqli_fetch_assoc($result1)) {
-                                    $tt = $ro['trangthai'];
-                                    $t = $ro['time'];
-                            ?>
+                                if ($row['rule'] == 99) {
+                                    $result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `dv` = 'tiktok_share' ORDER BY id DESC LIMIT 0,1000");
+                                } else {
+                                    $result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `user` = '" . $login . "' AND `dv` = 'tiktok_share' ORDER BY id DESC LIMIT 0,1000");
+                                }
+        if ($result1) {
+            while ($ro = mysqli_fetch_assoc($result1)) {
+                $tt = $ro['trangthai'];
+                $t = $ro['time'];
+                ?>
                                     <tr>
                                         <td class="id"><?= $ro['id']; ?></td>
                                         <td class="time"><?php echo time_func($t); ?></td>
@@ -182,12 +182,12 @@ switch ($_GET['act']) {
                                         <td class="user"><?php echo $ro['user']; ?></td>
                                     </tr>
                             <?php
-                                }
-                                echo '</tbody>
+            }
+            echo '</tbody>
 </table>
 ';
-                            }
-                            ?>
+        }
+        ?>
 
                 </div>
             </div>

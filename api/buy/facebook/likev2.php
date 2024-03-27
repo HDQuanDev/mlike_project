@@ -1,4 +1,5 @@
-<?
+<?php
+
 $hdq = 'ok';
 $page = "like_fb_v2";
 require_once('../../../_System/db.php');

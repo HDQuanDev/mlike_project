@@ -1,4 +1,5 @@
 <?php
+
 function ongtrum($uid, $link, $kenh, $dv, $sl, $start)
 {
 

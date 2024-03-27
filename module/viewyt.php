@@ -1,50 +1,55 @@
 <?php
 
 class Api
-
 {
     public $api_url = 'https://viewyt.com/api/v2'; // API URL
 
     public $api_key = 'fb24d3044df1919a43f6873118ef75b5'; // Your API key
 
-    public function order($data) { // add order
+    public function order($data) // add order
+    {
         $post = array_merge(array('key' => $this->api_key, 'action' => 'add'), $data);
         return json_decode($this->connect($post));
     }
 
-    public function status($order_id) { // get order status
+    public function status($order_id) // get order status
+    {
         return json_decode($this->connect(array(
-            'key' => $this->api_key,
-            'action' => 'status',
-            'order' => $order_id
-        )));
+                'key' => $this->api_key,
+                'action' => 'status',
+                'order' => $order_id
+            )));
     }
 
-    public function multiStatus($order_ids) { // get order status
+    public function multiStatus($order_ids) // get order status
+    {
         return json_decode($this->connect(array(
-            'key' => $this->api_key,
-            'action' => 'status',
-            'orders' => implode(",", (array)$order_ids)
-        )));
+                'key' => $this->api_key,
+                'action' => 'status',
+                'orders' => implode(",", (array)$order_ids)
+            )));
     }
 
-    public function services() { // get services
+    public function services() // get services
+    {
         return json_decode($this->connect(array(
-            'key' => $this->api_key,
-            'action' => 'services',
-        )));
+                'key' => $this->api_key,
+                'action' => 'services',
+            )));
     }
 
-    public function balance() { // get balance
+    public function balance() // get balance
+    {
         return json_decode($this->connect(array(
-            'key' => $this->api_key,
-            'action' => 'balance',
-        )));
+                'key' => $this->api_key,
+                'action' => 'balance',
+            )));
     }
 
 
-    private function connect($post) {
-        $_post = Array();
+    private function connect($post)
+    {
+        $_post = array();
         if (is_array($post)) {
             foreach ($post as $name => $value) {
                 $_post[] = $name.'='.urlencode($value);

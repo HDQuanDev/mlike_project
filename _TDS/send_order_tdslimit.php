@@ -1,4 +1,5 @@
 <?php
+
 $hdq = 'ok';
 require_once('../_System/db.php');
 require_once('../module/tdslimit.php');
@@ -31,16 +32,16 @@ while ($ro = mysqli_fetch_assoc($result1)) {
                 $data = 'id: ' . $idbuff . ' -> ' . $damua . ' (' . $acc . ') [server like 1]
             ';
                 fwrite($fp, $data);
-               
-            }elseif($quan->code == '222'){
+
+            } elseif($quan->code == '222') {
                 mysqli_query($db, "UPDATE `dichvu` SET `trangthai` = '4', `sttdone` = '1' WHERE `code` = '$code' AND `nse` = '1' AND `iddon` = '2005'");
-                ECHO 'DEL '.$idbuff;
+                echo 'DEL '.$idbuff;
             } elseif ($quan->code == '200') {
                 echo $quan->msg;
             } elseif ($quan->code == '300') {
                 echo $quan->msg;
-            }else{
-               
+            } else {
+
             }
             $fp = @fopen('log.txt', "a+");
             $data = 'id: '.$idbuff.' -> '.$quan->msg.' ['.$$date = date('d/m/Y h:i:s a', time()).'] -> server like 1
@@ -49,9 +50,8 @@ while ($ro = mysqli_fetch_assoc($result1)) {
         } else {
             mysqli_query($db, "UPDATE `dichvu` SET `trangthai` = '2', `sttdone` = '1' WHERE `code` = '$code' AND `nse` = '1' AND `sttdone` = '0' AND  `iddon` = '2005' ");
         }
-      //  echo '2';
+        //  echo '2';
     }
-   // sleep(3);
+    // sleep(3);
     //echo 'a';
 }
-

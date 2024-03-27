@@ -11,39 +11,39 @@ switch ($_GET['act']) {
         $min = '100';
         $max = '5000000';
         $api = new Api();
-?>
+        ?>
 
         <?php
-        if (isset($_POST['add']) && isset($login)) {
-            if (isset($_POST['g-recaptcha-response'])) {
-                $captcha = $_POST['g-recaptcha-response'];
-            } else {
-                $captcha = false;
-            }
-            if (!$captcha) {
-                echo "<script>swal('Bảo Mật!','Lỗi Bảo Mật, Vui Lòng Load Lại Trang Và Thử Lại!!','warning');</script>";
-                exit('<script>setTimeout(function(){
+                if (isset($_POST['add']) && isset($login)) {
+                    if (isset($_POST['g-recaptcha-response'])) {
+                        $captcha = $_POST['g-recaptcha-response'];
+                    } else {
+                        $captcha = false;
+                    }
+                    if (!$captcha) {
+                        echo "<script>swal('Bảo Mật!','Lỗi Bảo Mật, Vui Lòng Load Lại Trang Và Thử Lại!!','warning');</script>";
+                        exit('<script>setTimeout(function(){
 window.location="' . $url . '";
 }, 3000);</script>');
-            } else {
-                $secret   = '6Ldz7YwhAAAAAFnYKoYSR1IBjI8pWLeZ6paOGIS2';
-                $response = file_get_contents(
-                    "https://www.google.com/recaptcha/api/siteverify?secret=" . $secret . "&response=" . $captcha . "&remoteip=" . $_SERVER['REMOTE_ADDR']
-                );
-                $response = json_decode($response);
-                if ($response->success === false) {
-                    echo "<script>swal('Bảo Mật!','Phát Hiện Robot, Vui Lòng Load Lại Trang Và Thử Lại!!','warning');</script>";
-                    exit('<script>setTimeout(function(){
+                    } else {
+                        $secret   = '6Ldz7YwhAAAAAFnYKoYSR1IBjI8pWLeZ6paOGIS2';
+                        $response = file_get_contents(
+                            "https://www.google.com/recaptcha/api/siteverify?secret=" . $secret . "&response=" . $captcha . "&remoteip=" . $_SERVER['REMOTE_ADDR']
+                        );
+                        $response = json_decode($response);
+                        if ($response->success === false) {
+                            echo "<script>swal('Bảo Mật!','Phát Hiện Robot, Vui Lòng Load Lại Trang Và Thử Lại!!','warning');</script>";
+                            exit('<script>setTimeout(function(){
     window.location="' . $url . '";
-    }, 3000);</script>');  
-                }
-            }
-            if ($response->success==true && $response->score <= 0.5) {
-                echo "<script>swal('Bảo Mật!','Lỗi Hệ Thống, Vui Lòng Load Lại Trang Và Thử Lại!!','warning');</script>";
-                exit('<script>setTimeout(function(){
+    }, 3000);</script>');
+                        }
+                    }
+                    if ($response->success == true && $response->score <= 0.5) {
+                        echo "<script>swal('Bảo Mật!','Lỗi Hệ Thống, Vui Lòng Load Lại Trang Và Thử Lại!!','warning');</script>";
+                        exit('<script>setTimeout(function(){
 window.location="' . $url . '";
-}, 3000);</script>'); 
-            }
+}, 3000);</script>');
+                    }
                     $id = mysqli_real_escape_string($db, $_POST['id']);
                     $sl = mysqli_real_escape_string($db, $_POST['sl']);
                     $tongtien = $sl * $gia;
@@ -79,8 +79,8 @@ window.location="' . $url . '";
                         }
                     }
                 }
-            
-        
+
+
         ?>
         <script>
             function format_curency(a) {
@@ -150,7 +150,7 @@ window.location="' . $url . '";
     <?php
         break;
     case 'history':
-    ?>
+        ?>
         <div class="card border-danger border-bottom border-3 border-0">
             <div class="card-header">
 
@@ -170,16 +170,16 @@ window.location="' . $url . '";
                         </thead>
                         <tbody class="list">
                             <?php
-                            if ($row['rule'] == 99) {
-                                $result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `dv` = 'ytb_like' ORDER BY id DESC LIMIT 0,1000");
-                            } else {
-                                $result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `user` = '" . $login . "' AND `dv` = 'ytb_like' ORDER BY id DESC LIMIT 0,1000");
-                            }
-                            if ($result1) {
-                                while ($ro = mysqli_fetch_assoc($result1)) {
-                                    $tt = $ro['trangthai'];
-                                    $t = $ro['time'];
-                            ?>
+                                if ($row['rule'] == 99) {
+                                    $result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `dv` = 'ytb_like' ORDER BY id DESC LIMIT 0,1000");
+                                } else {
+                                    $result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `user` = '" . $login . "' AND `dv` = 'ytb_like' ORDER BY id DESC LIMIT 0,1000");
+                                }
+        if ($result1) {
+            while ($ro = mysqli_fetch_assoc($result1)) {
+                $tt = $ro['trangthai'];
+                $t = $ro['time'];
+                ?>
                                     <tr>
                                         <td class="id"><?= $ro['id']; ?></td>
                                         <td class="time"><?php echo time_func($t); ?></td>
@@ -188,12 +188,12 @@ window.location="' . $url . '";
                                         <td class="user"><?php echo $ro['user']; ?></td>
                                     </tr>
                             <?php
-                                }
-                                echo '</tbody>
+            }
+            echo '</tbody>
 </table>
                 ';
-                            }
-                            ?>
+        }
+        ?>
 
                 </div>
             </div>

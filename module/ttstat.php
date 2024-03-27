@@ -20,21 +20,21 @@
                     <div class="card-body">
                         <h5 class="card-title">TIKTOK VIEW</h5>
                         <p class="card-text">
-                            <?
+                            <?php
                             $ctime = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `dv` = 'tiktok_view' AND `profile` > '0' AND `time` > '1703955600' AND (`trangthai` = '1' OR `trangthai` = '3')");
-                            $ctime = mysqli_num_rows($ctime);
-                            $stat = mysqli_query($db, "SELECT * FROM `ttstat` WHERE `id` = '1'");
-                            $stat = mysqli_fetch_assoc($stat);
-                            $luong = $stat['luong'];
-                            $ltime = $stat['time'];
-                            $sleep = $stat['sleep'];
-                            $rtime = $stat['timerun'];
-                            $success = $stat['success'];
-                            $error = $stat['error'];
-                            $time = time();
-                            $gtime = $ctime / $luong * $ltime * 60;
-                            $mtime = $gtime + $time + $sleep;
-                            echo '- Số đơn còn lại: <b>' . $ctime . '</b> (Đơn)<br>
+        $ctime = mysqli_num_rows($ctime);
+        $stat = mysqli_query($db, "SELECT * FROM `ttstat` WHERE `id` = '1'");
+        $stat = mysqli_fetch_assoc($stat);
+        $luong = $stat['luong'];
+        $ltime = $stat['time'];
+        $sleep = $stat['sleep'];
+        $rtime = $stat['timerun'];
+        $success = $stat['success'];
+        $error = $stat['error'];
+        $time = time();
+        $gtime = $ctime / $luong * $ltime * 60;
+        $mtime = $gtime + $time + $sleep;
+        echo '- Số đơn còn lại: <b>' . $ctime . '</b> (Đơn)<br>
                 - Luồng đang chạy: <b>' . $luong . '</b> (Threads)<br>
                 - Thời gian cách mỗi lần chạy: <b>' . $ltime . '</b> (Phút)<br>
                 - Thời gian để chạy hết 1 vòng đơn: <b>' . $gtime . '</b> (Giây)<br>
@@ -42,7 +42,7 @@
                 - Thời gian chạy gần nhất: <b>' . date('H:i:s - d/m', $rtime) . '</b> (Thời Gian)<br>
                 - Số đơn đã chạy thành công: <b>' . $success . '</b> (Đơn)<br>
                 - Số đơn đã chạy không thành công: <b>' . $error . '</b> (Đơn)';
-                            ?>
+        ?>
                             <center>
                                 <h4>Log Run:</h4>
                             </center>
@@ -57,21 +57,21 @@
                     <div class="card-body">
                         <h5 class="card-title">TIKTOK LIKE</h5>
                         <p class="card-text">
-                            <?
-                            $ctime = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `dv` = 'tiktok_like' AND `profile` > '0' AND `time` > '1703955600' AND (`trangthai` = '1' OR `trangthai` = '3')");
-                            $ctime = mysqli_num_rows($ctime);
-                            $stat = mysqli_query($db, "SELECT * FROM `ttstat` WHERE `id` = '2'");
-                            $stat = mysqli_fetch_assoc($stat);
-                            $luong = $stat['luong'];
-                            $ltime = $stat['time'];
-                            $sleep = $stat['sleep'];
-                            $rtime = $stat['timerun'];
-                            $success = $stat['success'];
-                            $error = $stat['error'];
-                            $time = time();
-                            $gtime = $ctime / $luong * $ltime * 60;
-                            $mtime = $gtime + $time + $sleep;
-                            echo '- Số đơn còn lại: <b>' . $ctime . '</b> (Đơn)<br>
+                            <?php
+        $ctime = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `dv` = 'tiktok_like' AND `profile` > '0' AND `time` > '1703955600' AND (`trangthai` = '1' OR `trangthai` = '3')");
+        $ctime = mysqli_num_rows($ctime);
+        $stat = mysqli_query($db, "SELECT * FROM `ttstat` WHERE `id` = '2'");
+        $stat = mysqli_fetch_assoc($stat);
+        $luong = $stat['luong'];
+        $ltime = $stat['time'];
+        $sleep = $stat['sleep'];
+        $rtime = $stat['timerun'];
+        $success = $stat['success'];
+        $error = $stat['error'];
+        $time = time();
+        $gtime = $ctime / $luong * $ltime * 60;
+        $mtime = $gtime + $time + $sleep;
+        echo '- Số đơn còn lại: <b>' . $ctime . '</b> (Đơn)<br>
                 - Luồng đang chạy: <b>' . $luong . '</b> (Threads)<br>
                 - Thời gian cách mỗi lần chạy: <b>' . $ltime . '</b> (Phút)<br>
                 - Thời gian để chạy hết 1 vòng đơn: <b>' . $gtime . '</b> (Giây)<br>
@@ -79,7 +79,7 @@
                 - Thời gian chạy gần nhất: <b>' . date('H:i:s - d/m', $rtime) . '</b> (Thời Gian)<br>
                 - Số đơn đã chạy thành công: <b>' . $success . '</b> (Đơn)<br>
                 - Số đơn đã chạy không thành công: <b>' . $error . '</b> (Đơn)';
-                            ?>
+        ?>
                             <center>
                                 <h4>Log Run:</h4>
                             </center>

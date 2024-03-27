@@ -1,4 +1,5 @@
 <?php
+
 $quan = [];
 $page = "view_fb";
 include("../_System/config.php");

@@ -1,4 +1,5 @@
 <?php
+
 function autocc_done($id)
 {
     $data = '{
@@ -29,13 +30,13 @@ function autocc_done($id)
 
 function autocc($url, $sl, $sv)
 {
-    if($sv == 1){
+    if($sv == 1) {
         $speed = 'low';
-    }elseif($sv == 2){
+    } elseif($sv == 2) {
         $speed = 'medium';
-    }elseif($sv == 3){
+    } elseif($sv == 3) {
         $speed = 'normal';
-    }elseif($sv == 4){
+    } elseif($sv == 4) {
         $speed = 'high';
     }
 

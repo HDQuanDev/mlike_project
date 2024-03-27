@@ -1,4 +1,5 @@
-<?
+<?php
+
 $hdq = "ok";
 $page = 'fb_feeling';
 require_once('../../../_System/db.php');

@@ -8,7 +8,7 @@ switch ($_GET['act']) {
     default:
         // Điều Chỉnh Giá
         $gia = $gia1;
-?>
+        ?>
         <script>
             function format_curency(a) {
                 a.value = a.value.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
@@ -70,7 +70,7 @@ switch ($_GET['act']) {
 </p>
 </div>-->
                     <!-- thong bao -->
-                    <!--<? if (!isset($_POST['add'])) { ?>
+                    <!--<?php if (!isset($_POST['add'])) { ?>
                         <script>
                             var sangml = document.createElement("sangml");
                             sangml.innerHTML = "<img class='card-img-top' src='https://daotao.ulis.vnu.edu.vn/files/uploads/2018/04/thong-bao660x350-600x350.png'><hr><big><center style='color:#3794ff;'> Đang update mở sv mới , mọi người kiên nhẫn chờ đợi </center></big></b>";
@@ -79,7 +79,7 @@ switch ($_GET['act']) {
                                 buttons: false
                             });
                         </script>
-                    <? } ?>-->
+                    <?php } ?>-->
                     <div class="alert alert-warning" role="alert">
                         <strong>Lưu ý:</strong><br>
                         - <mark style="color:red;"><strong>Định Dạng nhập link : Link rút gọn ở đt hoặc link máy tính đều được.</strong></mark> <br>
@@ -142,9 +142,9 @@ switch ($_GET['act']) {
             }
         </script>
     <?php
-        break;
+                break;
     case 'history':
-    ?>
+        ?>
         <div class="card border-danger border-bottom border-3 border-0">
             <div class="card-header">
 
@@ -166,16 +166,16 @@ switch ($_GET['act']) {
                         </thead>
                         <tbody class="list">
                             <?php
-                            if ($row['rule'] == 99) {
-                                $result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `dv` = 'save_tt' ORDER BY id DESC LIMIT 0,1000");
-                            } else {
-                                $result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `user` = '" . $login . "' AND `dv` = 'save_tt' ORDER BY id DESC LIMIT 0,1000");
-                            }
-                            if ($result1) {
-                                while ($ro = mysqli_fetch_assoc($result1)) {
-                                    $tt = $ro['trangthai'];
-                                    $t = $ro['time'];
-                            ?>
+                                if ($row['rule'] == 99) {
+                                    $result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `dv` = 'save_tt' ORDER BY id DESC LIMIT 0,1000");
+                                } else {
+                                    $result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `user` = '" . $login . "' AND `dv` = 'save_tt' ORDER BY id DESC LIMIT 0,1000");
+                                }
+        if ($result1) {
+            while ($ro = mysqli_fetch_assoc($result1)) {
+                $tt = $ro['trangthai'];
+                $t = $ro['time'];
+                ?>
                                     <tr>
                                         <td class="id"><?= $ro['id']; ?></td>
                                         <td class="time"><?php echo time_func($t); ?></td>
@@ -186,12 +186,12 @@ switch ($_GET['act']) {
                                         <td class="tt"><?php trangthai($tt); ?></td>
                                     </tr>
                             <?php
-                                }
-                                echo '</tbody>
+            }
+            echo '</tbody>
 </table>
 ';
-                            }
-                            ?>
+        }
+        ?>
                 </div>
             </div>
             <div class="card-footer border-0 text-center py-4">

@@ -1,4 +1,5 @@
-<?
+<?php
+
 $hdq = "ok";
 $page = 'view_ig';
 require_once('../../../_System/db.php');

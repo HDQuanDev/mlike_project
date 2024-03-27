@@ -16,12 +16,12 @@ require_once('../_System/head.php');
 <div class="list-group-item"><p class="list-group-item-text text-center"><span class="w3-opacity text-center"><a href="?status=1"><span class="btn btn-primary btn-rounded btn-sm">Đang Xử Lý</span></a> <a href="?status=2"><span class="btn btn-success btn-rounded btn-sm">Hoàn Thành</span></a> <a href="?status=3"><span class="btn btn-warning btn-rounded btn-sm">Đang Chạy</span></a> <a href="?status=4"><span class="btn btn-danger btn-rounded btn-sm">Bị Hủy</span></a></span></p></div></div>
 
 <?php
-if($_GET['action']){
-$id = $_GET['id'];
-$tt = $_GET['action'];
-mysqli_query($db,"UPDATE `dichvu` SET `trangthai` = '$tt' WHERE `id` = '$id'");
-echo "<script>swal('Hệ Thống!','Chỉnh sửa trạng thái ID ".$id." thành công!','success');</script>";
-echo '<script>setTimeout(function(){
+if($_GET['action']) {
+    $id = $_GET['id'];
+    $tt = $_GET['action'];
+    mysqli_query($db, "UPDATE `dichvu` SET `trangthai` = '$tt' WHERE `id` = '$id'");
+    echo "<script>swal('Hệ Thống!','Chỉnh sửa trạng thái ID ".$id." thành công!','success');</script>";
+    echo '<script>setTimeout(function(){
     window.location="'.$url.'#'.$id.'";
 }, 3000);</script>';
 }
@@ -45,25 +45,23 @@ echo '<script>setTimeout(function(){
 </thead>
 <tbody class="list">
 <?php
-if($_GET['status']){
-	$dv = $_GET['status'];
-				$result1 = mysqli_query($db,"SELECT * FROM `dichvu` WHERE `trangthai` = '$dv' AND `bh` = '2' ORDER BY id DESC LIMIT 500");
-}else{
-	$result1 = mysqli_query($db,"SELECT * FROM `dichvu` WHERE `bh` = '2' ORDER BY id DESC LIMIT 500");
-	}
-				if($result1)
-				{
-while($ro = mysqli_fetch_assoc($result1))
-				{
-					$dv = $ro['dv'];
-					$tt = $ro['trangthai'];
-if($ro['api'] == ''){
-$api = 'Không Có';
-}else{
-$api = $ro['api'];
+if($_GET['status']) {
+    $dv = $_GET['status'];
+    $result1 = mysqli_query($db, "SELECT * FROM `dichvu` WHERE `trangthai` = '$dv' AND `bh` = '2' ORDER BY id DESC LIMIT 500");
+} else {
+    $result1 = mysqli_query($db, "SELECT * FROM `dichvu` WHERE `bh` = '2' ORDER BY id DESC LIMIT 500");
 }
-$t = $ro['time'];
-				?>
+if($result1) {
+    while($ro = mysqli_fetch_assoc($result1)) {
+        $dv = $ro['dv'];
+        $tt = $ro['trangthai'];
+        if($ro['api'] == '') {
+            $api = 'Không Có';
+        } else {
+            $api = $ro['api'];
+        }
+        $t = $ro['time'];
+        ?>
 <tr>
 <td class="id"><span id="<?=$ro['id'];?>"><?php echo $ro['id']; ?></span></td>
 <td colspan="dv"><?php dichvut($dv);  ?></td>
@@ -76,22 +74,22 @@ $t = $ro['time'];
 <td class="time"><?php echo time_func($t); ?></td>
 <td class="tt"><?php trangthai($tt); ?></td>
 <?php
-if($tt == 1 || $tt ==3){
-?>
+if($tt == 1 || $tt == 3) {
+    ?>
 <td class="cn"><a href="?action=3&id=<?=$ro['id'];?>">Đang Chạy</a> | <a href="?action=4&id=<?=$ro['id'];?>">Bị Hủy</a> | <a href="?action=2&id=<?=$ro['id'];?>">Hoàn Thành</a></td>
 <?php
-}else{
-echo '<td class="cn"></td>';
+} else {
+    echo '<td class="cn"></td>';
 }
-?>
+        ?>
 </tr>
-				<?php 
-				}
-echo '</tbody>
+				<?php
+    }
+    echo '</tbody>
 </table>
 ';
 }
-				?>
+?>
  
 </div></div></div>
 

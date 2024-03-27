@@ -23,52 +23,50 @@ require_once('../_System/head.php');
         </thead>
         <tbody class="list">
 <?php
-				$result1 = mysqli_query($db,"SELECT * FROM `lichsu` WHERE `site` = '$site' ORDER BY id DESC LIMIT 1000");
-				if($result1)
-				{
-while($ro = mysqli_fetch_assoc($result1))
-				{
-				  $goc = $ro['goc'];
-				  $goc = number_format($goc);
-				  if($ro['loai'] == '3'){
-   $nd = ''.$ro['nd'].'';
-   $gt = '<span class="badge bg-primary" role="alert">'.$goc.'₫</span> + <span class="badge bg-danger" role="alert">0₫</span> = <span class="badge bg-success" role="alert">'.$goc.'₫</span>';
-				  }elseif($ro['loai'] == '2'){
-				    $idgd = $ro['idgd'];
-				    $idgd = number_format($idgd);
-		   $nd = ''.$ro['nd'].' <span class="badge bg-info" role="alert">'.$idgd.'₫</span>';
-				    $quan = $ro['goc'];
-				    $dz = $ro['gt'];
-				    $vl = $ro['bd'];
-				    $vll = number_format($vl);
-				    if($dz == '-'){
-$quandz = $quan-$vl;
-$quandz = number_format($quandz);
-				    }else{
-				      $quandz = $quan+$vl;
-				      $quandz = number_format($quandz);
-				    }
-				    
-				    $gt = '<span class="badge bg-primary" role="alert">'.$goc.'₫</span> '.$ro['gt'].' <span class="badge bg-danger" role="alert">'.$vll.'₫</span> = <span class="badge bg-success" role="alert">'.$quandz.'₫</span>';
-				  }elseif($ro['loai'] == '1'){
-				    $idgd = $ro['idgd'];
-		   $nd = ''.$ro['nd'].' <span class="badge bg-info" role="alert">'.$idgd.'</span>';
-				    $quan = $ro['goc'];
-				    $dz = $ro['gt'];
-				    $vl = $ro['bd'];
-				    $vll = number_format($vl);
-				    if($dz == '-'){
-$quandz = $quan-$vl;
-$quandz = number_format($quandz);
-				    }else{
-				      $quandz = $quan+$vl;
-				      $quandz = number_format($quandz);
-				    }
-				    
-				    $gt = '<span class="badge bg-primary" role="alert">'.$goc.'₫</span> '.$ro['gt'].' <span class="badge bg-danger" role="alert">'.$vll.'₫</span> = <span class="badge bg-success" role="alert">'.$quandz.'₫</span>';
-				  }
-				 $t = $ro['time'];
-				?>
+                $result1 = mysqli_query($db, "SELECT * FROM `lichsu` WHERE `site` = '$site' ORDER BY id DESC LIMIT 1000");
+if($result1) {
+    while($ro = mysqli_fetch_assoc($result1)) {
+        $goc = $ro['goc'];
+        $goc = number_format($goc);
+        if($ro['loai'] == '3') {
+            $nd = ''.$ro['nd'].'';
+            $gt = '<span class="badge bg-primary" role="alert">'.$goc.'₫</span> + <span class="badge bg-danger" role="alert">0₫</span> = <span class="badge bg-success" role="alert">'.$goc.'₫</span>';
+        } elseif($ro['loai'] == '2') {
+            $idgd = $ro['idgd'];
+            $idgd = number_format($idgd);
+            $nd = ''.$ro['nd'].' <span class="badge bg-info" role="alert">'.$idgd.'₫</span>';
+            $quan = $ro['goc'];
+            $dz = $ro['gt'];
+            $vl = $ro['bd'];
+            $vll = number_format($vl);
+            if($dz == '-') {
+                $quandz = $quan - $vl;
+                $quandz = number_format($quandz);
+            } else {
+                $quandz = $quan + $vl;
+                $quandz = number_format($quandz);
+            }
+
+            $gt = '<span class="badge bg-primary" role="alert">'.$goc.'₫</span> '.$ro['gt'].' <span class="badge bg-danger" role="alert">'.$vll.'₫</span> = <span class="badge bg-success" role="alert">'.$quandz.'₫</span>';
+        } elseif($ro['loai'] == '1') {
+            $idgd = $ro['idgd'];
+            $nd = ''.$ro['nd'].' <span class="badge bg-info" role="alert">'.$idgd.'</span>';
+            $quan = $ro['goc'];
+            $dz = $ro['gt'];
+            $vl = $ro['bd'];
+            $vll = number_format($vl);
+            if($dz == '-') {
+                $quandz = $quan - $vl;
+                $quandz = number_format($quandz);
+            } else {
+                $quandz = $quan + $vl;
+                $quandz = number_format($quandz);
+            }
+
+            $gt = '<span class="badge bg-primary" role="alert">'.$goc.'₫</span> '.$ro['gt'].' <span class="badge bg-danger" role="alert">'.$vll.'₫</span> = <span class="badge bg-success" role="alert">'.$quandz.'₫</span>';
+        }
+        $t = $ro['time'];
+        ?>
 <tr>
  <td class="id"><?=$ro['id'];?></td>
 <td class="time"><?php echo time_func($t); ?></td>
@@ -76,10 +74,10 @@ $quandz = number_format($quandz);
 <td class="hd"><?php echo $nd; ?></td>
 <td class="sd"><?php echo $gt; ?></td>
 </tr>
-				<?php 
-				}
+				<?php
+    }
 }
-				?>
+?>
 				</tbody>
 </table>
 

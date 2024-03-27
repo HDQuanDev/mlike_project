@@ -2,39 +2,39 @@
 require_once('../_System/db.php');
 $title = "Chỉnh Sửa Bảng Giá";
 require_once('../_System/head.php');
-if(!isset($_SESSION['u'])){
-Header('Location:/login');
-die();
+if(!isset($_SESSION['u'])) {
+    Header('Location:/login');
+    die();
 }
-if($row['rule'] !== '99'){
-Header('Location:/404');
-die();
+if($row['rule'] !== '99') {
+    Header('Location:/404');
+    die();
 }
 if (isset($_POST['web'])) {
-$dl = mysqli_real_escape_string($db, $_POST['dl']);
-$ctv = mysqli_real_escape_string($db, $_POST['ctv']);
-$ckref = mysqli_real_escape_string($db, $_POST['ckref']);
-$minref = mysqli_real_escape_string($db, $_POST['minref']);
-$min1 = mysqli_real_escape_string($db, $_POST['min1']);
-$max1 = mysqli_real_escape_string($db, $_POST['max1']);
-$min5 = mysqli_real_escape_string($db, $_POST['min5']);
-$max5 = mysqli_real_escape_string($db, $_POST['max5']);
-$min2 = mysqli_real_escape_string($db, $_POST['min2']);
-$max2 = mysqli_real_escape_string($db, $_POST['max2']);
-$min3 = mysqli_real_escape_string($db, $_POST['min3']);
-$max3 = mysqli_real_escape_string($db, $_POST['max3']);
-$min4 = mysqli_real_escape_string($db, $_POST['min4']);
-$max4 = mysqli_real_escape_string($db, $_POST['max4']);
-$smin = mysqli_real_escape_string($db, $_POST['smin']);
-$smax = mysqli_real_escape_string($db, $_POST['smax']);
-$submin = mysqli_real_escape_string($db, $_POST['submin']);
-$submax = mysqli_real_escape_string($db, $_POST['submax']);
-$cmin = mysqli_real_escape_string($db, $_POST['cmin']);
-$cmax = mysqli_real_escape_string($db, $_POST['cmax']);
+    $dl = mysqli_real_escape_string($db, $_POST['dl']);
+    $ctv = mysqli_real_escape_string($db, $_POST['ctv']);
+    $ckref = mysqli_real_escape_string($db, $_POST['ckref']);
+    $minref = mysqli_real_escape_string($db, $_POST['minref']);
+    $min1 = mysqli_real_escape_string($db, $_POST['min1']);
+    $max1 = mysqli_real_escape_string($db, $_POST['max1']);
+    $min5 = mysqli_real_escape_string($db, $_POST['min5']);
+    $max5 = mysqli_real_escape_string($db, $_POST['max5']);
+    $min2 = mysqli_real_escape_string($db, $_POST['min2']);
+    $max2 = mysqli_real_escape_string($db, $_POST['max2']);
+    $min3 = mysqli_real_escape_string($db, $_POST['min3']);
+    $max3 = mysqli_real_escape_string($db, $_POST['max3']);
+    $min4 = mysqli_real_escape_string($db, $_POST['min4']);
+    $max4 = mysqli_real_escape_string($db, $_POST['max4']);
+    $smin = mysqli_real_escape_string($db, $_POST['smin']);
+    $smax = mysqli_real_escape_string($db, $_POST['smax']);
+    $submin = mysqli_real_escape_string($db, $_POST['submin']);
+    $submax = mysqli_real_escape_string($db, $_POST['submax']);
+    $cmin = mysqli_real_escape_string($db, $_POST['cmin']);
+    $cmax = mysqli_real_escape_string($db, $_POST['cmax']);
 
-mysqli_query($db, "UPDATE `system` SET `dl`= '$dl', `ctv`='$ctv', `ckref`='$ckref', `minref`='$minref', `min1`='$min1', `max1`='$max1', `min2`='$min2', `max2`='$max2', `min3`='$min3', `max3`='$max3', `min4`='$min4', `max4`='$max4', `cmin`='$cmin', `cmax`='$cmax', `smin`='$smin', `smax`='$smax', `submin`='$submin', `submax`='$submax', `max5`='$max5', `min5`='$min5'");
-echo "<script>swal('Hệ Thống!','Cập nhật Website Thành Công!','success');</script>";
-echo '<script>setTimeout(function(){
+    mysqli_query($db, "UPDATE `system` SET `dl`= '$dl', `ctv`='$ctv', `ckref`='$ckref', `minref`='$minref', `min1`='$min1', `max1`='$max1', `min2`='$min2', `max2`='$max2', `min3`='$min3', `max3`='$max3', `min4`='$min4', `max4`='$max4', `cmin`='$cmin', `cmax`='$cmax', `smin`='$smin', `smax`='$smax', `submin`='$submin', `submax`='$submax', `max5`='$max5', `min5`='$min5'");
+    echo "<script>swal('Hệ Thống!','Cập nhật Website Thành Công!','success');</script>";
+    echo '<script>setTimeout(function(){
     window.location="'.$url.'";
 }, 3000);</script>';
 }

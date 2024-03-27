@@ -1,4 +1,5 @@
 <?php
+
 function gettimee($giay)
 {
     $time = $giay;
@@ -70,28 +71,29 @@ function mfb_likett($id, $sl)
     return $response;
 }
 
-function mfb_like($id, $sl){
-    $gia = 5*$sl;
-$curl = curl_init();
+function mfb_like($id, $sl)
+{
+    $gia = 5 * $sl;
+    $curl = curl_init();
 
-curl_setopt_array($curl, array(
-  CURLOPT_URL => 'https://gateway.mfb.vn/api/facebook-ads/create',
-  CURLOPT_RETURNTRANSFER => true,
-  CURLOPT_ENCODING => '',
-  CURLOPT_MAXREDIRS => 10,
-  CURLOPT_TIMEOUT => 0,
-  CURLOPT_FOLLOWLOCATION => true,
-  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-  CURLOPT_CUSTOMREQUEST => 'POST',
-  CURLOPT_POSTFIELDS =>'{"link":"https://www.facebook.com/'.$id.'","type":"like_sv4","object_id":"pfbid0214N6e42RRJS8vzPnBm5uRKrYChKbDa5nbnb91CnoGRvHF5ubmtQ8UboBNnpGPjRil","quantity":'.$sl.',"prices":'.$gia.',"speed":"low"}',
-  CURLOPT_HTTPHEADER => array(
-    'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvZ2F0ZXdheS5tZmIudm5cL2FwaVwvbG9naW4iLCJpYXQiOjE2OTEzMjI1NTksImV4cCI6MTcyMjg1ODU1OSwibmJmIjoxNjkxMzIyNTU5LCJqdGkiOiJqUHNQekJlVE45a3BFMnB4Iiwic3ViIjozOTA3LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.uRW0dv2FIAq_C23dm69u52HYP2Np350Lv7ZVayslgk0',
-    'Content-Type: application/json'
-  ),
-));
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => 'https://gateway.mfb.vn/api/facebook-ads/create',
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => '',
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => 'POST',
+      CURLOPT_POSTFIELDS => '{"link":"https://www.facebook.com/'.$id.'","type":"like_sv4","object_id":"pfbid0214N6e42RRJS8vzPnBm5uRKrYChKbDa5nbnb91CnoGRvHF5ubmtQ8UboBNnpGPjRil","quantity":'.$sl.',"prices":'.$gia.',"speed":"low"}',
+      CURLOPT_HTTPHEADER => array(
+        'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvZ2F0ZXdheS5tZmIudm5cL2FwaVwvbG9naW4iLCJpYXQiOjE2OTEzMjI1NTksImV4cCI6MTcyMjg1ODU1OSwibmJmIjoxNjkxMzIyNTU5LCJqdGkiOiJqUHNQekJlVE45a3BFMnB4Iiwic3ViIjozOTA3LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.uRW0dv2FIAq_C23dm69u52HYP2Np350Lv7ZVayslgk0',
+        'Content-Type: application/json'
+      ),
+    ));
 
-$response = curl_exec($curl);
+    $response = curl_exec($curl);
 
-curl_close($curl);
-return $response;
+    curl_close($curl);
+    return $response;
 }

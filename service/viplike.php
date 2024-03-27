@@ -10,30 +10,30 @@ switch ($_GET['act']) {
         $gia = $gia1;
         $min = '50';
         $max = '2000';
-?>
+        ?>
 
         <?php
-        if ($_GET['del'] == 'ok' && $_GET['user'] && $_GET['id']) {
-            $id = $_GET['id'];
-            $user = $_GET['user'];
-            $cc = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `dv` = 'fb_viplike' AND `user` = '$login' AND `id` = '$id'");
-            $c = mysqli_fetch_assoc($cc);
-            $ccc = mysqli_num_rows($cc);
-            if ($ccc == 1) {
-                mysqli_query($db, "DELETE FROM `dv_other` WHERE `dv` = 'fb_viplike' AND `user` = '$login' AND `id` = '$id'");
-                echo "<script>swal('Hệ Thống!','Xoá ID Thành Công! ','success');</script>";
-                echo '<script>setTimeout(function(){
+                if ($_GET['del'] == 'ok' && $_GET['user'] && $_GET['id']) {
+                    $id = $_GET['id'];
+                    $user = $_GET['user'];
+                    $cc = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `dv` = 'fb_viplike' AND `user` = '$login' AND `id` = '$id'");
+                    $c = mysqli_fetch_assoc($cc);
+                    $ccc = mysqli_num_rows($cc);
+                    if ($ccc == 1) {
+                        mysqli_query($db, "DELETE FROM `dv_other` WHERE `dv` = 'fb_viplike' AND `user` = '$login' AND `id` = '$id'");
+                        echo "<script>swal('Hệ Thống!','Xoá ID Thành Công! ','success');</script>";
+                        echo '<script>setTimeout(function(){
     window.location="' . $url . '";
 }, 1500);</script>';
-            } else {
-                echo "<script>swal('Hệ Thống!','Rất tiếc chưa thể xử lý yêu cầu của bạn, vui lòng liên hệ Admin!','error');</script>";
-                echo '<script>setTimeout(function(){
+                    } else {
+                        echo "<script>swal('Hệ Thống!','Rất tiếc chưa thể xử lý yêu cầu của bạn, vui lòng liên hệ Admin!','error');</script>";
+                        echo '<script>setTimeout(function(){
     window.location="' . $url . '";
 }, 1500);</script>';
-            }
-        }
+                    }
+                }
         if (isset($_POST['add']) && isset($login)) {
-           
+
             $id = mysqli_real_escape_string($db, $_POST['id']);
             $sl = mysqli_real_escape_string($db, $_POST['sl']);
             $day = mysqli_real_escape_string($db, $_POST['day']);
@@ -185,7 +185,7 @@ switch ($_GET['act']) {
     <?php
         break;
     case 'history':
-    ?>
+        ?>
         <div class="card border-danger border-bottom border-3 border-0">
             <div class="card-header">
 
@@ -207,22 +207,22 @@ switch ($_GET['act']) {
                         </thead>
                         <tbody class="list">
                             <?php
-                            if ($row['rule'] == 99) {
-                                $result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `dv` = 'fb_viplike' ORDER BY id DESC LIMIT 0,1000");
-                            } else {
-                                $result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `user` = '" . $login . "' AND `dv` = 'fb_viplike' ORDER BY id DESC LIMIT 0,1000");
-                            }
-                            if ($result1) {
-                                while ($ro = mysqli_fetch_assoc($result1)) {
-                                    $tt = $ro['trangthai'];
-                                    $t = $ro['time'];
-                                    if ($tt == '5') {
-                                        //| <a class="badge badge rounded-pill badge-soft-success mb-3" href="?user='.$ro['user'].'&id='.$ro['id'].'&del=ok">Xoá ID</a>
-                                        $gh = '';
-                                    } else {
-                                        $gh = '';
-                                    }
-                            ?>
+                                if ($row['rule'] == 99) {
+                                    $result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `dv` = 'fb_viplike' ORDER BY id DESC LIMIT 0,1000");
+                                } else {
+                                    $result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `user` = '" . $login . "' AND `dv` = 'fb_viplike' ORDER BY id DESC LIMIT 0,1000");
+                                }
+        if ($result1) {
+            while ($ro = mysqli_fetch_assoc($result1)) {
+                $tt = $ro['trangthai'];
+                $t = $ro['time'];
+                if ($tt == '5') {
+                    //| <a class="badge badge rounded-pill badge-soft-success mb-3" href="?user='.$ro['user'].'&id='.$ro['id'].'&del=ok">Xoá ID</a>
+                    $gh = '';
+                } else {
+                    $gh = '';
+                }
+                ?>
                                     <tr>
                                         <td class="id"><?= $ro['id']; ?></td>
                                         <td class="time"><?php echo time_func($t); ?></td>
@@ -233,12 +233,12 @@ switch ($_GET['act']) {
                                         <td class="tt"><?php trangthai($tt); ?> <?= $gh; ?></td>
                                     </tr>
                             <?php
-                                }
-                                echo '</tbody>
+            }
+            echo '</tbody>
 </table>
 ';
-                            }
-                            ?>
+        }
+        ?>
                 </div>
             </div>
             <div class="card-footer border-0 text-center py-4">

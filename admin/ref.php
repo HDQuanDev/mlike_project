@@ -11,12 +11,12 @@ require_once('../_System/head.php');
             <div class="card-body">
 <?php
 
-if($_GET['view']){
-$id = $_GET['view'];
-$tko = mysqli_query($db,"SELECT * FROM `member` WHERE `username` = '$id'");
-				$tko = mysqli_num_rows($tko);
-if($tko != 0){
-  ?>
+if($_GET['view']) {
+    $id = $_GET['view'];
+    $tko = mysqli_query($db, "SELECT * FROM `member` WHERE `username` = '$id'");
+    $tko = mysqli_num_rows($tko);
+    if($tko != 0) {
+        ?>
 <div class="table-responsive scrollbar">
   <div class="mb-3">
     <div class="alert alert-primary" role="alert"><center>Thống Kê: <strong><?=$id;?></strong></center></div>
@@ -31,32 +31,30 @@ if($tko != 0){
 </thead>
 <tbody class="list">
 <?php
-				$result1 = mysqli_query($db,"SELECT * FROM `member` WHERE `ref` = '$id'");
-				if($result1)
-				{
-while($ro = mysqli_fetch_assoc($result1))
-				{
-				   $vnd = $ro['vndgt'];
-$formattedNum = number_format($vnd);
-$vnd = $formattedNum; 
-				?>
+                      $result1 = mysqli_query($db, "SELECT * FROM `member` WHERE `ref` = '$id'");
+        if($result1) {
+            while($ro = mysqli_fetch_assoc($result1)) {
+                $vnd = $ro['vndgt'];
+                $formattedNum = number_format($vnd);
+                $vnd = $formattedNum;
+                ?>
 <tr>
 <td class="id"><?php echo $ro['id']; ?></td>
 <td class="user"><a href="/admin/user.php?edit=<?php echo $ro['username']; ?>"><?php echo $ro['username']; ?></a></td>
 <td class="tn"><?=$vnd;?> ₫</td>
 </tr>
-				<?php 
-				}
-echo '</tbody>
+				<?php
+            }
+            echo '</tbody>
 </table>
 ';
-}
-?>
+        }
+        ?>
 </div></div></div></div>
 <?php
-require_once('../_System/end.php');
-die();
-}
+        require_once('../_System/end.php');
+        die();
+    }
 }
 ?>
 <div class="table-responsive scrollbar">
@@ -70,24 +68,22 @@ die();
 </thead>
 <tbody class="list">
 <?php
-				$result1 = mysqli_query($db,"SELECT * FROM `member`");
-				if($result1)
-				{
-while($ro = mysqli_fetch_assoc($result1))
-				{
-				?>
+                $result1 = mysqli_query($db, "SELECT * FROM `member`");
+if($result1) {
+    while($ro = mysqli_fetch_assoc($result1)) {
+        ?>
 <tr>
 <td class="id"><?php echo $ro['id']; ?></td>
 <td class="user"><a href="/admin/user.php?edit=<?php echo $ro['username']; ?>"><?php echo $ro['username']; ?></a></td>
 <td class="tn"><a class="btn btn-success" href="?view=<?=$ro['username'];?>"><i class="fa fa-eye"></i> Xem</a></td>
 </tr>
-				<?php 
-				}
-echo '</tbody>
+				<?php
+    }
+    echo '</tbody>
 </table>
 ';
 }
-				?>
+?>
 			
 </div></div></div></div>
 

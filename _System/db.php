@@ -1,4 +1,5 @@
 <?php
+
 ob_start();
 session_start();
 date_default_timezone_set('Asia/Ho_Chi_Minh');
@@ -24,10 +25,10 @@ $percent_promotion = 10;
 if ($site == 'like1s.vn') {
     $site = 'mlike.vn';
     $domain = 'https://like1s.vn';
-}elseif ($site == 'api.like1s.vn') {
+} elseif ($site == 'api.like1s.vn') {
     $site = 'mlike.vn';
     $domain = 'https://api.like1s.vn';
-}elseif ($site == 'localhost') {
+} elseif ($site == 'localhost') {
     $site = 'mlike.vn';
     $domain = 'https://mlike.vn';
 }
@@ -433,7 +434,7 @@ if (isset($login) || isset($_POST['token'])) {
                     $gia1 = 70;
                 }
                 // kết khúc set giá dại lý
-            } else if ($row['rule'] == 33) { // bắt đầu sét giá cộng tác viên
+            } elseif ($row['rule'] == 33) { // bắt đầu sét giá cộng tác viên
                 if ($page == 'like_fb') { //Like Facebook
                     $gia1 = 6.5; //Server 1
                     $gia2 = 11; // 2
@@ -578,7 +579,7 @@ if (isset($login) || isset($_POST['token'])) {
                 } elseif ($page == 'like_ytb') {
                     $gia1 = 70;
                 }
-                //kết thúc set giá ctv    
+                //kết thúc set giá ctv
             } else { // bắt đầu set giá thành viên
                 if ($page == 'like_fb') { //Like Facebook
                     $gia1 = 6.5; //Server 1
@@ -724,7 +725,7 @@ if (isset($login) || isset($_POST['token'])) {
                 } elseif ($page == 'like_ytb') {
                     $gia1 = 70;
                 }
-                // kết thúc set giá thành viên    
+                // kết thúc set giá thành viên
             }
         }
     } else {

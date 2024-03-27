@@ -1,4 +1,5 @@
-<?
+<?php
+
 $hdq = "ok";
 $page = 'tim_tt_tay';
 require_once('../../../_System/config.php');

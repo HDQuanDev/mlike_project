@@ -23,17 +23,15 @@ require_once('../_System/head.php');
 </thead>
 <tbody class="list">
 <?php
-				$result1 = mysqli_query($db,"SELECT * FROM `momo` WHERE `site` = '$site' ORDER BY id DESC LIMIT 0,1000");
-				if($result1)
-				{
+                $result1 = mysqli_query($db, "SELECT * FROM `momo` WHERE `site` = '$site' ORDER BY id DESC LIMIT 0,1000");
+if($result1) {
 
 
-while($ro = mysqli_fetch_assoc($result1))
-				{
-				   $vnd = $ro['vnd'];
-				   $vnd = number_format($vnd);
-				   $t = $ro['time'];
-				  ?>
+    while($ro = mysqli_fetch_assoc($result1)) {
+        $vnd = $ro['vnd'];
+        $vnd = number_format($vnd);
+        $t = $ro['time'];
+        ?>
 <tr>
  <td class="id"><?=$ro['id'];?></td>
  <td class="time"><?php echo time_func($t); ?></td>
@@ -42,11 +40,11 @@ while($ro = mysqli_fetch_assoc($result1))
  <td class="st"><?=$vnd;?>₫</td>
  <td class="idgd"><?=$ro['text'];?></td>
 </tr>
-				<?php 
-				}
+				<?php
+    }
 
 }
-				?>
+?>
 </tbody>
 
 </table>

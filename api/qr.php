@@ -1,4 +1,5 @@
 <?php
+
 if (isset($_POST['act']) && isset($_POST['vnd']) && isset($_POST['nd'])) {
     if ($_POST['act'] == 'getqr') {
         $vnd = $_POST['vnd'];

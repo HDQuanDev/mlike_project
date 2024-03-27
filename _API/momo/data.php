@@ -1,4 +1,5 @@
 <?php
+
 $hdq = 'ok';
 
 require_once('../../_System/db.php');
@@ -91,9 +92,9 @@ for ($i = 0; $i <= $con; $i++) {
                         }
                         mysqli_query($db, "INSERT INTO `lichsu` SET `nd` = '$nd1',`bd` = '$bd',`user`='$user',`time`='$time', `loai` = '2', `goc` = '$dd', `idgd` = '$bd', `gt` = '$gtls'");
                         mysqli_query($db, "UPDATE `member` SET `vnd` = `vnd`+'$tien' WHERE `username` = '$user'");
-                        if($u['rule'] < 66){
-                            if($tien >= 1000000){
-                                mysqli_query($db, "UPDATE `member` SET `rule` = '66' WHERE `username` = '$user'"); 
+                        if($u['rule'] < 66) {
+                            if($tien >= 1000000) {
+                                mysqli_query($db, "UPDATE `member` SET `rule` = '66' WHERE `username` = '$user'");
                             }
                         }
                         $tx = 'Nap Auto Qua #' . $app . ' (mlike #' . rand(1000000, 9999999) . ')';

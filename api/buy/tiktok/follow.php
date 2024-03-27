@@ -1,4 +1,5 @@
-<?
+<?php
+
 $hdq = "ok";
 $page = 'follow_tt';
 require_once('../../../_System/db.php');

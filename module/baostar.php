@@ -1,4 +1,5 @@
 <?php
+
 function baostar($id, $sl)
 {
     $curl = curl_init();

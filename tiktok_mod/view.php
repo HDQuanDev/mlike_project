@@ -1,4 +1,5 @@
 <?php
+
 $hdq = "ok";
 require_once('../_System/db.php');
 $t = time();

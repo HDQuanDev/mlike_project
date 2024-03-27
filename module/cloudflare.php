@@ -88,8 +88,12 @@ class bt_api
     private $BT_PANEL = "http://45.118.132.201:2003";
     public function __construct($bt_panel = null, $bt_key = null)
     {
-        if ($bt_panel) $this->BT_PANEL = $bt_panel;
-        if ($bt_key) $this->BT_KEY = $bt_key;
+        if ($bt_panel) {
+            $this->BT_PANEL = $bt_panel;
+        }
+        if ($bt_key) {
+            $this->BT_KEY = $bt_key;
+        }
     }
     public function GetLogs()
     {

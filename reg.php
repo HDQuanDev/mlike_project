@@ -117,7 +117,7 @@ if (!isset($_SESSION['so1']) && !isset($_SESSION['so2'])) {
 											</div>';
                                     }
                                 }
-                                ?>
+?>
                                 <div class="form-group">
                                     <label for="inputChoosePassword" class="form-label">Xác Nhận Bạn Là Người Thông Minh:<br>
                                         <strong><?= $_SESSION['so1']; ?> x <?= $_SESSION['so2']; ?> = </strong></label>
