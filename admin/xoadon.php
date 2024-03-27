@@ -74,7 +74,7 @@ switch ($_GET['act']) {
         $sl = $_GET['sl'];
         $time = $_GET['time'];
         $time_2 = $_GET['time_2'];
-        $del = mysqli_query($db, "DELETE FROM `cmt` WHERE `time` > '$time' AND `time` < '$time_2' LIMIT $sl");
+        $del = mysqli_query($db, "DELETE FROM `dv_cmt` WHERE `time` > '$time' AND `time` < '$time_2' LIMIT $sl");
         echo $del;
         echo '<meta http-equiv="refresh" content="2;url=/admin/xoadon?note=Success&act=cmt">';
         break;

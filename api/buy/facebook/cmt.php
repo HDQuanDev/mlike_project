@@ -168,6 +168,9 @@ switch ($_GET['act']) {
                 if (empty($id)) {
                     $array["status"] = 'error';
                     $array["msg"] = 'Vui lòng nhập số ID Post Facebook!';
+                } elseif (filter_var($id, FILTER_VALIDATE_URL) !== false) {
+                    $array["status"] = 'error';
+                    $array["msg"] = 'Vui lòng sử dụng ID Post không sử dụng LINK!';
                 } elseif (empty($cmt)) {
                     $array["status"] = 'error';
                     $array["msg"] = 'Vui lòng nhập Comment!';
@@ -184,27 +187,26 @@ switch ($_GET['act']) {
                     $array["msg"] = 'Bạn không đủ tiền!';
                 } else {
                     if ($sv == 1) {
-                        
-                            $nd1 = 'Tăng Comment Post Facebook ID:';
-                            $bd = $tongtien;
-                            $gt = '-';
-                            $idgd = '(' . $sv . ') ' . $id . ' (' . $sl . ')';
-                            $goc = $row['vnd'];
-                            $time = time();
-                            $save = mysqli_query($db, "INSERT INTO `dv_cmt` SET `sl` = '$sl', `trangthai` = '1', `user`='$login',`profile`='$id',`time` = '$time', `sttdone` = '0', `sotien` = '$tongtien', `done` = '0', `server` = '$nse', `cmt` = '$cmt'");
-                            if ($save) {
-                                mysqli_query($db, "INSERT INTO `lichsu` SET `nd` = '$nd1',`bd` = '$bd',`user`='$login',`time`='$time', `goc` = '$goc', `loai` = '1', `idgd` = '$idgd', `gt` = '$gt'");
-                                mysqli_query($db, "UPDATE `member` SET `vnd` = `vnd`-'$tongtien', `sd` = `sd`+'$tongtien' WHERE `username` = '$login' AND `site` = '$site'");
-                                $array["status"] = 'success';
-                                $array["msg"] = 'Mua Comment Thành Công! Cảm ơn bạn!!';
-                                $r = mysqli_query($db, "SELECT * FROM `dv_cmt` ORDER BY `dv_cmt`.`id` DESC");
-                                $rr = mysqli_fetch_assoc($r);
-                                $array["id_order"] = $rr['id'];
-                            } else {
-                                $array["status"] = 'error';
-                                $array["msg"] = 'Đã xảy ra lỗi khi lên đơn cho bạn, vui lòng thử lại!';
-                            }
-                        
+
+                        $nd1 = 'Tăng Comment Post Facebook ID:';
+                        $bd = $tongtien;
+                        $gt = '-';
+                        $idgd = '(' . $sv . ') ' . $id . ' (' . $sl . ')';
+                        $goc = $row['vnd'];
+                        $time = time();
+                        $save = mysqli_query($db, "INSERT INTO `dv_cmt` SET `sl` = '$sl', `trangthai` = '1', `user`='$login',`profile`='$id',`time` = '$time', `sttdone` = '0', `sotien` = '$tongtien', `done` = '0', `server` = '$nse', `cmt` = '$cmt'");
+                        if ($save) {
+                            mysqli_query($db, "INSERT INTO `lichsu` SET `nd` = '$nd1',`bd` = '$bd',`user`='$login',`time`='$time', `goc` = '$goc', `loai` = '1', `idgd` = '$idgd', `gt` = '$gt'");
+                            mysqli_query($db, "UPDATE `member` SET `vnd` = `vnd`-'$tongtien', `sd` = `sd`+'$tongtien' WHERE `username` = '$login' AND `site` = '$site'");
+                            $array["status"] = 'success';
+                            $array["msg"] = 'Mua Comment Thành Công! Cảm ơn bạn!!';
+                            $r = mysqli_query($db, "SELECT * FROM `dv_cmt` ORDER BY `dv_cmt`.`id` DESC");
+                            $rr = mysqli_fetch_assoc($r);
+                            $array["id_order"] = $rr['id'];
+                        } else {
+                            $array["status"] = 'error';
+                            $array["msg"] = 'Đã xảy ra lỗi khi lên đơn cho bạn, vui lòng thử lại!';
+                        }
                     } else {
                         $array["status"] = 'error';
                         $array["msg"] = 'Lỗi Server Tăng Commnet Không Đúng!';
