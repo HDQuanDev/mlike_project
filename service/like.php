@@ -183,6 +183,7 @@ swal({
                                 - Riêng với avt bìa vui lòng lấy bằng máy tính kích vào hình ảnh rồi copy link có chữ photo mới đúng<br>
                                 *<span style="color: red;"> Chú ý </span> : bật nút like ở trong cài đặt ra trước khi cài (Vào cài đặt => bài viết công khai => bật công khai hết ra nhé <br>
                                 - Đối với bài viết chia sẽ trên điện thoại thường lấy nhầm vào link gốc vui lòng dùng máy tính để lấy <br>
+                                - Đối với link chia sẽ liên kết khác, vidu chia sẽ link youtube vui lòng dùng máy tính để lấy link. Đt get id lỗi chạy k được nhé <br>
                                 - Cài số lượng nhỏ lên được hãy cài tiếp tránh cài sll ko lên được sẽ k hỗ trợ hủy, admin nhận riêng sll siêu tốc độ ib nhé <br>
                                 - Không đọc lưu ý và mô tả , nhập Sai ID sẽ k hoàn tiền. <br>
                         </div>
