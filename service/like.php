@@ -93,7 +93,7 @@ swal({
                     <input type="hidden" value="<?= $row['token']; ?>" id="token">
                     <label>Chọn Server Like:</label>
                     <div class="form-check">
-                        <input class="form-check-input" <? if ($sv4 == 'off') {
+                        <input class="form-check-input" <? if ($sv4 == 'on') {
                                                             echo 'checked';
                                                         }; ?> id="flexRadioDefault1" type="radio" disabled name="sv" value="1" data-bs-toggle="collapse" data-bs-target="#sv1" aria-expanded="false" aria-controls="sv1" /><label class="form-check-label" for="flexRadioDefault1">Server Like 1 (Tốc độ cực chậm dự kiến 10-30 like / 1h tùy thời điểm test ít để cảm nhận, không hỗ trợ hủy hoàn ) </span> <span style="color:red;"><?= $gia1; ?>₫</span> <span class="badge bg-danger">Chậm</span></label>
                     </div> 
