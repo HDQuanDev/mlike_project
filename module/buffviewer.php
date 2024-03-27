@@ -59,8 +59,7 @@ function bv_viewfb($id, $sl, $sv, $mgr)
     $data[0]['post_id'] = $id;
     $data[0]['amount'] = $sl;
     $data[0]['type'] = 1;
-    if ($mgr == 'quandz') {
-    } else {
+    if ($mgr != 'quandz') {
         $data[0]['discount_code'] = $mgr;
     }
     $data[0]['server_id'] = $sv;

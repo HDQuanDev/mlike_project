@@ -39,8 +39,6 @@ while ($ro = mysqli_fetch_assoc($result1)) {
                 echo $quan->msg;
             } elseif ($quan->code == '300') {
                 echo $quan->msg;
-            }else{
-               
             }
             $fp = @fopen('log.txt', "a+");
             $data = 'id: '.$idbuff.' -> '.$quan->msg.' ['.$$date = date('d/m/Y h:i:s a', time()).'] -> server like 1
