@@ -98,10 +98,10 @@ switch ($_GET['act']) {
                     <input type="hidden" value="<?= $row['token']; ?>" id="token">
                     <label>Chọn Server Like:</label>
                     <div class="form-check">
-                     <!--   <input class="form-check-input" <? if ($sv4 == 'on') {
+                     <input class="form-check-input" <? if ($sv4 == 'on') {
                                                             echo 'checked';
                                                         }; ?> id="flexRadioDefault1" disabled type="radio"  name="sv" value="1" data-bs-toggle="collapse" data-bs-target="#sv1" aria-expanded="false" aria-controls="sv1" /><label class="form-check-label" for="flexRadioDefault1">Server Like 1 (Tốc độ chậm - trung bình dự kiến 5-10 like / 1h tùy thời điểm test ít để cảm nhận, không hỗ trợ hủy hoàn ) </span> <span style="color:red;"><?= $gia1; ?>₫</span> <span class="badge bg-warning">Chậm</span></label>
-                    </div>   -->
+                    </div> 
                    <!--  <div class="form-check">
                         <input class="form-check-input" id="flexRadioDefault1" type="radio" name="sv" value="2" data-bs-toggle="collapse" data-bs-target="#sv2" aria-expanded="false" aria-controls="sv2" /><label class="form-check-label" for="flexRadioDefault1">Server Like 2 ( Tốc độ nhanh ổn định <span style="color: red;">Album dể lỗi test ít lên được thì cài tiếp</span> Max 100k ) <span style="color:red;"><?= $gia2; ?>₫</span> <span class="badge bg-success">Chậm</span></label>
                     </div>
@@ -122,7 +122,7 @@ switch ($_GET['act']) {
                         <div id="sv4" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#sv4">
                             <div class="accordion-body alert alert-success"> Mỗi ID chỉ được mua 1 lần </div>
                         </div>
-                 <!--  </div> 
+                   </div> 
                     <div class="form-check">
                         <input class="form-check-input" disabled id="flexRadioDefault1" type="radio" name="sv" value="5" data-bs-toggle="collapse" data-bs-target="#sv2" aria-expanded="false" aria-controls="sv2" /><label class="form-check-label" for="flexRadioDefault1">Server Like 5 ( Tốc độ chậm - trung mình, mở giới hạn quá tải tự đóng mở, ib có hỗ trợ chạy nhanh đơn trên 1k <span style="color: red;"></span> <span style="color: red;"> max 50k </span> ) <span style="color:red;"><?= $gia5; ?>₫</span> <span class="badge bg-danger">Chậm</span></label>
                     </div>
