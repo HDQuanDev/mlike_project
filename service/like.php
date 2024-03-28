@@ -78,7 +78,7 @@ switch ($_GET['act']) {
                         <script>
                             function sayHello() {
                                 var sangml = document.createElement("sangml")
-                                sangml.innerHTML = "<img class='card-img-top' src='https://daotao.ulis.vnu.edu.vn/files/uploads/2018/04/thong-bao660x350-600x350.png'><hr><big><center style='color:#3794ff;'> Hệ thống quá tải , admin đang tài nguyên đợi mở lại sau</big></b>";
+                                sangml.innerHTML = "<img class='card-img-top' src='https://daotao.ulis.vnu.edu.vn/files/uploads/2018/04/thong-bao660x350-600x350.png'><hr><big><center style='color:#3794ff;'> Hệ thống quá tải , admin đang up tài nguyên đợi mở lại sau vài chục phút</big></b>";
                                 swal({
                                     content: sangml,
                                     buttons: false
