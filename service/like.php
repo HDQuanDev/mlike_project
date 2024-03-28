@@ -73,16 +73,21 @@ switch ($_GET['act']) {
 
             }
         </script>
-        <!-- thong bao -->
+        <!-- thong bao-->
          <? if (!isset($_POST['add'])) { ?>
-<script>var sangml = document.createElement("sangml");
-sangml.innerHTML = "<img class='card-img-top' src='https://daotao.ulis.vnu.edu.vn/files/uploads/2018/04/thong-bao660x350-600x350.png'><hr><big><center style='color:#3794ff;'> Hệ thống quá tải vui lòng đợi ít phút admin đang update tài nguyên </center></big></b>";
-swal({
-    content: sangml,
-    buttons: false
-});</script>
- <? } ?>
-        <!--end-->
+                        <script>
+                            function sayHello() {
+                                var sangml = document.createElement("sangml")
+                                sangml.innerHTML = "<img class='card-img-top' src='https://daotao.ulis.vnu.edu.vn/files/uploads/2018/04/thong-bao660x350-600x350.png'><hr><big><center style='color:#3794ff;'> Hệ thống quá tải , admin đang tài nguyên đợi mở lại sau</big></b>";
+                                swal({
+                                    content: sangml,
+                                    buttons: false
+                                });
+                            }
+                            setTimeout(sayHello, 1500);
+                        </script>
+                    <? } ?>
+        <!--end--> 
         <div class="card border-danger border-bottom border-3 border-0">
             <div class="card-header ">
                 <h4>Tăng Like Bài Viết</h4>
