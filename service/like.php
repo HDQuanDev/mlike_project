@@ -119,7 +119,7 @@ swal({
                         </div>
                     </div> 
                     <div class="form-check">
-                        <input class="form-check-input" id="flexRadioDefault1" type="radio" name="sv" value="5" data-bs-toggle="collapse" data-bs-target="#sv2" aria-expanded="false" aria-controls="sv2" /><label class="form-check-label" for="flexRadioDefault1">Server Like 5 ( Tốc độ chậm - trung mình, mở giới hạn quá tải tự đóng mở, ib có hỗ trợ chạy nhanh đơn trên 1k <span style="color: red;"></span> <span style="color: red;"> max 50k </span> ) <span style="color:red;"><?= $gia5; ?>₫</span> <span class="badge bg-danger">Chậm</span></label>
+                        <input class="form-check-input" disabled id="flexRadioDefault1" type="radio" name="sv" value="5" data-bs-toggle="collapse" data-bs-target="#sv2" aria-expanded="false" aria-controls="sv2" /><label class="form-check-label" for="flexRadioDefault1">Server Like 5 ( Tốc độ chậm - trung mình, mở giới hạn quá tải tự đóng mở, ib có hỗ trợ chạy nhanh đơn trên 1k <span style="color: red;"></span> <span style="color: red;"> max 50k </span> ) <span style="color:red;"><?= $gia5; ?>₫</span> <span class="badge bg-danger">Chậm</span></label>
                     </div>
                     <!--
                    <div class="form-check">
