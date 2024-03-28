@@ -95,9 +95,9 @@ switch ($_GET['act']) {
                <div class="card-body">
                 <p class="mb-0">
                 <form>
-                <!--    <input type="hidden" value="<?= $row['token']; ?>" id="token">
+                    <input type="hidden" value="<?= $row['token']; ?>" id="token">
                     <label>Chọn Server Like:</label>
-                    <div class="form-check">
+                   <!-- <div class="form-check">
                         <input class="form-check-input" <? if ($sv4 == 'on') {
                                                             echo 'checked';
                                                         }; ?> id="flexRadioDefault1" disabled type="radio"  name="sv" value="1" data-bs-toggle="collapse" data-bs-target="#sv1" aria-expanded="false" aria-controls="sv1" /><label class="form-check-label" for="flexRadioDefault1">Server Like 1 (Tốc độ chậm - trung bình dự kiến 5-10 like / 1h tùy thời điểm test ít để cảm nhận, không hỗ trợ hủy hoàn ) </span> <span style="color:red;"><?= $gia1; ?>₫</span> <span class="badge bg-warning">Chậm</span></label>
