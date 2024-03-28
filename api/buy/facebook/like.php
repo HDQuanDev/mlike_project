@@ -546,7 +546,7 @@ switch ($_GET["act"]) {
                         $array["msg"] = 'Bạn không đủ tiền!';
                     } elseif ($sv4 == 'off') {
                         $array["status"] = 'error';
-                        $array["msg"] = 'Server đang bảo trì vui lòng thử lại sau ';
+                        $array["msg"] = 'Server đang quá tải vui lòng thử lại sau ít phút ';
                     } else {
 
                         $fbapi = json_decode(file_get_contents("https://graph.facebook.com/$id?fields=likes.summary(true)&access_token=" . $tokenfb));
