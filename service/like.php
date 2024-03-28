@@ -92,10 +92,10 @@ switch ($_GET['act']) {
             <div class="card-header ">
                 <h4>Tăng Like Bài Viết</h4>
             </div>
-             <!--  <div class="card-body">
+               <div class="card-body">
                 <p class="mb-0">
                 <form>
-                    <input type="hidden" value="<?= $row['token']; ?>" id="token">
+                <!--    <input type="hidden" value="<?= $row['token']; ?>" id="token">
                     <label>Chọn Server Like:</label>
                     <div class="form-check">
                         <input class="form-check-input" <? if ($sv4 == 'on') {
