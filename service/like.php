@@ -74,14 +74,14 @@ switch ($_GET['act']) {
             }
         </script>
         <!-- thong bao -->
-        <!-- <? if (!isset($_POST['add'])) { ?>
+         <? if (!isset($_POST['add'])) { ?>
 <script>var sangml = document.createElement("sangml");
-sangml.innerHTML = "<img class='card-img-top' src='https://daotao.ulis.vnu.edu.vn/files/uploads/2018/04/thong-bao660x350-600x350.png'><hr><big><center style='color:#3794ff;'> 1 số máy chủ đang gặp sự cố , hiện tại sv1 đang rất chậm. Rẻ chậm kiên nhẫn chờ đợi nha 24h cũng sẽ lên đủ.  </center></big></b>";
+sangml.innerHTML = "<img class='card-img-top' src='https://daotao.ulis.vnu.edu.vn/files/uploads/2018/04/thong-bao660x350-600x350.png'><hr><big><center style='color:#3794ff;'> Hệ thống quá tải vui lòng đợi ít phút admin đang update tài nguyên </center></big></b>";
 swal({
     content: sangml,
     buttons: false
 });</script>
- <? } ?>-->
+ <? } ?>
         <!--end-->
         <div class="card border-danger border-bottom border-3 border-0">
             <div class="card-header ">
