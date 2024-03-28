@@ -73,7 +73,7 @@ switch ($_GET['act']) {
 
             }
         </script>
-        <!-- thong bao-->
+        <!-- thong bao 
          <? if (!isset($_POST['add'])) { ?>
                         <script>
                             function sayHello() {
@@ -86,7 +86,7 @@ switch ($_GET['act']) {
                             }
                             setTimeout(sayHello, 1500);
                         </script>
-                    <? } ?>
+                    <? } ?> --> 
         <!--end--> 
         <div class="card border-danger border-bottom border-3 border-0">
             <div class="card-header ">
