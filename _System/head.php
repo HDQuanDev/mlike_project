@@ -423,9 +423,9 @@ if ($row['rule'] == '99') {
                                             </a>
                                         </li>
                                         <li class="sidebar-list">
-                                            <a href="https://www.facebook.com/Mlike.vn" class="sidebar-link" target="_blank">
+                                            <a href="https://zalo.me/g/oyqxuv852" class="sidebar-link" target="_blank">
                                                 <i data-feather="briefcase"></i>
-                                                <span>Liên Hệ FB Admin</span>
+                                                <span>Nhóm Thông báo Zalo</span>
                                             </a>
                                         </li>
                                         <li class="sidebar-list">
