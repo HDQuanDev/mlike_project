@@ -78,7 +78,7 @@ switch ($_GET['act']) {
                         <script>
                             function sayHello() {
                                 var sangml = document.createElement("sangml")
-                                sangml.innerHTML = "<img class='card-img-top' src='https://daotao.ulis.vnu.edu.vn/files/uploads/2018/04/thong-bao660x350-600x350.png'><hr><big><center style='color:#3794ff;'> Hệ thống quá tải , admin đang up tài nguyên đợi mở lại sau vài chục phút</big></b>";
+                                sangml.innerHTML = "<img class='card-img-top' src='https://daotao.ulis.vnu.edu.vn/files/uploads/2018/04/thong-bao660x350-600x350.png'><hr><big><center style='color:#3794ff;'>  Chia sẽ link youtube vui lòng dùng máy tính lấy link. Nhập sai id = mất tiền</big></b>";
                                 swal({
                                     content: sangml,
                                     buttons: false
@@ -86,7 +86,7 @@ switch ($_GET['act']) {
                             }
                             setTimeout(sayHello, 1500);
                         </script>
-                    <? } ?> --> 
+                    <? } ?>
         <!--end--> 
         <div class="card border-danger border-bottom border-3 border-0">
             <div class="card-header ">
