@@ -100,7 +100,7 @@ switch ($_GET['act']) {
                     <div class="form-check">
                      <input class="form-check-input" <? if ($sv4 == 'on') {
                                                             echo 'checked';
-                                                        }; ?> id="flexRadioDefault1"  type="radio"  name="sv" value="1" data-bs-toggle="collapse" data-bs-target="#sv1" aria-expanded="false" aria-controls="sv1" /><label class="form-check-label" for="flexRadioDefault1">Server Like 1 (Tốc độ lúc chậm lúc nhanh tùy thời điểm test ít cảm nhận, không hỗ trợ hủy hoàn kể cả không lên chỉ có thể đợi ) </span> <span style="color:red;"><?= $gia1; ?>₫</span> <span class="badge bg-warning">Tạm ổn</span></label>
+                                                        }; ?> id="flexRadioDefault1"  type="radio"  name="sv" value="1" data-bs-toggle="collapse" data-bs-target="#sv1" aria-expanded="false" aria-controls="sv1" /><label class="form-check-label" for="flexRadioDefault1">Server Like 1 (Tốc độ trung bình, không hỗ trợ hủy hoàn kể cả không lên, chỉ có thể đợi ) </span> <span style="color:red;"><?= $gia1; ?>₫</span> <span class="badge bg-warning">Tạm ổn</span></label>
                     </div> 
                    <!--  <div class="form-check">
                         <input class="form-check-input" id="flexRadioDefault1" type="radio" name="sv" value="2" data-bs-toggle="collapse" data-bs-target="#sv2" aria-expanded="false" aria-controls="sv2" /><label class="form-check-label" for="flexRadioDefault1">Server Like 2 ( Tốc độ nhanh ổn định <span style="color: red;">Album dể lỗi test ít lên được thì cài tiếp</span> Max 100k ) <span style="color:red;"><?= $gia2; ?>₫</span> <span class="badge bg-success">Chậm</span></label>
