@@ -288,7 +288,7 @@ if (isset($login) || isset($_POST['token'])) {
             if ($row['rule'] == 66) { // bắt đầu set giá đại lý
                 if ($page == 'like_fb') { //Like Facebook
                     // Giá Đại Lý
-                    $gia1 = 18; //Server 1
+                    $gia1 = 16; //Server 1
                     $gia2 = 10.5; // 2
                     $gia3 = 18; // 3
                     $gia4 = 15; // 4
@@ -435,7 +435,7 @@ if (isset($login) || isset($_POST['token'])) {
                 // kết khúc set giá dại lý
             } else if ($row['rule'] == 33) { // bắt đầu sét giá cộng tác viên
                 if ($page == 'like_fb') { //Like Facebook
-                    $gia1 = 18; //Server 1
+                    $gia1 = 16; //Server 1
                     $gia2 = 11; // 2
                     $gia3 = 18; // 3
                     $gia4 = 15; // 4
@@ -581,7 +581,7 @@ if (isset($login) || isset($_POST['token'])) {
                 //kết thúc set giá ctv    
             } else { // bắt đầu set giá thành viên
                 if ($page == 'like_fb') { //Like Facebook
-                    $gia1 = 18; //Server 1
+                    $gia1 = 16; //Server 1
                     $gia2 = 11; // 2
                     $gia3 = 18; // 3
                     $gia4 = 15; // 4
