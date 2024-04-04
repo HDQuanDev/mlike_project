@@ -61,7 +61,7 @@ switch ($_GET['act']) {
                         <input class="form-check-input" disabled id="flexRadioDefault1" type="radio" name="sv" value="1" data-bs-toggle="collapse" data-bs-target="#sv1" aria-expanded="false" aria-controls="sv1" /><label class="form-check-label" for="flexRadioDefault1">Server View Story 1 ( Max 2500 ) <span style="color:red;"><?= $gia1; ?>₫</span> <span class="badge bg-success">Đang mở</span></label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input"  checked id="flexRadioDefault1" type="radio" name="sv" value="2" data-bs-toggle="collapse" data-bs-target="#sv2" aria-expanded="false" aria-controls="sv2" /><label class="form-check-label" for="flexRadioDefault1">Server View Story 2 ( Tốc độ nhanh. Mỗi story chỉ được mua 1 lần. Chạy story đầu tiên. Min 100- Max 3000. CẤM STORY FANPAGE ) <span style="color:red;"><?= $gia2; ?>₫</span> <span class="badge bg-success">Đang mở</span></label>
+                        <input class="form-check-input"  checked id="flexRadioDefault1" type="radio" name="sv" value="2" data-bs-toggle="collapse" data-bs-target="#sv2" aria-expanded="false" aria-controls="sv2" /><label class="form-check-label" for="flexRadioDefault1">Server View Story 2 ( Tốc độ nhanh. Mỗi story chỉ được mua 1 lần. Chạy story đầu tiên. Min 100- Max 3000. <span style="color:red;">[CẤM STORY FANPAGE] </span> ) <span style="color:red;"><?= $gia2; ?>₫</span> <span class="badge bg-success">Đang mở</span></label>
                     </div>
                     <div class="mb-3">
                         <label>Nhập Link Story:</label>
