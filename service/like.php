@@ -78,7 +78,7 @@ switch ($_GET['act']) {
                         <script>
                             function sayHello() {
                                 var sangml = document.createElement("sangml")
-                                sangml.innerHTML = "<img class='card-img-top' src='https://daotao.ulis.vnu.edu.vn/files/uploads/2018/04/thong-bao660x350-600x350.png'><hr><big><center style='color:#3794ff;'> Hệ thống quá tải , admin đang up tài nguyên đợi mở lại sau vài chục phút</big></b>";
+                                sangml.innerHTML = "<img class='card-img-top' src='https://daotao.ulis.vnu.edu.vn/files/uploads/2018/04/thong-bao660x350-600x350.png'><hr><big><center style='color:#3794ff;'>  Chia sẽ link youtube vui lòng dùng máy tính lấy link. Nhập sai id = mất tiền</big></b>";
                                 swal({
                                     content: sangml,
                                     buttons: false
@@ -86,7 +86,7 @@ switch ($_GET['act']) {
                             }
                             setTimeout(sayHello, 1500);
                         </script>
-                    <? } ?> --> 
+                    <? } ?> -->
         <!--end--> 
         <div class="card border-danger border-bottom border-3 border-0">
             <div class="card-header ">
@@ -100,7 +100,7 @@ switch ($_GET['act']) {
                     <div class="form-check">
                      <input class="form-check-input" <? if ($sv4 == 'on') {
                                                             echo 'checked';
-                                                        }; ?> id="flexRadioDefault1" disabled type="radio"  name="sv" value="1" data-bs-toggle="collapse" data-bs-target="#sv1" aria-expanded="false" aria-controls="sv1" /><label class="form-check-label" for="flexRadioDefault1">Server Like 1 (Tốc độ lúc chậm lúc nhanh tùy thời điểm test ít cảm nhận, không hỗ trợ hủy hoàn ) </span> <span style="color:red;"><?= $gia1; ?>₫</span> <span class="badge bg-warning">Chậm</span></label>
+                                                        }; ?> id="flexRadioDefault1" disabled type="radio"  name="sv" value="1" data-bs-toggle="collapse" data-bs-target="#sv1" aria-expanded="false" aria-controls="sv1" /><label class="form-check-label" for="flexRadioDefault1">Server Like 1 (Tốc độ hiện tại 15-20 like / 1h, không thể hủy hoàn, chỉ có thể đợi ) </span> <span style="color:red;"><?= $gia1; ?>₫</span> <span class="badge bg-danger">Bảo trì</span></label>
                     </div> 
                    <!--  <div class="form-check">
                         <input class="form-check-input" id="flexRadioDefault1" type="radio" name="sv" value="2" data-bs-toggle="collapse" data-bs-target="#sv2" aria-expanded="false" aria-controls="sv2" /><label class="form-check-label" for="flexRadioDefault1">Server Like 2 ( Tốc độ nhanh ổn định <span style="color: red;">Album dể lỗi test ít lên được thì cài tiếp</span> Max 100k ) <span style="color:red;"><?= $gia2; ?>₫</span> <span class="badge bg-success">Chậm</span></label>
@@ -114,7 +114,7 @@ switch ($_GET['act']) {
                                                             echo 'checked';
                                                         } elseif ($sv4 == 'off') {
                                                             echo 'disabled';
-                                                        } ?> id="flexRadioDefault1" type="radio" name="sv" value="4" data-bs-toggle="collapse" data-bs-target="#sv4" aria-expanded="false" aria-controls="sv4" /><label class="form-check-label" for="flexRadioDefault1">Server Like 4 (<span style="color: Darkorange;"> Tốc độ nhanh, like BETA gần như k tụt,mỗi ID chỉ được mua 1 lần , chạy được album, Max 5k) <span style="color:red;"><?= $gia4; ?>₫</span> <? if ($sv4 == 'off') {
+                                                        } ?> id="flexRadioDefault1" type="radio" name="sv" value="4" data-bs-toggle="collapse" data-bs-target="#sv4" aria-expanded="false" aria-controls="sv4" /><label class="form-check-label" for="flexRadioDefault1">Server Like 4 (<span style="color: Darkorange;"> Tốc độ siêu nhanh, like BETA gần như k tụt,mỗi ID chỉ được mua 1 lần , chạy được album, Max 5k) <span style="color:red;"><?= $gia4; ?>₫</span> <? if ($sv4 == 'off') {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                         echo '<span class="badge bg-danger">Quá tải</span>';
                                                                                                                                                                                                                                                                                                                                                                                                                                                                     } else {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                         echo '<span class="badge bg-primary">Nhanh VIP</span>';

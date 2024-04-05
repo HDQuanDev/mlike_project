@@ -10,9 +10,9 @@ if (isset($page)) {
         $sv2 = 'off';
         $sv3 = 'off';
         $sv4 = 'off';
-        $sv5 = 'on';
+        $sv5 = 'off';
         $sv6 = 'off';
-        $sv7 = 'on';
+        $sv7 = 'off';
         $sv8 = 'on';
         $tay_or_auto = 'tay'; //auto: tự động, tay: thủ công
     } elseif ($page == 'tim_tt_tay') {

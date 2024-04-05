@@ -539,7 +539,7 @@ switch ($_GET['act']) {
                             }
                         }
                         if ($checkne == '200') {
-                            $buff = json_decode(boosterviews($link, $sl, "1040"), true);
+                            $buff = json_decode(boosterviews($link, $sl, "1026"), true);
                             if (isset($buff["order"])) {
                                 $nd1 = 'Tăng View TikTok ID:';
                                 $bd = $tongtien;
@@ -569,7 +569,7 @@ switch ($_GET['act']) {
                         $ttid = $id;
                         $ttview = 'null';
                         if ($checkne == '200') {
-                            $buff = json_decode(boosterviews($link, $sl, "1026"), true);
+                            $buff = json_decode(boosterviews($link, $sl, "1065"), true);
                             if (isset($buff["order"])) {
                                 $nd1 = 'Tăng View TikTok ID:';
                                 $bd = $tongtien;

@@ -36,7 +36,7 @@ function send_tds($idpost, $limit, $note, $datetime)
 {
     $curl = curl_init();
     curl_setopt_array($curl, [
-        CURLOPT_URL => "https://traodoisub.com/mua/like/themid.php",
+        CURLOPT_URL => "https://traodoisub.com/mua/likevip/themid.php",
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_MAXREDIRS => 10,
         CURLOPT_TIMEOUT => 60,
