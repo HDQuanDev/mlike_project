@@ -234,12 +234,16 @@ switch ($_GET['act']) {
                         $idgd = '(' . $nse . ') ' . $id . ' (' . $sl . ')';
                         $goc = $row['vnd'];
                         $time = time();
-                        $tach = explode("/", $id);
-                        $id = $tach[5];
+                        $format_link = 'https://www.facebook.com/stories/';
                         if (empty($id)) {
                             $array["status"] = 'error';
                             $array["msg"] = 'Link story không hợp lệ!';
+                        } elseif (strpos($id, $format_link) === false) {
+                            $array["status"] = 'error';
+                            $array["msg"] = 'Định dạng link story không hợp lệ, vui lòng nhập link story! (Ví dụ: https://www.facebook.com/stories/148236970197375/UzpfSVNDOjczMDQ2Njc2MjYwMjY2OQ==/?bucket_count=9&source=story_tray)';
                         } else {
+                            $tach = explode("/", $id);
+                            $id = $tach[5];
                             $check_id = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `profile` = '$id' AND `nse` = 'Server View Story 2'");
                             $check_id = mysqli_num_rows($check_id);
                             if ($check_id == 0) {
