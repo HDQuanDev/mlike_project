@@ -322,7 +322,7 @@ if (isset($login) || isset($_POST['token'])) {
                     $gia4 = 1;
                     $gia5 = 8;
                 } elseif ($page == 'follow_fb') {
-                    $gia1 = 29;
+                    $gia1 = 10;
                     $gia2 = 22;
                     $gia3 = 23;
                     $gia4 = 17;
@@ -469,7 +469,7 @@ if (isset($login) || isset($_POST['token'])) {
                     $gia4 = 1;
                     $gia5 = 8;
                 } elseif ($page == 'follow_fb') {
-                    $gia1 = 29;
+                    $gia1 = 10;
                     $gia2 = 22;
                     $gia3 = 23;
                     $gia4 = 17;
@@ -615,7 +615,7 @@ if (isset($login) || isset($_POST['token'])) {
                     $gia4 = 1;
                     $gia5 = 8;
                 } elseif ($page == 'follow_fb') {
-                    $gia1 = 29;
+                    $gia1 = 10;
                     $gia2 = 22;
                     $gia3 = 23;
                     $gia4 = 7;
