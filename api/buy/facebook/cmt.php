@@ -206,7 +206,7 @@ switch ($_GET['act']) {
                                 $array["id_order"] = $rr['id'];
                             } else {
                                 $array["status"] = 'error';
-                                $array["msg"] = 'Đã xảy ra lỗi khi lên đơn cho bạn, vui lòng thử lại!';
+                                $array["msg"] = ' Nội dung không được có icon , vui lòng xóa hết ký tự đặc biệt icon và mua lại';
                             }
                         }
                     } else {
