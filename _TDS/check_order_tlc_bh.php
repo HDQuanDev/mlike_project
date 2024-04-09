@@ -1,4 +1,5 @@
 <?php
+
 $hdq = 'ok';
 require_once('../_System/db.php');
 $s = mysqli_query($db, "SELECT * FROM `system`");

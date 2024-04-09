@@ -1,4 +1,5 @@
-<?
+<?php
+
 $hdq = "ok";
 $page = 'live_fb_v2';
 require_once('../../../_System/db.php');

@@ -1,4 +1,5 @@
 <?php
+
 function telegram_send($id, $text)
 {
 
@@ -18,9 +19,9 @@ function telegram_send($id, $text)
         'Content-Type: application/x-www-form-urlencoded'
       ),
     ));
-    
+
     $response = curl_exec($curl);
-    
+
     curl_close($curl);
     return $response;
 }

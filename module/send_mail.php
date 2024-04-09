@@ -1,4 +1,5 @@
 <?php
+
 require '../vendor/autoload.php';
 
 function sendMail($to, $name, $subject, $content)

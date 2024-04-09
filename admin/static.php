@@ -119,9 +119,9 @@ $listdv = 'Like,dichvu,Tăng Like Facebook|Sub,dichvu,Tăng Follow Facebook|cmt_
                             </div>
                             <p class="card-text">
                                 <?php $res = mysqli_query($db, 'SELECT sum(vnd) FROM member');
-                                $row = mysqli_fetch_row($res);
-                                $sum = $row[0];
-                                echo number_format($sum); ?>₫
+$row = mysqli_fetch_row($res);
+$sum = $row[0];
+echo number_format($sum); ?>₫
                             </p>
                         </div>
                     </div>
@@ -136,9 +136,9 @@ $listdv = 'Like,dichvu,Tăng Like Facebook|Sub,dichvu,Tăng Follow Facebook|cmt_
                             </div>
                             <p class="card-text">
                                 <?php $res = mysqli_query($db, 'SELECT sum(sd) FROM member');
-                                $row = mysqli_fetch_row($res);
-                                $sum = $row[0];
-                                echo number_format($sum); ?>₫
+$row = mysqli_fetch_row($res);
+$sum = $row[0];
+echo number_format($sum); ?>₫
                             </p>
                         </div>
                     </div>
@@ -148,19 +148,19 @@ $listdv = 'Like,dichvu,Tăng Like Facebook|Sub,dichvu,Tăng Follow Facebook|cmt_
         <div class="row">
             <?php
             $ex = explode('|', $listdv);
-            foreach ($ex as $dv) {
-                $ex2 = explode(',', $dv);
-                $dichvu = $ex2[0];
-                $table = $ex2[1];
-                $name = $ex2[2];
-                $res = total($dichvu, $table);
-                $get = json_decode($res, true);
-                $todayPurchases = $get['todayPurchases'];
-                $monthPurchases = $get['monthPurchases'];
-                $todayProfit = $get['todayProfit'];
-                $yesterdayProfit = $get['yesterdayProfit'];
-                $monthProfit = $get['monthProfit'];
-            ?>
+foreach ($ex as $dv) {
+    $ex2 = explode(',', $dv);
+    $dichvu = $ex2[0];
+    $table = $ex2[1];
+    $name = $ex2[2];
+    $res = total($dichvu, $table);
+    $get = json_decode($res, true);
+    $todayPurchases = $get['todayPurchases'];
+    $monthPurchases = $get['monthPurchases'];
+    $todayProfit = $get['todayProfit'];
+    $yesterdayProfit = $get['yesterdayProfit'];
+    $monthProfit = $get['monthProfit'];
+    ?>
                 <div class="col-12 col-xl-4">
                     <h6 class="mb-0 text-uppercase"><?= $name; ?></h6>
                     <hr />
@@ -183,12 +183,12 @@ $listdv = 'Like,dichvu,Tăng Like Facebook|Sub,dichvu,Tăng Follow Facebook|cmt_
                 </div>
 
             <?php
-            }
-            $get = json_decode(totalall(), true);
-            $todayProfit = $get['todayProfit'];
-            $yesterdayProfit = $get['yesterdayProfit'];
-            $monthProfit = $get['monthProfit'];
-            ?>
+}
+$get = json_decode(totalall(), true);
+$todayProfit = $get['todayProfit'];
+$yesterdayProfit = $get['yesterdayProfit'];
+$monthProfit = $get['monthProfit'];
+?>
             <div class="col-12 col-xl-4">
                 <h6 class="mb-0 text-uppercase">Tổng Số Doanh Thu</h6>
                 <hr />

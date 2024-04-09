@@ -1,4 +1,5 @@
 <?php
+
 function sv2_low($id, $sl, $t)
 {
     $token = file_get_contents('https://mlike.vn/admin/get_tlc_abc.php');

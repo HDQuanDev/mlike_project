@@ -24,9 +24,9 @@ require_once('../_System/head.php');
               </div>
               <p class="card-text">
                 <?php $res = mysqli_query($db, "SELECT sum(sl) FROM dichvu WHERE dv = 'Cmt' AND sttdone = '10' AND `time` > '1647776460'");
-                $row = mysqli_fetch_row($res);
-                $sum = $row[0]*40;
-                echo number_format($sum); ?>₫
+$row = mysqli_fetch_row($res);
+$sum = $row[0] * 40;
+echo number_format($sum); ?>₫
               </p>
             </div>
           </div>
@@ -41,9 +41,9 @@ require_once('../_System/head.php');
               </div>
               <p class="card-text">
 			  <?php $res = mysqli_query($db, "SELECT sum(sotien) FROM dichvu WHERE dv = 'Cmt' AND sttdone = '10'");
-                $row = mysqli_fetch_row($res);
-                $sum = $row[0];
-                echo number_format($sum); ?>₫
+$row = mysqli_fetch_row($res);
+$sum = $row[0];
+echo number_format($sum); ?>₫
               </p>
             </div>
           </div>
@@ -52,17 +52,17 @@ require_once('../_System/head.php');
     </div>
 
 <?php
-if($_GET['action']){
-$id = $_GET['id'];
-$tt = $_GET['action'];
-if($tt == '2'){
-    $done = $_GET['done'];
-    mysqli_query($db,"UPDATE `dichvu` SET `trangthai` = '$tt', `done` = '$done' WHERE `id` = '$id'");
-}else{
-mysqli_query($db,"UPDATE `dichvu` SET `trangthai` = '$tt' WHERE `id` = '$id'");
-}
-echo "<script>swal('Hệ Thống!','Chỉnh sửa trạng thái ID ".$id." thành công!','success');</script>";
-echo '<script>setTimeout(function(){
+if($_GET['action']) {
+    $id = $_GET['id'];
+    $tt = $_GET['action'];
+    if($tt == '2') {
+        $done = $_GET['done'];
+        mysqli_query($db, "UPDATE `dichvu` SET `trangthai` = '$tt', `done` = '$done' WHERE `id` = '$id'");
+    } else {
+        mysqli_query($db, "UPDATE `dichvu` SET `trangthai` = '$tt' WHERE `id` = '$id'");
+    }
+    echo "<script>swal('Hệ Thống!','Chỉnh sửa trạng thái ID ".$id." thành công!','success');</script>";
+    echo '<script>setTimeout(function(){
     window.location="'.$url.'#'.$id.'";
 }, 3000);</script>';
 }
@@ -86,27 +86,25 @@ echo '<script>setTimeout(function(){
 </thead>
 <tbody class="list">
 <?php
-if($_GET['status']){
-	$dv = $_GET['status'];
-				$result1 = mysqli_query($db,"SELECT * FROM `dichvu` WHERE `trangthai` = '$dv' AND `dv` = 'Cmt' AND `sttdone` = '10' AND `time` > '1647776460' ORDER BY id DESC LIMIT 200");
-}else{
-	$result1 = mysqli_query($db,"SELECT * FROM `dichvu` WHERE `dv` = 'Cmt' AND `sttdone` = '10' AND `time` > '1647776460' ORDER BY id DESC LIMIT 200");
-	}
-				if($result1)
-				{
-
-
-while($ro = mysqli_fetch_assoc($result1))
-				{
-					$dv = $ro['dv'];
-					$tt = $ro['trangthai'];
-if($ro['api'] == ''){
-$api = 'Không Có';
-}else{
-$api = $ro['api'];
+if($_GET['status']) {
+    $dv = $_GET['status'];
+    $result1 = mysqli_query($db, "SELECT * FROM `dichvu` WHERE `trangthai` = '$dv' AND `dv` = 'Cmt' AND `sttdone` = '10' AND `time` > '1647776460' ORDER BY id DESC LIMIT 200");
+} else {
+    $result1 = mysqli_query($db, "SELECT * FROM `dichvu` WHERE `dv` = 'Cmt' AND `sttdone` = '10' AND `time` > '1647776460' ORDER BY id DESC LIMIT 200");
 }
-$t = $ro['time'];
-				?>
+if($result1) {
+
+
+    while($ro = mysqli_fetch_assoc($result1)) {
+        $dv = $ro['dv'];
+        $tt = $ro['trangthai'];
+        if($ro['api'] == '') {
+            $api = 'Không Có';
+        } else {
+            $api = $ro['api'];
+        }
+        $t = $ro['time'];
+        ?>
 <tr>
 <td class="id"><span id="<?=$ro['id'];?>"><?php echo $ro['id']; ?></span></td>
 <td class="dv"><?php dichvut($dv);  ?></td>
@@ -119,22 +117,22 @@ $t = $ro['time'];
 <td class="time"><?php echo time_func($t); ?></td>
 <td class="tt"><?php trangthai($tt); ?></td>
 <?php
-if($tt == 1 || $tt ==3){
-?>
+if($tt == 1 || $tt == 3) {
+    ?>
 <td class="cn"><a href="?action=3&id=<?=$ro['id'];?>">Đang Chạy</a> | <a href="?action=4&id=<?=$ro['id'];?>">Bị Hủy</a> | <a href="?action=2&id=<?=$ro['id'];?>&done=<?=$ro['sl'];?>">Hoàn Thành</a></td>
 <?php
-}else{
-echo '<td class="cn"></td>';
+} else {
+    echo '<td class="cn"></td>';
 }
-?>
+        ?>
 </tr>
-				<?php 
-				}
-echo '</tbody>
+				<?php
+    }
+    echo '</tbody>
 </table>
 ';
 }
-				?>
+?>
 
 </div></div></div></div>
 

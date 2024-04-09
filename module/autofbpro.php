@@ -1,4 +1,5 @@
 <?php
+
 function gettime($giay)
 {
     $time = $giay;

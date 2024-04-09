@@ -1,4 +1,5 @@
 <?php
+
 function bv_viewtt($id, $sl, $sv)
 {
     $curl = curl_init();

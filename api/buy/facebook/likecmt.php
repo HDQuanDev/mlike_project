@@ -1,4 +1,5 @@
-<?
+<?php
+
 $hdq = "ok";
 $page = 'fb_likecmt';
 require_once('../../../_System/db.php');

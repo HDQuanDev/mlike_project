@@ -1,4 +1,5 @@
 <?php
+
 $hdq = 'ok';
 require_once(__DIR__ . '/../_System/db.php');
 
@@ -22,7 +23,7 @@ function get_limit($act, $tongxu = "0", $userr = "0")
             $result = $proxy;
         } elseif ($act == 'proxypass') {
             $result = $proxyauth;
-        }elseif($act == 'updatexu'){
+        } elseif($act == 'updatexu') {
             $xu = $tongxu;
             mysqli_query($db, "UPDATE `acctds` SET `tien` = `tien`-'$xu', `slsd` = `slsd`+'1' WHERE `user` = '$userr'");
             $result = 'ok';

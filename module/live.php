@@ -9,7 +9,7 @@ function live($id, $sl, $phut, $sv, $mgr)
     } elseif ($sv == '2') {
 
         $s = 3;
-    }  elseif ($sv == '3') {
+    } elseif ($sv == '3') {
 
         $s = 1;
     } elseif ($sv == '4') {
@@ -30,10 +30,10 @@ function live($id, $sl, $phut, $sv, $mgr)
 
     $data[0]['num_minutes'] = $phut;
 
-    if($mgr == 'quandz'){
-        
-    }else{
-    $data[0]['discount_code'] = $mgr;
+    if($mgr == 'quandz') {
+
+    } else {
+        $data[0]['discount_code'] = $mgr;
     }
 
     $data[0]['server_id'] = $s;

@@ -5,10 +5,10 @@ require_once('_System/head.php');
 ?>
 <?php
 
-if (!$s['thongbao'] == NULL) {
+if (!$s['thongbao'] == null) {
 
     $tbb = $s['thongbao'];
-?>
+    ?>
     <script type="text/JavaScript">
         function getCookie(name){
     var pattern = RegExp(name + "=.[^;]*");
@@ -22,11 +22,11 @@ if (!$s['thongbao'] == NULL) {
 //alert(getCookie("thongbao"));
 if(getCookie("thongbao") == false) {
 const wrapper = document.createElement('div');
-<? if (!$s['idyt'] == '0') { ?>
+<?php if (!$s['idyt'] == '0') { ?>
 wrapper.innerHTML = '<div id="player" class="player rounded-3" data-plyr-provider="youtube" data-plyr-embed-id="7T09viA678g"> </div><br><p class="mb-3"><?= $tbb; ?></p>';
-<? } else { ?>
+<?php } else { ?>
 wrapper.innerHTML = '<p class="mb-3"><?= $tbb; ?></p>';
-<? } ?>
+<?php } ?>
 function thongbao() {
 swal({
   title: "Thông Báo",
@@ -119,7 +119,7 @@ $result1 = mysqli_query($db, "SELECT * FROM `thongbao` WHERE `site` = '$site' OR
 if ($result1) {
     while ($ro = mysqli_fetch_assoc($result1)) {
         $t = $ro['time'];
-?>
+        ?>
 
         <div class="col-sm-12">
             <div class="card">

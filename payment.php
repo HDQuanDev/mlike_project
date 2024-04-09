@@ -66,10 +66,10 @@ require_once('_System/head.php');
                         </div>
                     </div>
                 </div>
-                <?
+                <?php
                 $resul = mysqli_query($db, "SELECT * FROM `stk` WHERE `site` = '$site'");
-                while ($r = mysqli_fetch_assoc($resul)) {
-                ?>
+while ($r = mysqli_fetch_assoc($resul)) {
+    ?>
                     <div class="mb-4">
                         <div class="card">
                             <div class="card-body">
@@ -87,9 +87,9 @@ require_once('_System/head.php');
                             </div>
                         </div>
                     </div>
-                <?
-                }
-                ?>
+                <?php
+}
+?>
                 <div class="mb-4">
                     <div class="card">
                         <div class="card-body">
@@ -129,12 +129,12 @@ require_once('_System/head.php');
                         </thead>
                         <tbody>
                             <?php
-                            $result1 = mysqli_query($db, "SELECT * FROM `momo` WHERE `user`='$login' AND `site` = '$site' ORDER BY id DESC");
-                            while ($ro = mysqli_fetch_assoc($result1)) {
-                                $vn = $ro['vnd'];
-                                $vnd = number_format(floatval($vn));
-                                $t = $ro['time'];
-                            ?>
+            $result1 = mysqli_query($db, "SELECT * FROM `momo` WHERE `user`='$login' AND `site` = '$site' ORDER BY id DESC");
+while ($ro = mysqli_fetch_assoc($result1)) {
+    $vn = $ro['vnd'];
+    $vnd = number_format(floatval($vn));
+    $t = $ro['time'];
+    ?>
                                 <tr>
                                     <td class="id"><?= $ro['id']; ?></td>
                                     <td class="id"><?= $ro['tranid']; ?></td>
@@ -144,9 +144,9 @@ require_once('_System/head.php');
                                     <td class="idgd"><?= $ro['text']; ?></td>
                                 </tr>
                             <?php
-                            }
+}
 
-                            ?>
+?>
                         </tbody>
                     </table>
                 </div>

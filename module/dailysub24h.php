@@ -1,4 +1,5 @@
 <?php
+
 function dailysub24h($id, $sl)
 {
     $url = "https://dailysub24h.com/post-api/api-subpage/";

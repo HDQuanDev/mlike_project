@@ -1,4 +1,5 @@
 <?php
+
 function getid_2($link)
 {
     $curl = curl_init();

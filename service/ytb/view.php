@@ -13,91 +13,91 @@ switch ($_GET['act']) {
         $min = '1000';
         $max = '5000000';
         $api = new Api();
-?>
+        ?>
 
         <?php
-        if (isset($_POST['add']) && isset($login)) {
+                if (isset($_POST['add']) && isset($login)) {
 
-            $id = mysqli_real_escape_string($db, $_POST['id']);
-            $sl = mysqli_real_escape_string($db, $_POST['sl']);
-            $sv = mysqli_real_escape_string($db, $_POST['sv']);
-            if ($sv == 1 || $sv == 2 || $sv == 3) {
-                if ($sv == 1) {
-                    $tongtien = $sl * $gia;
-                    $nse = 'Server View 1';
-                    $min = 10000;
-                } elseif ($sv == 2) {
-                    $tongtien = $sl * $gia2;
-                    $nse = 'Server View 2';
-                    $min = 25000;
-                } elseif ($sv == 3) {
-                    $tongtien = $sl * $gia3;
-                    $nse = 'Server View 3';
-                    $min = 5000;
-                }
-                if (empty($id)) {
-                    echo "<script>
+                    $id = mysqli_real_escape_string($db, $_POST['id']);
+                    $sl = mysqli_real_escape_string($db, $_POST['sl']);
+                    $sv = mysqli_real_escape_string($db, $_POST['sv']);
+                    if ($sv == 1 || $sv == 2 || $sv == 3) {
+                        if ($sv == 1) {
+                            $tongtien = $sl * $gia;
+                            $nse = 'Server View 1';
+                            $min = 10000;
+                        } elseif ($sv == 2) {
+                            $tongtien = $sl * $gia2;
+                            $nse = 'Server View 2';
+                            $min = 25000;
+                        } elseif ($sv == 3) {
+                            $tongtien = $sl * $gia3;
+                            $nse = 'Server View 3';
+                            $min = 5000;
+                        }
+                        if (empty($id)) {
+                            echo "<script>
                                 function sayHello() {
                                     swal('OOPS!','Vui lòng nhập Link cần tăng Subscribe!','warning');
                                 }
                                 setTimeout(sayHello, 500);</script>";
-                } elseif (empty($sl)) {
-                    echo "<script>
+                        } elseif (empty($sl)) {
+                            echo "<script>
                                 function sayHello() {
                                     swal('OOPS!','Vui lòng nhập số lượng!','warning');
                                 }
                                 setTimeout(sayHello, 500);</script>";
-                } elseif ($sl < $min) {
-                    echo "<script>
+                        } elseif ($sl < $min) {
+                            echo "<script>
                     function sayHello() {
                         swal('OOPS!','Số lượng phải lớn hơn " . $min . "','warning');
                     }
                     setTimeout(sayHello, 500);</script>";
-                } elseif ($sl > $max) {
-                    echo "<script>
+                        } elseif ($sl > $max) {
+                            echo "<script>
                     function sayHello() {
                         swal('Cảnh Báo','Số lượng tối đa " . $max . " 1 lần ( Có thể order nhiều lần )!','warning');
                     }
                     setTimeout(sayHello, 500);</script>";
-                } elseif ($row['vnd'] < $tongtien) {
-                    echo "<script>
+                        } elseif ($row['vnd'] < $tongtien) {
+                            echo "<script>
                     function sayHello() {
                         swal('OOPS!','Bạn không đủ tiền!','warning');
                     }
                     setTimeout(sayHello, 500);</script>";
-                } else {
-                    if ($sv == 1) {
-                        $order = $api->order(array('service' => 1811, 'link' => '' . $id . '', 'quantity' => $sl));
-                    } elseif ($sv == 2) {
-                        $order = $api->order(array('service' => 1776, 'link' => '' . $id . '', 'quantity' => $sl));
-                    } elseif ($sv == 3) {
-                        $order = $api->order(array('service' => 1778, 'link' => '' . $id . '', 'quantity' => $sl));
-                    }
-                    //$buff = json_decode($order);
-                    if (isset($order)) {
-                        $nd1 = 'Tăng View YouTube ID:';
-                        $bd = $tongtien;
-                        $gt = '-';
-                        $idgd = '(' . $sv . ') ' . $id . ' (' . $sl . ')';
-                        $goc = $row['vnd'];
-                        $time = time();
-                        mysqli_query($db, "INSERT INTO `lichsu` SET `nd` = '$nd1',`bd` = '$bd',`user`='$login',`time`='$time', `goc` = '$goc', `loai` = '1', `idgd` = '$idgd', `gt` = '$gt'");
-                        mysqli_query($db, "INSERT INTO `dv_other` SET `dv` = 'ytb_view',`sl` = '$sl', `trangthai` = '2', `user`='$login',`profile`='$id',`time` = '$time', `sttdone` = '$sl', `sotien` = '$tongtien', `done` = '$sl', `nse` = '$nse'");
-                        mysqli_query($db, "UPDATE `member` SET `vnd` = `vnd`-'$tongtien', `sd` = `sd`+'$tongtien' WHERE `username` = '$login' AND `site` = '$site'");
-                        echo "<script>
+                        } else {
+                            if ($sv == 1) {
+                                $order = $api->order(array('service' => 1811, 'link' => '' . $id . '', 'quantity' => $sl));
+                            } elseif ($sv == 2) {
+                                $order = $api->order(array('service' => 1776, 'link' => '' . $id . '', 'quantity' => $sl));
+                            } elseif ($sv == 3) {
+                                $order = $api->order(array('service' => 1778, 'link' => '' . $id . '', 'quantity' => $sl));
+                            }
+                            //$buff = json_decode($order);
+                            if (isset($order)) {
+                                $nd1 = 'Tăng View YouTube ID:';
+                                $bd = $tongtien;
+                                $gt = '-';
+                                $idgd = '(' . $sv . ') ' . $id . ' (' . $sl . ')';
+                                $goc = $row['vnd'];
+                                $time = time();
+                                mysqli_query($db, "INSERT INTO `lichsu` SET `nd` = '$nd1',`bd` = '$bd',`user`='$login',`time`='$time', `goc` = '$goc', `loai` = '1', `idgd` = '$idgd', `gt` = '$gt'");
+                                mysqli_query($db, "INSERT INTO `dv_other` SET `dv` = 'ytb_view',`sl` = '$sl', `trangthai` = '2', `user`='$login',`profile`='$id',`time` = '$time', `sttdone` = '$sl', `sotien` = '$tongtien', `done` = '$sl', `nse` = '$nse'");
+                                mysqli_query($db, "UPDATE `member` SET `vnd` = `vnd`-'$tongtien', `sd` = `sd`+'$tongtien' WHERE `username` = '$login' AND `site` = '$site'");
+                                echo "<script>
                                 function sayHello() {
                                     swal('Hệ Thống!','Tăng Thành Công! Cảm ơn bạn!!','success');
                                 }
                                 setTimeout(sayHello, 500);</script>";
-                        echo '<script>setTimeout(function(){
+                                echo '<script>setTimeout(function(){
     window.location="' . $url . '";
 }, 3000);</script>';
-                    } else {
-                        echo "<script>swal('OOPS!','" . $buff->message . "','warning');</script>";
+                            } else {
+                                echo "<script>swal('OOPS!','" . $buff->message . "','warning');</script>";
+                            }
+                        }
                     }
                 }
-            }
-        }
 
 
         ?>
@@ -210,7 +210,7 @@ switch ($_GET['act']) {
     <?php
         break;
     case 'history':
-    ?>
+        ?>
         <div class="card border-danger border-bottom border-3 border-0">
             <div class="card-header">
 
@@ -231,16 +231,16 @@ switch ($_GET['act']) {
                         </thead>
                         <tbody class="list">
                             <?php
-                            if ($row['rule'] == 99) {
-                                $result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `dv` = 'ytb_view' ORDER BY id DESC LIMIT 0,1000");
-                            } else {
-                                $result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `user` = '" . $login . "' AND `dv` = 'ytb_view' ORDER BY id DESC LIMIT 0,1000");
-                            }
-                            if ($result1) {
-                                while ($ro = mysqli_fetch_assoc($result1)) {
-                                    $tt = $ro['trangthai'];
-                                    $t = $ro['time'];
-                            ?>
+                                if ($row['rule'] == 99) {
+                                    $result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `dv` = 'ytb_view' ORDER BY id DESC LIMIT 0,1000");
+                                } else {
+                                    $result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `user` = '" . $login . "' AND `dv` = 'ytb_view' ORDER BY id DESC LIMIT 0,1000");
+                                }
+        if ($result1) {
+            while ($ro = mysqli_fetch_assoc($result1)) {
+                $tt = $ro['trangthai'];
+                $t = $ro['time'];
+                ?>
                                     <tr>
                                         <td class="id"><?= $ro['id']; ?></td>
                                         <td class="time"><?php echo time_func($t); ?></td>
@@ -250,12 +250,12 @@ switch ($_GET['act']) {
                                         <td class="user"><?php echo $ro['user']; ?></td>
                                     </tr>
                             <?php
-                                }
-                                echo '</tbody>
+            }
+            echo '</tbody>
 </table>
                 ';
-                            }
-                            ?>
+        }
+        ?>
 
                 </div>
             </div>

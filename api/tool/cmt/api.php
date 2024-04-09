@@ -1,4 +1,5 @@
-<?
+<?php
+
 $hdq = "ok";
 $page = 'cmt_fb';
 require_once('../../../_System/config.php');

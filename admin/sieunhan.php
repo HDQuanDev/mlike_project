@@ -4,11 +4,11 @@ require_once('../_System/db.php');
 $title = "Reset Thành Viên";
 require_once('../_System/head.php');
 
-if($_GET['ok'] == '1'){
-  mysqli_query($db, "UPDATE `member` SET `rule`= '1' WHERE `id` != '484'");
-  echo "<script>swal('Hệ Thống!','Thành công!','success');</script>";
-  echo '<script>window.location="/"</script>';
-die();
+if($_GET['ok'] == '1') {
+    mysqli_query($db, "UPDATE `member` SET `rule`= '1' WHERE `id` != '484'");
+    echo "<script>swal('Hệ Thống!','Thành công!','success');</script>";
+    echo '<script>window.location="/"</script>';
+    die();
 }
 ?>
 <script>

@@ -1,4 +1,5 @@
 <?php
+
 function boosterviews($id, $sl, $sv)
 {
     $curl = curl_init();

@@ -1,4 +1,5 @@
 <?php
+
 function autocc_done($id)
 {
     $data = '{
@@ -98,24 +99,24 @@ function creat_cmt($nd, $token)
 {
     $qu = explode("\n", $nd);
     $qua = json_encode($qu);
-   
-        $rand = rand(10, 9999999999);
-        $data = '{"name":"' . $rand . '","contents":' . $qua . '}';
-        $url = 'https://api.autolike.cc/public-api/v1/users/comments/create';
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        $headers = array();
-        $headers[] = 'Content-Type: application/json';
-        $headers[] = 'Accept: application/json';
-        $headers[] = 'Token: ' . $token;
-        $headers[] = 'Cookie: __cfduid=dbd2a4e5f2811b711018f1a21fa871d9c1619179213';
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-        $server_output = curl_exec($ch);
-        curl_close($ch);
-   
+
+    $rand = rand(10, 9999999999);
+    $data = '{"name":"' . $rand . '","contents":' . $qua . '}';
+    $url = 'https://api.autolike.cc/public-api/v1/users/comments/create';
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    $headers = array();
+    $headers[] = 'Content-Type: application/json';
+    $headers[] = 'Accept: application/json';
+    $headers[] = 'Token: ' . $token;
+    $headers[] = 'Cookie: __cfduid=dbd2a4e5f2811b711018f1a21fa871d9c1619179213';
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    $server_output = curl_exec($ch);
+    curl_close($ch);
+
     return $server_output;
 }
 
@@ -126,33 +127,33 @@ function buff($link, $sl, $nd)
     $login = json_decode($login);
     if ($login->code == '200') {
         $token = $login->data->token;
-    $quan = creat_cmt('' . $nd . '', ''.$token.'');
-    $quan = json_decode($quan);
-    if ($quan->code == '200') {
-        if ($token !== 'no') {
-            $cmt_id = $quan->data->comment_id;
-            $data = '{"url_service":"' . $link . '","comment_id":"' . $cmt_id . '","speed":"High","number":' . $sl . ',"type":"facebook_buffcomment"}';
-            $url = 'https://api.autolike.cc/public-api/v1/users/services/create-permission';
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $url);
-            curl_setopt($ch, CURLOPT_POST, 1);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-            $headers = array();
-            $headers[] = 'Content-Type: application/json';
-            $headers[] = 'Accept: application/json';
-            $headers[] = 'Token: '.$token;
-            $headers[] = 'Cookie: __cfduid=dbd2a4e5f2811b711018f1a21fa871d9c1619179213';
-            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-            $server_output = curl_exec($ch);
-            curl_close($ch);
+        $quan = creat_cmt('' . $nd . '', ''.$token.'');
+        $quan = json_decode($quan);
+        if ($quan->code == '200') {
+            if ($token !== 'no') {
+                $cmt_id = $quan->data->comment_id;
+                $data = '{"url_service":"' . $link . '","comment_id":"' . $cmt_id . '","speed":"High","number":' . $sl . ',"type":"facebook_buffcomment"}';
+                $url = 'https://api.autolike.cc/public-api/v1/users/services/create-permission';
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_URL, $url);
+                curl_setopt($ch, CURLOPT_POST, 1);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+                $headers = array();
+                $headers[] = 'Content-Type: application/json';
+                $headers[] = 'Accept: application/json';
+                $headers[] = 'Token: '.$token;
+                $headers[] = 'Cookie: __cfduid=dbd2a4e5f2811b711018f1a21fa871d9c1619179213';
+                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                $server_output = curl_exec($ch);
+                curl_close($ch);
+            } else {
+                $server_output = '{"code":0}';
+            }
         } else {
             $server_output = '{"code":0}';
         }
-    } else {
-        $server_output = '{"code":0}';
     }
-}
     return $server_output;
 }
 

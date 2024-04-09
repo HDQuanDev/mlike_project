@@ -1,4 +1,4 @@
-<?
+<?php
 
 $page = "cmt_fb";
 //$admin = "1";
@@ -19,7 +19,7 @@ if (!isset($_SESSION['bugdi'])) {
 <?php
 switch ($_GET['act']) {
     default:
-?>
+        ?>
 
         <script>
             function calc() {
@@ -160,9 +160,9 @@ xin vui lòng không sử dụng kí tự đặc biệt hoặc icon để tránh
             }
         </script>
     <?php
-        break;
+                break;
     case 'history':
-    ?>
+        ?>
         <div class="card border-danger border-bottom border-3 border-0">
             <div class="card-header">
                 <h4 class="card-title">Lịch Sử Tăng Comment</h4>
@@ -186,22 +186,22 @@ xin vui lòng không sử dụng kí tự đặc biệt hoặc icon để tránh
                         </thead>
                         <tbody>
                             <?php
-                            if ($row['rule'] == 99) {
-                                $result1 = mysqli_query($db, "SELECT * FROM `dv_cmt` ORDER BY id DESC LIMIT 0,200");
-                            } else {
-                                $result1 = mysqli_query($db, "SELECT * FROM `dv_cmt` WHERE `user` = '" . $login . "' ORDER BY id DESC LIMIT 0,200");
-                            }
-                            if ($result1) {
-                                while ($ro = mysqli_fetch_assoc($result1)) {
-                                    $tt = $ro['trangthai'];
-                                    $t = $ro['time'];
-                                    $done = $ro['done'];
-                                    if ($done == 14102003) {
-                                        $done = 'Không áp dụng';
-                                    } else {
-                                        $done = $done;
-                                    }
-                            ?>
+                                if ($row['rule'] == 99) {
+                                    $result1 = mysqli_query($db, "SELECT * FROM `dv_cmt` ORDER BY id DESC LIMIT 0,200");
+                                } else {
+                                    $result1 = mysqli_query($db, "SELECT * FROM `dv_cmt` WHERE `user` = '" . $login . "' ORDER BY id DESC LIMIT 0,200");
+                                }
+        if ($result1) {
+            while ($ro = mysqli_fetch_assoc($result1)) {
+                $tt = $ro['trangthai'];
+                $t = $ro['time'];
+                $done = $ro['done'];
+                if ($done == 14102003) {
+                    $done = 'Không áp dụng';
+                } else {
+                    $done = $done;
+                }
+                ?>
                                     <tr>
                                         <td><?= $ro['id']; ?></td>
                                         <td><?php echo time_func($t); ?></td>
@@ -213,12 +213,12 @@ xin vui lòng không sử dụng kí tự đặc biệt hoặc icon để tránh
                                         <td><?php echo $ro['user']; ?></td>
                                         <td><?php trangthai($tt); ?></td>
                                         <?php
-                                        if ($tt == '7') {
-                                            echo '<td><form><input id="id_order_' . $ro["id"] . '" value="' . $ro['id'] . '" type="hidden"><input id="token" value="' . $row['token'] . '" type="hidden"><button type="button" id="button_' . $ro["id"] . '" class="btn btn-primary btn-rounded" onclick="huy_order_' . $ro["id"] . '()">Hủy & Hoàn Tiền</button></form></td>';
-                                        } else {
-                                            echo '<td>NULL</td>';
-                                        }
-                                        ?>
+                            if ($tt == '7') {
+                                echo '<td><form><input id="id_order_' . $ro["id"] . '" value="' . $ro['id'] . '" type="hidden"><input id="token" value="' . $row['token'] . '" type="hidden"><button type="button" id="button_' . $ro["id"] . '" class="btn btn-primary btn-rounded" onclick="huy_order_' . $ro["id"] . '()">Hủy & Hoàn Tiền</button></form></td>';
+                            } else {
+                                echo '<td>NULL</td>';
+                            }
+                ?>
                                     </tr>
                                     <script>
                                         function huy_order_<?= $ro["id"]; ?>() {
@@ -249,13 +249,13 @@ xin vui lòng không sử dụng kí tự đặc biệt hoặc icon để tránh
                                         }
                                     </script>
                             <?php
-                                }
-                                echo '</tbody>
+            }
+            echo '</tbody>
                                 
 </table>
 ';
-                            }
-                            ?>
+        }
+        ?>
 
                 </div>
             </div>

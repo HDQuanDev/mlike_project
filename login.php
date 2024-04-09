@@ -1,4 +1,4 @@
-<?
+<?php
 $u = 'login';
 require_once('_System/db.php');
 if (isset($_COOKIE["username"]) && isset($_COOKIE["password"])) {

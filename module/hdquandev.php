@@ -1,4 +1,5 @@
 <?php
+
 $allowed_referer = 'mlike.vn'; // Thay đổi địa chỉ trang web của bạn ở đây
 $url = $_SERVER['HTTP_REFERER'];
 $tach = explode("/", $url);

@@ -1,4 +1,5 @@
 <?php
+
 function show_setting()
 {
     $curl = curl_init();

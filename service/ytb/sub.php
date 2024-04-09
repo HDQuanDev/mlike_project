@@ -14,39 +14,39 @@ switch ($_GET['act']) {
         $min = '100';
         $max = '5000000';
         $api = new Api();
-?>
+        ?>
  
         <?php
-        if (isset($_POST['add']) && isset($login)) {
-            if (isset($_POST['g-recaptcha-response'])) {
-                $captcha = $_POST['g-recaptcha-response'];
-            } else {
-                $captcha = false;
-            }
-            if (!$captcha) {
-                echo "<script>swal('Bảo Mật!','Lỗi Bảo Mật, Vui Lòng Load Lại Trang Và Thử Lại!!','warning');</script>";
-                exit('<script>setTimeout(function(){
+                if (isset($_POST['add']) && isset($login)) {
+                    if (isset($_POST['g-recaptcha-response'])) {
+                        $captcha = $_POST['g-recaptcha-response'];
+                    } else {
+                        $captcha = false;
+                    }
+                    if (!$captcha) {
+                        echo "<script>swal('Bảo Mật!','Lỗi Bảo Mật, Vui Lòng Load Lại Trang Và Thử Lại!!','warning');</script>";
+                        exit('<script>setTimeout(function(){
 window.location="' . $url . '";
 }, 3000);</script>');
-            } else {
-                $secret   = '6LeOmxcaAAAAACHVlh3lcvCFNaCyb19iZgoeRVtW';
-                $response = file_get_contents(
-                    "https://www.google.com/recaptcha/api/siteverify?secret=" . $secret . "&response=" . $captcha . "&remoteip=" . $_SERVER['REMOTE_ADDR']
-                );
-                $response = json_decode($response);
-                if ($response->success === false) {
-                    echo "<script>swal('Bảo Mật!','Phát Hiện Robot, Vui Lòng Load Lại Trang Và Thử Lại!!','warning');</script>";
-                    exit('<script>setTimeout(function(){
+                    } else {
+                        $secret   = '6LeOmxcaAAAAACHVlh3lcvCFNaCyb19iZgoeRVtW';
+                        $response = file_get_contents(
+                            "https://www.google.com/recaptcha/api/siteverify?secret=" . $secret . "&response=" . $captcha . "&remoteip=" . $_SERVER['REMOTE_ADDR']
+                        );
+                        $response = json_decode($response);
+                        if ($response->success === false) {
+                            echo "<script>swal('Bảo Mật!','Phát Hiện Robot, Vui Lòng Load Lại Trang Và Thử Lại!!','warning');</script>";
+                            exit('<script>setTimeout(function(){
     window.location="' . $url . '";
-    }, 3000);</script>');  
-                }
-            }
-            if ($response->success==true && $response->score <= 0.5) {
-                echo "<script>swal('Bảo Mật!','Lỗi Hệ Thống, Vui Lòng Load Lại Trang Và Thử Lại!!','warning');</script>";
-                exit('<script>setTimeout(function(){
+    }, 3000);</script>');
+                        }
+                    }
+                    if ($response->success == true && $response->score <= 0.5) {
+                        echo "<script>swal('Bảo Mật!','Lỗi Hệ Thống, Vui Lòng Load Lại Trang Và Thử Lại!!','warning');</script>";
+                        exit('<script>setTimeout(function(){
 window.location="' . $url . '";
-}, 3000);</script>'); 
-            }
+}, 3000);</script>');
+                    }
                     $id = mysqli_real_escape_string($db, $_POST['id']);
                     $sl = mysqli_real_escape_string($db, $_POST['sl']);
                     $sv = mysqli_real_escape_string($db, $_POST['sv']);
@@ -58,63 +58,63 @@ window.location="' . $url . '";
                             $tongtien = $sl * $gia2;
                             $nse = 'Server Sub 2';
                         }
-                    if (empty($id)) {
-                        echo "<script>swal('OOPS!','Vui lòng nhập Link cần tăng Subscribe!','warning');</script>";
-                    } elseif (empty($sl)) {
-                        echo "<script>swal('OOPS!','Vui lòng nhập số lượng!','warning');</script>";
-                    } elseif ($sl < $min) {
-                        echo "<script>swal('OOPS!','Số lượng phải lớn hơn " . $min . "','warning');</script>";
-                    } elseif ($sl > $max) {
-                        echo "<script>swal('Cảnh Báo','Số lượng tối đa " . $max . " 1 lần ( Có thể order nhiều lần )!','warning');</script>";
-                    } elseif ($row['vnd'] < $tongtien) {
-                        echo "<script>swal('OOPS!','Bạn không đủ tiền!','warning');</script>";
-                    } else {
-                        if($sv == 1){
-                        $order = $api->order(array('service' => 751, 'link' => '' . $id . '', 'quantity' => $sl));
-                        //$buff = json_decode($order);
-                        if (isset($order)) {
-                            $nd1 = 'Tăng Subscribe YouTube ID:';
-                            $bd = $tongtien;
-                            $gt = '-';
-                            $idgd = '('.$sl.') ' . $id . ' (' . $sl . ')';
-                            $goc = $row['vnd'];
-                            $time = time();
-                            mysqli_query($db, "INSERT INTO `lichsu` SET `nd` = '$nd1',`bd` = '$bd',`user`='$login',`time`='$time', `goc` = '$goc', `loai` = '1', `idgd` = '$idgd', `gt` = '$gt'");
-                            mysqli_query($db, "INSERT INTO `dv_other` SET `dv` = 'ytb_sub',`sl` = '$sl', `trangthai` = '2', `user`='$login',`profile`='$id',`time` = '$time', `sttdone` = '$sl', `sotien` = '$tongtien', `done` = '$sl', `nse` = '$nse'");
-                            mysqli_query($db, "UPDATE `member` SET `vnd` = `vnd`-'$tongtien', `sd` = `sd`+'$tongtien' WHERE `username` = '$login' AND `site` = '$site'");
-                            echo "<script>swal('Hệ Thống!','Tăng Thành Công! Cảm ơn bạn!!','success');</script>";
-                            echo '<script>setTimeout(function(){
+                        if (empty($id)) {
+                            echo "<script>swal('OOPS!','Vui lòng nhập Link cần tăng Subscribe!','warning');</script>";
+                        } elseif (empty($sl)) {
+                            echo "<script>swal('OOPS!','Vui lòng nhập số lượng!','warning');</script>";
+                        } elseif ($sl < $min) {
+                            echo "<script>swal('OOPS!','Số lượng phải lớn hơn " . $min . "','warning');</script>";
+                        } elseif ($sl > $max) {
+                            echo "<script>swal('Cảnh Báo','Số lượng tối đa " . $max . " 1 lần ( Có thể order nhiều lần )!','warning');</script>";
+                        } elseif ($row['vnd'] < $tongtien) {
+                            echo "<script>swal('OOPS!','Bạn không đủ tiền!','warning');</script>";
+                        } else {
+                            if($sv == 1) {
+                                $order = $api->order(array('service' => 751, 'link' => '' . $id . '', 'quantity' => $sl));
+                                //$buff = json_decode($order);
+                                if (isset($order)) {
+                                    $nd1 = 'Tăng Subscribe YouTube ID:';
+                                    $bd = $tongtien;
+                                    $gt = '-';
+                                    $idgd = '('.$sl.') ' . $id . ' (' . $sl . ')';
+                                    $goc = $row['vnd'];
+                                    $time = time();
+                                    mysqli_query($db, "INSERT INTO `lichsu` SET `nd` = '$nd1',`bd` = '$bd',`user`='$login',`time`='$time', `goc` = '$goc', `loai` = '1', `idgd` = '$idgd', `gt` = '$gt'");
+                                    mysqli_query($db, "INSERT INTO `dv_other` SET `dv` = 'ytb_sub',`sl` = '$sl', `trangthai` = '2', `user`='$login',`profile`='$id',`time` = '$time', `sttdone` = '$sl', `sotien` = '$tongtien', `done` = '$sl', `nse` = '$nse'");
+                                    mysqli_query($db, "UPDATE `member` SET `vnd` = `vnd`-'$tongtien', `sd` = `sd`+'$tongtien' WHERE `username` = '$login' AND `site` = '$site'");
+                                    echo "<script>swal('Hệ Thống!','Tăng Thành Công! Cảm ơn bạn!!','success');</script>";
+                                    echo '<script>setTimeout(function(){
                                   window.location="' . $url . '";
                                   }, 3000);</script>';
-                        } else {
-                            echo "<script>swal('OOPS!','" . $buff->message . "','warning');</script>";
-                        }
-                    }elseif($sv == 2){
-                            $quan = youtube("'.$id.'", "'.$sl.'");
-                            $q = json_decode($quan);
-                            if($q->status == 200){
-                                $nd1 = 'Tăng Subscribe YouTube ID:';
-                                $bd = $tongtien;
-                                $gt = '-';
-                                $idgd = '('.$sl.') ' . $id . ' (' . $sl . ')';
-                                $goc = $row['vnd'];
-                                $time = time();
-                                mysqli_query($db, "INSERT INTO `lichsu` SET `nd` = '$nd1',`bd` = '$bd',`user`='$login',`time`='$time', `goc` = '$goc', `loai` = '1', `idgd` = '$idgd', `gt` = '$gt'");
-                                mysqli_query($db, "INSERT INTO `dv_other` SET `dv` = 'ytb_sub',`sl` = '$sl', `trangthai` = '2', `user`='$login',`profile`='$id',`time` = '$time', `sttdone` = '$sl', `sotien` = '$tongtien', `done` = '$sl', `nse` = '$nse'");
-                                mysqli_query($db, "UPDATE `member` SET `vnd` = `vnd`-'$tongtien', `sd` = `sd`+'$tongtien' WHERE `username` = '$login'");
-                                echo "<script>swal('Hệ Thống!','Tăng Thành Công! Cảm ơn bạn!!','success');</script>";
-                                echo '<script>setTimeout(function(){
+                                } else {
+                                    echo "<script>swal('OOPS!','" . $buff->message . "','warning');</script>";
+                                }
+                            } elseif($sv == 2) {
+                                $quan = youtube("'.$id.'", "'.$sl.'");
+                                $q = json_decode($quan);
+                                if($q->status == 200) {
+                                    $nd1 = 'Tăng Subscribe YouTube ID:';
+                                    $bd = $tongtien;
+                                    $gt = '-';
+                                    $idgd = '('.$sl.') ' . $id . ' (' . $sl . ')';
+                                    $goc = $row['vnd'];
+                                    $time = time();
+                                    mysqli_query($db, "INSERT INTO `lichsu` SET `nd` = '$nd1',`bd` = '$bd',`user`='$login',`time`='$time', `goc` = '$goc', `loai` = '1', `idgd` = '$idgd', `gt` = '$gt'");
+                                    mysqli_query($db, "INSERT INTO `dv_other` SET `dv` = 'ytb_sub',`sl` = '$sl', `trangthai` = '2', `user`='$login',`profile`='$id',`time` = '$time', `sttdone` = '$sl', `sotien` = '$tongtien', `done` = '$sl', `nse` = '$nse'");
+                                    mysqli_query($db, "UPDATE `member` SET `vnd` = `vnd`-'$tongtien', `sd` = `sd`+'$tongtien' WHERE `username` = '$login'");
+                                    echo "<script>swal('Hệ Thống!','Tăng Thành Công! Cảm ơn bạn!!','success');</script>";
+                                    echo '<script>setTimeout(function(){
                                       window.location="' . $url . '";
                                       }, 3000);</script>';
-                            } else {
-                                echo "<script>swal('OOPS!','" . $q->message . "','warning');</script>";
+                                } else {
+                                    echo "<script>swal('OOPS!','" . $q->message . "','warning');</script>";
+                                }
                             }
-                            }
-                    }
+                        }
 
                     }
                 }
-            
+
         ?>
         <script>
             function format_curency(a) {
@@ -213,7 +213,7 @@ window.location="' . $url . '";
     <?php
         break;
     case 'history':
-    ?>
+        ?>
         <div class="card border-danger border-bottom border-3 border-0">
             <div class="card-header">
 
@@ -234,16 +234,16 @@ window.location="' . $url . '";
                         </thead>
                         <tbody class="list">
                             <?php
-                            if ($row['rule'] == 99) {
-                                $result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `dv` = 'ytb_sub' ORDER BY id DESC LIMIT 0,1000");
-                            } else {
-                                $result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `user` = '" . $login . "' AND `dv` = 'ytb_sub' ORDER BY id DESC LIMIT 0,1000");
-                            }
-                            if ($result1) {
-                                while ($ro = mysqli_fetch_assoc($result1)) {
-                                    $tt = $ro['trangthai'];
-                                    $t = $ro['time'];
-                            ?>
+                                if ($row['rule'] == 99) {
+                                    $result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `dv` = 'ytb_sub' ORDER BY id DESC LIMIT 0,1000");
+                                } else {
+                                    $result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `user` = '" . $login . "' AND `dv` = 'ytb_sub' ORDER BY id DESC LIMIT 0,1000");
+                                }
+        if ($result1) {
+            while ($ro = mysqli_fetch_assoc($result1)) {
+                $tt = $ro['trangthai'];
+                $t = $ro['time'];
+                ?>
                                     <tr>
                                         <td class="id"><?= $ro['id']; ?></td>
                                         <td class="time"><?php echo time_func($t); ?></td>
@@ -253,12 +253,12 @@ window.location="' . $url . '";
                                         <td class="user"><?php echo $ro['user']; ?></td>
                                     </tr>
                             <?php
-                                }
-                                echo '</tbody>
+            }
+            echo '</tbody>
 </table>
                 ';
-                            }
-                            ?>
+        }
+        ?>
 
                 </div>
             </div>

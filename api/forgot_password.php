@@ -1,4 +1,5 @@
 <?php
+
 $u = 'login';
 require_once('../_System/db.php');
 switch ($_GET['act']) {

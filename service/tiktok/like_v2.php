@@ -9,7 +9,7 @@ switch ($_GET['act']) {
     default:
         // Điều Chỉnh Giá
         $gia = $gia1;
-?>
+        ?>
         <script>
             function format_curency(a) {
                 a.value = a.value.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
@@ -40,15 +40,15 @@ switch ($_GET['act']) {
                     <input type="hidden" id="token" value="<?= $row['token']; ?>">
                     <label>Chọn Server:</label>
                     <div class="form-check">
-                        <input class="form-check-input" checked <? if ($sv1 == 'off') {
-                                                            echo 'disabled';
-                                                        } else {
-                                                            echo 'checked';
-                                                        } ?> id="flexRadioDefault1" type="radio" name="sv" value="1" data-bs-toggle="collapse" data-bs-target="#sv1" aria-expanded="false" aria-controls="sv1" /><label class="form-check-label" for="flexRadioDefault1">Server Like 1<i class="wi wi-time-1"></i><i class="wi wi-moon-1"></i> (<b><?= $gia1; ?>₫</b>) (Tim tây sale, bắt đầu lên từ 5p - 15p. Rất ít delay. Tốc độ chậm 200-300 / 1h ) <? if ($sv1 == 'off') {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                echo '<span class="badge bg-danger">Quá tải</span>';
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            } else {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                echo '<span class="badge bg-success">Hoạt động</span>';
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            } ?></label>
+                        <input class="form-check-input" checked <?php if ($sv1 == 'off') {
+                            echo 'disabled';
+                        } else {
+                            echo 'checked';
+                        } ?> id="flexRadioDefault1" type="radio" name="sv" value="1" data-bs-toggle="collapse" data-bs-target="#sv1" aria-expanded="false" aria-controls="sv1" /><label class="form-check-label" for="flexRadioDefault1">Server Like 1<i class="wi wi-time-1"></i><i class="wi wi-moon-1"></i> (<b><?= $gia1; ?>₫</b>) (Tim tây sale, bắt đầu lên từ 5p - 15p. Rất ít delay. Tốc độ chậm 200-300 / 1h ) <?php if ($sv1 == 'off') {
+                            echo '<span class="badge bg-danger">Quá tải</span>';
+                        } else {
+                            echo '<span class="badge bg-success">Hoạt động</span>';
+                        } ?></label>
                         <div id="sv1" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#sv1">
                             <div class="accordion-body alert alert-danger">
                                 Vui lòng dùng link
@@ -132,7 +132,7 @@ switch ($_GET['act']) {
     <?php
         break;
     case 'history':
-    ?>
+        ?>
         <div class="card border-danger border-bottom border-3 border-0">
             <div class="card-header">
                 <h4 class="card-title">Lịch Sử Tăng Tim TikTok Sale</h4>
@@ -155,16 +155,16 @@ switch ($_GET['act']) {
                         </thead>
                         <tbody class="list">
                             <?php
-                            if ($row['rule'] == 99) {
-                                $result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `dv` = 'tiktok_like_tay' ORDER BY id DESC LIMIT 0,1000");
-                            } else {
-                                $result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `user` = '" . $login . "' AND `dv` = 'tiktok_like_tay' ORDER BY id DESC LIMIT 0,1000");
-                            }
-                            if ($result1) {
-                                while ($ro = mysqli_fetch_assoc($result1)) {
-                                    $tt = $ro['trangthai'];
-                                    $t = $ro['time'];
-                            ?>
+                                if ($row['rule'] == 99) {
+                                    $result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `dv` = 'tiktok_like_tay' ORDER BY id DESC LIMIT 0,1000");
+                                } else {
+                                    $result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `user` = '" . $login . "' AND `dv` = 'tiktok_like_tay' ORDER BY id DESC LIMIT 0,1000");
+                                }
+        if ($result1) {
+            while ($ro = mysqli_fetch_assoc($result1)) {
+                $tt = $ro['trangthai'];
+                $t = $ro['time'];
+                ?>
                                     <tr>
                                         <td class="id"><?= $ro['id']; ?></td>
                                         <td class="time"><?php echo time_func($t); ?></td>
@@ -177,12 +177,12 @@ switch ($_GET['act']) {
                                         <td class="tt"><?php trangthai($tt); ?></td>
                                     </tr>
                             <?php
-                                }
-                                echo '</tbody>
+            }
+            echo '</tbody>
 </table>
 ';
-                            }
-                            ?>
+        }
+        ?>
                 </div>
             </div>
             <div class="card-footer border-0 text-center py-4">
