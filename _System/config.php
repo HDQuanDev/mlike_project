@@ -10,7 +10,7 @@ if (isset($page)) {
         $sv2 = 'off';
         $sv3 = 'off';
         $sv4 = 'off';
-        $sv5 = 'on';
+        $sv5 = 'off';
         $sv6 = 'off';
         $sv7 = 'off';
         $sv8 = 'on';
@@ -22,7 +22,7 @@ if (isset($page)) {
     } elseif ($page == 'page_fb') {
         $sv2 = 'on';
     } elseif ($page == 'share_fb') {
-        $sv4 = 'on';
-        $sv5 = 'on';
+        $sv4 = 'off';
+        $sv5 = 'off';
     }
 }
