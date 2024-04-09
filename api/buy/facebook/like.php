@@ -302,7 +302,7 @@ switch ($_GET["act"]) {
                                     mysqli_query($db, "UPDATE `member` SET `vnd` = `vnd`-'$tongtien', `sd` = `sd`+'$tongtien' WHERE `username` = '$login' AND `site` = '$site'");
                                     $array["status"] = 'success';
                                     $array["msg"] = 'Mua LIKE Thành Công! Cảm ơn bạn!!';
-                                    $r = mysqli_query($db, "SELECT * FROM `dichvu` ORDER BY `dichvu`.`id` DESC");
+                                    $r = mysqli_query($db, "SELECT `id` FROM `dichvu` ORDER BY `dichvu`.`id` DESC LIMIT 1");
                                     $rr = mysqli_fetch_assoc($r);
                                     $array["id_order"] = $rr['id'];
                                 } else {
@@ -328,7 +328,7 @@ switch ($_GET["act"]) {
                             mysqli_query($db, "UPDATE `member` SET `vnd` = `vnd`-'$tongtien', `sd` = `sd`+'$tongtien' WHERE `username` = '$login' AND `site` = '$site'");
                             $array["status"] = 'success';
                             $array["msg"] = 'Mua LIKE Thành Công! Cảm ơn bạn!!';
-                            $r = mysqli_query($db, "SELECT * FROM `dichvu` ORDER BY `dichvu`.`id` DESC");
+                            $r = mysqli_query($db, "SELECT `id` FROM `dichvu` ORDER BY `dichvu`.`id` DESC LIMIT 1");
                             $rr = mysqli_fetch_assoc($r);
                             $array["id_order"] = $rr['id'];
                         } elseif ($quan == 'bao') {
@@ -347,7 +347,7 @@ switch ($_GET["act"]) {
                                 mysqli_query($db, "UPDATE `member` SET `vnd` = `vnd`-'$tongtien', `sd` = `sd`+'$tongtien' WHERE `username` = '$login' AND `site` = '$site'");
                                 $array["status"] = 'success';
                                 $array["msg"] = 'Mua LIKE Thành Công! Cảm ơn bạn!!';
-                                $r = mysqli_query($db, "SELECT * FROM `dichvu` ORDER BY `dichvu`.`id` DESC");
+                                $r = mysqli_query($db, "SELECT `id` FROM `dichvu` ORDER BY `dichvu`.`id` DESC LIMIT 1");
                                 $rr = mysqli_fetch_assoc($r);
                                 $array["id_order"] = $rr['id'];
                             } else {
@@ -370,7 +370,7 @@ switch ($_GET["act"]) {
                                 mysqli_query($db, "UPDATE `member` SET `vnd` = `vnd`-'$tongtien', `sd` = `sd`+'$tongtien' WHERE `username` = '$login' AND `site` = '$site'");
                                 $array["status"] = 'success';
                                 $array["msg"] = 'Mua LIKE Thành Công! Cảm ơn bạn!!';
-                                $r = mysqli_query($db, "SELECT * FROM `dichvu` ORDER BY `dichvu`.`id` DESC");
+                                $r = mysqli_query($db, "SELECT `id` FROM `dichvu` ORDER BY `dichvu`.`id` DESC LIMIT 1");
                                 $rr = mysqli_fetch_assoc($r);
                                 $array["id_order"] = $rr['id'];
                             } else {
@@ -415,7 +415,7 @@ switch ($_GET["act"]) {
                             mysqli_query($db, "UPDATE `member` SET `vnd` = `vnd`-'$tongtien', `sd` = `sd`+'$tongtien' WHERE `username` = '$login' AND `site` = '$site'");
                             $array["status"] = 'success';
                             $array["msg"] = 'Mua LIKE Thành Công! Cảm ơn bạn!!';
-                            $r = mysqli_query($db, "SELECT * FROM `dichvu` ORDER BY `dichvu`.`id` DESC");
+                            $r = mysqli_query($db, "SELECT `id` FROM `dichvu` ORDER BY `dichvu`.`id` DESC LIMIT 1");
                             $rr = mysqli_fetch_assoc($r);
                             $array["id_order"] = $rr['id'];
                         } else {
@@ -456,7 +456,7 @@ switch ($_GET["act"]) {
                             mysqli_query($db, "UPDATE `member` SET `vnd` = `vnd`-'$tongtien', `sd` = `sd`+'$tongtien' WHERE `username` = '$login' AND `site` = '$site'");
                             $array["status"] = 'success';
                             $array["msg"] = 'Mua LIKE Thành Công! Cảm ơn bạn!!';
-                            $r = mysqli_query($db, "SELECT * FROM `dichvu` ORDER BY `dichvu`.`id` DESC");
+                            $r = mysqli_query($db, "SELECT `id` FROM `dichvu` ORDER BY `dichvu`.`id` DESC LIMIT 1");
                             $rr = mysqli_fetch_assoc($r);
                             $array["id_order"] = $rr['id'];
                         } else {
@@ -501,7 +501,7 @@ switch ($_GET["act"]) {
                                 mysqli_query($db, "UPDATE `member` SET `vnd` = `vnd`-'$tongtien', `sd` = `sd`+'$tongtien' WHERE `username` = '$login' AND `site` = '$site'");
                                 $array["status"] = 'success';
                                 $array["msg"] = 'Mua LIKE Thành Công! Cảm ơn bạn!!';
-                                $r = mysqli_query($db, "SELECT * FROM `dichvu` ORDER BY `dichvu`.`id` DESC");
+                                $r = mysqli_query($db, "SELECT `id` FROM `dichvu` ORDER BY `dichvu`.`id` DESC LIMIT 1");
                                 $rr = mysqli_fetch_assoc($r);
                                 $array["id_order"] = $rr['id'];
                             } else {
@@ -571,7 +571,7 @@ switch ($_GET["act"]) {
                             mysqli_query($db, "UPDATE `member` SET `vnd` = `vnd`-'$tongtien', `sd` = `sd`+'$tongtien' WHERE `username` = '$login' AND `site` = '$site'");
                             $array["status"] = 'success';
                             $array["msg"] = 'Mua LIKE Thành Công! Cảm ơn bạn!!';
-                            $r = mysqli_query($db, "SELECT * FROM `dichvu` ORDER BY `dichvu`.`id` DESC");
+                            $r = mysqli_query($db, "SELECT `id` FROM `dichvu` ORDER BY `dichvu`.`id` DESC LIMIT 1");
                             $rr = mysqli_fetch_assoc($r);
                             $array["id_order"] = $rr['id'];
                         } else {
@@ -611,7 +611,7 @@ switch ($_GET["act"]) {
                             mysqli_query($db, "UPDATE `member` SET `vnd` = `vnd`-'$tongtien', `sd` = `sd`+'$tongtien' WHERE `username` = '$login' AND `site` = '$site'");
                             $array["status"] = 'success';
                             $array["msg"] = 'Mua LIKE Thành Công! Cảm ơn bạn!!';
-                            $r = mysqli_query($db, "SELECT * FROM `dichvu` ORDER BY `dichvu`.`id` DESC");
+                            $r = mysqli_query($db, "SELECT `id` FROM `dichvu` ORDER BY `dichvu`.`id` DESC LIMIT 1");
                             $rr = mysqli_fetch_assoc($r);
                             $array["id_order"] = $rr['id'];
                         } else {
@@ -651,7 +651,7 @@ switch ($_GET["act"]) {
                             mysqli_query($db, "UPDATE `member` SET `vnd` = `vnd`-'$tongtien', `sd` = `sd`+'$tongtien' WHERE `username` = '$login' AND `site` = '$site'");
                             $array["status"] = 'success';
                             $array["msg"] = 'Mua LIKE Thành Công! Cảm ơn bạn!!';
-                            $r = mysqli_query($db, "SELECT * FROM `dichvu` ORDER BY `dichvu`.`id` DESC");
+                            $r = mysqli_query($db, "SELECT `id` FROM `dichvu` ORDER BY `dichvu`.`id` DESC LIMIT 1");
                             $rr = mysqli_fetch_assoc($r);
                             $array["id_order"] = $rr['id'];
                         } else {
@@ -697,7 +697,7 @@ switch ($_GET["act"]) {
                             mysqli_query($db, "UPDATE `member` SET `vnd` = `vnd`-'$tongtien', `sd` = `sd`+'$tongtien' WHERE `username` = '$login' AND `site` = '$site'");
                             $array["status"] = 'success';
                             $array["msg"] = 'Mua LIKE Thành Công! Cảm ơn bạn!!';
-                            $r = mysqli_query($db, "SELECT * FROM `dichvu` ORDER BY `dichvu`.`id` DESC");
+                            $r = mysqli_query($db, "SELECT `id` FROM `dichvu` ORDER BY `dichvu`.`id` DESC LIMIT 1");
                             $rr = mysqli_fetch_assoc($r);
                             $array["id_order"] = $rr['id'];
                         } else {
@@ -737,7 +737,7 @@ switch ($_GET["act"]) {
                             mysqli_query($db, "UPDATE `member` SET `vnd` = `vnd`-'$tongtien', `sd` = `sd`+'$tongtien' WHERE `username` = '$login' AND `site` = '$site'");
                             $array["status"] = 'success';
                             $array["msg"] = 'Mua LIKE Thành Công! Cảm ơn bạn!!';
-                            $r = mysqli_query($db, "SELECT * FROM `dichvu` ORDER BY `dichvu`.`id` DESC");
+                            $r = mysqli_query($db, "SELECT `id` FROM `dichvu` ORDER BY `dichvu`.`id` DESC LIMIT 1");
                             $rr = mysqli_fetch_assoc($r);
                             $array["id_order"] = $rr['id'];
                         } else {
@@ -776,7 +776,7 @@ switch ($_GET["act"]) {
                             mysqli_query($db, "UPDATE `member` SET `vnd` = `vnd`-'$tongtien', `sd` = `sd`+'$tongtien' WHERE `username` = '$login' AND `site` = '$site'");
                             $array["status"] = 'success';
                             $array["msg"] = 'Mua LIKE Thành Công! Cảm ơn bạn!!';
-                            $r = mysqli_query($db, "SELECT * FROM `dichvu` ORDER BY `dichvu`.`id` DESC");
+                            $r = mysqli_query($db, "SELECT `id` FROM `dichvu` ORDER BY `dichvu`.`id` DESC LIMIT 1");
                             $rr = mysqli_fetch_assoc($r);
                             $array["id_order"] = $rr['id'];
                         } else {
@@ -816,7 +816,7 @@ switch ($_GET["act"]) {
                             mysqli_query($db, "UPDATE `member` SET `vnd` = `vnd`-'$tongtien', `sd` = `sd`+'$tongtien' WHERE `username` = '$login' AND `site` = '$site'");
                             $array["status"] = 'success';
                             $array["msg"] = 'Mua LIKE Thành Công! Cảm ơn bạn!!';
-                            $r = mysqli_query($db, "SELECT * FROM `dichvu` ORDER BY `dichvu`.`id` DESC");
+                            $r = mysqli_query($db, "SELECT `id` FROM `dichvu` ORDER BY `dichvu`.`id` DESC LIMIT 1");
                             $rr = mysqli_fetch_assoc($r);
                             $array["id_order"] = $rr['id'];
                         } else {
@@ -856,7 +856,7 @@ switch ($_GET["act"]) {
                             mysqli_query($db, "UPDATE `member` SET `vnd` = `vnd`-'$tongtien', `sd` = `sd`+'$tongtien' WHERE `username` = '$login' AND `site` = '$site'");
                             $array["status"] = 'success';
                             $array["msg"] = 'Mua LIKE Thành Công! Cảm ơn bạn!!';
-                            $r = mysqli_query($db, "SELECT * FROM `dichvu` ORDER BY `dichvu`.`id` DESC");
+                            $r = mysqli_query($db, "SELECT `id` FROM `dichvu` ORDER BY `dichvu`.`id` DESC LIMIT 1");
                             $rr = mysqli_fetch_assoc($r);
                             $array["id_order"] = $rr['id'];
                         } else {

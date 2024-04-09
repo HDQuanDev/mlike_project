@@ -198,7 +198,7 @@ switch ($_GET['act']) {
                             mysqli_query($db, "UPDATE `member` SET `vnd` = `vnd`-'$tongtien', `sd` = `sd`+'$tongtien' WHERE `username` = '$login' AND `site` = '$site'");
                             $array["status"] = 'success';
                             $array["msg"] = 'Mua Comment Thành Công! Cảm ơn bạn!!';
-                            $r = mysqli_query($db, "SELECT `id` FROM `dv_cmt` ORDER BY `dv_cmt`.`id` DESC");
+                            $r = mysqli_query($db, "SELECT `id` FROM `dv_cmt` ORDER BY `dv_cmt`.`id` DESC LIMIT 1");
                             $rr = mysqli_fetch_assoc($r);
                             $array["id_order"] = $rr['id'];
                         } else {
