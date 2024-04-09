@@ -45,7 +45,15 @@ switch ($_GET['act']) {
                     <input type="hidden" value="<?= $row['token']; ?>" id="token">
                     <label>Chọn Server Comment:</label>
                     <div class="form-check">
-                        <input class="form-check-input" checked id="flexRadioDefault1" type="radio" name="sv" value="1" data-bs-toggle="collapse" data-bs-target="#sv2" aria-expanded="false" aria-controls="sv2" /><label class="form-check-label" for="flexRadioDefault1">Server CMT 1 ( Clone việt có avt , tốc độ nhanh ) <span style="color:red;"><?= $gia1; ?>₫</span> <span class="badge bg-success">Đang mở</span></label>
+                        <input class="form-check-input" <?php if ($sv1 == 'on') {
+                                                            echo 'checked';
+                                                        } else {
+                                                            echo 'disabled';
+                                                        } ?> id="flexRadioDefault1" type="radio" name="sv" value="1" data-bs-toggle="collapse" data-bs-target="#sv2" aria-expanded="false" aria-controls="sv2" /><label class="form-check-label" for="flexRadioDefault1">Server CMT 1 ( Clone việt có avt , tốc độ nhanh ) <span style="color:red;"><?= $gia1; ?>₫</span> <?php if ($sv1 == 'on') {
+                                                                                                                                                                                                                                                                                                                                                                                                        echo '<span class="badge bg-success">Đang mở</span>';
+                                                                                                                                                                                                                                                                                                                                                                                                    } else {
+                                                                                                                                                                                                                                                                                                                                                                                                        echo '<span class="badge bg-success">Đang đóng</span>';
+                                                                                                                                                                                                                                                                                                                                                                                                    } ?></label>
                     </div>
 
                     <div class="form-group">
@@ -71,7 +79,8 @@ xin vui lòng không sử dụng kí tự đặc biệt hoặc icon để tránh
                         <p>
                             - Vui lòng vào cài đặt => bài viết công khai => ai có thể bình luận vào bài viết của tôi bật mọi người ra trước khi cài <br>
                             - Không hỗ trợ nội dung có chứa icon , kí tự đặc biệt, bài viết trong group <br>
-                            - Buff số lượng lớn hơn 3k có thể bị lặp lại acc <p>
+                            - Buff số lượng lớn hơn 3k có thể bị lặp lại acc
+                        <p>
 
                     </div>
 
