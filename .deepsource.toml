@@ -1,5 +1,7 @@
 version = 1
 
+exclude_patterns = [".github/workflows/main.yml"]
+
 [[analyzers]]
 name = "sql"
 
