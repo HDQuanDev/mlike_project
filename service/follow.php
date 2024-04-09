@@ -60,7 +60,7 @@ switch ($_GET['act']) {
                 <form method="POST">
                     <input type="hidden" id="token" value="<?= $row['token']; ?>">
                     <div class="form-check">
-                        <input class="form-check-input" checked id="flexRadioDefault1" type="radio" name="sv" value="1" data-bs-toggle="collapse" data-bs-target="#sv3" aria-expanded="false" aria-controls="sv3" /><label class="form-check-label" for="flexRadioDefault1">Server Follow 1 (<b><?= $gia1; ?>₫</b>) (Sub beta dạng mới gần như không tụt, tốc độ nhanh)</label>
+                        <input class="form-check-input" checked id="flexRadioDefault1" type="radio" name="sv" value="1" data-bs-toggle="collapse" data-bs-target="#sv3" aria-expanded="false" aria-controls="sv3" /><label class="form-check-label" for="flexRadioDefault1">Server Follow 1 (<b><?= $gia1; ?>₫</b>) (Sub beta dạng mới gần như không tụt, tốc độ nhanh hoàn thành trong 24h)</label>
                         <div id="sv3" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#sv3">
                             <div class="accordion-body alert alert-danger"> Dạng follow mới ( ngày lên done 500k sub) <br>
                                 6 tháng trở lại đây gần như ko tụt. Tương lai tùy fb quét ko thể biết trước <br>
