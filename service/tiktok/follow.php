@@ -7,7 +7,7 @@ switch ($_GET['act']) {
     default:
         // Điều Chỉnh Giá
         $gia = $gia1;
-?>
+        ?>
         <script>
             function format_curency(a) {
                 a.value = a.value.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
@@ -154,9 +154,9 @@ switch ($_GET['act']) {
             }
         </script>
     <?php
-        break;
+                break;
     case 'history':
-    ?>
+        ?>
         <div class="card border-danger border-bottom border-3 border-0">
             <div class="card-header">
                 <h4 class="card-title">Lịch Sử Tăng Follow TikTok</h4>
@@ -179,16 +179,16 @@ switch ($_GET['act']) {
                         </thead>
                         <tbody class="list">
                             <?php
-                            if ($row['rule'] == 99) {
-                                $result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `dv` = 'tiktok_follow' ORDER BY id DESC LIMIT 0,1000");
-                            } else {
-                                $result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `user` = '" . $login . "' AND `dv` = 'tiktok_follow' ORDER BY id DESC LIMIT 0,1000");
-                            }
-                            if ($result1) {
-                                while ($ro = mysqli_fetch_assoc($result1)) {
-                                    $tt = $ro['trangthai'];
-                                    $t = $ro['time'];
-                            ?>
+                                if ($row['rule'] == 99) {
+                                    $result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `dv` = 'tiktok_follow' ORDER BY id DESC LIMIT 0,1000");
+                                } else {
+                                    $result1 = mysqli_query($db, "SELECT * FROM `dv_other` WHERE `user` = '" . $login . "' AND `dv` = 'tiktok_follow' ORDER BY id DESC LIMIT 0,1000");
+                                }
+        if ($result1) {
+            while ($ro = mysqli_fetch_assoc($result1)) {
+                $tt = $ro['trangthai'];
+                $t = $ro['time'];
+                ?>
                                     <tr>
                                         <td class="id"><?= $ro['id']; ?></td>
                                         <td class="time"><?php echo time_func($t); ?></td>
@@ -196,22 +196,22 @@ switch ($_GET['act']) {
                                         <td class="sl"><?php echo $ro['iddon']; ?></td>
                                         <td class="goc"><?php echo $ro['done'] - $ro['iddon']; ?></td>
                                         <td class="profile"><?php if (filter_var($ro['profile'], FILTER_VALIDATE_URL) !== false) {
-                                                                echo '<a href="' . $ro['profile'] . '" target="_blank">' . $ro['profile'] . '</a>';
-                                                            } else {
-                                                                echo '<a href="https://www.tiktok.com/' . $ro['profile'] . '" target="_blank">' . $ro['profile'] . '</a>';
-                                                            }
-                                                            ?></td>
+                                            echo '<a href="' . $ro['profile'] . '" target="_blank">' . $ro['profile'] . '</a>';
+                                        } else {
+                                            echo '<a href="https://www.tiktok.com/' . $ro['profile'] . '" target="_blank">' . $ro['profile'] . '</a>';
+                                        }
+                ?></td>
                                         <td class="profile"><?php echo $ro['nse']; ?></td>
                                         <td class="user"><?php echo $ro['user']; ?></td>
                                         <td class="tt"><?php trangthai($tt); ?></td>
                                     </tr>
                             <?php
-                                }
-                                echo '</tbody>
+            }
+            echo '</tbody>
 </table>
 ';
-                            }
-                            ?>
+        }
+        ?>
 
                 </div>
             </div>
