@@ -105,7 +105,7 @@ switch ($_GET['act']) {
                         </p>
 
                     </div>
-                    <!-- thong bao-->
+                    <!-- thong bao
                     <? if (!isset($_POST['add'])) { ?>
                         <script>
                             function sayHello() {
@@ -118,7 +118,7 @@ switch ($_GET['act']) {
                             }
                             setTimeout(sayHello, 1500);
                         </script>
-                    <? } ?>
+                    <? } ?> -->
                     <!--end-->
                     <div class="alert alert-success" role="alert">
                         <center><strong>Thành Tiền: <span id="total">0</span> VNĐ</strong><br>
