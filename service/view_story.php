@@ -98,10 +98,12 @@ switch ($_GET['act']) {
                     <div class="alert alert-warning" role="alert">
                         <strong>Lưu Ý:</strong><br>
                         <p>
-                            - Vui lòng nhập nguyên link story không cắt bỏ đoạn cuối. <br>
+                            - Cách lấy id vidu : https://www.facebook.com/stories/1455659151183350/UzpfSVNDOjk1NTc1MDE5OTI5MzE3OQ==/?bucket_count=9&source=story_tray <br>
+                            => Đây là ID story : UzpfSVNDOjk1NTc1MDE5OTI5MzE3OQ== <br>
+                            * Bắt buộc sử dụng link trên máy tính định dạng https://www.facebook.com/stories/ID-POST/ID-STORY==/ <br>
                             - Tốc độ rất nhanh từ 5-30p đổ lại <br>
-                            - Hiện tại chỉ max 2500 view, nhiều hơn gửi riêng admin.... <br>
-                            - Không chạy được story của fanpage
+                            - Hiện tại chỉ max 3000 view , đang update thêm <br>
+                            - Không chạy được story của fanpage <br>
                         </p>
 
                     </div>
