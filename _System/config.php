@@ -1,4 +1,5 @@
 <?php
+
 if (isset($page)) {
     if ($page == 'view_tt') {
         ## on: bật, off: tắt
