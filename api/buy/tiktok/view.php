@@ -175,7 +175,7 @@ switch ($_GET['act']) {
                 if ($sv == 1) {
                     $tongtien = $sl * $gia;
                     $nse = 'Server View 1';
-                    $min = 1000;
+                    $min = 50000;
                     $max = 5000000;
                 } elseif ($sv == 2) {
                     $tongtien = $sl * $gia2;
