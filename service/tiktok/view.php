@@ -227,7 +227,7 @@ switch ($_GET['act']) {
                             setTimeout(function() {
                                     window.location = "";
                                 },
-                                100);
+                                1500);
                         } else {
                             swal('Hệ Thống!', response.msg, 'warning');
                         }
