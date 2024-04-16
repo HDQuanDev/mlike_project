@@ -8,7 +8,7 @@ switch ($_GET['act']) {
     default:
         // Điều Chỉnh Giá
         $gia = $gia1;
-?>
+        ?>
         <script>
             function format_curency(a) {
                 a.value = a.value.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
@@ -60,20 +60,20 @@ switch ($_GET['act']) {
                 
                     <div class="form-check">
                         <input class="form-check-input" Checked id="flexRadioDefault1" type="radio" name="sv" value="1" data-bs-toggle="collapse" data-bs-target="#sv1" aria-expanded="false" aria-controls="sv1" /><label class="form-check-label" for="flexRadioDefault1">Server View 1 (<b><?= $gia; ?>₫</b>) ( <span style="color: red;">Min 50k, </span> <span style="color: blue;">View thủ công , inbox để duyệt chạy nhanh hơn<span style="color: red;"> </span> ) <?php if ($sv1 == 'on') {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        echo '<span class="badge bg-success">Hoạt động</span>';
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    } else {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        echo '<span class="badge bg-danger">Quá tải mở lại sau</span>';
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    } ?></label>
+                            echo '<span class="badge bg-success">Hoạt động</span>';
+                        } else {
+                            echo '<span class="badge bg-danger">Quá tải mở lại sau</span>';
+                        } ?></label>
                         <div id="sv1" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#sv1">
                             <div class="accordion-body alert alert-danger">*Rẻ tốc độ không ổn định</div>
                         </div>
                   </div> 
                       <!--  <div class="form-check">
                         <input class="form-check-input"  id="flexRadioDefault1" type="radio" name="sv" value="2" data-bs-toggle="collapse" data-bs-target="#sv2" aria-expanded="false" aria-controls="sv2" /><label class="form-check-label" for="flexRadioDefault1">Server View 2 (<b><?= $gia2; ?>₫</b>) ( <span style="color: red;">Min 1k </span>.Tố độ lúc nhanh lúc chậm tùy đơn bị delay <span style="color: red;">đôi khi delay 6h-24h </span> <span style="color: red;"> </span>.rẻ có thể bị tụt tùy video. KBH) <?php if ($sv2 == 'on') {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                echo '<span class="badge bg-warning">Trung bình</span>';
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            } else {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                echo '<span class="badge bg-danger">Delay dự kiến done 24-48h</span>';
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            } ?></label>
+                            echo '<span class="badge bg-warning">Trung bình</span>';
+                        } else {
+                            echo '<span class="badge bg-danger">Delay dự kiến done 24-48h</span>';
+                        } ?></label>
 
                         <div id="sv2" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#sv2">
                             <div class="accordion-body alert alert-danger">Sale tốc độ không ổn định</div>
@@ -82,10 +82,10 @@ switch ($_GET['act']) {
                     
                     <div class="form-check">
                         <input class="form-check-input"  id="flexRadioDefault1" type="radio" name="sv" value="3" data-bs-toggle="collapse" data-bs-target="#sv3" aria-expanded="false" aria-controls="sv3" /><label class="form-check-label" for="flexRadioDefault1">Server View 3 (<b><?= $gia3; ?>₫</b>) ( <span style="color: red;">Min 1k </span> Tốc độ lúc nhanh lúc chậm, test ít thấy nhanh thì dùng, <span style="color: red;"> đôi khi delay 6h-24h </span>, rẻ có thể bị tụt tùy video. KBH ) <?php if ($sv3 == 'on') {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    echo '<span class="badge bg-success">Thử nghiệmn</span>';
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                } else {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    echo '<span class="badge bg-danger">Bảo trì</span>';
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                } ?></label>
+                            echo '<span class="badge bg-success">Thử nghiệmn</span>';
+                        } else {
+                            echo '<span class="badge bg-danger">Bảo trì</span>';
+                        } ?></label>
                         <div id="sv1" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#sv3">
                             <div class="accordion-body alert alert-danger"> Nếu delay lâu sẽ hủy hoàn sau 7 ngày</div>
                         </div>
@@ -151,7 +151,7 @@ switch ($_GET['act']) {
                         - KHI BỊ TỤT VIEW MỌI NGƯỜI VÀO LỊCH SỬ MUA ĐƠN BẤM NÚT BẢO HÀNH ( MỖI ĐƠN HÀNG CHỈ ĐƯỢC BẤM NÚT BẢO HÀNH SAU 24H KỂ TỪ LẦN BẢO HÀNH CUỐI) <br>
                     </div>
                     <!-- thong bao 
-                    <? if (!isset($_POST['add'])) { ?>
+                    <?php if (!isset($_POST['add'])) { ?>
                         <script>
                             function sayHello() {
                                 var sangml = document.createElement("sangml")
@@ -163,7 +163,7 @@ switch ($_GET['act']) {
                             }
                             setTimeout(sayHello, 1500);
                         </script>
-                    <? } ?> 
+                    <?php } ?> 
                     <!-- <label style="font-size:18px;">Hướng dẫn Lấy id  <a href="https://findids.net/username-to-id-tiktok" target="_blank">Tại đây</a></label> 
  </div>-->
 
@@ -267,7 +267,7 @@ switch ($_GET['act']) {
 1500);</script>';
             }
         }
-    ?>
+        ?>
         <div class="card border-danger border-bottom border-3 border-0">
             <div class="card-header">
 
@@ -300,7 +300,7 @@ switch ($_GET['act']) {
             </div>
         </div>
 <?php
-        break;
+            break;
 }
 require('../../_System/end.php');
 ?>
