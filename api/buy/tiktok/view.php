@@ -220,7 +220,7 @@ switch ($_GET['act']) {
                 } elseif ($sv == 10) {
                     $tongtien = $sl * $gia10;
                     $nse = 'Server View 10';
-                    $min = 50000;
+                    $min = 1000;
                     $max = 100000000;
                 }
                 if (empty($id)) {
