@@ -58,7 +58,7 @@ switch ($_GET['act']) {
                     <input type="hidden" id="token" value="<?= $row['token']; ?>">
                     <label>Chọn Server View:</label>
                 
-                    <div class="form-check">
+                    <!--  <div class="form-check">
                         <input class="form-check-input" Checked id="flexRadioDefault1" type="radio" name="sv" value="1" data-bs-toggle="collapse" data-bs-target="#sv1" aria-expanded="false" aria-controls="sv1" /><label class="form-check-label" for="flexRadioDefault1">Server View 1 (<b><?= $gia; ?>₫</b>) ( <span style="color: red;">Min 50k, </span> <span style="color: blue;">View thủ công , inbox để duyệt chạy nhanh hơn<span style="color: red;"> </span> ) <?php if ($sv1 == 'on') {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         echo '<span class="badge bg-success">Hoạt động</span>';
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     } else {
@@ -68,7 +68,7 @@ switch ($_GET['act']) {
                             <div class="accordion-body alert alert-danger">*Rẻ tốc độ không ổn định</div>
                         </div>
                   </div> 
-                      <!--  <div class="form-check">
+                      <div class="form-check">
                         <input class="form-check-input"  id="flexRadioDefault1" type="radio" name="sv" value="2" data-bs-toggle="collapse" data-bs-target="#sv2" aria-expanded="false" aria-controls="sv2" /><label class="form-check-label" for="flexRadioDefault1">Server View 2 (<b><?= $gia2; ?>₫</b>) ( <span style="color: red;">Min 1k </span>.Tố độ lúc nhanh lúc chậm tùy đơn bị delay <span style="color: red;">đôi khi delay 6h-24h </span> <span style="color: red;"> </span>.rẻ có thể bị tụt tùy video. KBH) <?php if ($sv2 == 'on') {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 echo '<span class="badge bg-warning">Trung bình</span>';
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             } else {
@@ -126,13 +126,13 @@ switch ($_GET['act']) {
                         <div id="sv9" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#sv9">
                             <div class="accordion-body alert alert-danger">Bảo hành 60 ngày </div>
                         </div>
-                    </div> 
+                    </div>  -->
                     <div class="form-check">
                         <input class="form-check-input" checked id="flexRadioDefault1" type="radio" name="sv" value="10" data-bs-toggle="collapse" data-bs-target="#sv10" aria-expanded="false" aria-controls="sv10" /><label class="form-check-label" for="flexRadioDefault1">Server View 10 (<b><?= $gia10; ?>₫</b>) ( <span style="color: red;">Min 50k . View thủ công, inbox để duyệt đơn nhanh hơn.</span> ) <span class="badge bg-success">Hoạt động</span></label>
                         <div id="sv10" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#sv10">
                             <div class="accordion-body alert alert-danger">Không bảo hành </div>
                         </div>
-                    </div> -->
+                    </div>
                     <div class="mb-3">
                         <h4> <span style="color: red;">(*) Hãy đọc lưu ý trước khi dùng tránh mất tiền</span></h4>
                         <label>Nhập Link Video TikTok:</label>
