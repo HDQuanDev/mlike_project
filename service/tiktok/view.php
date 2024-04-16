@@ -126,13 +126,13 @@ switch ($_GET['act']) {
                         <div id="sv9" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#sv9">
                             <div class="accordion-body alert alert-danger">Bảo hành 60 ngày </div>
                         </div>
-                    </div> -
+                    </div> 
                     <div class="form-check">
                         <input class="form-check-input" checked id="flexRadioDefault1" type="radio" name="sv" value="10" data-bs-toggle="collapse" data-bs-target="#sv10" aria-expanded="false" aria-controls="sv10" /><label class="form-check-label" for="flexRadioDefault1">Server View 10 (<b><?= $gia10; ?>₫</b>) ( <span style="color: red;">Min 50k . View thủ công, inbox để duyệt đơn nhanh hơn.</span> ) <span class="badge bg-success">Hoạt động</span></label>
                         <div id="sv10" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#sv10">
                             <div class="accordion-body alert alert-danger">Không bảo hành </div>
                         </div>
-                    </div> ->
+                    </div> -->
                     <div class="mb-3">
                         <h4> <span style="color: red;">(*) Hãy đọc lưu ý trước khi dùng tránh mất tiền</span></h4>
                         <label>Nhập Link Video TikTok:</label>
