@@ -264,7 +264,7 @@ switch ($_GET['act']) {
                 setTimeout(function() {
     window.location = "/service/tiktok/view.php?act=history";
 },
-1500);</script>';
+100);</script>';
             }
         }
     ?>
