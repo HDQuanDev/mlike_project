@@ -8,7 +8,7 @@ require_once('../../../module/vnfb.php');
 require_once('../../../module/autofb88.php');
 require_once('../../../module/ongtrum.php');
 $gia = $gia1;
-$min = '100';
+$min = '50';
 $max = '9999';
 $api = new Api();
 $array = [];
