@@ -313,7 +313,7 @@ if (isset($login) || isset($_POST['token'])) {
                     $gia2 = 22;
                     $gia3 = 17;
                 } elseif ($page == 'cmt_fb') {
-                    $gia1 = 40;
+                    $gia1 = 39;
                     $gia2 = 200;
                 } elseif ($page == 'share_fb') {
                     $gia1 = 40;
@@ -460,7 +460,7 @@ if (isset($login) || isset($_POST['token'])) {
                     $gia2 = 22;
                     $gia3 = 17;
                 } elseif ($page == 'cmt_fb') {
-                    $gia1 = 40;
+                    $gia1 = 39;
                     $gia2 = 250;
                 } elseif ($page == 'share_fb') {
                     $gia1 = 60;
@@ -606,7 +606,7 @@ if (isset($login) || isset($_POST['token'])) {
                     $gia2 = 22;
                     $gia3 = 15;
                 } elseif ($page == 'cmt_fb') {
-                    $gia1 = 40;
+                    $gia1 = 39;
                     $gia2 = 300;
                 } elseif ($page == 'share_fb') {
                     $gia1 = 40;
