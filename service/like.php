@@ -103,7 +103,7 @@ switch ($_GET['act']) {
                                                         }; ?> id="flexRadioDefault1"  type="radio"  name="sv" value="1" data-bs-toggle="collapse" data-bs-target="#sv1" aria-expanded="false" aria-controls="sv1" /><label class="form-check-label" for="flexRadioDefault1">Server Like 1 (Tốc độ chậm - trung bình, không thể hủy hoàn, chỉ có thể đợi ) </span> <span style="color:red;"><?= $gia1; ?>₫</span> <span class="badge bg-warning">Trung bình</span></label>
                     </div> 
                     <div class="form-check">
-                        <input class="form-check-input" id="flexRadioDefault1" type="radio" name="sv" value="2" data-bs-toggle="collapse" data-bs-target="#sv2" aria-expanded="false" aria-controls="sv2" /><label class="form-check-label" for="flexRadioDefault1">Server Like 2 ( Tốc độ chậm - trung bình <span style="color: red;">chạy được album</span> Max 50k ) <span style="color:red;"><?= $gia2; ?>₫</span> <span class="badge bg-success">Chậm</span></label>
+                        <input class="form-check-input" id="flexRadioDefault1" type="radio" name="sv" value="2" data-bs-toggle="collapse" data-bs-target="#sv2" aria-expanded="false" aria-controls="sv2" /><label class="form-check-label" for="flexRadioDefault1">Server Like 2 ( Tốc độ chậm - trung bình <span style="color: red;">chạy được album</span> Max 50k ) <span style="color:red;"><?= $gia2; ?>₫</span> <span class="badge bg-danger">Chậm</span></label>
                     </div>
                   <!--      <div class="form-check">
                         <input class="form-check-input"  id="flexRadioDefault1" type="radio" name="sv" value="3" data-bs-toggle="collapse" data-bs-target="#sv3" aria-expanded="false" aria-controls="sv3" /><label class="form-check-label" for="flexRadioDefault1">Server Like 3 (Tốc độ nhanh , nên cài bài viết k có like gốc, Bảo Hành tự động 1 tháng, <span style="color: red;">,max 10k </span> ) <span style="color:red;"><?= $gia3; ?>₫</span> <span class="badge bg-success">Hoạt động</span></label> 
@@ -124,7 +124,7 @@ switch ($_GET['act']) {
                         </div>
                    </div> 
                     <div class="form-check">
-                        <input class="form-check-input"  id="flexRadioDefault1" type="radio" name="sv" value="5" data-bs-toggle="collapse" data-bs-target="#sv2" aria-expanded="false" aria-controls="sv2" /><label class="form-check-label" for="flexRadioDefault1">Server Like 5 ( Tốc độ chậm - trung mình, mở giới hạn quá tải tự đóng mở, ib có hỗ trợ chạy nhanh đơn trên 1k <span style="color: red;"></span> <span style="color: red;"> max 50k </span> ) <span style="color:red;"><?= $gia5; ?>₫</span> <span class="badge bg-danger">Chậm</span></label>
+                        <input class="form-check-input"  id="flexRadioDefault1" type="radio" name="sv" value="5" data-bs-toggle="collapse" data-bs-target="#sv2" aria-expanded="false" aria-controls="sv2" /><label class="form-check-label" for="flexRadioDefault1">Server Like 5 ( Tốc độ trung mình, mở giới hạn quá tải tự đóng mở, ib có hỗ trợ chạy nhanh đơn trên 1k <span style="color: red;"></span> <span style="color: red;"> max 50k </span> ) <span style="color:red;"><?= $gia5; ?>₫</span> <span class="badge bg-success">Tạm ổn</span></label>
                     </div>
                  
                <!--    <div class="form-check">
