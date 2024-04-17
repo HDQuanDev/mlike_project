@@ -289,7 +289,7 @@ if (isset($login) || isset($_POST['token'])) {
                 if ($page == 'like_fb') { //Like Facebook
                     // Giá Đại Lý
                     $gia1 = 16; //Server 1
-                    $gia2 = 10.5; // 2
+                    $gia2 = 11; // 2
                     $gia3 = 18; // 3
                     $gia4 = 15; // 4
                     $gia5 = 20; // 5
