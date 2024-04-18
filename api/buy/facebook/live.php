@@ -230,7 +230,7 @@ if (isset($_POST['token']) && isset($_POST['id']) && isset($_POST['sl']) && isse
                 $channel = '3';
                 $buff = new97($id, $sl, $phut, $channel);
                 $buff = json_decode($buff);
-                if (isset($buff->Id)) {
+                if ($buff->status == 'success') {
                     $nd1 = 'Tăng Mắt Livestream ID:';
                     $bd = $tongtien;
                     $gt = '-';
@@ -245,7 +245,7 @@ if (isset($_POST['token']) && isset($_POST['id']) && isset($_POST['sl']) && isse
                     $array["msg"] = 'Mua Mắt Thành Công! Cảm ơn bạn!!';
                 } else {
                     $array["status"] = 'error';
-                    $array["msg"] = '' . $buff->Data . '';
+                    $array["msg"] = '' . $buff->msg . '';
                 }
             } elseif ($sv == 8) {
                 $buff = new97($id, $sl, $phut, $sv);
