@@ -1,4 +1,5 @@
 <?php
+
 function new97($id, $sl, $phut, $sv)
 {
     if ($sv == '7') {
@@ -28,4 +29,4 @@ function new97($id, $sl, $phut, $sv)
 
     curl_close($curl);
     return $response;
-} 
+}
