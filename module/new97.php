@@ -1,11 +1,6 @@
 <?php
 function new97($id, $sl, $phut, $sv)
 {
-    if ($sv == '7') {
-        $nsv = 'buff_mat_le_kenh2';
-    } elseif ($sv == '8') {
-        $nsv = 'buff_mat_le_kenh3';
-    }
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
