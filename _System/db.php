@@ -339,7 +339,7 @@ if (isset($login) || isset($_POST['token'])) {
                     $gia4 = 0.8;
                     $gia5 = 1.9;
                     $gia6 = 1.9;
-                    $gia7 = 3;
+                    $gia7 = 4;
                     $gia8 = 3.5;
                     $gia9 = 4;
                     $gia10 = 4;
@@ -486,7 +486,7 @@ if (isset($login) || isset($_POST['token'])) {
                     $gia4 = 0.9;
                     $gia5 = 2;
                     $gia6 = 2;
-                    $gia7 = 3;
+                    $gia7 = 4;
                     $gia8 = 3.5;
                     $gia9 = 4;
                     $gia10 = 4;
@@ -632,7 +632,7 @@ if (isset($login) || isset($_POST['token'])) {
                     $gia4 = 0.8;
                     $gia5 = 2;
                     $gia6 = 2;
-                    $gia7 = 3;
+                    $gia7 = 4;
                     $gia8 = 3.5;
                     $gia9 = 4;
                     $gia10 = 4;
