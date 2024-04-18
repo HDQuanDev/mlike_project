@@ -227,7 +227,8 @@ if (isset($_POST['token']) && isset($_POST['id']) && isset($_POST['sl']) && isse
                     $array["msg"] = '' . $buff->message . '';
                 }
             } elseif ($sv == 7) {
-                $buff = new97($id, $sl, $phut, $sv);
+                $channel = '3';
+                $buff = new97($id, $sl, $phut, $channel);
                 $buff = json_decode($buff);
                 if (isset($buff->Id)) {
                     $nd1 = 'Tăng Mắt Livestream ID:';
