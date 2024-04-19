@@ -525,7 +525,6 @@ function page($id, $sl, $sv)
         if ($quan->status == '200') {
             $response =  '{"status":"200", "id":"' . $profile_id . '"}';
         } else {
-            $response = $response;
         }
     }
     return $response;

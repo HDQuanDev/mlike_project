@@ -311,7 +311,6 @@ switch ($_GET['act']) {
                                     if ($done == 14102003) {
                                         $done = 'Không áp dụng';
                                     } else {
-                                        $done = $done;
                                     }
                             ?>
                                     <tr>

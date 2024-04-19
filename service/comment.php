@@ -208,7 +208,6 @@ xin vui lòng không sử dụng kí tự đặc biệt hoặc icon để tránh
                                     if ($done == 14102003) {
                                         $done = 'Không áp dụng';
                                     } else {
-                                        $done = $done;
                                     }
                             ?>
                                     <tr>
