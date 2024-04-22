@@ -76,6 +76,21 @@ switch ($_GET['act']) {
                 $check = mysqli_query($db, "SELECT * FROM `dv_cmt` WHERE `id` = '$id_order'");
                 $c = mysqli_num_rows($check);
                 if ($c == '1') {
+                    $sql = mysqli_query($db, "SELECT `id_api` FROM `dv_cmt` WHERE `id` = '$id_order'");
+                    $row = mysqli_fetch_assoc($sql);
+                    if ($row['id_api'] != '0') {
+                        if (isset($status)) {
+                            $status_socket = $status;
+                        } else {
+                            $status_socket = 1;
+                        }
+                        if (isset($done)) {
+                            $done_socket = $done;
+                        } else {
+                            $done_socket = 0;
+                        }
+                        $send_socket = file_get_contents("https://trumview.net/api/check.php?act=check_cmt_socket&id=" . $row['id_api'] . "&done=" . $done_socket . "&status=" . $status_socket);
+                    }
                     $array["status"] = 'success';
                     mysqli_query($db, "UPDATE `dv_cmt` SET `done` = '$done', `trangthai` = '$status' WHERE `id` = '$id_order'");
                     $array["msg"] = 'Update thành công!';
