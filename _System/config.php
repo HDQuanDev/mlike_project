@@ -26,6 +26,6 @@ if (isset($page)) {
         $sv4 = 'on';
         $sv5 = 'on';
     } elseif ($page == 'cmt_fb') {
-        $sv1 = 'on';
+        $sv1 = 'off';
     }
 }
