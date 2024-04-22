@@ -79,17 +79,7 @@ switch ($_GET['act']) {
                     $sql = mysqli_query($db, "SELECT `id_api` FROM `dv_cmt` WHERE `id` = '$id_order'");
                     $row = mysqli_fetch_assoc($sql);
                     if ($row['id_api'] != '0') {
-                        if (isset($status)) {
-                            $status_socket = $status;
-                        } else {
-                            $status_socket = 1;
-                        }
-                        if (isset($done)) {
-                            $done_socket = $done;
-                        } else {
-                            $done_socket = 0;
-                        }
-                        $url = "https://trumview.net/api/check.php?act=check_cmt_socket&id=" . $row['id_api'] . "&done=" . $done_socket . "&status=" . $status_socket;
+                        $url = "https://trumview.net/api/check.php?act=check_cmt_socket&id=" . $row['id_api'] . "&done=" . $done . "&status=" . $status;
 
                         $curl = curl_init();
 
