@@ -89,7 +89,27 @@ switch ($_GET['act']) {
                         } else {
                             $done_socket = 0;
                         }
-                        $send_socket = file_get_contents("https://trumview.net/api/check.php?act=check_cmt_socket&id=" . $row['id_api'] . "&done=" . $done_socket . "&status=" . $status_socket);
+                        $url = "https://trumview.net/api/check.php?act=check_cmt_socket&id=" . $row['id_api'] . "&done=" . $done_socket . "&status=" . $status_socket;
+
+                        $curl = curl_init();
+
+                        curl_setopt_array($curl, array(
+                            CURLOPT_URL => $url,
+                            CURLOPT_RETURNTRANSFER => true,
+                            CURLOPT_ENCODING => '',
+                            CURLOPT_MAXREDIRS => 10,
+                            CURLOPT_TIMEOUT => 0,
+                            CURLOPT_FOLLOWLOCATION => true,
+                            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                            CURLOPT_CUSTOMREQUEST => 'GET',
+                            CURLOPT_HTTPHEADER => array(
+                                'Cookie: PHPSESSID=t3ms6fgl18c4fk3809it98aift'
+                            ),
+                        ));
+
+                        $response = curl_exec($curl);
+
+                        curl_close($curl);
                     }
                     $array["status"] = 'success';
                     mysqli_query($db, "UPDATE `dv_cmt` SET `done` = '$done', `trangthai` = '$status' WHERE `id` = '$id_order'");
