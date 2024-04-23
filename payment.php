@@ -31,7 +31,7 @@ require_once('_System/head.php');
     <div class="col-lg-6 ps-lg-2 mb-3">
         <div class="card border-danger border-bottom border-3 border-0">
             <div class="card-header">
-                <h4 class="card-title">Nạp tiền vào tài khoản</h4>
+        <!--        <h4 class="card-title">Nạp tiền vào tài khoản</h4>
             </div>
             <div class="card-body">
                 <p class="card-text">
@@ -172,7 +172,7 @@ require_once('_System/head.php');
 
             }
         });
-    }
+    } -->
 </script>
 <?php
 require_once('_System/end.php');
