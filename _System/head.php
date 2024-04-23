@@ -113,20 +113,9 @@ if ($row['rule'] == '99') {
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="<?= $cdn; ?>/css/responsive.css">
     <script src="<?= $cdn; ?>/js/jquery-3.6.0.min.js"></script>
-    <!-- manifest meta -->
-    <link rel="manifest" href="/manifest.json">
+
     <title><?= $titl; ?></title>
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
-                navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
-                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                }, function(err) {
-                    console.log('ServiceWorker registration failed: ', err);
-                });
-            });
-        }
-    </script>
+
 </head>
 
 
@@ -194,30 +183,30 @@ if ($row['rule'] == '99') {
                                 </li>
                                 <?php
                                 $hiss = mysqli_query($db, "SELECT * FROM `lichsu` WHERE `user` = '$login' AND `site` = '$site' ORDER BY id DESC LIMIT 8");
-while ($his = mysqli_fetch_assoc($hiss)) {
-    $loai = $his['loai'];
-    $sotien = $his['bd'];
-    $kyhieu = $his['gt'];
-    $tim = $his['time'];
+                                while ($his = mysqli_fetch_assoc($hiss)) {
+                                    $loai = $his['loai'];
+                                    $sotien = $his['bd'];
+                                    $kyhieu = $his['gt'];
+                                    $tim = $his['time'];
 
-    switch ($loai) {
-        case '1':
-            $sloai = 'Mua Dịch Vụ ' . $kyhieu . '' . number_format($sotien) . 'đ';
-            $icon = 'shopping-cart';
-            break;
-        case '2':
-            $sloai = 'Nạp Tiền ' . $kyhieu . '' . number_format($sotien) . 'đ';
-            $icon = 'shopping-bag';
-            break;
-        case '3':
-            $sloai = 'Thay Đổi Thông Tin';
-            $icon = 'edit-3';
-            break;
-        default:
-            $sloai = 'Dịch Vụ Không Xác Định';
-            $icon = 'help-circle';
-    }
-    ?>
+                                    switch ($loai) {
+                                        case '1':
+                                            $sloai = 'Mua Dịch Vụ ' . $kyhieu . '' . number_format($sotien) . 'đ';
+                                            $icon = 'shopping-cart';
+                                            break;
+                                        case '2':
+                                            $sloai = 'Nạp Tiền ' . $kyhieu . '' . number_format($sotien) . 'đ';
+                                            $icon = 'shopping-bag';
+                                            break;
+                                        case '3':
+                                            $sloai = 'Thay Đổi Thông Tin';
+                                            $icon = 'edit-3';
+                                            break;
+                                        default:
+                                            $sloai = 'Dịch Vụ Không Xác Định';
+                                            $icon = 'help-circle';
+                                    }
+                                ?>
                                     <li>
                                         <div class="d-flex align-items-center">
                                             <div class="flex-shrink-0"><i data-feather="<?= $icon; ?>"></i></div>
@@ -227,8 +216,8 @@ while ($his = mysqli_fetch_assoc($hiss)) {
                                         </div>
                                     </li>
                                 <?php
-}
-?>
+                                }
+                                ?>
 
                                 <li><a class="btn btn-primary" href="/history.php">Xem Chi Tiết & Tất Cả</a></li>
                             </ul>
@@ -242,62 +231,52 @@ while ($his = mysqli_fetch_assoc($hiss)) {
                                 <li><i data-feather="star"> </i>
                                     <h6 class="f-18 mb-0">Thành Viên Trực Tuyến</h6>
                                 </li>
-                                <li>
-                                    <div class="d-flex align-items-start">
-                                        <div class="message-img bg-light-primary"><img src="https://ui-avatars.com/api/?background=random&name=QDEVS" alt="QUANDEV"></div>
-                                        <div class="flex-grow-1">
-                                            <h5 class="mb-1"><a href="https://www.facebook.com/quancp72h" target="_blank" data-bs-original-title="" title=""><span style="color:red;">Hứa Đức Quân</span> (Lập Trình Viên)</style="color:red;"></a></h5>
-                                            <p>Đang ở: <strong>[Admin Privacy Protection]</strong></p>
-                                        </div>
-
-                                    </div>
-                                </li>
                                 <?php
-$ipp = mysqli_query($db, "SELECT * FROM `online` WHERE `time` >= '$dz' AND `site` = '$site' AND `user` != 'dramasee' ORDER BY id LIMIT 5");
-while ($ip = mysqli_fetch_assoc($ipp)) {
-    $name = ($ip['user'] !== '123') ? $ip['user'] : 'Khách ghé thăm';
+                                $ipp = mysqli_query($db, "SELECT * FROM `online` WHERE `time` >= '$dz' AND `site` = '$site' AND `user` != 'dramasee' ORDER BY id LIMIT 5");
+                                while ($ip = mysqli_fetch_assoc($ipp)) {
+                                    $name = ($ip['user'] !== '123') ? $ip['user'] : 'Khách ghé thăm';
 
-    if ($name !== 'Khách ghé thăm') {
-        $onl = mysqli_query($db, "SELECT * FROM `member` WHERE `username` = '$name' AND `site` = '$site'");
-        $ttonl = mysqli_fetch_assoc($onl);
+                                    if ($name !== 'Khách ghé thăm') {
+                                        $onl = mysqli_query($db, "SELECT * FROM `member` WHERE `username` = '$name' AND `site` = '$site'");
+                                        $ttonl = mysqli_fetch_assoc($onl);
 
-        $rule = ($ttonl['rule'] == '99') ? '99' : '1';
-        $img = 'https://ui-avatars.com/api/?background=random&name=' . $name;
-    } else {
-        $rule = '1';
-        $img = 'https://ui-avatars.com/api/?background=random&name=' . $name;
-    }
-    ?>
+                                        $rule = ($ttonl['rule'] == '99') ? '99' : '1';
+                                        $img = 'https://ui-avatars.com/api/?background=random&name=' . $name;
+                                    } else {
+                                        $rule = '1';
+                                        $img = 'https://ui-avatars.com/api/?background=random&name=' . $name;
+                                    }
+                                ?>
                                     <li>
                                         <div class="d-flex align-items-start">
                                             <div class="message-img bg-light-primary"><img src="<?= $img; ?>" alt=""></div>
                                             <div class="flex-grow-1">
                                                 <h5 class="mb-1"><a href="#">
                                                         <?php
-                            if ($rule == '99') {
-                                echo '<span style="color:red;">';
-                            }
-    ?>
+                                                        if ($rule == '99') {
+                                                            echo '<span style="color:red;">';
+                                                        }
+                                                        ?>
                                                         <?= $name; ?>
                                                         <?php
-    if ($rule == '99') {
-        if ($name == 'dramasee') {
-            echo '(Lập Trình Viên)';
-        } else {
-            echo '(Quản Trị Viên)';
-        }
-    }
-    ?>
+                                                        if ($rule == '99') {
+                                                            if ($name == 'dramasee') {
+                                                                echo '(Lập Trình Viên)';
+                                                            } else {
+                                                                echo '(Quản Trị Viên)';
+                                                            }
+                                                        }
+                                                        ?>
                                                         </span></a></h5>
                                                 <p>Đang ở: <?php
-        echo ($ttonl['rule'] == 99 && in_array($ttonl['username'], ['dramasee', 'BossSang'])) ? '<strong>[Admin Privacy Protection]</strong>' : $ip['title'];
-    ?></p>
+                                                            echo ($ttonl['rule'] == 99 && in_array($ttonl['username'], ['dramasee', 'BossSang'])) ? '<strong>[Admin Privacy Protection]</strong>' : $ip['title'];
+                                                            ?></p>
                                             </div>
                                         </div>
                                     </li>
                                 <?php
-}
-?>
+                                }
+                                ?>
 
                             </ul>
                         </li>
@@ -347,8 +326,8 @@ while ($ip = mysqli_fetch_assoc($ipp)) {
                                     <ul>
                                         <li class="sidebar-list"><a class="sidebar-link" href="/"><i data-feather="home"></i><span>Trang Chủ</span></a></li>
                                         <?php
-        if ($row['rule'] == 99) {
-            ?>
+                                        if ($row['rule'] == 99) {
+                                        ?>
                                             <li class="menu-box">
                                                 <ul>
                                                     <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="javascript:void(0)"><i data-feather="monitor"> </i> <span>Bảng Điều Khiển</span></a>
@@ -379,43 +358,43 @@ while ($ip = mysqli_fetch_assoc($ipp)) {
                                                 </ul>
                                             </li>
                                         <?php
-        }
-?>
+                                        }
+                                        ?>
                                         <li class="sidebar-list"><a class="sidebar-link" href="https://documenter.getpostman.com/view/17576313/VV4zNuAb" target="_blank"><i data-feather="book"></i><span>API Document</span></a></li>
                                         <li class="sidebar-list"><a class="sidebar-link" href="/payment.php"><i data-feather="folder-plus"></i><span>Nạp Tiền</span></a></li>
                                         <?php
-$list = 'Tiện Ích:list#Trang Cá Nhân|/profile.php!Lịch Sử Hoạt Động|/history.php!Tạo SITE CON|/sitecon.php
+                                        $list = 'Tiện Ích:list#Trang Cá Nhân|/profile.php!Lịch Sử Hoạt Động|/history.php!Tạo SITE CON|/sitecon.php
                                         Dịch Vụ Facebook:facebook#Tăng Like Post Kênh 1|/service/like.php!Tăng Cảm Xúc Bài Viết|/service/like_feeling.php!Tăng Like Comment Facebook|/service/likecmt.php!Tăng Comment Facebook|/service/comment.php!Tăng Share Bài Viết|/service/share.php!Tăng Follow Facebook|/service/follow.php!Tăng Mắt Livestream|/service/live.php!Tăng Like Fanpage|/service/page.php!Tăng Member Group|/service/group.php!Tăng View Video|/service/view.php!Vip Like Facebook|/service/viplike.php!Tăng View Story|/service/view_story.php
                                        Dịch Vụ Instagram:instagram#Tăng Like Bài Viết|/service/ins/like.php!Tăng Comment Instagram|/service/ins/comment.php!Tăng Follow Instagram|/service/ins/follow.php!Tăng View Instagram|/service/ins/view.php
                                        Dịch Vụ TikTok:trending-up#Tăng View Video|/service/tiktok/view.php!Tăng Tim TikTok|/service/tiktok/like.php!Tăng Save TikTok|/service/tiktok/save.php!Tăng Share TikTok|/service/tiktok/share.php!Tăng Follow TikTok|/service/tiktok/follow.php!Tăng Comment TikTok|/service/tiktok/comment.php
                                        Dịch Vụ Khác:thumbs-up#Tăng traffic website .|/service/other/website.php';
-$arr = explode("\n", $list);
-foreach ($arr as $key => $value) {
-    $quan = explode("#", $value);
-    $main = $quan[0];
-    $tach = explode(":", $main);
-    $ten = $tach[0];
-    $icon = $tach[1];
-    $child = $quan[1];
-    echo '
+                                        $arr = explode("\n", $list);
+                                        foreach ($arr as $key => $value) {
+                                            $quan = explode("#", $value);
+                                            $main = $quan[0];
+                                            $tach = explode(":", $main);
+                                            $ten = $tach[0];
+                                            $icon = $tach[1];
+                                            $child = $quan[1];
+                                            echo '
                                                 <li class="menu-box">
                                             <ul>
                                                 <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="javascript:void(0)"><i data-feather="' . $icon . '"></i> <span>' . $ten . '</span></a>
                                                     <ul class="sidebar-submenu">';
-    $arr = explode("!", $child);
-    foreach ($arr as $key => $value) {
-        $quan = explode("|", $value);
-        $name = $quan[0];
-        $link = $quan[1];
-        echo '
+                                            $arr = explode("!", $child);
+                                            foreach ($arr as $key => $value) {
+                                                $quan = explode("|", $value);
+                                                $name = $quan[0];
+                                                $link = $quan[1];
+                                                echo '
                                                     <li><a href="' . $domain . '' . $link . '">' . $name . '</a></li>';
-    }
-    echo '</ul>
+                                            }
+                                            echo '</ul>
                                                 </li>
                                             </ul>
                                         </li>';
-}
-?>
+                                        }
+                                        ?>
                                         <li class="sidebar-list">
                                             <a href="https://zalo.me/0987777059" class="sidebar-link" target="_blank">
                                                 <i data-feather="mail"></i>
@@ -496,193 +475,3 @@ foreach ($arr as $key => $value) {
                     <div class="alert alert-success outline fade show" role="alert">
                         <p><b> Thông Báo! </b>Vui lòng đọc lưu ý trước khi dùng tránh mất tiền oan</p>
                     </div>
-                    <?php
-                    if ($row['active'] == '2' && $row['is_verify_mail'] == 'false' && $row['is_email_disposable'] == 'false') {
-                        $email = $row['email'];
-                        $validmail = json_decode(file_get_contents('https://mlike.vn/module/checkmail.php?mail=' . $email));
-                        $checkmailCount = mysqli_num_rows(mysqli_query($db, "SELECT * FROM `member` WHERE `email` = '$email' AND `is_verify_mail` = 'true'"));
-
-                        $notificationMsg = '';
-                        $notificationColor = '';
-                        $modalId = '';
-
-                        if ($checkmailCount > 1 || $validmail->data->disposable == true || $validmail->data->deliverable == false) {
-                            $notificationMsg = 'Email của bạn đã được sử dụng bởi người khác, vui lòng <a style="color:green;" data-bs-toggle="modal" data-original-title="test" data-bs-target="#change_email" data-bs-original-title="" title="">Click tại đây</a> để đổi email khác để bảo mật tài khoản và sử dụng các chức năng quên mật khẩu,...';
-                            $notificationColor = 'danger';
-                            $modalId = 'change_email';
-                        } elseif ($validmail->data->disposable == true) {
-                            $notificationMsg = 'Email của bạn đang là email ảo, vui lòng <a style="color:green;" data-bs-toggle="modal" data-original-title="test" data-bs-target="#change_email" data-bs-original-title="" title="">Click tại đây</a> để đổi email khác để bảo mật tài khoản và sử dụng các chức năng quên mật khẩu,...';
-                            $notificationColor = 'danger';
-                            $modalId = 'change_email';
-                        } elseif ($validmail->data->deliverable == false) {
-                            $notificationMsg = 'Địa chỉ email của bạn hiện đang không thể nhận được thư, vui lòng <a style="color:green;" data-bs-toggle="modal" data-original-title="test" data-bs-target="#change_email" data-bs-original-title="" title="">Click tại đây</a> để đổi email khác để bảo mật tài khoản và sử dụng các chức năng quên mật khẩu,...';
-                            $notificationColor = 'danger';
-                            $modalId = 'change_email';
-                        } elseif ($row['is_verify_mail'] == 'false') {
-                            $notificationMsg = 'Email của bạn chưa được xác minh, vui lòng <a style="color:green;" data-bs-toggle="modal" data-original-title="test" data-bs-target="#verify_email" data-bs-original-title="" title="">Click tại đây</a> để xác minh email để bảo mật tài khoản và sử dụng các chức năng quên mật khẩu,...';
-                            $notificationColor = 'warning';
-                            $modalId = 'verify_email';
-                        }
-
-                        if (!empty($notificationMsg)) {
-                            $showNotification = true;
-                        }
-                    }
-
-if ($showNotification) {
-    ?>
-                        <div class="alert alert-<?= $notificationColor; ?> outline fade show" role="alert">
-                            <p><b> Thông Báo! </b><?= $notificationMsg; ?></p>
-                        </div>
-                    <?php
-}
-if ($modalId == 'verify_email') {
-    ?>
-                        <div class="modal fade" id="verify_email" tabindex="-1" role="dialog" aria-labelledby="verify_emailLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Xác Minh Email Của Bạn</h5>
-                                        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close" data-bs-original-title="" title=""></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form class="theme-form">
-                                            <div class="col-12">
-                                                <div class="form-group">
-                                                    <label for="inputEmailAddress" class="form-label">Địa chỉ email của bạn</label>
-                                                    <input type="email" class="form-control" id="email" value="<?= $row['email']; ?>" readonly>
-                                                </div>
-                                                <button class="btn btn-secondary btn-block w-100" type="button" onClick="send_mail()" id="button_send_mail">Gửi Code</button>
-                                            </div>
-                                            <div class="col-12">
-                                                <span id="mail_code"></span>
-                                            </div>
-                                            <div class="col-12">
-                                                <span id="result_send_mail"></span>
-                                            </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button class="btn btn-primary" type="button" data-bs-dismiss="modal" data-bs-original-title="" title="">Đóng</button>
-                                        <button class="btn btn-secondary" type="button" onclick="verify()" id="button_send_hi">Xác Nhận</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <script>
-                            function send_mail() {
-                                $('#button_send_mail')['html']('<i class="spinner-border spinner-border-sm"></i> Vui lòng chờ...');
-                                $("#button_send_mail").prop("disabled", true);
-                                $.ajax({
-                                    url: "/module/sendmail.php",
-                                    type: "post",
-                                    dataType: "json",
-                                    data: {
-                                        email: "<?= $row["email"]; ?>",
-                                        name: "<?= $row["hoten"]; ?>",
-                                    },
-                                    success: function(response) {
-                                        if (response.status == 200) {
-                                            $("#button_send_mail").prop("disabled", true);
-                                            swal("Thông Báo", response.message, "success");
-                                            $('#mail_code').show().html(`<hr><div class="form-group"><label for="inputEmailAddress" class="form-label">Mã xác minh</label><input type="number" class="form-control" id="code_verify" placeholder="Nhập mã xác minh"></div>`);
-                                        } else {
-                                            swal("Thông Báo", response.message, "warning");
-                                        }
-                                        $('#button_send_mail')['html']('Gửi Code');
-                                    }
-                                });
-                            }
-
-                            function verify() {
-                                $('#button_send_hi')['html']('<i class="spinner-border spinner-border-sm"></i> Vui lòng chờ...');
-                                $.ajax({
-                                    url: "/api/user.php?act=verify_mail",
-                                    type: "post",
-                                    dataType: "json",
-                                    data: {
-                                        code: $('#code_verify').val(),
-                                    },
-                                    success: function(response) {
-                                        if (response.status == 200) {
-                                            swal("Thông Báo", response.message, "success");
-                                            $('#verify_email').modal('hide');
-                                            location.reload();
-                                        } else {
-                                            swal("Thông Báo", response.message, "warning");
-                                            $('button_send_hi').prop("disabled", false);
-                                        }
-                                        $('button_send_hi').prop("disabled", false);
-                                        $('#button_send_hi')['html']('Xác Nhận');
-                                    }
-                                });
-                            }
-                        </script>
-                    <?php
-} elseif ($modalId == 'change_email') {
-    ?>
-                        <div class="modal fade" id="change_email" tabindex="-1" role="dialog" aria-labelledby="change_emailLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Thay Đổi Địa Chỉ Email Của Bạn</h5>
-                                        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close" data-bs-original-title="" title=""></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form class="theme-form">
-                                            <div class="col-12">
-                                                <div class="form-group">
-                                                    <label for="inputEmailAddress" class="form-label">Địa chỉ email của bạn</label>
-                                                    <input type="email" class="form-control" id="email" value="<?= $row['email']; ?>">
-                                                </div>
-                                            </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button class="btn btn-primary" type="button" data-bs-dismiss="modal" data-bs-original-title="" title="">Đóng</button>
-                                        <button class="btn btn-secondary" type="button" onclick="change_mail()" id="button_send_cm">Thay Đổi</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <script>
-                            function change_mail() {
-                                $('#button_send_cm')['html']('<i class="spinner-border spinner-border-sm"></i> Vui lòng chờ...');
-                                $.ajax({
-                                    url: "/api/user.php?act=change_mail",
-                                    type: "post",
-                                    dataType: "json",
-                                    data: {
-                                        email: $('#email').val(),
-                                    },
-                                    success: function(response) {
-                                        if (response.status == 200) {
-                                            $("#button_send_mail").prop("disabled", true);
-                                            swal("Thông Báo", response.message, "success");
-                                            $('#change_mail').modal('hide');
-                                            location.reload();
-                                        } else {
-                                            swal("Thông Báo", response.message, "warning");
-                                        }
-                                        $('#button_send_cm')['html']('Thay Đổi');
-                                    }
-                                });
-                            }
-                        </script>
-                    <?php
-}
-?>
-
-                    <?php
-if ($row['rule'] == 99) {
-    $notificationData = json_decode(file_get_contents("https://huaducquan.id.vn/mlike/mlike.php?act=notification"), true);
-
-    if ($notificationData["show"]) {
-        foreach ($notificationData["data"] as $notification) {
-            echo '<div class="alert alert-' . $notification["class"] . ' outline fade show" role="alert">
-                    <p><b> System Notification! </b>' . $notification["msg"] . '</p>
-                  </div>';
-        }
-    }
-}
-?>
