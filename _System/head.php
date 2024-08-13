@@ -183,30 +183,30 @@ if ($row['rule'] == '99') {
                                 </li>
                                 <?php
                                 $hiss = mysqli_query($db, "SELECT * FROM `lichsu` WHERE `user` = '$login' AND `site` = '$site' ORDER BY id DESC LIMIT 8");
-                                while ($his = mysqli_fetch_assoc($hiss)) {
-                                    $loai = $his['loai'];
-                                    $sotien = $his['bd'];
-                                    $kyhieu = $his['gt'];
-                                    $tim = $his['time'];
+while ($his = mysqli_fetch_assoc($hiss)) {
+    $loai = $his['loai'];
+    $sotien = $his['bd'];
+    $kyhieu = $his['gt'];
+    $tim = $his['time'];
 
-                                    switch ($loai) {
-                                        case '1':
-                                            $sloai = 'Mua Dịch Vụ ' . $kyhieu . '' . number_format($sotien) . 'đ';
-                                            $icon = 'shopping-cart';
-                                            break;
-                                        case '2':
-                                            $sloai = 'Nạp Tiền ' . $kyhieu . '' . number_format($sotien) . 'đ';
-                                            $icon = 'shopping-bag';
-                                            break;
-                                        case '3':
-                                            $sloai = 'Thay Đổi Thông Tin';
-                                            $icon = 'edit-3';
-                                            break;
-                                        default:
-                                            $sloai = 'Dịch Vụ Không Xác Định';
-                                            $icon = 'help-circle';
-                                    }
-                                ?>
+    switch ($loai) {
+        case '1':
+            $sloai = 'Mua Dịch Vụ ' . $kyhieu . '' . number_format($sotien) . 'đ';
+            $icon = 'shopping-cart';
+            break;
+        case '2':
+            $sloai = 'Nạp Tiền ' . $kyhieu . '' . number_format($sotien) . 'đ';
+            $icon = 'shopping-bag';
+            break;
+        case '3':
+            $sloai = 'Thay Đổi Thông Tin';
+            $icon = 'edit-3';
+            break;
+        default:
+            $sloai = 'Dịch Vụ Không Xác Định';
+            $icon = 'help-circle';
+    }
+    ?>
                                     <li>
                                         <div class="d-flex align-items-center">
                                             <div class="flex-shrink-0"><i data-feather="<?= $icon; ?>"></i></div>
@@ -216,8 +216,8 @@ if ($row['rule'] == '99') {
                                         </div>
                                     </li>
                                 <?php
-                                }
-                                ?>
+}
+?>
 
                                 <li><a class="btn btn-primary" href="/history.php">Xem Chi Tiết & Tất Cả</a></li>
                             </ul>
@@ -232,51 +232,51 @@ if ($row['rule'] == '99') {
                                     <h6 class="f-18 mb-0">Thành Viên Trực Tuyến</h6>
                                 </li>
                                 <?php
-                                $ipp = mysqli_query($db, "SELECT * FROM `online` WHERE `time` >= '$dz' AND `site` = '$site' AND `user` != 'dramasee' ORDER BY id LIMIT 5");
-                                while ($ip = mysqli_fetch_assoc($ipp)) {
-                                    $name = ($ip['user'] !== '123') ? $ip['user'] : 'Khách ghé thăm';
+$ipp = mysqli_query($db, "SELECT * FROM `online` WHERE `time` >= '$dz' AND `site` = '$site' AND `user` != 'dramasee' ORDER BY id LIMIT 5");
+while ($ip = mysqli_fetch_assoc($ipp)) {
+    $name = ($ip['user'] !== '123') ? $ip['user'] : 'Khách ghé thăm';
 
-                                    if ($name !== 'Khách ghé thăm') {
-                                        $onl = mysqli_query($db, "SELECT * FROM `member` WHERE `username` = '$name' AND `site` = '$site'");
-                                        $ttonl = mysqli_fetch_assoc($onl);
+    if ($name !== 'Khách ghé thăm') {
+        $onl = mysqli_query($db, "SELECT * FROM `member` WHERE `username` = '$name' AND `site` = '$site'");
+        $ttonl = mysqli_fetch_assoc($onl);
 
-                                        $rule = ($ttonl['rule'] == '99') ? '99' : '1';
-                                        $img = 'https://ui-avatars.com/api/?background=random&name=' . $name;
-                                    } else {
-                                        $rule = '1';
-                                        $img = 'https://ui-avatars.com/api/?background=random&name=' . $name;
-                                    }
-                                ?>
+        $rule = ($ttonl['rule'] == '99') ? '99' : '1';
+        $img = 'https://ui-avatars.com/api/?background=random&name=' . $name;
+    } else {
+        $rule = '1';
+        $img = 'https://ui-avatars.com/api/?background=random&name=' . $name;
+    }
+    ?>
                                     <li>
                                         <div class="d-flex align-items-start">
                                             <div class="message-img bg-light-primary"><img src="<?= $img; ?>" alt=""></div>
                                             <div class="flex-grow-1">
                                                 <h5 class="mb-1"><a href="#">
                                                         <?php
-                                                        if ($rule == '99') {
-                                                            echo '<span style="color:red;">';
-                                                        }
-                                                        ?>
+                            if ($rule == '99') {
+                                echo '<span style="color:red;">';
+                            }
+    ?>
                                                         <?= $name; ?>
                                                         <?php
-                                                        if ($rule == '99') {
-                                                            if ($name == 'dramasee') {
-                                                                echo '(Lập Trình Viên)';
-                                                            } else {
-                                                                echo '(Quản Trị Viên)';
-                                                            }
-                                                        }
-                                                        ?>
+    if ($rule == '99') {
+        if ($name == 'dramasee') {
+            echo '(Lập Trình Viên)';
+        } else {
+            echo '(Quản Trị Viên)';
+        }
+    }
+    ?>
                                                         </span></a></h5>
                                                 <p>Đang ở: <?php
-                                                            echo ($ttonl['rule'] == 99 && in_array($ttonl['username'], ['dramasee', 'BossSang'])) ? '<strong>[Admin Privacy Protection]</strong>' : $ip['title'];
-                                                            ?></p>
+        echo ($ttonl['rule'] == 99 && in_array($ttonl['username'], ['dramasee', 'BossSang'])) ? '<strong>[Admin Privacy Protection]</strong>' : $ip['title'];
+    ?></p>
                                             </div>
                                         </div>
                                     </li>
                                 <?php
-                                }
-                                ?>
+}
+?>
 
                             </ul>
                         </li>
@@ -326,8 +326,8 @@ if ($row['rule'] == '99') {
                                     <ul>
                                         <li class="sidebar-list"><a class="sidebar-link" href="/"><i data-feather="home"></i><span>Trang Chủ</span></a></li>
                                         <?php
-                                        if ($row['rule'] == 99) {
-                                        ?>
+        if ($row['rule'] == 99) {
+            ?>
                                             <li class="menu-box">
                                                 <ul>
                                                     <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="javascript:void(0)"><i data-feather="monitor"> </i> <span>Bảng Điều Khiển</span></a>
@@ -358,43 +358,43 @@ if ($row['rule'] == '99') {
                                                 </ul>
                                             </li>
                                         <?php
-                                        }
-                                        ?>
+        }
+?>
                                         <li class="sidebar-list"><a class="sidebar-link" href="https://documenter.getpostman.com/view/17576313/VV4zNuAb" target="_blank"><i data-feather="book"></i><span>API Document</span></a></li>
                                         <li class="sidebar-list"><a class="sidebar-link" href="/payment.php"><i data-feather="folder-plus"></i><span>Nạp Tiền</span></a></li>
                                         <?php
-                                        $list = 'Tiện Ích:list#Trang Cá Nhân|/profile.php!Lịch Sử Hoạt Động|/history.php!Tạo SITE CON|/sitecon.php
+$list = 'Tiện Ích:list#Trang Cá Nhân|/profile.php!Lịch Sử Hoạt Động|/history.php!Tạo SITE CON|/sitecon.php
                                         Dịch Vụ Facebook:facebook#Tăng Like Post Kênh 1|/service/like.php!Tăng Cảm Xúc Bài Viết|/service/like_feeling.php!Tăng Like Comment Facebook|/service/likecmt.php!Tăng Comment Facebook|/service/comment.php!Tăng Share Bài Viết|/service/share.php!Tăng Follow Facebook|/service/follow.php!Tăng Mắt Livestream|/service/live.php!Tăng Like Fanpage|/service/page.php!Tăng Member Group|/service/group.php!Tăng View Video|/service/view.php!Vip Like Facebook|/service/viplike.php!Tăng View Story|/service/view_story.php
                                        Dịch Vụ Instagram:instagram#Tăng Like Bài Viết|/service/ins/like.php!Tăng Comment Instagram|/service/ins/comment.php!Tăng Follow Instagram|/service/ins/follow.php!Tăng View Instagram|/service/ins/view.php
                                        Dịch Vụ TikTok:trending-up#Tăng View Video|/service/tiktok/view.php!Tăng Tim TikTok|/service/tiktok/like.php!Tăng Save TikTok|/service/tiktok/save.php!Tăng Share TikTok|/service/tiktok/share.php!Tăng Follow TikTok|/service/tiktok/follow.php!Tăng Comment TikTok|/service/tiktok/comment.php
                                        Dịch Vụ Khác:thumbs-up#Tăng traffic website .|/service/other/website.php';
-                                        $arr = explode("\n", $list);
-                                        foreach ($arr as $key => $value) {
-                                            $quan = explode("#", $value);
-                                            $main = $quan[0];
-                                            $tach = explode(":", $main);
-                                            $ten = $tach[0];
-                                            $icon = $tach[1];
-                                            $child = $quan[1];
-                                            echo '
+$arr = explode("\n", $list);
+foreach ($arr as $key => $value) {
+    $quan = explode("#", $value);
+    $main = $quan[0];
+    $tach = explode(":", $main);
+    $ten = $tach[0];
+    $icon = $tach[1];
+    $child = $quan[1];
+    echo '
                                                 <li class="menu-box">
                                             <ul>
                                                 <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="javascript:void(0)"><i data-feather="' . $icon . '"></i> <span>' . $ten . '</span></a>
                                                     <ul class="sidebar-submenu">';
-                                            $arr = explode("!", $child);
-                                            foreach ($arr as $key => $value) {
-                                                $quan = explode("|", $value);
-                                                $name = $quan[0];
-                                                $link = $quan[1];
-                                                echo '
+    $arr = explode("!", $child);
+    foreach ($arr as $key => $value) {
+        $quan = explode("|", $value);
+        $name = $quan[0];
+        $link = $quan[1];
+        echo '
                                                     <li><a href="' . $domain . '' . $link . '">' . $name . '</a></li>';
-                                            }
-                                            echo '</ul>
+    }
+    echo '</ul>
                                                 </li>
                                             </ul>
                                         </li>';
-                                        }
-                                        ?>
+}
+?>
                                         <li class="sidebar-list">
                                             <a href="https://zalo.me/0987777059" class="sidebar-link" target="_blank">
                                                 <i data-feather="mail"></i>
